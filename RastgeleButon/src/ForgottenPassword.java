@@ -21,7 +21,7 @@ public class ForgottenPassword extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField fld_Rand;
-	private JTextField fld_Dogrula;
+	private JTextField fld_Confirm;
 
 	/**
 	 * Launch the application.
@@ -66,39 +66,39 @@ public class ForgottenPassword extends JFrame {
 		Random r1 = new Random();
 		Random r2 = new Random();
 		Random r3 = new Random();
-		int sayi1,sayi2,deger;
+		int number1,number2,value;
 		loops:
-		sayi1=r1.nextInt(10);
-		sayi2 = r2.nextInt(10);
-		deger = r3.nextInt(2);
-		rg(deger, sayi1, sayi2);
+		number1=r1.nextInt(10);
+		number2 = r2.nextInt(10);
+		value = r3.nextInt(2);
+		rg(value, number1, number2);
 
 		fld_Rand = new JTextField();
 		fld_Rand.setFont(new Font("Sitka Heading", Font.PLAIN, 15));
 		fld_Rand.setEditable(false);
-		if (deger == 0) {
-			fld_Rand.setText(" " + sayi1 + "+" + sayi2 + "=?");
-		} else if (deger == 1) {
-			fld_Rand.setText(" " + sayi1 + "-" + sayi2 + "=?");
+		if (value == 0) {
+			fld_Rand.setText(" " + number1 + "+" + number2 + "=?");
+		} else if (value == 1) {
+			fld_Rand.setText(" " + number1 + "-" + number2 + "=?");
 		}
 		fld_Rand.setBounds(56, 78, 49, 25);
 		contentPane.add(fld_Rand);
 		fld_Rand.setColumns(10);
 
-		System.out.println(rg(deger, sayi1, sayi2));
+		System.out.println(rg(value, number1, number2));
 
-		fld_Dogrula = new JTextField();
-		fld_Dogrula.setFont(new Font("Sitka Heading", Font.PLAIN, 20));
-		fld_Dogrula.setColumns(10);
-		fld_Dogrula.setBounds(121, 78, 49, 25);
-		fld_Dogrula.setText("");
-		contentPane.add(fld_Dogrula);
+		fld_Confirm = new JTextField();
+		fld_Confirm.setFont(new Font("Sitka Heading", Font.PLAIN, 20));
+		fld_Confirm.setColumns(10);
+		fld_Confirm.setBounds(121, 78, 49, 25);
+		fld_Confirm.setText("");
+		contentPane.add(fld_Confirm);
 
 		JButton btnNewButton = new JButton("Gönder");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(fld_Dogrula.getText().length()!=0) {
-				if (Integer.parseInt(fld_Dogrula.getText()) == rg(deger, sayi1, sayi2)) {
+				if(fld_Confirm.getText().length()!=0) {
+				if (Integer.parseInt(fld_Confirm.getText()) == rg(value, number1, number2)) {
 					Login l = new Login();
 
 					JOptionPane.showMessageDialog(null, "E-Mailinize þifrenizi deðiþtirmeniz için mail gönderilmiþtir.",
@@ -128,19 +128,19 @@ public class ForgottenPassword extends JFrame {
 	}
 	
 	
-	public int rg(int degerr, int sayi11, int sayi22) {
-		int sonuc = 0;
-		switch (degerr) {
+	public int rg(int value2, int number3, int number4) {
+		int result = 0;
+		switch (value2) {
 		case 0:
-			sonuc = sayi11 + sayi22;
+			result = number3 + number4;
 			break;
 		case 1:
-			sonuc = sayi11 - sayi22;
+			result = number3 - number4;
 			break;
 		default:
 			break;
 		}
 
-		return sonuc;
+		return result;
 	}
 }

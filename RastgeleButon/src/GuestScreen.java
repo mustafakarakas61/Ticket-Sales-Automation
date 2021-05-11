@@ -23,11 +23,11 @@ import java.awt.event.ActionEvent;
 public class GuestScreen extends JFrame {
 
 	private JPanel contentPane;
-	private DefaultTableModel sinemaModel; //tablo sütunlarýný isimlendirmek için
-	private Object[] sinemaData=null; //sqlden veri çekmek için
-	private JTable table_Sinema;
-	private JTable table_Tiyatro;
-	private JTable table_Konser;
+	private DefaultTableModel cinemaModel; //tablo sütunlarýný isimlendirmek için
+	private Object[] cinemaData=null; //sqlden veri çekmek için
+	private JTable table_Cinema;
+	private JTable table_Theater;
+	private JTable table_Concert;
 
 	/**
 	 * Launch the application.
@@ -51,17 +51,17 @@ public class GuestScreen extends JFrame {
 	public GuestScreen() {
 		setResizable(false);
 		
-		sinemaModel = new DefaultTableModel();
-		Object[] colSinema = new Object[5]; //tablo sütunlarýna isim vermek için
+		cinemaModel = new DefaultTableModel();
+		Object[] colCinema = new Object[5]; //tablo sütunlarýna isim vermek için
 		
-		colSinema[0]="Film Adý";
-		colSinema[1]="Film Türü";
-		colSinema[2]="Yönetmen";
-		colSinema[3]="Salon";
-		colSinema[4]="Seans";
+		colCinema[0]="Film Adý";
+		colCinema[1]="Film Türü";
+		colCinema[2]="Yönetmen";
+		colCinema[3]="Salon";
+		colCinema[4]="Seans";
 		
-		sinemaModel.setColumnIdentifiers(colSinema);
-		sinemaData=new Object[5]; //sqlden veri çekmek için
+		cinemaModel.setColumnIdentifiers(colCinema);
+		cinemaData=new Object[5]; //sqlden veri çekmek için
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 600);
@@ -70,125 +70,125 @@ public class GuestScreen extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btn_cikisYap = new JButton("\u00C7\u0131k\u0131\u015F Yap");
-		btn_cikisYap.addActionListener(new ActionListener() {
+		JButton btn_Exit = new JButton("\u00C7\u0131k\u0131\u015F Yap");
+		btn_Exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l = new Login();
 				l.setVisible(true);
 				dispose();
 			}
 		});
-		btn_cikisYap.setBounds(584, 11, 89, 23);
-		contentPane.add(btn_cikisYap);
+		btn_Exit.setBounds(584, 11, 89, 23);
+		contentPane.add(btn_Exit);
 		
-		JLabel lbl_Sayin = new JLabel("Bilet Sat\u0131n almak i\u00E7in L\u00FCtfen Giri\u015F Yap\u0131n\u0131z.");
-		lbl_Sayin.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		lbl_Sayin.setBounds(10, 11, 267, 23);
-		contentPane.add(lbl_Sayin);
+		JLabel lbl_info = new JLabel("Bilet Sat\u0131n almak i\u00E7in L\u00FCtfen Giri\u015F Yap\u0131n\u0131z.");
+		lbl_info.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		lbl_info.setBounds(10, 11, 267, 23);
+		contentPane.add(lbl_info);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 36, 694, 525);
 		contentPane.add(tabbedPane);
 		
-		JPanel w_paneSinema = new JPanel();
-		w_paneSinema.setBackground(SystemColor.inactiveCaption);
-		tabbedPane.addTab("Sinemalar", null, w_paneSinema, null);
-		w_paneSinema.setLayout(null);
+		JPanel w_paneCinema = new JPanel();
+		w_paneCinema.setBackground(SystemColor.inactiveCaption);
+		tabbedPane.addTab("Sinemalar", null, w_paneCinema, null);
+		w_paneCinema.setLayout(null);
 		
-		JScrollPane scrollPane_Sinema = new JScrollPane();
-		scrollPane_Sinema.setBounds(0, 0, 681, 461);
-		w_paneSinema.add(scrollPane_Sinema);
+		JScrollPane scrollPane_Cinema = new JScrollPane();
+		scrollPane_Cinema.setBounds(0, 0, 681, 461);
+		w_paneCinema.add(scrollPane_Cinema);
 		
-		table_Sinema = new JTable(sinemaModel);
-		table_Sinema.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table_Sinema.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
-		scrollPane_Sinema.setViewportView(table_Sinema);
+		table_Cinema = new JTable(cinemaModel);
+		table_Cinema.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table_Cinema.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
+		scrollPane_Cinema.setViewportView(table_Cinema);
 		
-		JButton btn_GeriDon1 = new JButton("Geri D\u00F6n");
-		btn_GeriDon1.addActionListener(new ActionListener() {
+		JButton btn_GoBack1 = new JButton("Geri D\u00F6n");
+		btn_GoBack1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l= new Login();
 				l.setVisible(true);
 				dispose();
 			}
 		});
-		btn_GeriDon1.setFont(new Font("Sitka Display", Font.BOLD, 16));
-		btn_GeriDon1.setBounds(285, 464, 99, 30);
-		w_paneSinema.add(btn_GeriDon1);
-		table_Sinema.getColumnModel().getColumn(0).setPreferredWidth(60);
-		table_Sinema.getColumnModel().getColumn(0).setResizable(false);
+		btn_GoBack1.setFont(new Font("Sitka Display", Font.BOLD, 16));
+		btn_GoBack1.setBounds(285, 464, 99, 30);
+		w_paneCinema.add(btn_GoBack1);
+		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(60);
+		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
 		
-		table_Sinema.getColumnModel().getColumn(1).setPreferredWidth(30);
-		table_Sinema.getColumnModel().getColumn(1).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(30);
+		table_Cinema.getColumnModel().getColumn(1).setResizable(false);
 		//table_Sinema.getColumnModel().getColumn(2).setPreferredWidth(90);
-		table_Sinema.getColumnModel().getColumn(2).setResizable(false);
-		table_Sinema.getColumnModel().getColumn(3).setPreferredWidth(10);
-		table_Sinema.getColumnModel().getColumn(3).setResizable(false);
-		table_Sinema.getColumnModel().getColumn(4).setPreferredWidth(10);
-		table_Sinema.getColumnModel().getColumn(4).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(2).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(10);
+		table_Cinema.getColumnModel().getColumn(3).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(10);
+		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
 		
 		/*************************Þimdilik Veri Ekliyorum***************************/
-		sinemaData[0]="Recep Ývedik 7";
-		sinemaData[1]="Komedi";
-		sinemaData[2]="Þahan Gökbakar";
-		sinemaData[3]=1;
-		sinemaData[4]=2;
-		sinemaModel.addRow(sinemaData);
-		sinemaData[0]="Hýzlý ve Öfkeli 10";
-		sinemaData[1]="Aksiyon";
-		sinemaData[2]="Rob Cohen";
-		sinemaData[3]=4;
-		sinemaData[4]=1;
-		sinemaModel.addRow(sinemaData);
+		cinemaData[0]="Recep Ývedik 7";
+		cinemaData[1]="Komedi";
+		cinemaData[2]="Þahan Gökbakar";
+		cinemaData[3]=1;
+		cinemaData[4]=2;
+		cinemaModel.addRow(cinemaData);
+		cinemaData[0]="Hýzlý ve Öfkeli 10";
+		cinemaData[1]="Aksiyon";
+		cinemaData[2]="Rob Cohen";
+		cinemaData[3]=4;
+		cinemaData[4]=1;
+		cinemaModel.addRow(cinemaData);
 		
 		/****************************************************/
 		
-		JPanel w_paneTiyatro = new JPanel();
-		w_paneTiyatro.setBackground(SystemColor.inactiveCaption);
-		tabbedPane.addTab("Tiyatrolar", null, w_paneTiyatro, null);
-		w_paneTiyatro.setLayout(null);
+		JPanel w_paneTheater = new JPanel();
+		w_paneTheater.setBackground(SystemColor.inactiveCaption);
+		tabbedPane.addTab("Tiyatrolar", null, w_paneTheater, null);
+		w_paneTheater.setLayout(null);
 		
-		JScrollPane scrollPane_Tiyatro = new JScrollPane();
-		scrollPane_Tiyatro.setBounds(0, 0, 681, 461);
-		w_paneTiyatro.add(scrollPane_Tiyatro);
+		JScrollPane scrollPane_Theater = new JScrollPane();
+		scrollPane_Theater.setBounds(0, 0, 681, 461);
+		w_paneTheater.add(scrollPane_Theater);
 		
-		table_Tiyatro = new JTable();
-		scrollPane_Tiyatro.setViewportView(table_Tiyatro);
+		table_Theater = new JTable();
+		scrollPane_Theater.setViewportView(table_Theater);
 		
-		JButton btn_GeriDon2 = new JButton("Geri D\u00F6n");
-		btn_GeriDon2.addActionListener(new ActionListener() {
+		JButton btn_GoBack2= new JButton("Geri D\u00F6n");
+		btn_GoBack2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l= new Login();
 				l.setVisible(true);
 				dispose();
 			}
 		});
-		btn_GeriDon2.setFont(new Font("Sitka Display", Font.BOLD, 16));
-		btn_GeriDon2.setBounds(285, 464, 99, 30);
-		w_paneTiyatro.add(btn_GeriDon2);
+		btn_GoBack2.setFont(new Font("Sitka Display", Font.BOLD, 16));
+		btn_GoBack2.setBounds(285, 464, 99, 30);
+		w_paneTheater.add(btn_GoBack2);
 		
-		JPanel w_paneKonser = new JPanel();
-		w_paneKonser.setBackground(SystemColor.inactiveCaption);
-		tabbedPane.addTab("Konserler", null, w_paneKonser, null);
-		w_paneKonser.setLayout(null);
+		JPanel w_paneConcert = new JPanel();
+		w_paneConcert.setBackground(SystemColor.inactiveCaption);
+		tabbedPane.addTab("Konserler", null, w_paneConcert, null);
+		w_paneConcert.setLayout(null);
 		
-		JScrollPane scrollPane_Konser = new JScrollPane();
-		scrollPane_Konser.setBounds(0, 0, 681, 461);
-		w_paneKonser.add(scrollPane_Konser);
+		JScrollPane scrollPane_Concert = new JScrollPane();
+		scrollPane_Concert.setBounds(0, 0, 681, 461);
+		w_paneConcert.add(scrollPane_Concert);
 		
-		table_Konser = new JTable();
-		scrollPane_Konser.setViewportView(table_Konser);
+		table_Concert = new JTable();
+		scrollPane_Concert.setViewportView(table_Concert);
 		
-		JButton btn_GeriDon3 = new JButton("Geri D\u00F6n");
-		btn_GeriDon3.addActionListener(new ActionListener() {
+		JButton btn_GoBack3 = new JButton("Geri D\u00F6n");
+		btn_GoBack3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l= new Login();
 				l.setVisible(true);
 				dispose();
 			}
 		});
-		btn_GeriDon3.setFont(new Font("Sitka Display", Font.BOLD, 16));
-		btn_GeriDon3.setBounds(285, 464, 99, 30);
-		w_paneKonser.add(btn_GeriDon3);
+		btn_GoBack3.setFont(new Font("Sitka Display", Font.BOLD, 16));
+		btn_GoBack3.setBounds(285, 464, 99, 30);
+		w_paneConcert.add(btn_GoBack3);
 	}
 }
