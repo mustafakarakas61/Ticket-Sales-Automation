@@ -998,3 +998,4 @@ public class AnaEkran extends JFrame {
 
 	}
 }
+//deðiþiklik yapýldý..
