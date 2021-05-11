@@ -28,7 +28,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.border.BevelBorder;
 // herkese selam as
-public class AnaEkran extends JFrame {
+public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultTableModel sinemaModel; // tablo sütunlarýný isimlendirmek için
@@ -87,7 +87,7 @@ public class AnaEkran extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AnaEkran frame = new AnaEkran();
+					MainScreen frame = new MainScreen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -99,7 +99,7 @@ public class AnaEkran extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AnaEkran() {
+	public MainScreen() {
 		setResizable(false);
 
 //////////////////////////////////////////////////////////////////////////////////Sinema
@@ -296,7 +296,7 @@ public class AnaEkran extends JFrame {
 		JButton btn_KoltukSec = new JButton("Koltuk Se\u00E7");
 		btn_KoltukSec.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				KoltukSecim ks= new KoltukSecim();
+				SeatSelection ks= new SeatSelection();
 				ks.setVisible(true);
 			}
 		});
@@ -998,4 +998,3 @@ public class AnaEkran extends JFrame {
 
 	}
 }
-//deðiþiklik yapýldý.. test Denemeyin artik yeter

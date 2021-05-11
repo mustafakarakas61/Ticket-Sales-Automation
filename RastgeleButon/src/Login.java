@@ -86,7 +86,7 @@ public class Login extends JFrame {
 		JButton btn_kayitOl = new JButton("Kay\u0131t Ol");
 		btn_kayitOl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				KayitOl ko = new KayitOl();
+				Register ko = new Register();
 				ko.setVisible(true);
 				dispose();
 			}
@@ -99,7 +99,7 @@ public class Login extends JFrame {
 		JButton btn_girisYap = new JButton("Giri\u015F Yap");
 		btn_girisYap.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AnaEkran ae= new AnaEkran();
+				MainScreen ae= new MainScreen();
 				ae.setVisible(true);
 				dispose();
 			}
@@ -113,7 +113,7 @@ public class Login extends JFrame {
 		btn_girisYapUyesiz.setBackground(Color.PINK);
 		btn_girisYapUyesiz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UyesizAnaEkran uak= new UyesizAnaEkran();
+				GuestScreen uak= new GuestScreen();
 				uak.setVisible(true);
 				dispose();
 			}
@@ -125,7 +125,7 @@ public class Login extends JFrame {
 		JButton btnNewButton = new JButton("\u015Eifremi Unuttum");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SifremiUnuttum su= new SifremiUnuttum();
+				ForgottenPassword su= new ForgottenPassword();
 				su.setVisible(true);
 				
 			}

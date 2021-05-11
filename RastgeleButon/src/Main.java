@@ -39,7 +39,6 @@ public class Main extends JFrame implements MouseListener {
 					.getConnection("jdbc:mysql://localhost:3361/myfirstschema?user=root&password=Muskar61ts862.");
 			System.out.println("Baðlanýldý");
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			System.out.println("Baðlanýlamadý");
 		}
@@ -69,7 +68,6 @@ public class Main extends JFrame implements MouseListener {
 					.getConnection("jdbc:mysql://localhost:3361/myfirstschema?user=root&password=Muskar61ts862.");
 			System.out.println("Baðlanýldý");
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			System.out.println("Baðlanýlamadý");
 		}
@@ -95,7 +93,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("A" + i);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (i < 20) {
@@ -104,7 +101,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("B" + i % 10);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (i < 30) {
@@ -113,7 +109,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("C" + i % 10);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (i < 40) {
@@ -122,7 +117,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("D" + i % 10);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (i < 50) {
@@ -131,7 +125,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("E" + i % 10);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (i < 60) {
@@ -140,7 +133,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("F" + i % 10);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (i < 70) {
@@ -149,7 +141,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("G" + i % 10);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (i < 80) {
@@ -167,7 +158,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("I" + i % 10);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else if (i < 100) {
@@ -176,7 +166,6 @@ public class Main extends JFrame implements MouseListener {
 				try {
 					ButonEkle("J" + i % 10);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -188,7 +177,6 @@ public class Main extends JFrame implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 		dispose();
 
@@ -196,18 +184,15 @@ public class Main extends JFrame implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		JButton b = (JButton) e.getComponent();
 
 		b.setBackground(Color.green);
@@ -219,7 +204,6 @@ public class Main extends JFrame implements MouseListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 
 				dispose();
 			}
@@ -228,7 +212,6 @@ public class Main extends JFrame implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		JButton b = (JButton) e.getComponent();
 		b.setBackground(null);
 

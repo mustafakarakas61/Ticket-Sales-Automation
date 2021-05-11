@@ -16,7 +16,7 @@ import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class SifremiUnuttum extends JFrame {
+public class ForgottenPassword extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -30,7 +30,7 @@ public class SifremiUnuttum extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SifremiUnuttum frame = new SifremiUnuttum();
+					ForgottenPassword frame = new ForgottenPassword();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class SifremiUnuttum extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SifremiUnuttum() {
+	public ForgottenPassword() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 242, 194);
 		contentPane = new JPanel();

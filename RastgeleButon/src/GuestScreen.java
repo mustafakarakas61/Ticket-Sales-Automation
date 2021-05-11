@@ -20,7 +20,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class UyesizAnaEkran extends JFrame {
+public class GuestScreen extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultTableModel sinemaModel; //tablo sütunlarýný isimlendirmek için
@@ -36,7 +36,7 @@ public class UyesizAnaEkran extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UyesizAnaEkran frame = new UyesizAnaEkran();
+					GuestScreen frame = new GuestScreen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class UyesizAnaEkran extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UyesizAnaEkran() {
+	public GuestScreen() {
 		setResizable(false);
 		
 		sinemaModel = new DefaultTableModel();

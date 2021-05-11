@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class KoltukSecim extends JFrame {
+public class SeatSelection extends JFrame {
 
 	private JPanel contentPane;
 
@@ -25,7 +25,7 @@ public class KoltukSecim extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KoltukSecim frame = new KoltukSecim();
+					SeatSelection frame = new SeatSelection();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class KoltukSecim extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public KoltukSecim() {
+	public SeatSelection() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 600);
 		contentPane = new JPanel();

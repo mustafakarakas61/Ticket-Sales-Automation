@@ -15,7 +15,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class KayitOl extends JFrame {
+public class Register extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField fld_ad;
@@ -32,7 +32,7 @@ public class KayitOl extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KayitOl frame = new KayitOl();
+					Register frame = new Register();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class KayitOl extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public KayitOl() {
+	public Register() {
 		setResizable(false);
 		setTitle("Kay\u0131t Ol");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
