@@ -27,7 +27,7 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.border.BevelBorder;
-
+// herkese selam 
 public class AnaEkran extends JFrame {
 
 	private JPanel contentPane;
