@@ -29,7 +29,7 @@ public class Register extends JFrame {
 	private JTextField fld_mail;
 	private JTextField fld_TCNo;
 	private DbHelper dbhelper = new DbHelper();
-	private Member member ;
+	private Member member = new Member();
 
 	/**
 	 * Launch the application.
@@ -86,13 +86,13 @@ public class Register extends JFrame {
 		lbl_Name_Email.setBounds(32, 167, 160, 24);
 		contentPane.add(lbl_Name_Email);
 		
-		JCheckBox chckbx_Confirm = new JCheckBox("\u00DCyelik Bilgilerimin, bu veritaban\u0131nda saklanmas\u0131na izin veriyorum.");
+		JCheckBox chckbx_Confirm = new JCheckBox("Uyelik Bilgilerimin, bu veritabaninda saklanmasina izin veriyorum.");
 		chckbx_Confirm.setBackground(SystemColor.inactiveCaption);
 		chckbx_Confirm.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		chckbx_Confirm.setBounds(32, 198, 365, 23);
 		contentPane.add(chckbx_Confirm);
 		
-		JButton btn_Register = new JButton("Kay\u0131t Ol");
+		JButton btn_Register = new JButton("Kayit Ol");
 		btn_Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -111,8 +111,8 @@ public class Register extends JFrame {
 					
 					if (control) {
 						Metod_Helper.showMsg("succes");
-//						LoginGUI login = new LoginGUI();
-//						login.setVisible(true);
+						Login login = new Login();
+						login.setVisible(true);
 						dispose();
 						
 					}else {

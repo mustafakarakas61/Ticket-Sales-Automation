@@ -12,8 +12,8 @@ public class Member extends user{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(int id, String name, String surname, String pass, String tC_No, String email) {
-		super(id, name, surname, pass, tC_No, email);
+	public Member(int id, String name, String surname, String pass, String TC_No, String email) {
+		super(id, name, surname, pass, TC_No, email);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -24,13 +24,13 @@ public class Member extends user{
 		int key = 0;
 
 		boolean duplicate = false;
-		String query = "insert into register (tcno,pass,name,type) values (?,?,?,?)";
+		String query = "insert into register (TC_No,Pass,Name) values (?,?,?)";
 
 		try {
 			connection = dbhelper.getConnection();
 
 			statement = connection.createStatement();
-			result = statement.executeQuery("Select * from user where tcno = ' " + tcno + " ' ");
+			result = statement.executeQuery("Select * from register where TC_No = ' " + tcno + " ' ");
 
 
 			while (result.next()) {
@@ -46,7 +46,6 @@ public class Member extends user{
 				pStatement.setString(1, tcno);
 				pStatement.setString(2, pass);
 				pStatement.setString(3, name);
-				pStatement.setString(4, "hasta");
 				pStatement.executeUpdate();
 				key = 1;
 			}

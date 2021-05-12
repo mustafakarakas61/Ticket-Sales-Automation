@@ -15,13 +15,13 @@ public class user {
 	public user() {}
 	
 	
-	public user(int id, String name, String surname, String pass, String tC_No, String email) {
+	public user(int id, String name, String surname, String pass, String TC_No, String email) {
 		super();
 		this.id = id;
 		Name = name;
 		Surname = surname;
 		Pass = pass;
-		TC_No = tC_No;
+		TC_No = TC_No;
 		Email = email;
 	}
 	public int getId() {
