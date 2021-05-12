@@ -21,7 +21,7 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField fld_Username_Login;
-	private JPasswordField fld_sifreG;
+	private JPasswordField fld_PasswordLogin;
 	private JTextField fld_Username_Admin;
 	private JPasswordField fld_Password_Admin;
 
@@ -79,9 +79,9 @@ public class Login extends JFrame {
 		w_paneCustomer.add(fld_Username_Login);
 		fld_Username_Login.setColumns(10);
 		
-		fld_sifreG = new JPasswordField();
-		fld_sifreG.setBounds(116, 58, 122, 20);
-		w_paneCustomer.add(fld_sifreG);
+		fld_PasswordLogin = new JPasswordField();
+		fld_PasswordLogin.setBounds(116, 58, 122, 20);
+		w_paneCustomer.add(fld_PasswordLogin);
 		
 		JButton btn_Register = new JButton("Kay\u0131t Ol");
 		btn_Register.addActionListener(new ActionListener() {
@@ -165,10 +165,10 @@ public class Login extends JFrame {
 		btn_Login_1.setBounds(137, 89, 101, 39);
 		w_paneAdmin.add(btn_Login_1);
 		
-		JLabel lbl_YoneticiUnuttu = new JLabel("\u015Eifrenizi veya ID'nizi unuttu\u011Funuzda l\u00FCtfen ilgili yetkiliye dan\u0131\u015F\u0131n\u0131z.");
-		lbl_YoneticiUnuttu.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lbl_YoneticiUnuttu.setBounds(10, 127, 389, 14);
-		w_paneAdmin.add(lbl_YoneticiUnuttu);
+		JLabel lbl_ForgottenAdmin = new JLabel("\u015Eifrenizi veya ID'nizi unuttu\u011Funuzda l\u00FCtfen ilgili yetkiliye dan\u0131\u015F\u0131n\u0131z.");
+		lbl_ForgottenAdmin.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lbl_ForgottenAdmin.setBounds(10, 127, 389, 14);
+		w_paneAdmin.add(lbl_ForgottenAdmin);
 		
 		JLabel lblWelcome = new JLabel("Welcome to Ticket Sales System");
 		lblWelcome.setFont(new Font("Tempus Sans ITC", Font.BOLD | Font.ITALIC, 16));
