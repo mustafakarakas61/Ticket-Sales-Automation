@@ -239,10 +239,19 @@ public class Login extends JFrame {
 		fld_Password_Admin = new JPasswordField();
 		fld_Password_Admin.setBounds(116, 58, 122, 20);
 		w_paneAdmin.add(fld_Password_Admin);
-		
+		//---------------------------------------------------------------------Admin login-------------------------
 		JButton btn_Login_1 = new JButton("Giris Yap");
 		btn_Login_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (fld_Password_Admin.getText().length()==0 
+					|| fld_Username_Admin.getText().length()==0	) {
+			
+					
+				}
+				
+				
+				
 //				MainScreen ae= new MainScreen(member);
 //				ae.setVisible(true);
 //				dispose();
