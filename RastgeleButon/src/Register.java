@@ -129,7 +129,7 @@ public class Register extends JFrame {
 		btn_Register.setBounds(175, 221, 89, 39);
 		contentPane.add(btn_Register);
 		
-		JButton btn_GoBack = new JButton("Geri D\u00F6n");
+		JButton btn_GoBack = new JButton("Geri Dön");
 		btn_GoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login lg = new Login();
@@ -165,7 +165,7 @@ public class Register extends JFrame {
 		fld_mail.setBounds(189, 166, 208, 20);
 		contentPane.add(fld_mail);
 		
-		JLabel lbl_TCNo = new JLabel("T.C. Numaras\u0131:");
+		JLabel lbl_TCNo = new JLabel("T.C. Numarasi:");
 		lbl_TCNo.setFont(new Font("Yu Gothic", Font.BOLD, 14));
 		lbl_TCNo.setBounds(32, 96, 160, 24);
 		contentPane.add(lbl_TCNo);
