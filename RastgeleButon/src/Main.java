@@ -270,4 +270,4 @@ public  int getkoltukList(int idkoltuksayisi) throws SQLException {
 
 }
 }
-/** OY OY OYaa  ekleme yapýldý  asd**/
+/** OY OY OYaa  ekleme yapýldý  asd son kez**/
