@@ -52,33 +52,33 @@ public class MainScreen extends JFrame {
 	private JTextField fld_CartName;
 	private JTextField fld_CartNumber;
 
-	private JTextField fld_OyunAdi;
-	private JTextField fld_OyunTuru;
-	private JTextField fld_Tarih;
+	private JTextField fld_GameName;
+	private JTextField fld_GameType;
+	private JTextField fld_Date;
 	private JTextField fld_Salon2;
-	private JTextField fld_KoltukSec2;
-	private JTextField fld_Saat;
-	private JTextField fld_Ad2;
-	private JTextField fld_Soyad2;
+	private JTextField fld_SeatSelection2;
+	private JTextField fld_Time;
+	private JTextField fld_Name2;
+	private JTextField fld_Surname2;
 	private JTextField fld_Mail2;
-	private JTextField fld_Tutar2;
+	private JTextField fld_Price2;
 	private JTextField fld_cvc2;
-	private JTextField fld_KartIsim2;
-	private JTextField fld_KartNo2;
+	private JTextField fld_CartName2;
+	private JTextField fld_CartNumber2;
 
-	private JTextField fld_KonserAdi;
-	private JTextField fld_KonserTuru;
-	private JTextField fld_Tarih2;
+	private JTextField fld_ConcertName;
+	private JTextField fld_ConcertType;
+	private JTextField fld_Date2;
 	private JTextField fld_Salon3;
-	private JTextField fld_KoltukSec3;
-	private JTextField fld_Saat2;
-	private JTextField fld_Ad3;
-	private JTextField fld_Soyad3;
+	private JTextField fld_SeatSelection3;
+	private JTextField fld_Time2;
+	private JTextField fld_Name3;
+	private JTextField fld_Surname3;
 	private JTextField fld_Mail3;
-	private JTextField fld_Tutar3;
+	private JTextField fld_Price3;
 	private JTextField fld_cvc3;
-	private JTextField fld_KartIsim3;
-	private JTextField fld_KartNo3;
+	private JTextField fld_CartName3;
+	private JTextField fld_CartNumber3;
 
 	/**
 	 * Launch the application.
@@ -447,13 +447,13 @@ public class MainScreen extends JFrame {
 		lbl_LastUsageDate.setBounds(10, 56, 123, 14);
 		w_pane_Kart.add(lbl_LastUsageDate);
 
-		JComboBox comboBox_Ay = new JComboBox();
-		comboBox_Ay.setBounds(143, 53, 60, 22);
-		w_pane_Kart.add(comboBox_Ay);
+		JComboBox comboBox_Month = new JComboBox();
+		comboBox_Month.setBounds(143, 53, 60, 22);
+		w_pane_Kart.add(comboBox_Month);
 
-		JComboBox comboBox_Yil = new JComboBox();
-		comboBox_Yil.setBounds(210, 53, 72, 22);
-		w_pane_Kart.add(comboBox_Yil);
+		JComboBox comboBox_Year = new JComboBox();
+		comboBox_Year.setBounds(210, 53, 72, 22);
+		w_pane_Kart.add(comboBox_Year);
 
 		JLabel lbl_Cvc = new JLabel("CVC:");
 		lbl_Cvc.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -503,10 +503,10 @@ public class MainScreen extends JFrame {
 		contentPane.add(PaneTheater);
 		PaneTheater.setLayout(null);
 
-		JButton btn_BiletAl2 = new JButton("Bilet Al");
-		btn_BiletAl2.setBounds(195, 468, 102, 30);
-		PaneTheater.add(btn_BiletAl2);
-		btn_BiletAl2.setFont(new Font("Sitka Display", Font.BOLD, 18));
+		JButton btn_BuyTicket2 = new JButton("Bilet Al");
+		btn_BuyTicket2.setBounds(195, 468, 102, 30);
+		PaneTheater.add(btn_BuyTicket2);
+		btn_BuyTicket2.setFont(new Font("Sitka Display", Font.BOLD, 18));
 
 		JLabel lbl_Poster2 = new JLabel("");
 		lbl_Poster2.setIcon(new ImageIcon(
@@ -514,80 +514,80 @@ public class MainScreen extends JFrame {
 		lbl_Poster2.setBounds(324, 35, 128, 161);
 		PaneTheater.add(lbl_Poster2);
 
-		JLabel lbl_OyunAdi = new JLabel("Oyun Adý:");
-		lbl_OyunAdi.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_OyunAdi.setBounds(33, 50, 107, 18);
-		PaneTheater.add(lbl_OyunAdi);
+		JLabel lbl_GameName = new JLabel("Oyun Adý:");
+		lbl_GameName.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_GameName.setBounds(33, 50, 107, 18);
+		PaneTheater.add(lbl_GameName);
 
-		JLabel lbl_OyunTuru = new JLabel("Oyun Türü:");
-		lbl_OyunTuru.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_OyunTuru.setBounds(33, 73, 107, 18);
-		PaneTheater.add(lbl_OyunTuru);
+		JLabel lbl_GameType = new JLabel("Oyun Türü:");
+		lbl_GameType.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_GameType.setBounds(33, 73, 107, 18);
+		PaneTheater.add(lbl_GameType);
 
-		JLabel lbl_Tarih = new JLabel("Tarih:");
-		lbl_Tarih.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Tarih.setBounds(33, 96, 107, 18);
-		PaneTheater.add(lbl_Tarih);
+		JLabel lbl_Date = new JLabel("Tarih:");
+		lbl_Date.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_Date.setBounds(33, 96, 107, 18);
+		PaneTheater.add(lbl_Date);
 
 		JLabel lbl_Salon2 = new JLabel("Salon:");
 		lbl_Salon2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
 		lbl_Salon2.setBounds(33, 119, 107, 18);
 		PaneTheater.add(lbl_Salon2);
 
-		JLabel lbl_Saat = new JLabel("Saat:");
-		lbl_Saat.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Saat.setBounds(33, 143, 107, 18);
-		PaneTheater.add(lbl_Saat);
+		JLabel lbl_Time = new JLabel("Saat:");
+		lbl_Time.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_Time.setBounds(33, 143, 107, 18);
+		PaneTheater.add(lbl_Time);
 
-		JButton btn_KoltukSec2 = new JButton("Koltuk Seç");
-		btn_KoltukSec2.setBounds(33, 164, 95, 23);
-		PaneTheater.add(btn_KoltukSec2);
+		JButton btn_SelectSeat2 = new JButton("Koltuk Seç");
+		btn_SelectSeat2.setBounds(33, 164, 95, 23);
+		PaneTheater.add(btn_SelectSeat2);
 
-		JLabel lbl_OdemeBilgileri2 = new JLabel("Ödeme Bilgileri");
-		lbl_OdemeBilgileri2.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
-		lbl_OdemeBilgileri2.setBounds(33, 208, 128, 23);
-		PaneTheater.add(lbl_OdemeBilgileri2);
+		JLabel lbl_PaymentInfo2 = new JLabel("Ödeme Bilgileri");
+		lbl_PaymentInfo2.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
+		lbl_PaymentInfo2.setBounds(33, 208, 128, 23);
+		PaneTheater.add(lbl_PaymentInfo2);
 
-		JLabel lblTiyatroBilgileri = new JLabel("Tiyatro Bilgileri");
-		lblTiyatroBilgileri.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
-		lblTiyatroBilgileri.setBounds(33, 20, 144, 23);
-		PaneTheater.add(lblTiyatroBilgileri);
+		JLabel lblTheaterInfo = new JLabel("Tiyatro Bilgileri");
+		lblTheaterInfo.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
+		lblTheaterInfo.setBounds(33, 20, 144, 23);
+		PaneTheater.add(lblTheaterInfo);
 
-		JLabel lbl_OyunAdi_2 = new JLabel("Ad:");
-		lbl_OyunAdi_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_OyunAdi_2.setBounds(33, 238, 107, 18);
-		PaneTheater.add(lbl_OyunAdi_2);
+		JLabel lbl_GameName_2 = new JLabel("Ad:");
+		lbl_GameName_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_GameName_2.setBounds(33, 238, 107, 18);
+		PaneTheater.add(lbl_GameName_2);
 
-		JLabel lbl_OyunTuru_2 = new JLabel("Soyad:");
-		lbl_OyunTuru_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_OyunTuru_2.setBounds(33, 261, 107, 18);
-		PaneTheater.add(lbl_OyunTuru_2);
+		JLabel lbl_GameType_2 = new JLabel("Soyad:");
+		lbl_GameType_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_GameType_2.setBounds(33, 261, 107, 18);
+		PaneTheater.add(lbl_GameType_2);
 
-		JLabel lbl_Tarih_2 = new JLabel("E-Mail:");
-		lbl_Tarih_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Tarih_2.setBounds(33, 284, 107, 18);
-		PaneTheater.add(lbl_Tarih_2);
+		JLabel lbl_Date_2 = new JLabel("E-Mail:");
+		lbl_Date_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_Date_2.setBounds(33, 284, 107, 18);
+		PaneTheater.add(lbl_Date_2);
 
-		fld_OyunAdi = new JTextField();
-		fld_OyunAdi.setBackground(Color.WHITE);
-		fld_OyunAdi.setEditable(false);
-		fld_OyunAdi.setBounds(140, 51, 128, 20);
-		PaneTheater.add(fld_OyunAdi);
-		fld_OyunAdi.setColumns(10);
+		fld_GameName = new JTextField();
+		fld_GameName.setBackground(Color.WHITE);
+		fld_GameName.setEditable(false);
+		fld_GameName.setBounds(140, 51, 128, 20);
+		PaneTheater.add(fld_GameName);
+		fld_GameName.setColumns(10);
 
-		fld_OyunTuru = new JTextField();
-		fld_OyunTuru.setBackground(Color.WHITE);
-		fld_OyunTuru.setEditable(false);
-		fld_OyunTuru.setColumns(10);
-		fld_OyunTuru.setBounds(140, 74, 128, 20);
-		PaneTheater.add(fld_OyunTuru);
+		fld_GameType = new JTextField();
+		fld_GameType.setBackground(Color.WHITE);
+		fld_GameType.setEditable(false);
+		fld_GameType.setColumns(10);
+		fld_GameType.setBounds(140, 74, 128, 20);
+		PaneTheater.add(fld_GameType);
 
-		fld_Tarih = new JTextField();
-		fld_Tarih.setBackground(Color.WHITE);
-		fld_Tarih.setEditable(false);
-		fld_Tarih.setColumns(10);
-		fld_Tarih.setBounds(140, 97, 128, 20);
-		PaneTheater.add(fld_Tarih);
+		fld_Date = new JTextField();
+		fld_Date.setBackground(Color.WHITE);
+		fld_Date.setEditable(false);
+		fld_Date.setColumns(10);
+		fld_Date.setBounds(140, 97, 128, 20);
+		PaneTheater.add(fld_Date);
 
 		fld_Salon2 = new JTextField();
 		fld_Salon2.setBackground(Color.WHITE);
@@ -596,62 +596,62 @@ public class MainScreen extends JFrame {
 		fld_Salon2.setBounds(140, 120, 42, 20);
 		PaneTheater.add(fld_Salon2);
 
-		fld_KoltukSec2 = new JTextField();
-		fld_KoltukSec2.setBackground(Color.WHITE);
-		fld_KoltukSec2.setEditable(false);
-		fld_KoltukSec2.setColumns(10);
-		fld_KoltukSec2.setBounds(140, 165, 42, 20);
-		PaneTheater.add(fld_KoltukSec2);
+		fld_SeatSelection2 = new JTextField();
+		fld_SeatSelection2.setBackground(Color.WHITE);
+		fld_SeatSelection2.setEditable(false);
+		fld_SeatSelection2.setColumns(10);
+		fld_SeatSelection2.setBounds(140, 165, 42, 20);
+		PaneTheater.add(fld_SeatSelection2);
 
-		fld_Saat = new JTextField();
-		fld_Saat.setBackground(Color.WHITE);
-		fld_Saat.setEditable(false);
-		fld_Saat.setColumns(10);
-		fld_Saat.setBounds(140, 143, 42, 20);
-		PaneTheater.add(fld_Saat);
+		fld_Time = new JTextField();
+		fld_Time.setBackground(Color.WHITE);
+		fld_Time.setEditable(false);
+		fld_Time.setColumns(10);
+		fld_Time.setBounds(140, 143, 42, 20);
+		PaneTheater.add(fld_Time);
 
-		JLabel lbl_OdemeYontemi2 = new JLabel("\u00D6deme Y\u00F6ntemi");
-		lbl_OdemeYontemi2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_OdemeYontemi2.setBounds(33, 307, 128, 18);
-		PaneTheater.add(lbl_OdemeYontemi2);
+		JLabel lbl_PaymentMethod2 = new JLabel("\u00D6deme Y\u00F6ntemi");
+		lbl_PaymentMethod2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_PaymentMethod2.setBounds(33, 307, 128, 18);
+		PaneTheater.add(lbl_PaymentMethod2);
 
-		JComboBox comboBox_Yontem2 = new JComboBox();
-		comboBox_Yontem2.setBounds(33, 326, 110, 22);
-		comboBox_Yontem2.addItem("Nakit ödeme");
-		comboBox_Yontem2.addItem("Kart ile ödeme");
-		PaneTheater.add(comboBox_Yontem2);
+		JComboBox comboBox_Method2 = new JComboBox();
+		comboBox_Method2.setBounds(33, 326, 110, 22);
+		comboBox_Method2.addItem("Nakit ödeme");
+		comboBox_Method2.addItem("Kart ile ödeme");
+		PaneTheater.add(comboBox_Method2);
 
-		JPanel w_pane_Kart2 = new JPanel();
-		w_pane_Kart2.setBackground(SystemColor.inactiveCaption);
-		w_pane_Kart2.setBounds(33, 359, 452, 98);
-		PaneTheater.add(w_pane_Kart2);
-		w_pane_Kart2.setLayout(null);
-		w_pane_Kart2.setVisible(false);
-		comboBox_Yontem2.addItemListener(new ItemChangeListener() {
+		JPanel w_pane_Cart2 = new JPanel();
+		w_pane_Cart2.setBackground(SystemColor.inactiveCaption);
+		w_pane_Cart2.setBounds(33, 359, 452, 98);
+		PaneTheater.add(w_pane_Cart2);
+		w_pane_Cart2.setLayout(null);
+		w_pane_Cart2.setVisible(false);
+		comboBox_Method2.addItemListener(new ItemChangeListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 
-				if (comboBox_Yontem2.getSelectedIndex() == 0) {
-					w_pane_Kart2.setVisible(false);
+				if (comboBox_Method2.getSelectedIndex() == 0) {
+					w_pane_Cart2.setVisible(false);
 
 				} else {
-					w_pane_Kart2.setVisible(true);
+					w_pane_Cart2.setVisible(true);
 				}
 			}
 		});
 
-		fld_Ad2 = new JTextField();
-		fld_Ad2.setEditable(false);
-		fld_Ad2.setColumns(10);
-		fld_Ad2.setBackground(Color.WHITE);
-		fld_Ad2.setBounds(140, 238, 128, 20);
-		PaneTheater.add(fld_Ad2);
+		fld_Name2 = new JTextField();
+		fld_Name2.setEditable(false);
+		fld_Name2.setColumns(10);
+		fld_Name2.setBackground(Color.WHITE);
+		fld_Name2.setBounds(140, 238, 128, 20);
+		PaneTheater.add(fld_Name2);
 
-		fld_Soyad2 = new JTextField();
-		fld_Soyad2.setEditable(false);
-		fld_Soyad2.setColumns(10);
-		fld_Soyad2.setBackground(Color.WHITE);
-		fld_Soyad2.setBounds(140, 261, 128, 20);
-		PaneTheater.add(fld_Soyad2);
+		fld_Surname2 = new JTextField();
+		fld_Surname2.setEditable(false);
+		fld_Surname2.setColumns(10);
+		fld_Surname2.setBackground(Color.WHITE);
+		fld_Surname2.setBounds(140, 261, 128, 20);
+		PaneTheater.add(fld_Surname2);
 
 		fld_Mail2 = new JTextField();
 		fld_Mail2.setEditable(false);
@@ -660,76 +660,76 @@ public class MainScreen extends JFrame {
 		fld_Mail2.setBounds(140, 284, 128, 20);
 		PaneTheater.add(fld_Mail2);
 
-		JLabel lbl_Tutar2 = new JLabel("Toplam Tutar");
-		lbl_Tutar2.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lbl_Tutar2.setBounds(322, 207, 154, 47);
-		PaneTheater.add(lbl_Tutar2);
+		JLabel lbl_Price2 = new JLabel("Toplam Tutar");
+		lbl_Price2.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lbl_Price2.setBounds(322, 207, 154, 47);
+		PaneTheater.add(lbl_Price2);
 
-		fld_Tutar2 = new JTextField();
-		fld_Tutar2.setBackground(Color.WHITE);
-		fld_Tutar2.setEditable(false);
-		fld_Tutar2.setBounds(322, 247, 130, 55);
-		PaneTheater.add(fld_Tutar2);
-		fld_Tutar2.setColumns(10);
+		fld_Price2 = new JTextField();
+		fld_Price2.setBackground(Color.WHITE);
+		fld_Price2.setEditable(false);
+		fld_Price2.setBounds(322, 247, 130, 55);
+		PaneTheater.add(fld_Price2);
+		fld_Price2.setColumns(10);
 
-		JLabel lbl_KartIsim2 = new JLabel("Kart \u00FCzerindeki \u0130sim:");
-		lbl_KartIsim2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_KartIsim2.setBounds(10, 11, 123, 14);
-		w_pane_Kart2.add(lbl_KartIsim2);
+		JLabel lbl_CartName2 = new JLabel("Kart \u00FCzerindeki \u0130sim:");
+		lbl_CartName2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lbl_CartName2.setBounds(10, 11, 123, 14);
+		w_pane_Cart2.add(lbl_CartName2);
 
-		JLabel lbl_KartNumarasi2 = new JLabel("Kart Numaras\u0131:");
-		lbl_KartNumarasi2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_KartNumarasi2.setBounds(10, 34, 123, 14);
-		w_pane_Kart2.add(lbl_KartNumarasi2);
+		JLabel lbl_CartNumber2 = new JLabel("Kart Numaras\u0131:");
+		lbl_CartNumber2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lbl_CartNumber2.setBounds(10, 34, 123, 14);
+		w_pane_Cart2.add(lbl_CartNumber2);
 
-		JLabel lbl_SonKullanmTarihi2 = new JLabel("Son Kullan\u0131m Tarihi:");
-		lbl_SonKullanmTarihi2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_SonKullanmTarihi2.setBounds(10, 56, 123, 14);
-		w_pane_Kart2.add(lbl_SonKullanmTarihi2);
+		JLabel lbl_LastUsageDate2 = new JLabel("Son Kullan\u0131m Tarihi:");
+		lbl_LastUsageDate2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lbl_LastUsageDate2.setBounds(10, 56, 123, 14);
+		w_pane_Cart2.add(lbl_LastUsageDate2);
 
-		JComboBox comboBox_Ay2 = new JComboBox();
-		comboBox_Ay2.setBounds(143, 53, 60, 22);
-		w_pane_Kart2.add(comboBox_Ay2);
+		JComboBox comboBox_Date2 = new JComboBox();
+		comboBox_Date2.setBounds(143, 53, 60, 22);
+		w_pane_Cart2.add(comboBox_Date2);
 
-		JComboBox comboBox_Yil2 = new JComboBox();
-		comboBox_Yil2.setBounds(210, 53, 72, 22);
-		w_pane_Kart2.add(comboBox_Yil2);
+		JComboBox comboBox_Year2 = new JComboBox();
+		comboBox_Year2.setBounds(210, 53, 72, 22);
+		w_pane_Cart2.add(comboBox_Year2);
 
 		JLabel lbl_Cvc2 = new JLabel("CVC:");
 		lbl_Cvc2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbl_Cvc2.setBounds(317, 56, 46, 14);
-		w_pane_Kart2.add(lbl_Cvc2);
+		w_pane_Cart2.add(lbl_Cvc2);
 
 		fld_cvc2 = new JTextField();
 		fld_cvc2.setBounds(356, 54, 46, 20);
-		w_pane_Kart2.add(fld_cvc2);
+		w_pane_Cart2.add(fld_cvc2);
 		fld_cvc2.setColumns(10);
 
-		fld_KartIsim2 = new JTextField();
-		fld_KartIsim2.setColumns(10);
-		fld_KartIsim2.setBackground(Color.WHITE);
-		fld_KartIsim2.setBounds(143, 9, 139, 20);
-		w_pane_Kart2.add(fld_KartIsim2);
+		fld_CartName2 = new JTextField();
+		fld_CartName2.setColumns(10);
+		fld_CartName2.setBackground(Color.WHITE);
+		fld_CartName2.setBounds(143, 9, 139, 20);
+		w_pane_Cart2.add(fld_CartName2);
 
-		fld_KartNo2 = new JTextField();
-		fld_KartNo2.setColumns(10);
-		fld_KartNo2.setBackground(Color.WHITE);
-		fld_KartNo2.setBounds(143, 31, 139, 20);
-		w_pane_Kart2.add(fld_KartNo2);
+		fld_CartNumber2 = new JTextField();
+		fld_CartNumber2.setColumns(10);
+		fld_CartNumber2.setBackground(Color.WHITE);
+		fld_CartNumber2.setBounds(143, 31, 139, 20);
+		w_pane_Cart2.add(fld_CartNumber2);
 
-		JButton btn_Biletlerim_1 = new JButton("Biletlerim");
-		btn_Biletlerim_1.setForeground(SystemColor.menu);
-		btn_Biletlerim_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
-		btn_Biletlerim_1.setBackground(SystemColor.textHighlight);
-		btn_Biletlerim_1.setBounds(82, 464, 92, 35);
-		PaneTheater.add(btn_Biletlerim_1);
+		JButton btn_MyTickets_1 = new JButton("Biletlerim");
+		btn_MyTickets_1.setForeground(SystemColor.menu);
+		btn_MyTickets_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
+		btn_MyTickets_1.setBackground(SystemColor.textHighlight);
+		btn_MyTickets_1.setBounds(82, 464, 92, 35);
+		PaneTheater.add(btn_MyTickets_1);
 
-		JButton btn_BiletIptal_1 = new JButton("Bilet \u0130ptal");
-		btn_BiletIptal_1.setForeground(SystemColor.menu);
-		btn_BiletIptal_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
-		btn_BiletIptal_1.setBackground(SystemColor.textHighlight);
-		btn_BiletIptal_1.setBounds(317, 464, 92, 35);
-		PaneTheater.add(btn_BiletIptal_1);
+		JButton btn_TicketCancel_1 = new JButton("Bilet \u0130ptal");
+		btn_TicketCancel_1.setForeground(SystemColor.menu);
+		btn_TicketCancel_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
+		btn_TicketCancel_1.setBackground(SystemColor.textHighlight);
+		btn_TicketCancel_1.setBounds(317, 464, 92, 35);
+		PaneTheater.add(btn_TicketCancel_1);
 		PaneTheater.setVisible(false);
 		///////////////////////////////////////////////////// PANETÝYATRO////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -743,10 +743,10 @@ public class MainScreen extends JFrame {
 		contentPane.add(PaneConcert);
 		PaneConcert.setLayout(null);
 
-		JButton btn_BiletAl3 = new JButton("Bilet Al");
-		btn_BiletAl3.setBounds(195, 468, 102, 30);
-		PaneConcert.add(btn_BiletAl3);
-		btn_BiletAl3.setFont(new Font("Sitka Display", Font.BOLD, 18));
+		JButton btn_BuyTicket3 = new JButton("Bilet Al");
+		btn_BuyTicket3.setBounds(195, 468, 102, 30);
+		PaneConcert.add(btn_BuyTicket3);
+		btn_BuyTicket3.setFont(new Font("Sitka Display", Font.BOLD, 18));
 
 		JLabel lbl_Poster3 = new JLabel("");
 		lbl_Poster3.setIcon(new ImageIcon(
@@ -754,80 +754,80 @@ public class MainScreen extends JFrame {
 		lbl_Poster3.setBounds(324, 35, 128, 161);
 		PaneConcert.add(lbl_Poster3);
 
-		JLabel lbl_KonserAdi = new JLabel("Konser Adý:");
-		lbl_KonserAdi.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_KonserAdi.setBounds(33, 50, 107, 18);
-		PaneConcert.add(lbl_KonserAdi);
+		JLabel lbl_ConcertName = new JLabel("Konser Adý:");
+		lbl_ConcertName.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_ConcertName.setBounds(33, 50, 107, 18);
+		PaneConcert.add(lbl_ConcertName);
 
-		JLabel lbl_KonserTuru = new JLabel("Konser Türü:");
-		lbl_KonserTuru.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_KonserTuru.setBounds(33, 73, 107, 18);
-		PaneConcert.add(lbl_KonserTuru);
+		JLabel lbl_ConcertType = new JLabel("Konser Türü:");
+		lbl_ConcertType.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_ConcertType.setBounds(33, 73, 107, 18);
+		PaneConcert.add(lbl_ConcertType);
 
-		JLabel lbl_Tarih2 = new JLabel("Tarih:");
-		lbl_Tarih2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Tarih2.setBounds(33, 96, 107, 18);
-		PaneConcert.add(lbl_Tarih2);
+		JLabel lbl_Date2 = new JLabel("Tarih:");
+		lbl_Date2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_Date2.setBounds(33, 96, 107, 18);
+		PaneConcert.add(lbl_Date2);
 
 		JLabel lbl_Salon3 = new JLabel("Salon:");
 		lbl_Salon3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
 		lbl_Salon3.setBounds(33, 119, 107, 18);
 		PaneConcert.add(lbl_Salon3);
 
-		JLabel lbl_Saat2 = new JLabel("Saat:");
-		lbl_Saat2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Saat2.setBounds(33, 143, 107, 18);
-		PaneConcert.add(lbl_Saat2);
+		JLabel lbl_Time2 = new JLabel("Saat:");
+		lbl_Time2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_Time2.setBounds(33, 143, 107, 18);
+		PaneConcert.add(lbl_Time2);
 
-		JButton btn_KoltukSec3 = new JButton("Koltuk Seç");
-		btn_KoltukSec3.setBounds(33, 164, 95, 23);
-		PaneConcert.add(btn_KoltukSec3);
+		JButton btn_SeatSelection3 = new JButton("Koltuk Seç");
+		btn_SeatSelection3.setBounds(33, 164, 95, 23);
+		PaneConcert.add(btn_SeatSelection3);
 
-		JLabel lbl_OdemeBilgileri3 = new JLabel("Ödeme Bilgileri");
-		lbl_OdemeBilgileri3.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
-		lbl_OdemeBilgileri3.setBounds(33, 208, 128, 23);
-		PaneConcert.add(lbl_OdemeBilgileri3);
+		JLabel lbl_PaymentInfo3 = new JLabel("Ödeme Bilgileri");
+		lbl_PaymentInfo3.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
+		lbl_PaymentInfo3.setBounds(33, 208, 128, 23);
+		PaneConcert.add(lbl_PaymentInfo3);
 
-		JLabel lblKonserBilgileri = new JLabel("Konser Bilgileri");
-		lblKonserBilgileri.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
-		lblKonserBilgileri.setBounds(33, 20, 144, 23);
-		PaneConcert.add(lblKonserBilgileri);
+		JLabel lblConcertInfo = new JLabel("Konser Bilgileri");
+		lblConcertInfo.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
+		lblConcertInfo.setBounds(33, 20, 144, 23);
+		PaneConcert.add(lblConcertInfo);
 
-		JLabel lbl_KonserAdi_2 = new JLabel("Ad:");
-		lbl_KonserAdi_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_KonserAdi_2.setBounds(33, 238, 107, 18);
-		PaneConcert.add(lbl_KonserAdi_2);
+		JLabel lbl_ConcertName_2 = new JLabel("Ad:");
+		lbl_ConcertName_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_ConcertName_2.setBounds(33, 238, 107, 18);
+		PaneConcert.add(lbl_ConcertName_2);
 
-		JLabel lbl_KonserTuru_2 = new JLabel("Soyad:");
-		lbl_KonserTuru_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_KonserTuru_2.setBounds(33, 261, 107, 18);
-		PaneConcert.add(lbl_KonserTuru_2);
+		JLabel lbl_ConcertType_2 = new JLabel("Soyad:");
+		lbl_ConcertType_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_ConcertType_2.setBounds(33, 261, 107, 18);
+		PaneConcert.add(lbl_ConcertType_2);
 
-		JLabel lbl_Tarih_3 = new JLabel("E-Mail:");
-		lbl_Tarih_3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Tarih_3.setBounds(33, 284, 107, 18);
-		PaneConcert.add(lbl_Tarih_3);
+		JLabel lbl_Date_3 = new JLabel("E-Mail:");
+		lbl_Date_3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_Date_3.setBounds(33, 284, 107, 18);
+		PaneConcert.add(lbl_Date_3);
 
-		fld_KonserAdi = new JTextField();
-		fld_KonserAdi.setBackground(Color.WHITE);
-		fld_KonserAdi.setEditable(false);
-		fld_KonserAdi.setBounds(140, 51, 128, 20);
-		PaneConcert.add(fld_KonserAdi);
-		fld_KonserAdi.setColumns(10);
+		fld_ConcertName = new JTextField();
+		fld_ConcertName.setBackground(Color.WHITE);
+		fld_ConcertName.setEditable(false);
+		fld_ConcertName.setBounds(140, 51, 128, 20);
+		PaneConcert.add(fld_ConcertName);
+		fld_ConcertName.setColumns(10);
 
-		fld_KonserTuru = new JTextField();
-		fld_KonserTuru.setBackground(Color.WHITE);
-		fld_KonserTuru.setEditable(false);
-		fld_KonserTuru.setColumns(10);
-		fld_KonserTuru.setBounds(140, 74, 128, 20);
-		PaneConcert.add(fld_KonserTuru);
+		fld_ConcertType = new JTextField();
+		fld_ConcertType.setBackground(Color.WHITE);
+		fld_ConcertType.setEditable(false);
+		fld_ConcertType.setColumns(10);
+		fld_ConcertType.setBounds(140, 74, 128, 20);
+		PaneConcert.add(fld_ConcertType);
 
-		fld_Tarih2 = new JTextField();
-		fld_Tarih2.setBackground(Color.WHITE);
-		fld_Tarih2.setEditable(false);
-		fld_Tarih2.setColumns(10);
-		fld_Tarih2.setBounds(140, 97, 128, 20);
-		PaneConcert.add(fld_Tarih2);
+		fld_Date2 = new JTextField();
+		fld_Date2.setBackground(Color.WHITE);
+		fld_Date2.setEditable(false);
+		fld_Date2.setColumns(10);
+		fld_Date2.setBounds(140, 97, 128, 20);
+		PaneConcert.add(fld_Date2);
 
 		fld_Salon3 = new JTextField();
 		fld_Salon3.setBackground(Color.WHITE);
@@ -836,62 +836,62 @@ public class MainScreen extends JFrame {
 		fld_Salon3.setBounds(140, 120, 42, 20);
 		PaneConcert.add(fld_Salon3);
 
-		fld_KoltukSec3 = new JTextField();
-		fld_KoltukSec3.setBackground(Color.WHITE);
-		fld_KoltukSec3.setEditable(false);
-		fld_KoltukSec3.setColumns(10);
-		fld_KoltukSec3.setBounds(140, 165, 42, 20);
-		PaneConcert.add(fld_KoltukSec3);
+		fld_SeatSelection3 = new JTextField();
+		fld_SeatSelection3.setBackground(Color.WHITE);
+		fld_SeatSelection3.setEditable(false);
+		fld_SeatSelection3.setColumns(10);
+		fld_SeatSelection3.setBounds(140, 165, 42, 20);
+		PaneConcert.add(fld_SeatSelection3);
 
-		fld_Saat2 = new JTextField();
-		fld_Saat2.setBackground(Color.WHITE);
-		fld_Saat2.setEditable(false);
-		fld_Saat2.setColumns(10);
-		fld_Saat2.setBounds(140, 143, 42, 20);
-		PaneConcert.add(fld_Saat2);
+		fld_Time2 = new JTextField();
+		fld_Time2.setBackground(Color.WHITE);
+		fld_Time2.setEditable(false);
+		fld_Time2.setColumns(10);
+		fld_Time2.setBounds(140, 143, 42, 20);
+		PaneConcert.add(fld_Time2);
 
-		JLabel lbl_OdemeYontemi3 = new JLabel("\u00D6deme Y\u00F6ntemi");
-		lbl_OdemeYontemi3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_OdemeYontemi3.setBounds(33, 307, 128, 18);
-		PaneConcert.add(lbl_OdemeYontemi3);
+		JLabel lbl_PaymentMethod3 = new JLabel("\u00D6deme Y\u00F6ntemi");
+		lbl_PaymentMethod3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
+		lbl_PaymentMethod3.setBounds(33, 307, 128, 18);
+		PaneConcert.add(lbl_PaymentMethod3);
 
-		JComboBox comboBox_Yontem3 = new JComboBox();
-		comboBox_Yontem3.setBounds(33, 326, 110, 22);
-		comboBox_Yontem3.addItem("Nakit ödeme");
-		comboBox_Yontem3.addItem("Kart ile ödeme");
-		PaneConcert.add(comboBox_Yontem3);
+		JComboBox comboBox_Method3 = new JComboBox();
+		comboBox_Method3.setBounds(33, 326, 110, 22);
+		comboBox_Method3.addItem("Nakit ödeme");
+		comboBox_Method3.addItem("Kart ile ödeme");
+		PaneConcert.add(comboBox_Method3);
 
-		JPanel w_pane_Kart3 = new JPanel();
-		w_pane_Kart3.setBackground(SystemColor.inactiveCaption);
-		w_pane_Kart3.setBounds(33, 359, 452, 98);
-		PaneConcert.add(w_pane_Kart3);
-		w_pane_Kart3.setLayout(null);
-		w_pane_Kart3.setVisible(false);
-		comboBox_Yontem3.addItemListener(new ItemChangeListener() {
+		JPanel w_pane_Cart3 = new JPanel();
+		w_pane_Cart3.setBackground(SystemColor.inactiveCaption);
+		w_pane_Cart3.setBounds(33, 359, 452, 98);
+		PaneConcert.add(w_pane_Cart3);
+		w_pane_Cart3.setLayout(null);
+		w_pane_Cart3.setVisible(false);
+		comboBox_Method3.addItemListener(new ItemChangeListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 
-				if (comboBox_Yontem3.getSelectedIndex() == 0) {
-					w_pane_Kart3.setVisible(false);
+				if (comboBox_Method3.getSelectedIndex() == 0) {
+					w_pane_Cart3.setVisible(false);
 
 				} else {
-					w_pane_Kart3.setVisible(true);
+					w_pane_Cart3.setVisible(true);
 				}
 			}
 		});
 
-		fld_Ad3 = new JTextField();
-		fld_Ad3.setEditable(false);
-		fld_Ad3.setColumns(10);
-		fld_Ad3.setBackground(Color.WHITE);
-		fld_Ad3.setBounds(140, 238, 128, 20);
-		PaneConcert.add(fld_Ad3);
+		fld_Name3 = new JTextField();
+		fld_Name3.setEditable(false);
+		fld_Name3.setColumns(10);
+		fld_Name3.setBackground(Color.WHITE);
+		fld_Name3.setBounds(140, 238, 128, 20);
+		PaneConcert.add(fld_Name3);
 
-		fld_Soyad3 = new JTextField();
-		fld_Soyad3.setEditable(false);
-		fld_Soyad3.setColumns(10);
-		fld_Soyad3.setBackground(Color.WHITE);
-		fld_Soyad3.setBounds(140, 261, 128, 20);
-		PaneConcert.add(fld_Soyad3);
+		fld_Surname3 = new JTextField();
+		fld_Surname3.setEditable(false);
+		fld_Surname3.setColumns(10);
+		fld_Surname3.setBackground(Color.WHITE);
+		fld_Surname3.setBounds(140, 261, 128, 20);
+		PaneConcert.add(fld_Surname3);
 
 		fld_Mail3 = new JTextField();
 		fld_Mail3.setEditable(false);
@@ -900,76 +900,76 @@ public class MainScreen extends JFrame {
 		fld_Mail3.setBounds(140, 284, 128, 20);
 		PaneConcert.add(fld_Mail3);
 
-		JLabel lbl_Tutar3 = new JLabel("Toplam Tutar");
-		lbl_Tutar3.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lbl_Tutar3.setBounds(322, 207, 154, 47);
-		PaneConcert.add(lbl_Tutar3);
+		JLabel lbl_Price3 = new JLabel("Toplam Tutar");
+		lbl_Price3.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lbl_Price3.setBounds(322, 207, 154, 47);
+		PaneConcert.add(lbl_Price3);
 
-		fld_Tutar3 = new JTextField();
-		fld_Tutar3.setBackground(Color.WHITE);
-		fld_Tutar3.setEditable(false);
-		fld_Tutar3.setBounds(322, 247, 130, 55);
-		PaneConcert.add(fld_Tutar3);
-		fld_Tutar3.setColumns(10);
+		fld_Price3 = new JTextField();
+		fld_Price3.setBackground(Color.WHITE);
+		fld_Price3.setEditable(false);
+		fld_Price3.setBounds(322, 247, 130, 55);
+		PaneConcert.add(fld_Price3);
+		fld_Price3.setColumns(10);
 
-		JLabel lbl_KartIsim3 = new JLabel("Kart \u00FCzerindeki \u0130sim:");
-		lbl_KartIsim3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_KartIsim3.setBounds(10, 11, 123, 14);
-		w_pane_Kart3.add(lbl_KartIsim3);
+		JLabel lbl_CartName3 = new JLabel("Kart \u00FCzerindeki \u0130sim:");
+		lbl_CartName3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lbl_CartName3.setBounds(10, 11, 123, 14);
+		w_pane_Cart3.add(lbl_CartName3);
 
-		JLabel lbl_KartNumarasi3 = new JLabel("Kart Numaras\u0131:");
-		lbl_KartNumarasi3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_KartNumarasi3.setBounds(10, 34, 123, 14);
-		w_pane_Kart3.add(lbl_KartNumarasi3);
+		JLabel lbl_CartNumber3 = new JLabel("Kart Numaras\u0131:");
+		lbl_CartNumber3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lbl_CartNumber3.setBounds(10, 34, 123, 14);
+		w_pane_Cart3.add(lbl_CartNumber3);
 
-		JLabel lbl_SonKullanmTarihi3 = new JLabel("Son Kullan\u0131m Tarihi:");
-		lbl_SonKullanmTarihi3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_SonKullanmTarihi3.setBounds(10, 56, 123, 14);
-		w_pane_Kart3.add(lbl_SonKullanmTarihi3);
+		JLabel lbl_LastUsageDate3 = new JLabel("Son Kullan\u0131m Tarihi:");
+		lbl_LastUsageDate3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lbl_LastUsageDate3.setBounds(10, 56, 123, 14);
+		w_pane_Cart3.add(lbl_LastUsageDate3);
 
-		JComboBox comboBox_Ay3 = new JComboBox();
-		comboBox_Ay3.setBounds(143, 53, 60, 22);
-		w_pane_Kart3.add(comboBox_Ay3);
+		JComboBox comboBox_Month3 = new JComboBox();
+		comboBox_Month3.setBounds(143, 53, 60, 22);
+		w_pane_Cart3.add(comboBox_Month3);
 
-		JComboBox comboBox_Yil3 = new JComboBox();
-		comboBox_Yil3.setBounds(210, 53, 72, 22);
-		w_pane_Kart3.add(comboBox_Yil3);
+		JComboBox comboBox_Year3 = new JComboBox();
+		comboBox_Year3.setBounds(210, 53, 72, 22);
+		w_pane_Cart3.add(comboBox_Year3);
 
 		JLabel lbl_Cvc3 = new JLabel("CVC:");
 		lbl_Cvc3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbl_Cvc3.setBounds(317, 56, 46, 14);
-		w_pane_Kart3.add(lbl_Cvc3);
+		w_pane_Cart3.add(lbl_Cvc3);
 
 		fld_cvc3 = new JTextField();
 		fld_cvc3.setBounds(356, 54, 46, 20);
-		w_pane_Kart3.add(fld_cvc3);
+		w_pane_Cart3.add(fld_cvc3);
 		fld_cvc3.setColumns(10);
 
-		fld_KartIsim3 = new JTextField();
-		fld_KartIsim3.setColumns(10);
-		fld_KartIsim3.setBackground(Color.WHITE);
-		fld_KartIsim3.setBounds(143, 9, 139, 20);
-		w_pane_Kart3.add(fld_KartIsim3);
+		fld_CartName3 = new JTextField();
+		fld_CartName3.setColumns(10);
+		fld_CartName3.setBackground(Color.WHITE);
+		fld_CartName3.setBounds(143, 9, 139, 20);
+		w_pane_Cart3.add(fld_CartName3);
 
-		fld_KartNo3 = new JTextField();
-		fld_KartNo3.setColumns(10);
-		fld_KartNo3.setBackground(Color.WHITE);
-		fld_KartNo3.setBounds(143, 31, 139, 20);
-		w_pane_Kart3.add(fld_KartNo3);
+		fld_CartNumber3 = new JTextField();
+		fld_CartNumber3.setColumns(10);
+		fld_CartNumber3.setBackground(Color.WHITE);
+		fld_CartNumber3.setBounds(143, 31, 139, 20);
+		w_pane_Cart3.add(fld_CartNumber3);
 
-		JButton btn_Biletlerim_1_1 = new JButton("Biletlerim");
-		btn_Biletlerim_1_1.setForeground(SystemColor.menu);
-		btn_Biletlerim_1_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
-		btn_Biletlerim_1_1.setBackground(SystemColor.textHighlight);
-		btn_Biletlerim_1_1.setBounds(82, 464, 92, 35);
-		PaneConcert.add(btn_Biletlerim_1_1);
+		JButton btn_MyTickets_1_1 = new JButton("Biletlerim");
+		btn_MyTickets_1_1.setForeground(SystemColor.menu);
+		btn_MyTickets_1_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
+		btn_MyTickets_1_1.setBackground(SystemColor.textHighlight);
+		btn_MyTickets_1_1.setBounds(82, 464, 92, 35);
+		PaneConcert.add(btn_MyTickets_1_1);
 
-		JButton btn_BiletIptal_1_1 = new JButton("Bilet \u0130ptal");
-		btn_BiletIptal_1_1.setForeground(SystemColor.menu);
-		btn_BiletIptal_1_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
-		btn_BiletIptal_1_1.setBackground(SystemColor.textHighlight);
-		btn_BiletIptal_1_1.setBounds(317, 464, 92, 35);
-		PaneConcert.add(btn_BiletIptal_1_1);
+		JButton btn_TicketCancel_1_1 = new JButton("Bilet \u0130ptal");
+		btn_TicketCancel_1_1.setForeground(SystemColor.menu);
+		btn_TicketCancel_1_1.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
+		btn_TicketCancel_1_1.setBackground(SystemColor.textHighlight);
+		btn_TicketCancel_1_1.setBounds(317, 464, 92, 35);
+		PaneConcert.add(btn_TicketCancel_1_1);
 		PaneConcert.setVisible(false);
 ///////////////////////////////////////////////////// PANEKONSER////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
