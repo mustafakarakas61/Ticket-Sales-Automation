@@ -61,4 +61,65 @@ public class Member extends user{
 	}
 	
 	
+	//------------------------------Ayarlanacak----------------------------------
+	public boolean addTicket(int doctor_id, String doctor_name, int hasta_id, String hasta_name,
+			String app_date) {
+
+		int key = 0;
+
+		String query = "insert into ticket (doctor_id,doctor_name,hasta_id,hasta_name,app_date) values (?,?,?,?,?)";
+
+		try {
+			connection = dbhelper.getConnection();
+
+
+			pStatement = connection.prepareStatement(query);
+			pStatement.setInt(1, doctor_id);
+			pStatement.setString(2, doctor_name);
+			pStatement.setInt(3, hasta_id);
+			pStatement.setString(4, hasta_name);
+			pStatement.setString(5, app_date);
+
+			pStatement.executeUpdate();
+			key = 1;
+
+		} catch (SQLException e) {
+			dbhelper.showErrorMessage(e);
+		}
+
+		if (key == 1) {
+			return true;
+		} else
+			return false;
+	}
+	
+	public boolean updateWhourStatus(int doctor_id, String wdate) {
+
+		int key = 0;
+
+		String query = "UPDATE whour SET status = ? where doctor_id = ? and wdate=?";
+
+		try {
+			connection = dbhelper.getConnection();
+
+
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1,"p");
+			pStatement.setInt(2, doctor_id);
+			pStatement.setString(3, wdate);
+			
+			pStatement.executeUpdate();
+			key = 1;
+
+		} catch (SQLException e) {
+			dbhelper.showErrorMessage(e);
+		}
+
+		if (key == 1) {
+			return true;
+		} else
+			return false;
+	}
+
+	
 }
