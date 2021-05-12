@@ -96,7 +96,7 @@ public class PrimeAdmin extends JFrame {
 		btnNewButton.setBounds(138, 430, 106, 23);
 		w_paneCustomer.add(btnNewButton);
 
-		JButton btnNewButton_1_1 = new JButton("G\u00FCncelle");
+		JButton btnNewButton_1_1 = new JButton("Güncelle");
 		btnNewButton_1_1.setBounds(266, 430, 100, 23);
 		w_paneCustomer.add(btnNewButton_1_1);
 
@@ -162,12 +162,12 @@ public class PrimeAdmin extends JFrame {
 		label_1.setBounds(284, 345, 57, 22);
 		w_paneAdmin.add(label_1);
 
-		Label label_2 = new Label("Y\u00F6netici ID:");
+		Label label_2 = new Label("Yönetici ID:");
 		label_2.setFont(new Font("Verdana", Font.PLAIN, 15));
 		label_2.setBounds(45, 383, 88, 22);
 		w_paneAdmin.add(label_2);
 
-		Label label_1_1 = new Label("\u015Eifre:");
+		Label label_1_1 = new Label("Sifre:");
 		label_1_1.setFont(new Font("Verdana", Font.PLAIN, 15));
 		label_1_1.setBounds(284, 383, 57, 22);
 		w_paneAdmin.add(label_1_1);
@@ -192,12 +192,12 @@ public class PrimeAdmin extends JFrame {
 		textField_3.setBounds(347, 384, 126, 20);
 		w_paneAdmin.add(textField_3);
 
-		JLabel lbl_Member = new JLabel("\u00DCye \u0130\u015Flemleri");
+		JLabel lbl_Member = new JLabel("Üye islemleri");
 		lbl_Member.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD | Font.ITALIC, 20));
 		lbl_Member.setBounds(10, 59, 171, 27);
 		contentPane.add(lbl_Member);
 
-		JLabel lbl_SubAdmin = new JLabel("Alt Y\u00F6netici \u0130\u015Flemleri");
+		JLabel lbl_SubAdmin = new JLabel("Alt Yönetici islemleri");
 		lbl_SubAdmin.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD | Font.ITALIC, 20));
 		lbl_SubAdmin.setBounds(549, 59, 209, 27);
 		contentPane.add(lbl_SubAdmin);

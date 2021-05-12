@@ -32,12 +32,14 @@ public class SubAdmin extends JFrame {
 	private JTable table_Concert;
 	private JTextField txt_MovieName;
 	private JTextField txt_MovieDirector;
+	private static user sub = new user();   
+			
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SubAdmin frame = new SubAdmin();
+					SubAdmin frame = new SubAdmin(sub);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +51,7 @@ public class SubAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SubAdmin() {
+	public SubAdmin(user sub) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 857, 518);
 		contentPane = new JPanel();
@@ -150,17 +152,17 @@ public class SubAdmin extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lbl_MovieName = new JLabel("Film Ad\u0131:");
+		JLabel lbl_MovieName = new JLabel("Film Adi:");
 		lbl_MovieName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_MovieName.setBounds(10, 10, 102, 28);
 		panel.add(lbl_MovieName);
 		
-		JLabel lbl_FilmDirector = new JLabel("Y\u00F6netmen:");
+		JLabel lbl_FilmDirector = new JLabel("Yönetmen:");
 		lbl_FilmDirector.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_FilmDirector.setBounds(10, 45, 102, 28);
 		panel.add(lbl_FilmDirector);
 		
-		JLabel lbl_MovieType = new JLabel("Film T\u00FCr\u00FC:");
+		JLabel lbl_MovieType = new JLabel("Film Türü:");
 		lbl_MovieType.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_MovieType.setBounds(10, 72, 102, 28);
 		panel.add(lbl_MovieType);

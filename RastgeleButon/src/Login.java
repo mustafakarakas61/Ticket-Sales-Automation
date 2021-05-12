@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,8 +21,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import java.awt.SystemColor;
 
 public class Login extends JFrame {
 
@@ -284,7 +281,7 @@ public class Login extends JFrame {
 							
 								if (result.getString("type").equals("sub")) {
 									
-									user admin= new user( 
+									user sub= new user( 
 											  result.getInt("ID")
 											, result.getString("Name")
 											,result.getString("Surname")
@@ -294,8 +291,8 @@ public class Login extends JFrame {
 											, result.getString("type")
 											);
 									
-									//SubAdmin sa = new SubAdmin(sub);
-									//sa.setVisible(true);
+									SubAdmin sa = new SubAdmin(sub);
+									sa.setVisible(true);
 									dispose();
 									key = false;
 							
