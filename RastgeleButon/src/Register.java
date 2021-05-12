@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Helper.DbHelper;
+import Helper.Metod_Helper;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JCheckBox;
@@ -24,6 +28,8 @@ public class Register extends JFrame {
 	private JPasswordField passfld_p2;
 	private JTextField fld_mail;
 	private JTextField fld_TCNo;
+	private DbHelper dbhelper = new DbHelper();
+	private Member member ;
 
 	/**
 	 * Launch the application.
@@ -87,6 +93,37 @@ public class Register extends JFrame {
 		contentPane.add(chckbx_Confirm);
 		
 		JButton btn_Register = new JButton("Kay\u0131t Ol");
+		btn_Register.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (fld_Name.getText().length()==0 
+						|| fld_Surname.getText().length()==0 
+						|| fld_TCNo.getText().length()==0
+						||fld_mail.getText().length()==0
+						|| passfld_p1.getText().length()==0
+						||passfld_p2.getText().length()==0)  {
+					Metod_Helper.showMsg("fill");
+					
+				}else {  
+					boolean control = member.register(fld_TCNo.getText()
+							, passfld_p1.getText()
+							, fld_Name.getText());
+					
+					if (control) {
+						Metod_Helper.showMsg("succes");
+//						LoginGUI login = new LoginGUI();
+//						login.setVisible(true);
+						dispose();
+						
+					}else {
+						Metod_Helper.showMsg("Hasta daha önce kaydedilmiþ veya hatalý veri");
+					}
+					
+				}
+				
+				
+			}
+		});
 		btn_Register.setBackground(SystemColor.inactiveCaption);
 		btn_Register.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
 		btn_Register.setBounds(175, 221, 89, 39);
