@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Helper.DbHelper;
+import Helper.Metod_Helper;
+
 import javax.swing.JTabbedPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -13,6 +17,10 @@ import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
@@ -21,9 +29,12 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField fld_Username_Login;
-	private JPasswordField fld_PasswordLogin;
+	private JPasswordField fld_Password_Login;
 	private JTextField fld_Username_Admin;
 	private JPasswordField fld_Password_Admin;
+	Connection connection = null;
+	DbHelper dbHelper = new DbHelper();
+	Statement statement ;
 
 	/**
 	 * Launch the application.
@@ -79,9 +90,9 @@ public class Login extends JFrame {
 		w_paneCustomer.add(fld_Username_Login);
 		fld_Username_Login.setColumns(10);
 		
-		fld_PasswordLogin = new JPasswordField();
-		fld_PasswordLogin.setBounds(116, 58, 122, 20);
-		w_paneCustomer.add(fld_PasswordLogin);
+		fld_Password_Login = new JPasswordField();
+		fld_Password_Login.setBounds(116, 58, 122, 20);
+		w_paneCustomer.add(fld_Password_Login);
 		
 		JButton btn_Register = new JButton("Kay\u0131t Ol");
 		btn_Register.addActionListener(new ActionListener() {
@@ -99,9 +110,76 @@ public class Login extends JFrame {
 		JButton btn_Login = new JButton("Giri\u015F Yap");
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainScreen ae= new MainScreen();
-				ae.setVisible(true);
-				dispose();
+				
+				if (fld_Username_Login.getText().length()==0
+						||fld_Password_Login.getText().length()==0) {
+					Metod_Helper.showMsg("fill");
+				}else {
+					boolean key = true;
+					try {
+						
+						connection = dbHelper.getConnection();
+						
+						statement=connection.createStatement();
+						
+						ResultSet result= statement.executeQuery("select * from register");
+						while (result.next()) {
+							
+							
+							if (fld_Username_Login.getText().equals(result.getString("TC_No")) && 
+									fld_Password_Login.getText().equals(result.getString("Pass"))) {
+							
+								System.out.println("burdayýmm");
+								
+								if (result.getString("type").equals("user")) {
+									
+									Member member= new Member( 
+											  result.getInt("ID")
+											, result.getString("Name")
+											,result.getString("Surname")
+											, result.getString("Pass")
+											, result.getString("TC_No")
+											,result.getString("Email")
+											, result.getString("type")
+											);
+									
+									MainScreen ms= new MainScreen(member);
+									ms.setVisible(true);
+									dispose();
+									key = false;
+									
+								}
+								
+							
+							}
+							
+						}
+						 
+					} catch (SQLException e1) {
+						dbHelper.showErrorMessage(e1);
+					}
+					finally {
+						try {
+							connection.close();
+							statement.close();
+						} catch (SQLException e1) {
+							
+							dbHelper.showErrorMessage(e1);
+						}
+					}
+					
+					if (key) 
+						Metod_Helper.showMsg("Böyle bir hasta yok lütfen kaydolunuz");
+					
+				}
+				
+				
+				
+			
+					
+				
+					
+				
 			}
 		});
 		btn_Login.setBackground(Color.GREEN);
@@ -151,7 +229,7 @@ public class Login extends JFrame {
 		fld_Username_Admin.setBounds(116, 20, 122, 20);
 		w_paneAdmin.add(fld_Username_Admin);
 		
-		JLabel lbl_Password_Admin = new JLabel("\u015Eifre:");
+		JLabel lbl_Password_Admin = new JLabel("Sifre:");
 		lbl_Password_Admin.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		lbl_Password_Admin.setBounds(10, 60, 41, 14);
 		w_paneAdmin.add(lbl_Password_Admin);
@@ -160,12 +238,12 @@ public class Login extends JFrame {
 		fld_Password_Admin.setBounds(116, 58, 122, 20);
 		w_paneAdmin.add(fld_Password_Admin);
 		
-		JButton btn_Login_1 = new JButton("Giri\u015F Yap");
+		JButton btn_Login_1 = new JButton("Giris Yap");
 		btn_Login_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainScreen ae= new MainScreen();
-				ae.setVisible(true);
-				dispose();
+//				MainScreen ae= new MainScreen(member);
+//				ae.setVisible(true);
+//				dispose();
 				
 			}
 		});
@@ -173,7 +251,7 @@ public class Login extends JFrame {
 		btn_Login_1.setBounds(137, 89, 101, 39);
 		w_paneAdmin.add(btn_Login_1);
 		
-		JLabel lbl_ForgottenAdmin = new JLabel("\u015Eifrenizi veya ID'nizi unuttu\u011Funuzda l\u00FCtfen ilgili yetkiliye dan\u0131\u015F\u0131n\u0131z.");
+		JLabel lbl_ForgottenAdmin = new JLabel("Sifrenizi veya ID'nizi unuttuðunuzda lütfen ilgili yetkiliye den yardým alýnýz.");
 		lbl_ForgottenAdmin.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		lbl_ForgottenAdmin.setBounds(10, 127, 389, 14);
 		w_paneAdmin.add(lbl_ForgottenAdmin);
