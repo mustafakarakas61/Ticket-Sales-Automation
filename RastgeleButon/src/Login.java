@@ -161,6 +161,14 @@ public class Login extends JFrame {
 		w_paneAdmin.add(fld_Password_Admin);
 		
 		JButton btn_Login_1 = new JButton("Giri\u015F Yap");
+		btn_Login_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainScreen ae= new MainScreen();
+				ae.setVisible(true);
+				dispose();
+				
+			}
+		});
 		btn_Login_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		btn_Login_1.setBounds(137, 89, 101, 39);
 		w_paneAdmin.add(btn_Login_1);
