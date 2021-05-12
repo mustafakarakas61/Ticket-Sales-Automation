@@ -82,8 +82,8 @@ public class PrimeAdmin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lbl_WelcomePrimeAdmin = new JLabel("Ho\u015Fgeldiniz Say\u0131n");
-		lbl_WelcomePrimeAdmin.setBounds(10, 11, 102, 14);
+		JLabel lbl_WelcomePrimeAdmin = new JLabel("Hosgeldiniz Sayin  "+admin.getName());
+		lbl_WelcomePrimeAdmin.setBounds(10, 11, 469, 14);
 		contentPane.add(lbl_WelcomePrimeAdmin);
 
 		JPanel w_paneCustomer = new JPanel();
