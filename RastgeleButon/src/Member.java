@@ -12,9 +12,8 @@ public class Member extends user{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(int id, String name, String surname, String pass, String TC_No, String email) {
-		super(id, name, surname, pass, TC_No, email);
-		// TODO Auto-generated constructor stub
+	public Member(int id, String name, String surname, String pass, String TC_No, String email ,String type) {
+
 	}
 
 	
@@ -62,7 +61,7 @@ public class Member extends user{
 	
 	
 	//------------------------------Ayarlanacak----------------------------------
-	public boolean addTicket(int doctor_id, String doctor_name, int hasta_id, String hasta_name,
+	public boolean buyTicket(int doctor_id, String doctor_name, int hasta_id, String hasta_name,
 			String app_date) {
 
 		int key = 0;
@@ -93,7 +92,7 @@ public class Member extends user{
 			return false;
 	}
 	
-	public boolean updateWhourStatus(int doctor_id, String wdate) {
+	public boolean updateTicket(int ticket_id, String wdate ) {
 
 		int key = 0;
 
@@ -105,7 +104,7 @@ public class Member extends user{
 
 			pStatement = connection.prepareStatement(query);
 			pStatement.setString(1,"p");
-			pStatement.setInt(2, doctor_id);
+			pStatement.setInt(2, ticket_id);
 			pStatement.setString(3, wdate);
 			
 			pStatement.executeUpdate();
