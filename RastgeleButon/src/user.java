@@ -11,18 +11,29 @@ public class user {
 	Connection connection = null;
 	ResultSet result = null;
 	PreparedStatement pStatement = null;
+	private String username;
 	
-	public user() {}
-	
-	
-	public user(int id, String name, String surname, String pass, String TC_No, String email) {
+	public user() {
+		
+	}
+
+	public user(int id, String name, String surname, String pass, String username , String type) {
 		super();
 		this.id = id;
-		Name = name;
-		Surname = surname;
-		Pass = pass;
-		TC_No = TC_No;
-		Email = email;
+		this.Name = name;
+		this.Surname = surname;
+		this.Pass = pass;
+		this.username = username;
+	}
+	
+	public user(int id, String name, String surname, String pass, String TC_No, String email , String type) {
+		super();
+		this.id = id;
+		this.Name = name;
+		this.Surname = surname;
+		this.Pass = pass;
+		this.TC_No = TC_No;
+		this.Email = email;
 	}
 	public int getId() {
 		return id;
@@ -59,6 +70,14 @@ public class user {
 	}
 	public void setEmail(String email) {
 		Email = email;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	

@@ -108,6 +108,7 @@ public class Login extends JFrame {
 		w_paneCustomer.add(btn_Register);
 		
 		JButton btn_Login = new JButton("Giriþ Yap");
+		//----------------------------------------------Login
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -129,7 +130,6 @@ public class Login extends JFrame {
 							if (fld_Username_Login.getText().equals(result.getString("TC_No")) && 
 									fld_Password_Login.getText().equals(result.getString("Pass"))) {
 							
-								System.out.println("burdayýmm");
 								
 								if (result.getString("type").equals("user")) {
 									
@@ -247,8 +247,82 @@ public class Login extends JFrame {
 				if (fld_Password_Admin.getText().length()==0 
 					|| fld_Username_Admin.getText().length()==0	) {
 			
-					
+					Metod_Helper.showMsg("fill");
+				}else {
+					boolean key = true;
+					try {
+						
+						connection = dbHelper.getConnection();
+						
+						statement=connection.createStatement();
+						
+						ResultSet result= statement.executeQuery("select * from admin");
+						while (result.next()) {
+							
+							
+							if (fld_Username_Admin.getText().equals(result.getString("UserName")) && 
+									fld_Password_Admin.getText().equals(result.getString("Pass"))) {
+							
+								
+								if (result.getString("type").equals("prime")) {
+									
+									user admin= new user( 
+											  result.getInt("ID")
+											, result.getString("Name")
+											,result.getString("Surname")
+											, result.getString("Pass")
+											,result.getString("UserName")
+											, result.getString("type")
+											);
+									
+									PrimeAdmin pa = new PrimeAdmin(admin);
+									pa.setVisible(true);
+									dispose();
+									key = false;
+									
+								}
+							
+								if (result.getString("type").equals("sub")) {
+									
+									user admin= new user( 
+											  result.getInt("ID")
+											, result.getString("Name")
+											,result.getString("Surname")
+											, result.getString("Pass")
+											, result.getString("TC_No")
+											,result.getString("Email")
+											, result.getString("type")
+											);
+									
+									//SubAdmin sa = new SubAdmin(sub);
+									//sa.setVisible(true);
+									dispose();
+									key = false;
+							
+							
+							
+						}
+					}
 				}
+						 
+					} catch (SQLException e1) {
+						dbHelper.showErrorMessage(e1);
+					}
+					finally {
+						try {
+							connection.close();
+							statement.close();
+						} catch (SQLException e1) {
+							
+							dbHelper.showErrorMessage(e1);
+						}
+					}
+					
+					if (key) 
+						Metod_Helper.showMsg("Böyle bir hasta yok lütfen kaydolunuz");
+					
+				} 
+					
 				
 				
 				

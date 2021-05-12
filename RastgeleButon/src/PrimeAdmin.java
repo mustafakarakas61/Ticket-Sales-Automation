@@ -31,6 +31,7 @@ public class PrimeAdmin extends JFrame {
 	private Object[] customerData = null;
 	private DefaultTableModel adminModel;
 	private Object[] adminData = null;
+	private  static user admin = new user(); 
 
 	/**
 	 * Launch the application.
@@ -39,7 +40,7 @@ public class PrimeAdmin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PrimeAdmin frame = new PrimeAdmin();
+					PrimeAdmin frame = new PrimeAdmin(admin);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +52,7 @@ public class PrimeAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PrimeAdmin() {
+	public PrimeAdmin(user admin) {
 
 		customerModel = new DefaultTableModel();
 		Object[] colCustomer = new Object[3]; // tablo sütunlarýna isim vermek için
