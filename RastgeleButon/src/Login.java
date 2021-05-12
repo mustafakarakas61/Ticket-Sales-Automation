@@ -94,11 +94,11 @@ public class Login extends JFrame {
 		fld_Password_Login.setBounds(116, 58, 122, 20);
 		w_paneCustomer.add(fld_Password_Login);
 		
-		JButton btn_Register = new JButton("Kay\u0131t Ol");
+		JButton btn_Register = new JButton("Kayýt Ol");
 		btn_Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Register ko = new Register();
-				ko.setVisible(true);
+				Register register = new Register();
+				register.setVisible(true);
 				dispose();
 			}
 		});
@@ -107,7 +107,7 @@ public class Login extends JFrame {
 		btn_Register.setBounds(10, 90, 101, 39);
 		w_paneCustomer.add(btn_Register);
 		
-		JButton btn_Login = new JButton("Giri\u015F Yap");
+		JButton btn_Login = new JButton("Giriþ Yap");
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -187,7 +187,7 @@ public class Login extends JFrame {
 		btn_Login.setBounds(137, 89, 101, 39);
 		w_paneCustomer.add(btn_Login);
 		
-		JButton btn_Login_Guest = new JButton("\u00DCyesiz Giri\u015F");
+		JButton btn_Login_Guest = new JButton("Ziyaretçi ?");
 		btn_Login_Guest.setBackground(Color.PINK);
 		btn_Login_Guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -200,9 +200,11 @@ public class Login extends JFrame {
 		btn_Login_Guest.setBounds(265, 22, 120, 52);
 		w_paneCustomer.add(btn_Login_Guest);
 		
-		JButton btnNewButton = new JButton("\u015Eifremi Unuttum");
+		JButton btnNewButton = new JButton("Þifremi Unuttum");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				ForgottenPassword su= new ForgottenPassword();
 				su.setVisible(true);
 				
@@ -219,7 +221,7 @@ public class Login extends JFrame {
 		tabbedPane.addTab("Yönetici Giriþi", null, w_paneAdmin, null);
 		w_paneAdmin.setLayout(null);
 		
-		JLabel lbl_Admin_ID = new JLabel("Y\u00F6netici ID:");
+		JLabel lbl_Admin_ID = new JLabel("Yönetici ID:");
 		lbl_Admin_ID.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		lbl_Admin_ID.setBounds(10, 22, 96, 14);
 		w_paneAdmin.add(lbl_Admin_ID);
