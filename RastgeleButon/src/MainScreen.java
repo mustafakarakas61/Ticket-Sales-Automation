@@ -79,6 +79,8 @@ public class MainScreen extends JFrame {
 	private JTextField fld_cvc3;
 	private JTextField fld_CartName3;
 	private JTextField fld_CartNumber3;
+	private static user member = new user();  
+			
 
 	/**
 	 * Launch the application.
@@ -87,7 +89,7 @@ public class MainScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainScreen frame = new MainScreen();
+					MainScreen frame = new MainScreen(member);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -99,7 +101,7 @@ public class MainScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainScreen() {
+	public MainScreen(user user ) {
 		setResizable(false);
 
 //////////////////////////////////////////////////////////////////////////////////Sinema
