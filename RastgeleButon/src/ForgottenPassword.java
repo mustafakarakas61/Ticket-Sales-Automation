@@ -24,7 +24,7 @@ public class ForgottenPassword extends JFrame {
 	private JTextField fld_Confirm;
 
 	/**
-	 * Launch the application.
+	 * Launch the application. comitted
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -94,27 +94,27 @@ public class ForgottenPassword extends JFrame {
 		fld_Confirm.setText("");
 		contentPane.add(fld_Confirm);
 
-		JButton btnNewButton = new JButton("Gönder");
+		JButton btnNewButton = new JButton("GÃ¶nder");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(fld_Confirm.getText().length()!=0) {
 				if (Integer.parseInt(fld_Confirm.getText()) == rg(value, number1, number2)) {
 					Login l = new Login();
 
-					JOptionPane.showMessageDialog(null, "E-Mailinize þifrenizi deðiþtirmeniz için mail gönderilmiþtir.",
+					JOptionPane.showMessageDialog(null, "E-Mailinize Ã¾ifrenizi deÃ°iÃ¾tirmeniz iÃ§in mail gÃ¶nderilmiÃ¾tir.",
 							"Mesaj", JOptionPane.INFORMATION_MESSAGE);
 
 					l.setVisible(true);
 					dispose();
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Yanlýþ cevap. Lütfen tekrar deneyiniz.",
+					JOptionPane.showMessageDialog(null, "YanlÃ½Ã¾ cevap. LÃ¼tfen tekrar deneyiniz.",
 							"Mesaj", JOptionPane.ERROR_MESSAGE);
 				}
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "Doðrulama alanýný boþ býrakmayýnýz.",
+					JOptionPane.showMessageDialog(null, "DoÃ°rulama alanÃ½nÃ½ boÃ¾ bÃ½rakmayÃ½nÃ½z.",
 							"Mesaj", JOptionPane.WARNING_MESSAGE);
 				}
 			}
