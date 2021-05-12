@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-//adasa
+//adasas
 public class ForgottenPassword extends JFrame {
 
 	private JPanel contentPane;
