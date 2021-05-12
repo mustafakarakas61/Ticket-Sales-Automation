@@ -283,14 +283,12 @@ public class Login extends JFrame {
 									
 									user sub= new user( 
 											  result.getInt("ID")
-											, result.getString("Name")
-											,result.getString("Surname")
-											, result.getString("Pass")
-											, result.getString("TC_No")
-											,result.getString("Email")
-											, result.getString("type")
-											);
-									
+												, result.getString("Name")
+												,result.getString("Surname")
+												, result.getString("Pass")
+												,result.getString("UserName")
+												, result.getString("type")
+												);
 									SubAdmin sa = new SubAdmin(sub);
 									sa.setVisible(true);
 									dispose();
