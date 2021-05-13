@@ -5,7 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
@@ -24,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.event.ChangeEvent;
@@ -43,7 +46,7 @@ public class MainScreen extends JFrame {
 	private JTable table_Concert;
 	private JTextField fld_MovieName;
 	private JTextField fld_MovieType;
-	private JTextField fld_Admin;
+	private JTextField fld_Director;
 	private JTextField fld_Salon;
 	private JTextField fld_SelectSeat;
 	private JTextField fld_Seance;
@@ -57,7 +60,7 @@ public class MainScreen extends JFrame {
 
 	private JTextField fld_GameName;
 	private JTextField fld_GameType;
-	private JTextField fld_Date;
+	private JTextField fld_Director2;
 	private JTextField fld_Salon2;
 	private JTextField fld_SeatSelection2;
 	private JTextField fld_Time;
@@ -142,16 +145,6 @@ public class MainScreen extends JFrame {
 						UIManager.getColor("InternalFrame.activeTitleBackground")));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JButton btnNewButton = new JButton("Se\u00E7");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		btnNewButton.setBounds(197, 526, 89, 30);
-		contentPane.add(btnNewButton);
 
 		JButton btn_Exit = new JButton("\u00C7\u0131k\u0131\u015F Yap");
 		btn_Exit.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
@@ -268,8 +261,6 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket.setFont(new Font("Sitka Display", Font.BOLD, 18));
 
 		JLabel lbl_Poster = new JLabel("");
-		lbl_Poster.setIcon(new ImageIcon(
-				"C:\\Users\\musta\\OneDrive\\Masa\u00FCst\u00FC\\Bilet Sat\u0131\u015F Sistemi\\images\\s.png"));
 		lbl_Poster.setBounds(324, 35, 128, 161);
 		PaneCinema.add(lbl_Poster);
 
@@ -347,12 +338,12 @@ public class MainScreen extends JFrame {
 		fld_MovieType.setBounds(140, 74, 128, 20);
 		PaneCinema.add(fld_MovieType);
 
-		fld_Admin = new JTextField();
-		fld_Admin.setBackground(Color.WHITE);
-		fld_Admin.setEditable(false);
-		fld_Admin.setColumns(10);
-		fld_Admin.setBounds(140, 97, 128, 20);
-		PaneCinema.add(fld_Admin);
+		fld_Director = new JTextField();
+		fld_Director.setBackground(Color.WHITE);
+		fld_Director.setEditable(false);
+		fld_Director.setColumns(10);
+		fld_Director.setBounds(140, 97, 128, 20);
+		PaneCinema.add(fld_Director);
 
 		fld_Salon = new JTextField();
 		fld_Salon.setBackground(Color.WHITE);
@@ -506,6 +497,25 @@ public class MainScreen extends JFrame {
 		fld_CartName.setColumns(10);
 		fld_CartName.setBackground(Color.WHITE);
 		fld_CartName.setBounds(143, 9, 139, 20);
+		fld_CartName.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar()==' '|| (ke.getKeyChar()=='ý'|| ke.getKeyChar()=='ð' || ke.getKeyChar()=='ü' || ke.getKeyChar()=='þ' || ke.getKeyChar()=='ö' || ke.getKeyChar()=='ç'||ke.getKeyChar()=='Ý'|| ke.getKeyChar()=='Ð' || ke.getKeyChar()=='Ü' || ke.getKeyChar()=='Þ' || ke.getKeyChar()=='Ö' || ke.getKeyChar()=='Ç'  )||(ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z') || (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z') || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_CartName.getText().length()<=15 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_CartName.setEditable(true);
+	            }
+	            else {
+	            	fld_CartName.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_CartName.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		w_pane_Kart.add(fld_CartName);
 		
 		fld_CartNumber = new JTextField();
@@ -565,8 +575,6 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket2.setFont(new Font("Sitka Display", Font.BOLD, 18));
 
 		JLabel lbl_Poster2 = new JLabel("");
-		lbl_Poster2.setIcon(new ImageIcon(
-				"C:\\Users\\musta\\OneDrive\\Masa\u00FCst\u00FC\\Bilet Sat\u0131\u015F Sistemi\\images\\s.png"));
 		lbl_Poster2.setBounds(324, 35, 128, 161);
 		PaneTheater.add(lbl_Poster2);
 
@@ -638,12 +646,12 @@ public class MainScreen extends JFrame {
 		fld_GameType.setBounds(140, 74, 128, 20);
 		PaneTheater.add(fld_GameType);
 
-		fld_Date = new JTextField();
-		fld_Date.setBackground(Color.WHITE);
-		fld_Date.setEditable(false);
-		fld_Date.setColumns(10);
-		fld_Date.setBounds(140, 97, 128, 20);
-		PaneTheater.add(fld_Date);
+		fld_Director2 = new JTextField();
+		fld_Director2.setBackground(Color.WHITE);
+		fld_Director2.setEditable(false);
+		fld_Director2.setColumns(10);
+		fld_Director2.setBounds(140, 97, 128, 20);
+		PaneTheater.add(fld_Director2);
 
 		fld_Salon2 = new JTextField();
 		fld_Salon2.setBackground(Color.WHITE);
@@ -795,6 +803,25 @@ public class MainScreen extends JFrame {
 		fld_CartName2.setColumns(10);
 		fld_CartName2.setBackground(Color.WHITE);
 		fld_CartName2.setBounds(143, 9, 139, 20);
+		fld_CartName2.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar()==' '|| (ke.getKeyChar()=='ý'|| ke.getKeyChar()=='ð' || ke.getKeyChar()=='ü' || ke.getKeyChar()=='þ' || ke.getKeyChar()=='ö' || ke.getKeyChar()=='ç'||ke.getKeyChar()=='Ý'|| ke.getKeyChar()=='Ð' || ke.getKeyChar()=='Ü' || ke.getKeyChar()=='Þ' || ke.getKeyChar()=='Ö' || ke.getKeyChar()=='Ç'  )||(ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z') || (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z') || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_CartName2.getText().length()<=15 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_CartName2.setEditable(true);
+	            }
+	            else {
+	            	fld_CartName2.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_CartName2.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		
 		w_pane_Cart2.add(fld_CartName2);
 
@@ -855,8 +882,6 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket3.setFont(new Font("Sitka Display", Font.BOLD, 18));
 
 		JLabel lbl_Poster3 = new JLabel("");
-		lbl_Poster3.setIcon(new ImageIcon(
-				"C:\\Users\\musta\\OneDrive\\Masa\u00FCst\u00FC\\Bilet Sat\u0131\u015F Sistemi\\images\\s.png"));
 		lbl_Poster3.setBounds(324, 35, 128, 161);
 		PaneConcert.add(lbl_Poster3);
 
@@ -1085,6 +1110,25 @@ public class MainScreen extends JFrame {
 		fld_CartName3.setColumns(10);
 		fld_CartName3.setBackground(Color.WHITE);
 		fld_CartName3.setBounds(143, 9, 139, 20);
+		fld_CartName3.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar()==' '|| (ke.getKeyChar()=='ý'|| ke.getKeyChar()=='ð' || ke.getKeyChar()=='ü' || ke.getKeyChar()=='þ' || ke.getKeyChar()=='ö' || ke.getKeyChar()=='ç'||ke.getKeyChar()=='Ý'|| ke.getKeyChar()=='Ð' || ke.getKeyChar()=='Ü' || ke.getKeyChar()=='Þ' || ke.getKeyChar()=='Ö' || ke.getKeyChar()=='Ç'  )||(ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z') || (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z') || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_CartName3.getText().length()<=15 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_CartName3.setEditable(true);
+	            }
+	            else {
+	            	fld_CartName3.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_CartName3.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		w_pane_Cart3.add(fld_CartName3);
 
 		fld_CartNumber3 = new JTextField();
@@ -1125,6 +1169,57 @@ public class MainScreen extends JFrame {
 		btn_TicketCancel_1_1.setBackground(SystemColor.textHighlight);
 		btn_TicketCancel_1_1.setBounds(317, 464, 92, 35);
 		PaneConcert.add(btn_TicketCancel_1_1);
+		
+				JButton btn_SelectCinema = new JButton("Se\u00E7");
+				btn_SelectCinema.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+				btn_SelectCinema.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(tabbedPane.getSelectedIndex()==0) {
+						int selRow=table_Cinema.getSelectedRow();
+						if (selRow >= 0) {
+							String selCinemaName = table_Cinema.getModel().getValueAt(selRow, 0).toString();
+							String selCinemaType = table_Cinema.getModel().getValueAt(selRow, 1).toString();
+							String selCinemaDirector = table_Cinema.getModel().getValueAt(selRow, 2).toString();
+							String selCinemaSalon = table_Cinema.getModel().getValueAt(selRow, 3).toString();
+							String selCinemaSeance = table_Cinema.getModel().getValueAt(selRow, 4).toString();
+							
+							fld_MovieName.setText(selCinemaName);
+							fld_MovieType.setText(selCinemaType);
+							fld_Director.setText(selCinemaDirector);
+							fld_Salon.setText(selCinemaSalon);
+							fld_Seance.setText(selCinemaSeance);
+							lbl_Poster.setText("Poster");//Poster, Film Kayýt iþleminde poster ekledikten sonra ayarlanýlacak
+						
+						} else {
+							JOptionPane.showMessageDialog(null, "Lütfen Bir Sinema Seçiniz.","Mesaj",JOptionPane.INFORMATION_MESSAGE);
+						}
+						}
+						///////////////////////////////////////////////////////////////
+						if(tabbedPane.getSelectedIndex()==1) {
+						int selRow1=table_Theater.getSelectedRow();
+						if (selRow1 >= 0) {
+							String selTheaterName = table_Theater.getModel().getValueAt(selRow1, 0).toString();
+							String selTheaterType = table_Theater.getModel().getValueAt(selRow1, 1).toString();
+							String selTheaterDirector = table_Theater.getModel().getValueAt(selRow1, 2).toString();
+							String selTheaterSalon = table_Theater.getModel().getValueAt(selRow1, 3).toString();
+							String selTheaterTime = table_Theater.getModel().getValueAt(selRow1, 4).toString();
+							
+							fld_GameName.setText(selTheaterName);
+							fld_GameType.setText(selTheaterType);
+							fld_Director2.setText(selTheaterDirector);
+							fld_Salon2.setText(selTheaterSalon);
+							fld_Time.setText(selTheaterTime);
+							lbl_Poster2.setText("Poster1");//Poster, Film Kayýt iþleminde poster ekledikten sonra ayarlanýlacak
+						
+						} else {
+							JOptionPane.showMessageDialog(null, "Lütfen Bir Tiyatro Oyunu Seçiniz.","Mesaj",JOptionPane.INFORMATION_MESSAGE);
+						}
+						}
+						/////////////////////////////////////////////////////////////////Konser için henüz oluþturulmadý.
+					}
+				});
+				btn_SelectCinema.setBounds(197, 526, 89, 30);
+				contentPane.add(btn_SelectCinema);
 		PaneConcert.setVisible(false);
 ///////////////////////////////////////////////////// PANEKONSER////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
