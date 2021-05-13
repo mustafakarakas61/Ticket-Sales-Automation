@@ -274,7 +274,9 @@ public class SubAdmin extends JFrame {
 					//imageIcon = new ImageIcon(newimg);
                          lbl_Poster.setIcon(new ImageIcon(newimg));
                          
-			
+                         
+                  
+                         
 			
                 }}
 				

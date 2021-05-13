@@ -341,7 +341,7 @@ public class Login extends JFrame {
 		lblWelcome.setBounds(100, 43, 242, 14);
 		contentPane.add(lblWelcome);
 		
-		JLabel lblBGLogo = new JLabel(new ImageIcon(getClass().getResource("sinemabg.png")));
+		JLabel lblBGLogo = new JLabel(new ImageIcon(Login.class.getResource("/Images/sinemabg.png")));
 		lblBGLogo.setBounds(12, 31, 90, 60);
 		contentPane.add(lblBGLogo);
 	}
