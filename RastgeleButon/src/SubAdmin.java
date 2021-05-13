@@ -92,9 +92,9 @@ public class SubAdmin extends JFrame {
 		TheaterModel.setColumnIdentifiers(colTheater);
 		TheaterData = new Object[5];
 		
-		JButton btnShowRemoval = new JButton("G\u00F6steri \u00C7\u0131kar");
-		btnShowRemoval.setBounds(100, 421, 142, 34);
-		contentPane.add(btnShowRemoval);
+		JButton btn_ShowRemoval = new JButton("G\u00F6steri \u00C7\u0131kar");
+		btn_ShowRemoval.setBounds(100, 421, 142, 34);
+		contentPane.add(btn_ShowRemoval);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.CYAN);
@@ -128,7 +128,7 @@ public class SubAdmin extends JFrame {
 		w_paneTheater.setLayout(null);
 		
 		JScrollPane scroll_Theater = new JScrollPane();
-		scroll_Theater.setBounds(0, 0, 431, 327);
+		scroll_Theater.setBounds(0, 0, 400, 327);
 		w_paneTheater.add(scroll_Theater);
 		
 		table_Theater = new JTable(TheaterModel);
@@ -140,84 +140,84 @@ public class SubAdmin extends JFrame {
 		w_paneConcert.setLayout(null);
 		
 		JScrollPane scroll_Concert = new JScrollPane();
-		scroll_Concert.setBounds(0, 0, 431, 327);
+		scroll_Concert.setBounds(0, 0, 400, 327);
 		w_paneConcert.add(scroll_Concert);
 		
 		table_Concert = new JTable(ConcertModel);
 		scroll_Concert.setViewportView(table_Concert);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.inactiveCaption);
-		panel.setBounds(417, 41, 416, 356);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JPanel paneAddCinema = new JPanel();
+		paneAddCinema.setBackground(SystemColor.inactiveCaption);
+		paneAddCinema.setBounds(417, 41, 416, 356);
+		contentPane.add(paneAddCinema);
+		paneAddCinema.setLayout(null);
 		
 		JLabel lbl_MovieName = new JLabel("Film Adi:");
 		lbl_MovieName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_MovieName.setBounds(10, 10, 102, 28);
-		panel.add(lbl_MovieName);
+		paneAddCinema.add(lbl_MovieName);
 		
 		JLabel lbl_FilmDirector = new JLabel("Yönetmen:");
 		lbl_FilmDirector.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_FilmDirector.setBounds(10, 45, 102, 28);
-		panel.add(lbl_FilmDirector);
+		paneAddCinema.add(lbl_FilmDirector);
 		
 		JLabel lbl_MovieType = new JLabel("Film Türü:");
 		lbl_MovieType.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_MovieType.setBounds(10, 72, 102, 28);
-		panel.add(lbl_MovieType);
+		paneAddCinema.add(lbl_MovieType);
 		
 		JLabel lbl_CinemaSalon = new JLabel("Salon:");
 		lbl_CinemaSalon.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_CinemaSalon.setBounds(10, 110, 102, 28);
-		panel.add(lbl_CinemaSalon);
+		paneAddCinema.add(lbl_CinemaSalon);
 		
 		txt_MovieName = new JTextField();
 		txt_MovieName.setBounds(111, 17, 138, 19);
-		panel.add(txt_MovieName);
+		paneAddCinema.add(txt_MovieName);
 		txt_MovieName.setColumns(10);
 		
 		txt_MovieDirector = new JTextField();
 		txt_MovieDirector.setColumns(10);
 		txt_MovieDirector.setBounds(111, 48, 138, 23);
-		panel.add(txt_MovieDirector);
+		paneAddCinema.add(txt_MovieDirector);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(111, 78, 138, 21);
-		panel.add(comboBox);
+		paneAddCinema.add(comboBox);
 		
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Tarih:");
 		lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_1_1_2_1.setBounds(10, 148, 102, 28);
-		panel.add(lblNewLabel_1_1_2_1);
+		paneAddCinema.add(lblNewLabel_1_1_2_1);
 		
 		JComboBox comboBox_1_1 = new JComboBox();
 		comboBox_1_1.setBounds(111, 116, 138, 21);
-		panel.add(comboBox_1_1);
+		paneAddCinema.add(comboBox_1_1);
 		
 		JComboBox comboBox_1_2 = new JComboBox();
 		comboBox_1_2.setBounds(111, 154, 138, 21);
-		panel.add(comboBox_1_2);
+		paneAddCinema.add(comboBox_1_2);
 		
 		JButton btn_AddCinema = new JButton("Film Ekle");
 		btn_AddCinema.setBounds(103, 252, 128, 31);
-		panel.add(btn_AddCinema);
+		paneAddCinema.add(btn_AddCinema);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(259, 17, 147, 175);
-		panel.add(panel_1);
+		paneAddCinema.add(panel_1);
 		
 		JButton btnNewButton_2 = new JButton("Afi\u015F Se\u00E7");
 		btnNewButton_2.setBounds(304, 202, 102, 31);
-		panel.add(btnNewButton_2);
+		paneAddCinema.add(btnNewButton_2);
 		
-		JButton btnNewButton_1 = new JButton("Seans Ekle");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_1.setBounds(463, 415, 138, 44);
-		contentPane.add(btnNewButton_1);
+		JButton btn_AddSeance = new JButton("Seans Ekle");
+		btn_AddSeance.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btn_AddSeance.setBounds(463, 415, 138, 44);
+		contentPane.add(btn_AddSeance);
 		
-		JButton btnNewButton = new JButton("Salon Ekle");
-		btnNewButton.setBounds(638, 415, 138, 44);
-		contentPane.add(btnNewButton);
+		JButton btn_AddSalon = new JButton("Salon Ekle");
+		btn_AddSalon.setBounds(638, 415, 138, 44);
+		contentPane.add(btn_AddSalon);
 	}
 }
