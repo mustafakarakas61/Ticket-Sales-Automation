@@ -31,6 +31,8 @@ public class AddSalon extends JFrame {
 
 
     public AddSalon() {
+    	setResizable(false);
+    	setAlwaysOnTop(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 274, 192);
         contentPane = new JPanel();
