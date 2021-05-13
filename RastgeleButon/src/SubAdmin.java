@@ -182,9 +182,18 @@ public class SubAdmin extends JFrame {
 		txt_MovieDirector.setBounds(111, 48, 138, 23);
 		paneAddCinema.add(txt_MovieDirector);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(111, 78, 138, 21);
-		paneAddCinema.add(comboBox);
+		JComboBox combo_MovieType = new JComboBox();
+		combo_MovieType.setBounds(111, 78, 138, 21);
+		paneAddCinema.add(combo_MovieType);
+		combo_MovieType.addItem("Aksiyon");
+		combo_MovieType.addItem("Komedi");
+		combo_MovieType.addItem("Drama");
+		combo_MovieType.addItem("Fantezi");
+		combo_MovieType.addItem("Korku");
+		combo_MovieType.addItem("Gizem");
+		combo_MovieType.addItem("Romantik");
+		combo_MovieType.addItem("Gerilim");
+		combo_MovieType.addItem("Vahsi Bati");
 		
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Tarih:");
 		lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
