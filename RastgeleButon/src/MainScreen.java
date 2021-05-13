@@ -22,11 +22,14 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.border.BevelBorder;
+import javax.swing.SwingConstants;
 // herkese selam as
 public class MainScreen extends JFrame {
 
@@ -451,10 +454,21 @@ public class MainScreen extends JFrame {
 
 		JComboBox comboBox_Month = new JComboBox();
 		comboBox_Month.setBounds(143, 53, 60, 22);
+		comboBox_Month.addItem("Ay");
+		for(int m=1;m<=12;m++)
+		{
+		comboBox_Month.addItem(m);
+		}
 		w_pane_Kart.add(comboBox_Month);
 
 		JComboBox comboBox_Year = new JComboBox();
 		comboBox_Year.setBounds(210, 53, 72, 22);
+		comboBox_Year.addItem("Yýl");
+		for(int y=2021;y<=2030;y++)
+		{
+		comboBox_Year.addItem(y);
+		}
+	
 		w_pane_Kart.add(comboBox_Year);
 
 		JLabel lbl_Cvc = new JLabel("CVC:");
@@ -463,20 +477,60 @@ public class MainScreen extends JFrame {
 		w_pane_Kart.add(lbl_Cvc);
 
 		fld_cvc = new JTextField();
+		fld_cvc.setHorizontalAlignment(SwingConstants.CENTER);
 		fld_cvc.setBounds(356, 54, 46, 20);
+		fld_cvc.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_cvc.getText().length()<=2 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_cvc.setEditable(true);
+	            }
+	            else {
+	            	fld_cvc.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_cvc.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		w_pane_Kart.add(fld_cvc);
 		fld_cvc.setColumns(10);
+		
 
 		fld_CartName = new JTextField();
 		fld_CartName.setColumns(10);
 		fld_CartName.setBackground(Color.WHITE);
 		fld_CartName.setBounds(143, 9, 139, 20);
 		w_pane_Kart.add(fld_CartName);
-
+		
 		fld_CartNumber = new JTextField();
 		fld_CartNumber.setColumns(10);
 		fld_CartNumber.setBackground(Color.WHITE);
 		fld_CartNumber.setBounds(143, 31, 139, 20);
+		fld_CartNumber.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_CartNumber.getText().length()<=15 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_CartNumber.setEditable(true);
+	            }
+	            else {
+	            	fld_CartNumber.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_CartNumber.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		w_pane_Kart.add(fld_CartNumber);
 
 		JButton btn_CancelTicket = new JButton("Bilet \u0130ptal");
@@ -689,12 +743,22 @@ public class MainScreen extends JFrame {
 		lbl_LastUsageDate2.setBounds(10, 56, 123, 14);
 		w_pane_Cart2.add(lbl_LastUsageDate2);
 
-		JComboBox comboBox_Date2 = new JComboBox();
-		comboBox_Date2.setBounds(143, 53, 60, 22);
-		w_pane_Cart2.add(comboBox_Date2);
+		JComboBox comboBox_Month2 = new JComboBox();
+		comboBox_Month2.setBounds(143, 53, 60, 22);
+		comboBox_Month2.addItem("Ay");
+		for(int m2=1;m2<=12;m2++)
+		{
+		comboBox_Month2.addItem(m2);
+		}
+		w_pane_Cart2.add(comboBox_Month2);
 
 		JComboBox comboBox_Year2 = new JComboBox();
 		comboBox_Year2.setBounds(210, 53, 72, 22);
+		comboBox_Year2.addItem("Yýl");
+		for(int y2=2021;y2<=2030;y2++)
+		{
+		comboBox_Year2.addItem(y2);
+		}
 		w_pane_Cart2.add(comboBox_Year2);
 
 		JLabel lbl_Cvc2 = new JLabel("CVC:");
@@ -703,7 +767,27 @@ public class MainScreen extends JFrame {
 		w_pane_Cart2.add(lbl_Cvc2);
 
 		fld_cvc2 = new JTextField();
+		fld_cvc2.setHorizontalAlignment(SwingConstants.CENTER);
 		fld_cvc2.setBounds(356, 54, 46, 20);
+		fld_cvc2.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_cvc2.getText().length()<=2 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_cvc2.setEditable(true);
+	            }
+	            else {
+	            	fld_cvc2.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_cvc2.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		w_pane_Cart2.add(fld_cvc2);
 		fld_cvc2.setColumns(10);
 
@@ -711,12 +795,32 @@ public class MainScreen extends JFrame {
 		fld_CartName2.setColumns(10);
 		fld_CartName2.setBackground(Color.WHITE);
 		fld_CartName2.setBounds(143, 9, 139, 20);
+		
 		w_pane_Cart2.add(fld_CartName2);
 
 		fld_CartNumber2 = new JTextField();
 		fld_CartNumber2.setColumns(10);
 		fld_CartNumber2.setBackground(Color.WHITE);
 		fld_CartNumber2.setBounds(143, 31, 139, 20);
+		fld_CartNumber2.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_CartNumber2.getText().length()<=15 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_CartNumber2.setEditable(true);
+	            }
+	            else {
+	            	fld_CartNumber2.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_CartNumber2.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		w_pane_Cart2.add(fld_CartNumber2);
 
 		JButton btn_MyTickets_1 = new JButton("Biletlerim");
@@ -931,10 +1035,20 @@ public class MainScreen extends JFrame {
 
 		JComboBox comboBox_Month3 = new JComboBox();
 		comboBox_Month3.setBounds(143, 53, 60, 22);
+		comboBox_Month3.addItem("Ay");
+		for(int m3=1;m3<=12;m3++)
+		{
+		comboBox_Month3.addItem(m3);
+		}
 		w_pane_Cart3.add(comboBox_Month3);
 
 		JComboBox comboBox_Year3 = new JComboBox();
 		comboBox_Year3.setBounds(210, 53, 72, 22);
+		comboBox_Year3.addItem("Yýl");
+		for(int y3=2021;y3<=2030;y3++)
+		{
+		comboBox_Year3.addItem(y3);
+		}
 		w_pane_Cart3.add(comboBox_Year3);
 
 		JLabel lbl_Cvc3 = new JLabel("CVC:");
@@ -943,7 +1057,27 @@ public class MainScreen extends JFrame {
 		w_pane_Cart3.add(lbl_Cvc3);
 
 		fld_cvc3 = new JTextField();
+		fld_cvc3.setHorizontalAlignment(SwingConstants.CENTER);
 		fld_cvc3.setBounds(356, 54, 46, 20);
+		fld_cvc3.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_cvc3.getText().length()<=2 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_cvc3.setEditable(true);
+	            }
+	            else {
+	            	fld_cvc3.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_cvc3.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		w_pane_Cart3.add(fld_cvc3);
 		fld_cvc3.setColumns(10);
 
@@ -957,6 +1091,25 @@ public class MainScreen extends JFrame {
 		fld_CartNumber3.setColumns(10);
 		fld_CartNumber3.setBackground(Color.WHITE);
 		fld_CartNumber3.setBounds(143, 31, 139, 20);
+		fld_CartNumber3.addKeyListener(new KeyAdapter() {
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( fld_CartNumber3.getText().length()<=15 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {
+	            	fld_CartNumber3.setEditable(true);
+	            }
+	            else {
+	            	fld_CartNumber3.setEditable(false);
+	            }
+	            
+	            } else{
+	            	fld_CartNumber3.setEditable(false);
+	            	
+	            }
+	         }
+	      });
 		w_pane_Cart3.add(fld_CartNumber3);
 
 		JButton btn_MyTickets_1_1 = new JButton("Biletlerim");
