@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.JRadioButton;
@@ -22,9 +24,12 @@ import java.awt.Image;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,7 +51,6 @@ public class SubAdmin extends JFrame {
 	private JTextField txt_MovieName;
 	private JTextField txt_MovieDirector;
 	private static user sub = new user();
-	private JTextField txt_url;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -251,36 +255,29 @@ public class SubAdmin extends JFrame {
 		lbl_Poster.setBounds(278, 15, 128, 161);
 		paneAddCinema.add(lbl_Poster);
 
-		
-		
-		txt_url = new JTextField();
-		txt_url.setBounds(346, 181, 60, 20);
-		paneAddCinema.add(txt_url);
-		txt_url.setColumns(10);
-
-		JLabel lbl_ImageURL = new JLabel("Resim URL:");
-		lbl_ImageURL.setBounds(278, 184, 70, 14);
-		paneAddCinema.add(lbl_ImageURL);
-
 		JButton btn_ImageSelect = new JButton("Afi\u015F Se\u00E7");
 		btn_ImageSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				try {
+				JFileChooser fs = new JFileChooser();
+				fs.setDialogTitle("Bir Resim Seç");
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Resim Dosyasý", "jpg", "jpeg", "png");
 
-					InputStream in = new FileInputStream(txt_url.getText());
-
-					BufferedImage c = ImageIO.read(in);
-					ImageIcon image = new ImageIcon(c);
-					lbl_Poster.setIcon(image);
-				} catch (MalformedURLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
+				fs.setFileFilter(filter);
+                int Adress = fs.showOpenDialog(null);
+                if (Adress == JFileChooser.APPROVE_OPTION) { {
+                      //   System.out.println(fs.getSelectedFile());
+                        //w:128 h:161
+                	ImageIcon imageIcon = new ImageIcon(fs.getSelectedFile().toString());
+					Image image = imageIcon.getImage();
+					Image newimg = image.getScaledInstance(128, 161,  java.awt.Image.SCALE_SMOOTH);
+					//imageIcon = new ImageIcon(newimg);
+                         lbl_Poster.setIcon(new ImageIcon(newimg));
+                         
+			
+			
+                }}
+				
 			}
 		});
 		btn_ImageSelect.setBounds(304, 202, 102, 31);
@@ -289,8 +286,8 @@ public class SubAdmin extends JFrame {
 		JButton btn_AddSeance = new JButton("Seans Ekle");
 		btn_AddSeance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			AddSeance AS = new AddSeance();
-			AS.setVisible(true);
+				AddSeance AS = new AddSeance();
+				AS.setVisible(true);
 			}
 		});
 		btn_AddSeance.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -302,7 +299,7 @@ public class SubAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				AddSalon A_S = new AddSalon();
 				A_S.setVisible(true);
-				
+
 			}
 		});
 		btn_AddSalon.setFont(new Font("Tahoma", Font.PLAIN, 14));
