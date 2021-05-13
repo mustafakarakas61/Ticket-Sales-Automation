@@ -113,12 +113,16 @@ public class SubAdmin extends JFrame {
 		
 		table_Cinema = new JTable(CinemaModel);
 		scroll_Cinema.setViewportView(table_Cinema);
-		table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(20);
-		table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(20);
-		table_Cinema.getColumnModel().getColumn(2).setPreferredWidth(20);
 		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(20);
-		table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(20);
-
+        table_Cinema.getColumnModel().getColumn(0).setResizable(false);
+        table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(20);
+        table_Cinema.getColumnModel().getColumn(1).setResizable(false);
+        table_Cinema.getColumnModel().getColumn(2).setPreferredWidth(20);
+        table_Cinema.getColumnModel().getColumn(2).setResizable(false);
+        table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(20);
+        table_Cinema.getColumnModel().getColumn(3).setResizable(false);
+        table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(20);
+        table_Cinema.getColumnModel().getColumn(4).setResizable(false);
 
 
 
@@ -133,6 +137,16 @@ public class SubAdmin extends JFrame {
 		
 		table_Theater = new JTable(TheaterModel);
 		scroll_Theater.setViewportView(table_Theater);
+		table_Theater.getColumnModel().getColumn(0).setPreferredWidth(20);
+        table_Theater.getColumnModel().getColumn(0).setResizable(false);
+        table_Theater.getColumnModel().getColumn(1).setPreferredWidth(20);
+        table_Theater.getColumnModel().getColumn(1).setResizable(false);
+        table_Theater.getColumnModel().getColumn(2).setPreferredWidth(20);
+        table_Theater.getColumnModel().getColumn(2).setResizable(false);
+        table_Theater.getColumnModel().getColumn(3).setPreferredWidth(20);
+        table_Theater.getColumnModel().getColumn(3).setResizable(false);
+        table_Theater.getColumnModel().getColumn(4).setPreferredWidth(20);
+        table_Theater.getColumnModel().getColumn(4).setResizable(false);
 		
 		JPanel w_paneConcert = new JPanel();
 		w_paneConcert.setBackground(SystemColor.info);
@@ -145,6 +159,15 @@ public class SubAdmin extends JFrame {
 		
 		table_Concert = new JTable(ConcertModel);
 		scroll_Concert.setViewportView(table_Concert);
+        table_Concert.getColumnModel().getColumn(0).setResizable(false);
+        table_Concert.getColumnModel().getColumn(1).setPreferredWidth(20);
+        table_Concert.getColumnModel().getColumn(1).setResizable(false);
+        table_Concert.getColumnModel().getColumn(2).setPreferredWidth(20);
+        table_Concert.getColumnModel().getColumn(2).setResizable(false);
+        table_Concert.getColumnModel().getColumn(3).setPreferredWidth(20);
+        table_Concert.getColumnModel().getColumn(3).setResizable(false);
+        table_Concert.getColumnModel().getColumn(4).setPreferredWidth(20);
+        table_Concert.getColumnModel().getColumn(4).setResizable(false);
 		
 		JPanel paneAddCinema = new JPanel();
 		paneAddCinema.setBackground(SystemColor.inactiveCaption);
