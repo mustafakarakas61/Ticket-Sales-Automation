@@ -371,11 +371,11 @@ public class MainScreen extends JFrame {
 		lbl_PaymentMethod.setBounds(33, 307, 128, 18);
 		PaneCinema.add(lbl_PaymentMethod);
 
-		JComboBox comboBox_Yontem = new JComboBox();
-		comboBox_Yontem.setBounds(33, 326, 110, 22);
-		comboBox_Yontem.addItem("Nakit ödeme");
-		comboBox_Yontem.addItem("Kart ile ödeme");
-		PaneCinema.add(comboBox_Yontem);
+		JComboBox comboBox_Method = new JComboBox();
+		comboBox_Method.setBounds(33, 326, 110, 22);
+		comboBox_Method.addItem("Nakit ödeme");
+		comboBox_Method.addItem("Kart ile ödeme");
+		PaneCinema.add(comboBox_Method);
 
 		JPanel w_pane_Kart = new JPanel();
 		w_pane_Kart.setBackground(SystemColor.inactiveCaption);
@@ -383,10 +383,10 @@ public class MainScreen extends JFrame {
 		PaneCinema.add(w_pane_Kart);
 		w_pane_Kart.setLayout(null);
 		w_pane_Kart.setVisible(false);
-		comboBox_Yontem.addItemListener(new ItemChangeListener() {
+		comboBox_Method.addItemListener(new ItemChangeListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 
-				if (comboBox_Yontem.getSelectedIndex() == 0) {
+				if (comboBox_Method.getSelectedIndex() == 0) {
 					w_pane_Kart.setVisible(false);
 
 				} else {
