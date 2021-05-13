@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
@@ -16,9 +18,19 @@ import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.awt.event.ActionEvent;
 
 public class SubAdmin extends JFrame {
 	private DefaultTableModel CinemaModel;
@@ -33,8 +45,8 @@ public class SubAdmin extends JFrame {
 	private JTable table_Concert;
 	private JTextField txt_MovieName;
 	private JTextField txt_MovieDirector;
-	private static user sub = new user();   
-			
+	private static user sub = new user();
+	private JTextField txt_url;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -59,7 +71,7 @@ public class SubAdmin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		CinemaModel = new DefaultTableModel();
 		Object[] colCinema = new Object[5];
 		colCinema[0] = "Film Adi";
@@ -67,10 +79,10 @@ public class SubAdmin extends JFrame {
 		colCinema[2] = "Yönetmen";
 		colCinema[3] = "Salon";
 		colCinema[4] = "Seans";
-		
+
 		CinemaModel.setColumnIdentifiers(colCinema);
 		CinemaData = new Object[5];
-		
+
 		ConcertModel = new DefaultTableModel();
 		Object[] colConcert = new Object[5];
 		colConcert[0] = "Konser Adi";
@@ -78,10 +90,10 @@ public class SubAdmin extends JFrame {
 		colConcert[2] = "Tarih";
 		colConcert[3] = "Salon";
 		colConcert[4] = "Saat";
-		
+
 		ConcertModel.setColumnIdentifiers(colConcert);
 		ConcertData = new Object[5];
-		
+
 		TheaterModel = new DefaultTableModel();
 		Object[] colTheater = new Object[5];
 		colTheater[0] = "Oyun Adi";
@@ -89,123 +101,121 @@ public class SubAdmin extends JFrame {
 		colTheater[2] = "Tarih";
 		colTheater[3] = "Salon";
 		colTheater[4] = "Saat";
-		
+
 		TheaterModel.setColumnIdentifiers(colTheater);
 		TheaterData = new Object[5];
-		
+
 		JButton btn_ShowRemoval = new JButton("G\u00F6steri \u00C7\u0131kar");
 		btn_ShowRemoval.setBounds(100, 421, 142, 34);
 		contentPane.add(btn_ShowRemoval);
-		
+
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.CYAN);
 		tabbedPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		tabbedPane.setBounds(0, 41, 407, 356);
 		contentPane.add(tabbedPane);
-		
+
 		JPanel w_paneCinema = new JPanel();
 		w_paneCinema.setBackground(SystemColor.inactiveCaption);
 		tabbedPane.addTab("Sinema", null, w_paneCinema, null);
 		w_paneCinema.setLayout(null);
-		
+
 		JScrollPane scroll_Cinema = new JScrollPane();
 		scroll_Cinema.setBounds(0, 0, 400, 327);
 		w_paneCinema.add(scroll_Cinema);
-		
+
 		table_Cinema = new JTable(CinemaModel);
 		scroll_Cinema.setViewportView(table_Cinema);
 		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(20);
-        table_Cinema.getColumnModel().getColumn(0).setResizable(false);
-        table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(20);
-        table_Cinema.getColumnModel().getColumn(1).setResizable(false);
-        table_Cinema.getColumnModel().getColumn(2).setPreferredWidth(20);
-        table_Cinema.getColumnModel().getColumn(2).setResizable(false);
-        table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(20);
-        table_Cinema.getColumnModel().getColumn(3).setResizable(false);
-        table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(20);
-        table_Cinema.getColumnModel().getColumn(4).setResizable(false);
-
-
+		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(20);
+		table_Cinema.getColumnModel().getColumn(1).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(2).setPreferredWidth(20);
+		table_Cinema.getColumnModel().getColumn(2).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(20);
+		table_Cinema.getColumnModel().getColumn(3).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(20);
+		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
 
 		JPanel w_paneTheater = new JPanel();
 		w_paneTheater.setBackground(Color.LIGHT_GRAY);
 		tabbedPane.addTab("Tiyatro", null, w_paneTheater, null);
 		w_paneTheater.setLayout(null);
-		
+
 		JScrollPane scroll_Theater = new JScrollPane();
 		scroll_Theater.setBounds(0, 0, 400, 327);
 		w_paneTheater.add(scroll_Theater);
-		
+
 		table_Theater = new JTable(TheaterModel);
 		scroll_Theater.setViewportView(table_Theater);
 		table_Theater.getColumnModel().getColumn(0).setPreferredWidth(20);
-        table_Theater.getColumnModel().getColumn(0).setResizable(false);
-        table_Theater.getColumnModel().getColumn(1).setPreferredWidth(20);
-        table_Theater.getColumnModel().getColumn(1).setResizable(false);
-        table_Theater.getColumnModel().getColumn(2).setPreferredWidth(20);
-        table_Theater.getColumnModel().getColumn(2).setResizable(false);
-        table_Theater.getColumnModel().getColumn(3).setPreferredWidth(20);
-        table_Theater.getColumnModel().getColumn(3).setResizable(false);
-        table_Theater.getColumnModel().getColumn(4).setPreferredWidth(20);
-        table_Theater.getColumnModel().getColumn(4).setResizable(false);
-		
+		table_Theater.getColumnModel().getColumn(0).setResizable(false);
+		table_Theater.getColumnModel().getColumn(1).setPreferredWidth(20);
+		table_Theater.getColumnModel().getColumn(1).setResizable(false);
+		table_Theater.getColumnModel().getColumn(2).setPreferredWidth(20);
+		table_Theater.getColumnModel().getColumn(2).setResizable(false);
+		table_Theater.getColumnModel().getColumn(3).setPreferredWidth(20);
+		table_Theater.getColumnModel().getColumn(3).setResizable(false);
+		table_Theater.getColumnModel().getColumn(4).setPreferredWidth(20);
+		table_Theater.getColumnModel().getColumn(4).setResizable(false);
+
 		JPanel w_paneConcert = new JPanel();
 		w_paneConcert.setBackground(SystemColor.info);
 		tabbedPane.addTab("Konser", null, w_paneConcert, null);
 		w_paneConcert.setLayout(null);
-		
+
 		JScrollPane scroll_Concert = new JScrollPane();
 		scroll_Concert.setBounds(0, 0, 400, 327);
 		w_paneConcert.add(scroll_Concert);
-		
+
 		table_Concert = new JTable(ConcertModel);
 		scroll_Concert.setViewportView(table_Concert);
-        table_Concert.getColumnModel().getColumn(0).setResizable(false);
-        table_Concert.getColumnModel().getColumn(1).setPreferredWidth(20);
-        table_Concert.getColumnModel().getColumn(1).setResizable(false);
-        table_Concert.getColumnModel().getColumn(2).setPreferredWidth(20);
-        table_Concert.getColumnModel().getColumn(2).setResizable(false);
-        table_Concert.getColumnModel().getColumn(3).setPreferredWidth(20);
-        table_Concert.getColumnModel().getColumn(3).setResizable(false);
-        table_Concert.getColumnModel().getColumn(4).setPreferredWidth(20);
-        table_Concert.getColumnModel().getColumn(4).setResizable(false);
-		
+		table_Concert.getColumnModel().getColumn(0).setResizable(false);
+		table_Concert.getColumnModel().getColumn(1).setPreferredWidth(20);
+		table_Concert.getColumnModel().getColumn(1).setResizable(false);
+		table_Concert.getColumnModel().getColumn(2).setPreferredWidth(20);
+		table_Concert.getColumnModel().getColumn(2).setResizable(false);
+		table_Concert.getColumnModel().getColumn(3).setPreferredWidth(20);
+		table_Concert.getColumnModel().getColumn(3).setResizable(false);
+		table_Concert.getColumnModel().getColumn(4).setPreferredWidth(20);
+		table_Concert.getColumnModel().getColumn(4).setResizable(false);
+
 		JPanel paneAddCinema = new JPanel();
 		paneAddCinema.setBackground(SystemColor.inactiveCaption);
 		paneAddCinema.setBounds(417, 41, 416, 356);
 		contentPane.add(paneAddCinema);
 		paneAddCinema.setLayout(null);
-		
+
 		JLabel lbl_MovieName = new JLabel("Film Adi:");
 		lbl_MovieName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_MovieName.setBounds(10, 10, 102, 28);
 		paneAddCinema.add(lbl_MovieName);
-		
+
 		JLabel lbl_FilmDirector = new JLabel("Yönetmen:");
 		lbl_FilmDirector.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_FilmDirector.setBounds(10, 45, 102, 28);
 		paneAddCinema.add(lbl_FilmDirector);
-		
+
 		JLabel lbl_MovieType = new JLabel("Film Türü:");
 		lbl_MovieType.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_MovieType.setBounds(10, 72, 102, 28);
 		paneAddCinema.add(lbl_MovieType);
-		
+
 		JLabel lbl_CinemaSalon = new JLabel("Salon:");
 		lbl_CinemaSalon.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_CinemaSalon.setBounds(10, 110, 102, 28);
 		paneAddCinema.add(lbl_CinemaSalon);
-		
+
 		txt_MovieName = new JTextField();
 		txt_MovieName.setBounds(111, 17, 138, 19);
 		paneAddCinema.add(txt_MovieName);
 		txt_MovieName.setColumns(10);
-		
+
 		txt_MovieDirector = new JTextField();
 		txt_MovieDirector.setColumns(10);
 		txt_MovieDirector.setBounds(111, 48, 138, 23);
 		paneAddCinema.add(txt_MovieDirector);
-		
+
 		JComboBox combo_MovieType = new JComboBox();
 		combo_MovieType.setBounds(111, 78, 138, 21);
 		paneAddCinema.add(combo_MovieType);
@@ -219,42 +229,83 @@ public class SubAdmin extends JFrame {
 		combo_MovieType.addItem("Korku");
 		combo_MovieType.addItem("Romantik");
 		combo_MovieType.addItem("Western");
-		
-		
-		
-		
-		
+
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Tarih:");
 		lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_1_1_2_1.setBounds(10, 148, 102, 28);
 		paneAddCinema.add(lblNewLabel_1_1_2_1);
-		
-		JComboBox comboBox_1_1 = new JComboBox();
-		comboBox_1_1.setBounds(111, 116, 138, 21);
-		paneAddCinema.add(comboBox_1_1);
-		
+
+		JComboBox comboBox_Salon = new JComboBox();
+		comboBox_Salon.setBounds(111, 116, 138, 21);
+		paneAddCinema.add(comboBox_Salon);
+
 		JButton btn_AddCinema = new JButton("Film Ekle");
 		btn_AddCinema.setBounds(103, 252, 128, 31);
 		paneAddCinema.add(btn_AddCinema);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(259, 17, 147, 175);
-		paneAddCinema.add(panel_1);
-		
-		JButton btnNewButton_2 = new JButton("Afi\u015F Se\u00E7");
-		btnNewButton_2.setBounds(304, 202, 102, 31);
-		paneAddCinema.add(btnNewButton_2);
-		
+
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(111, 153, 138, 20);
 		paneAddCinema.add(dateChooser);
+
+		JLabel lbl_Poster = new JLabel("");
+		lbl_Poster.setBounds(278, 15, 128, 161);
+		paneAddCinema.add(lbl_Poster);
+
 		
+		
+		txt_url = new JTextField();
+		txt_url.setBounds(346, 181, 60, 20);
+		paneAddCinema.add(txt_url);
+		txt_url.setColumns(10);
+
+		JLabel lbl_ImageURL = new JLabel("Resim URL:");
+		lbl_ImageURL.setBounds(278, 184, 70, 14);
+		paneAddCinema.add(lbl_ImageURL);
+
+		JButton btn_ImageSelect = new JButton("Afi\u015F Se\u00E7");
+		btn_ImageSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+
+					InputStream in = new FileInputStream(txt_url.getText());
+
+					BufferedImage c = ImageIO.read(in);
+					ImageIcon image = new ImageIcon(c);
+					lbl_Poster.setIcon(image);
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		btn_ImageSelect.setBounds(304, 202, 102, 31);
+		paneAddCinema.add(btn_ImageSelect);
+
 		JButton btn_AddSeance = new JButton("Seans Ekle");
-		btn_AddSeance.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btn_AddSeance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			AddSeance AS = new AddSeance();
+			AS.setVisible(true);
+			}
+		});
+		btn_AddSeance.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btn_AddSeance.setBounds(463, 415, 138, 44);
 		contentPane.add(btn_AddSeance);
-		
+
 		JButton btn_AddSalon = new JButton("Salon Ekle");
+		btn_AddSalon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddSalon A_S = new AddSalon();
+				A_S.setVisible(true);
+				
+			}
+		});
+		btn_AddSalon.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btn_AddSalon.setBounds(638, 415, 138, 44);
 		contentPane.add(btn_AddSalon);
 	}
