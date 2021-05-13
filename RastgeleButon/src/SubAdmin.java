@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import com.toedter.calendar.JDateChooser;
 
 public class SubAdmin extends JFrame {
 	private DefaultTableModel CinemaModel;
@@ -209,14 +210,19 @@ public class SubAdmin extends JFrame {
 		combo_MovieType.setBounds(111, 78, 138, 21);
 		paneAddCinema.add(combo_MovieType);
 		combo_MovieType.addItem("Aksiyon");
-		combo_MovieType.addItem("Komedi");
+		combo_MovieType.addItem("Bilim/Kurgu");
 		combo_MovieType.addItem("Drama");
 		combo_MovieType.addItem("Fantezi");
-		combo_MovieType.addItem("Korku");
-		combo_MovieType.addItem("Gizem");
-		combo_MovieType.addItem("Romantik");
 		combo_MovieType.addItem("Gerilim");
-		combo_MovieType.addItem("Vahsi Bati");
+		combo_MovieType.addItem("Gizem");
+		combo_MovieType.addItem("Komedi");
+		combo_MovieType.addItem("Korku");
+		combo_MovieType.addItem("Romantik");
+		combo_MovieType.addItem("Western");
+		
+		
+		
+		
 		
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Tarih:");
 		lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -226,10 +232,6 @@ public class SubAdmin extends JFrame {
 		JComboBox comboBox_1_1 = new JComboBox();
 		comboBox_1_1.setBounds(111, 116, 138, 21);
 		paneAddCinema.add(comboBox_1_1);
-		
-		JComboBox comboBox_1_2 = new JComboBox();
-		comboBox_1_2.setBounds(111, 154, 138, 21);
-		paneAddCinema.add(comboBox_1_2);
 		
 		JButton btn_AddCinema = new JButton("Film Ekle");
 		btn_AddCinema.setBounds(103, 252, 128, 31);
@@ -242,6 +244,10 @@ public class SubAdmin extends JFrame {
 		JButton btnNewButton_2 = new JButton("Afi\u015F Se\u00E7");
 		btnNewButton_2.setBounds(304, 202, 102, 31);
 		paneAddCinema.add(btnNewButton_2);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(111, 153, 138, 20);
+		paneAddCinema.add(dateChooser);
 		
 		JButton btn_AddSeance = new JButton("Seans Ekle");
 		btn_AddSeance.setFont(new Font("Tahoma", Font.PLAIN, 13));
