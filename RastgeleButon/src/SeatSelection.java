@@ -411,8 +411,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		String seatName = null;
 
 		if (e.getButton() == 1) {
-			String[] sss = new String[seat.length * seat[0].length - seat.length];
-			int i = 0;
+			
 			if (!(s.isSeatSelect())) {
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatSelect.png"));
 				if (s.getRow() == 0 && s.getCol() < 7) {
@@ -496,26 +495,102 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 				}
 
-				sss[i] = seatName;
-
-			//Burdan
-
-				System.out.println(seatName);
-
+				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText()+"*"+seatName);
 				s.setIcon(imageIcon);
 
 				s.setSeatSelect(true);
 			} else {
+				if (s.getRow() == 0 && s.getCol() < 7) {
+					seatName = ("A" + (s.getCol() + 1));
 
+				}
+				if (s.getRow() == 1 && s.getCol() < 7) {
+					seatName = ("B" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 2 && s.getCol() < 7) {
+					seatName = ("C" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 3 && s.getCol() < 7) {
+					seatName = ("D" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 4 && s.getCol() < 7) {
+					seatName = ("E" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 5 && s.getCol() < 7) {
+					seatName = ("F" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 6 && s.getCol() < 7) {
+					seatName = ("G" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 7 && s.getCol() < 7) {
+					seatName = ("H" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 8 && s.getCol() < 7) {
+					seatName = ("I" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 9 && s.getCol() < 7) {
+					seatName = ("J" + (s.getCol() + 1));
+
+				}
+				if (s.getRow() == 0 && s.getCol() > 7) {
+					seatName = ("A" + (s.getCol()));
+
+				}
+				if (s.getRow() == 1 && s.getCol() > 7) {
+					seatName = ("B" + (s.getCol()));
+
+				}
+				if (s.getRow() == 2 && s.getCol() > 7) {
+					seatName = ("C" + (s.getCol()));
+
+				}
+				if (s.getRow() == 3 && s.getCol() > 7) {
+					seatName = ("D" + (s.getCol()));
+
+				}
+				if (s.getRow() == 4 && s.getCol() > 7) {
+					seatName = ("E" + (s.getCol()));
+
+				}
+				if (s.getRow() == 5 && s.getCol() > 7) {
+					seatName = ("F" + (s.getCol()));
+
+				}
+				if (s.getRow() == 6 && s.getCol() > 7) {
+					seatName = ("G" + (s.getCol()));
+
+				}
+				if (s.getRow() == 7 && s.getCol() > 7) {
+					seatName = ("H" + (s.getCol()));
+
+				}
+				if (s.getRow() == 8 && s.getCol() > 7) {
+					seatName = ("I" + (s.getCol()));
+
+				}
+				if (s.getRow() == 9 && s.getCol() > 7) {
+					seatName = ("J" + (s.getCol()));
+
+				}
+				
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatOn.png"));
 				s.setIcon(imageIcon);
+				
+				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText().replace("*"+seatName, ""));
+				
 				s.setSeatSelect(false);
 			}
-			i++;
 		}
-
 	}
-
+ 
 	@Override
 	public void mousePressed(MouseEvent e) {
 
