@@ -56,3 +56,4 @@ public class AddSalon extends JFrame {
         contentPane.add(btn_Ekle);
     }
 }
+//123
