@@ -166,7 +166,7 @@ public class Login extends JFrame {
 					}
 					
 					if (key) 
-						Metod_Helper.showMsg("Böyle bir hasta yok lütfen kaydolunuz");
+						Metod_Helper.showMsg("Böyle bir kayýt yok lütfen kaydolunuz");
 					
 				}
 				
