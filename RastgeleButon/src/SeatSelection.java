@@ -363,14 +363,14 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.add(txt_TotalSeats);
 		txt_TotalSeats.setColumns(10);
 
-		JLabel lbl_TicketPrice = new JLabel("Bilet Fiyat\u0131 : 20\u20BA");
+		JLabel lbl_TicketPrice = new JLabel("Bilet Fiyatı : 20TL");
 		lbl_TicketPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbl_TicketPrice.setBounds(161, 522, 170, 20);
 		contentPane.add(lbl_TicketPrice);
 
-		JLabel lbl_StudentTicketPrice = new JLabel("\u00D6\u011Frenci Bilet Fiyat\u0131 : 13\u20BA");
+		JLabel lbl_StudentTicketPrice = new JLabel("Öğrenci Bilet Fiyatı : 13TL");
 		lbl_StudentTicketPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbl_StudentTicketPrice.setBounds(161, 550, 170, 23);
+		lbl_StudentTicketPrice.setBounds(161, 550, 186, 23);
 		contentPane.add(lbl_StudentTicketPrice);
 
 		JLabel lbl_TotalStudentLabel = new JLabel("\u00D6\u011Frenci Say\u0131s\u0131:");
@@ -642,10 +642,10 @@ public class SeatSelection extends JFrame implements MouseListener {
 	      });
 		if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
 		{
-		txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"₺");
+		txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"TL");
 		}
 		else {
-			txt_Total.setText("₺");
+			txt_Total.setText("");
 		}
 		txt_TotalStudent.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
 
@@ -675,11 +675,11 @@ public class SeatSelection extends JFrame implements MouseListener {
 				
 				if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
 				{
-				txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"₺");
+				txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"TL");
 				}
 			
 				else {
-					txt_Total.setText("₺");
+					txt_Total.setText("");
 				}
 				
 			}
@@ -689,11 +689,11 @@ public class SeatSelection extends JFrame implements MouseListener {
 				// TODO Auto-generated method stub
 				if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
 				{
-				txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"₺");
+				txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"TL");
 				}
 			
 				else {
-					txt_Total.setText("₺");
+					txt_Total.setText("");
 				}
 			}
 
