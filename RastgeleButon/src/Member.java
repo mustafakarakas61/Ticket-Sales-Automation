@@ -9,14 +9,8 @@ public class Member extends user{
 
 	public Member() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Member(int id, String name, String surname, String pass, String TC_No, String email ,String type) {
-
-	}
-
-	
 	
 	public boolean register(String tcno, String pass, String name) {
 
