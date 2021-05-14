@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import Helper.SeatHelper;
 
@@ -20,6 +22,8 @@ import javax.swing.UIManager;
 import java.awt.SystemColor;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -355,6 +359,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		txt_TotalSeats.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txt_TotalSeats.setBackground(new Color(255, 255, 255));
 		txt_TotalSeats.setBounds(792, 513, 65, 20);
+		txt_TotalSeats.setText("0");
 		contentPane.add(txt_TotalSeats);
 		txt_TotalSeats.setColumns(10);
 
@@ -378,20 +383,25 @@ public class SeatSelection extends JFrame implements MouseListener {
 		txt_TotalStudent.setColumns(10);
 		txt_TotalStudent.setBackground(Color.WHITE);
 		txt_TotalStudent.setBounds(792, 561, 65, 20);
+	
 		contentPane.add(txt_TotalStudent);
-
+		
 		JLabel lblNewLabel = new JLabel("Tutar:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(884, 530, 55, 39);
 		contentPane.add(lblNewLabel);
 
 		txt_Total = new JTextField();
+		
 		txt_Total.setBackground(new Color(255, 255, 255));
 		txt_Total.setEditable(false);
 		txt_Total.setForeground(new Color(0, 128, 0));
 		txt_Total.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 26));
 		txt_Total.setHorizontalAlignment(SwingConstants.CENTER);
+	
 		txt_Total.setBounds(949, 517, 125, 61);
+		
+		
 		contentPane.add(txt_Total);
 		txt_Total.setColumns(10);
 
@@ -409,9 +419,8 @@ public class SeatSelection extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		SeatHelper s = (SeatHelper) e.getComponent();
 		String seatName = null;
-
+		
 		if (e.getButton() == 1) {
-			
 			if (!(s.isSeatSelect())) {
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatSelect.png"));
 				if (s.getRow() == 0 && s.getCol() < 7) {
@@ -494,11 +503,29 @@ public class SeatSelection extends JFrame implements MouseListener {
 					seatName = ("J" + (s.getCol()));
 
 				}
-
+				
+				
 				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText()+"*"+seatName);
+				
+				String sentence=txt_SelectedSeatsNumbers.getText();
+				int charCount=0;
+				System.out.println(sentence);
+				for(int i=0;i<sentence.length();i++)
+				{
+					
+					if(sentence.charAt(i)=='*')
+					{
+						
+						txt_TotalSeats.setText(""+(charCount+1));
+						charCount++;
+					}
+				}
+				
+				
 				s.setIcon(imageIcon);
-
+				
 				s.setSeatSelect(true);
+				
 			} else {
 				if (s.getRow() == 0 && s.getCol() < 7) {
 					seatName = ("A" + (s.getCol() + 1));
@@ -585,10 +612,98 @@ public class SeatSelection extends JFrame implements MouseListener {
 				s.setIcon(imageIcon);
 				
 				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText().replace("*"+seatName, ""));
-				
+				int totalSeatsCount=Integer.parseInt(txt_TotalSeats.getText());
+				int newCount=totalSeatsCount-1;
+				txt_TotalSeats.setText(""+newCount);
 				s.setSeatSelect(false);
+			
 			}
+			
 		}
+		txt_TotalStudent.addKeyListener(new KeyAdapter(){
+			
+	         public void keyPressed(KeyEvent ke) {
+	            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+	            	
+	            if( txt_TotalStudent.getText().length()<=4 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+	            {	
+	            	
+	            	txt_TotalStudent.setEditable(true);
+	            }
+	            else {
+	            	txt_TotalStudent.setEditable(false);
+	            }
+	            
+	            } else{
+	            	txt_TotalStudent.setEditable(false);
+	            	
+	            }
+	         }
+	      });
+		if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
+		{
+		txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"₺");
+		}
+		else {
+			txt_Total.setText("₺");
+		}
+		txt_TotalStudent.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				txt_TotalStudent.addKeyListener(new KeyAdapter(){
+					
+			         public void keyPressed(KeyEvent ke) {
+			            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
+			            	
+			            if( txt_TotalStudent.getText().length()<=4 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
+			            {	
+			            	
+			            	txt_TotalStudent.setEditable(true);
+			            }
+			            else {
+			            	txt_TotalStudent.setEditable(false);
+			            }
+			            
+			            } else{
+			            	txt_TotalStudent.setEditable(false);
+			            	
+			            }
+			         }
+			      });
+				
+				if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
+				{
+				txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"₺");
+				}
+			
+				else {
+					txt_Total.setText("₺");
+				}
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
+				{
+				txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"₺");
+				}
+			
+				else {
+					txt_Total.setText("₺");
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			 
+				});
 	}
  
 	@Override
