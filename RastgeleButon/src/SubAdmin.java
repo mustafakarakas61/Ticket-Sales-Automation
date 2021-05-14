@@ -273,11 +273,17 @@ public class SubAdmin extends JFrame {
 					Image newimg = image.getScaledInstance(128, 161,  java.awt.Image.SCALE_SMOOTH);
 					//imageIcon = new ImageIcon(newimg);
                          lbl_Poster.setIcon(new ImageIcon(newimg));
-                         
+                         BufferedImage bImage = null;
+                         try {
+                             File initialImage = new File(fs.getSelectedFile().toString());
+                             bImage = ImageIO.read(initialImage);
+                             ImageIO.write(bImage, "jpg", new File("C://Users/dogak/git/booking2/RastgeleButon/src/Images/image.png"));
+                         } catch (IOException j) {
+                               System.out.println("Exception occured :" + j.getMessage());
+                         }
                          
                   
-                         
-			
+                         	
                 }}
 				
 			}
