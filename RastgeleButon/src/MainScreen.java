@@ -33,14 +33,14 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
-// herkese selam as
+
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
-	private DefaultTableModel sinemaModel; // tablo sütunlarýný isimlendirmek için
-	private DefaultTableModel tiyatroModel;
-	private Object[] sinemaData = null; // sqlden veri çekmek için
-	private Object[] tiyatroData = null;
+	private DefaultTableModel cinemaModel; // tablo sütunlarýný isimlendirmek için
+	private DefaultTableModel theaterModel;
+	private Object[] cinemaData = null; // sqlden veri çekmek için
+	private Object[] theaterData = null;
 	private JTable table_Cinema;
 	private JTable table_Theater;
 	private JTable table_Concert;
@@ -117,29 +117,29 @@ public class MainScreen extends JFrame {
 		setResizable(false);
 
 //////////////////////////////////////////////////////////////////////////////////Sinema
-		sinemaModel = new DefaultTableModel();
-		Object[] colSinema = new Object[5]; // tablo sütunlarýna isim vermek için
+		cinemaModel = new DefaultTableModel();
+		Object[] colCinema = new Object[5]; // tablo sütunlarýna isim vermek için
 
-		colSinema[0] = "Film Adý";
-		colSinema[1] = "Film Türü";
-		colSinema[2] = "Yönetmen";
-		colSinema[3] = "Salon";
-		colSinema[4] = "Seans";
+		colCinema[0] = "Film Adý";
+		colCinema[1] = "Film Türü";
+		colCinema[2] = "Yönetmen";
+		colCinema[3] = "Salon";
+		colCinema[4] = "Seans";
 
-		sinemaModel.setColumnIdentifiers(colSinema);
-		sinemaData = new Object[5]; // sqlden veri çekmek için
+		cinemaModel.setColumnIdentifiers(colCinema);
+		cinemaData = new Object[5]; // sqlden veri çekmek için
 
 //////////////////////////////////////////////////////////////////////////////////Tiyatro
-		tiyatroModel = new DefaultTableModel();
-		Object[] colTiyatro = new Object[5];
+		theaterModel = new DefaultTableModel();
+		Object[] colTheater = new Object[5];
 
-		colTiyatro[0] = "Oyun Adý";
-		colTiyatro[1] = "Oyun Türü";
-		colTiyatro[2] = "Tarih";
-		colTiyatro[3] = "Salon";
-		colTiyatro[4] = "Saat";
-		tiyatroModel.setColumnIdentifiers(colTiyatro);
-		tiyatroData = new Object[5]; // sqlden veri çekmek için
+		colTheater[0] = "Oyun Adý";
+		colTheater[1] = "Oyun Türü";
+		colTheater[2] = "Tarih";
+		colTheater[3] = "Salon";
+		colTheater[4] = "Saat";
+		theaterModel.setColumnIdentifiers(colTheater);
+		theaterData = new Object[5]; // sqlden veri çekmek için
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 980, 600);
@@ -182,7 +182,7 @@ public class MainScreen extends JFrame {
 		scrollPane_Cinema.setBounds(0, 0, 485, 461);
 		w_paneCinema.add(scrollPane_Cinema);
 ///////////////////////////////////////////////////////////////////////////////////Sinema Sütun Özellikleri
-		table_Cinema = new JTable(sinemaModel);
+		table_Cinema = new JTable(cinemaModel);
 		table_Cinema.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Cinema.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
 		scrollPane_Cinema.setViewportView(table_Cinema);
@@ -199,18 +199,18 @@ public class MainScreen extends JFrame {
 		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
 
 		/************************* Þimdilik Veri Ekliyorum ***************************/
-		sinemaData[0] = "Recep Ývedik 7";
-		sinemaData[1] = "Komedi";
-		sinemaData[2] = "Þahan Gökbakar";
-		sinemaData[3] = 1;
-		sinemaData[4] = "13:40";
-		sinemaModel.addRow(sinemaData);
-		sinemaData[0] = "Hýzlý ve Öfkeli 10";
-		sinemaData[1] = "Aksiyon";
-		sinemaData[2] = "Rob Cohen";
-		sinemaData[3] = 4;
-		sinemaData[4] = "16:30";
-		sinemaModel.addRow(sinemaData);
+		cinemaData[0] = "Recep Ývedik 7";
+		cinemaData[1] = "Komedi";
+		cinemaData[2] = "Þahan Gökbakar";
+		cinemaData[3] = 1;
+		cinemaData[4] = "13:40";
+		cinemaModel.addRow(cinemaData);
+		cinemaData[0] = "Hýzlý ve Öfkeli 10";
+		cinemaData[1] = "Aksiyon";
+		cinemaData[2] = "Rob Cohen";
+		cinemaData[3] = 4;
+		cinemaData[4] = "16:30";
+		cinemaModel.addRow(cinemaData);
 
 		/****************************************************/
 		JPanel w_paneTheater = new JPanel();
@@ -223,7 +223,7 @@ public class MainScreen extends JFrame {
 		w_paneTheater.add(scrollPane_Theater);
 
 ///////////////////////////////////////////////////////////////////////////////////Tiyatro Sütun Özellikleri
-		table_Theater = new JTable(tiyatroModel);
+		table_Theater = new JTable(theaterModel);
 		table_Theater.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Theater.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
 		scrollPane_Theater.setViewportView(table_Theater);
