@@ -363,12 +363,12 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.add(txt_TotalSeats);
 		txt_TotalSeats.setColumns(10);
 
-		JLabel lbl_TicketPrice = new JLabel("Bilet FiyatÄ± : 20TL");
+		JLabel lbl_TicketPrice = new JLabel("Bilet Fiyatý : 20TL");
 		lbl_TicketPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbl_TicketPrice.setBounds(161, 522, 170, 20);
 		contentPane.add(lbl_TicketPrice);
 
-		JLabel lbl_StudentTicketPrice = new JLabel("Ã–ÄŸrenci Bilet FiyatÄ± : 13TL");
+		JLabel lbl_StudentTicketPrice = new JLabel("Öðrenci Bilet Fiyatý : 13TL");
 		lbl_StudentTicketPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbl_StudentTicketPrice.setBounds(161, 550, 186, 23);
 		contentPane.add(lbl_StudentTicketPrice);
