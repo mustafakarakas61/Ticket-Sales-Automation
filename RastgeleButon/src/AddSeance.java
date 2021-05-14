@@ -9,11 +9,18 @@ import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JDateChooser;
+
+import Helper.Metod_Helper;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 public class AddSeance extends JFrame {
-
+	
 	private JPanel contentPane;
 
 	/**
@@ -35,104 +42,125 @@ public class AddSeance extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public AddSeance() {
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 400);
+		setBounds(100, 100, 450, 301);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lbl_MovieName = new JLabel("Film:");
-		lbl_MovieName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_MovieName.setBounds(10, 36, 80, 31);
-		contentPane.add(lbl_MovieName);
-		
-		JLabel lbl_Salon = new JLabel("Salon:");
-		lbl_Salon.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_Salon.setBounds(10, 77, 80, 31);
-		contentPane.add(lbl_Salon);
-		
-		JLabel lbl_Date = new JLabel("Tarih:");
-		lbl_Date.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_Date.setBounds(10, 118, 80, 31);
-		contentPane.add(lbl_Date);
-		
 		JLabel lblSeance = new JLabel("Seans:");
 		lblSeance.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblSeance.setBounds(10, 159, 80, 31);
+		lblSeance.setBounds(10, 31, 80, 31);
 		contentPane.add(lblSeance);
 		
 		JPanel SeanceHours = new JPanel();
 		SeanceHours.setBackground(Color.WHITE);
-		SeanceHours.setBounds(60, 169, 347, 139);
+		SeanceHours.setBounds(60, 31, 347, 139);
 		contentPane.add(SeanceHours);
 		SeanceHours.setLayout(null);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("10:00 ");
-		rdbtnNewRadioButton.setBounds(6, 6, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton);
+		JRadioButton rdbtn0 = new JRadioButton("10:00 ");
+		rdbtn0.setBounds(6, 6, 103, 21);
+		SeanceHours.add(rdbtn0);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("11:00");
-		rdbtnNewRadioButton_1.setBounds(122, 6, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_1);
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("12:00");
-		rdbtnNewRadioButton_2.setBounds(238, 6, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_2);
+		JRadioButton rdbtn1 = new JRadioButton("11:00");
+		rdbtn1.setBounds(122, 6, 103, 21);
+		SeanceHours.add(rdbtn1);
 		
-		JRadioButton rdbtnNewRadioButton_2_1 = new JRadioButton("18:00");
-		rdbtnNewRadioButton_2_1.setBounds(238, 76, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_2_1);
+		JRadioButton rdbtn2 = new JRadioButton("12:00");
+		rdbtn2.setBounds(238, 6, 103, 21);
+		SeanceHours.add(rdbtn2);
 		
-		JRadioButton rdbtnNewRadioButton_1_1 = new JRadioButton("17:00");
-		rdbtnNewRadioButton_1_1.setBounds(122, 76, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_1_1);
+		JRadioButton rdbtn8 = new JRadioButton("18:00");
+		rdbtn8.setBounds(238, 76, 103, 21);
+		SeanceHours.add(rdbtn8);
 		
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("16:00");
-		rdbtnNewRadioButton_3.setBounds(6, 76, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_3);
+		JRadioButton rdbtn7 = new JRadioButton("17:00");
+		rdbtn7.setBounds(122, 76, 103, 21);
+		SeanceHours.add(rdbtn7);
 		
-		JRadioButton rdbtnNewRadioButton_2_2 = new JRadioButton("21:00");
-		rdbtnNewRadioButton_2_2.setBounds(238, 112, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_2_2);
+		JRadioButton rdbtn6 = new JRadioButton("16:00");
+		rdbtn6.setBounds(6, 76, 103, 21);
+		SeanceHours.add(rdbtn6);
 		
-		JRadioButton rdbtnNewRadioButton_1_2 = new JRadioButton("20:00");
-		rdbtnNewRadioButton_1_2.setBounds(122, 112, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_1_2);
+		JRadioButton rdbtn11 = new JRadioButton("21:00");
+		rdbtn11.setBounds(238, 112, 103, 21);
+		SeanceHours.add(rdbtn11);
 		
-		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("19:00");
-		rdbtnNewRadioButton_4.setBounds(6, 112, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_4);
+		JRadioButton rdbtn10 = new JRadioButton("20:00");
+		rdbtn10.setBounds(122, 112, 103, 21);
+		SeanceHours.add(rdbtn10);
 		
-		JRadioButton rdbtnNewRadioButton_2_3 = new JRadioButton("15:00");
-		rdbtnNewRadioButton_2_3.setBounds(238, 41, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_2_3);
+		JRadioButton rdbtn9 = new JRadioButton("19:00");
+		rdbtn9.setBounds(6, 112, 103, 21);
+		SeanceHours.add(rdbtn9);
 		
-		JRadioButton rdbtnNewRadioButton_1_3 = new JRadioButton("14:00");
-		rdbtnNewRadioButton_1_3.setBounds(122, 41, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_1_3);
+		JRadioButton rdbtn5 = new JRadioButton("15:00");
+		rdbtn5.setBounds(238, 41, 103, 21);
+		SeanceHours.add(rdbtn5);
 		
-		JRadioButton rdbtnNewRadioButton_5 = new JRadioButton("13:00");
-		rdbtnNewRadioButton_5.setBounds(6, 41, 103, 21);
-		SeanceHours.add(rdbtnNewRadioButton_5);
+		JRadioButton rdbtn4 = new JRadioButton("14:00");
+		rdbtn4.setBounds(122, 41, 103, 21);
+		SeanceHours.add(rdbtn4);
 		
-		JComboBox combo_MovieName = new JComboBox();
-		combo_MovieName.setBounds(60, 43, 123, 21);
-		contentPane.add(combo_MovieName);
+		JRadioButton rdbtn3 = new JRadioButton("13:00");
+		rdbtn3.setBounds(6, 41, 103, 21);
+		SeanceHours.add(rdbtn3);		
 		
-		JComboBox combo_Salon = new JComboBox();
-		combo_Salon.setBounds(60, 84, 123, 21);
-		contentPane.add(combo_Salon);
-		
-		JDateChooser DateSelect = new JDateChooser();
-		DateSelect.setBounds(59, 125, 124, 20);
-		contentPane.add(DateSelect);
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(rdbtn0);
+		bg.add(rdbtn1);
+		bg.add(rdbtn2);
+		bg.add(rdbtn3);
+		bg.add(rdbtn4);
+		bg.add(rdbtn5);
+		bg.add(rdbtn6);
+		bg.add(rdbtn7);
+		bg.add(rdbtn8);
+		bg.add(rdbtn9);
+		bg.add(rdbtn10);
+		bg.add(rdbtn11);
 		
 		JButton btn_AddSeance = new JButton("EKLE");
-		btn_AddSeance.setBounds(60, 318, 347, 35);
+		btn_AddSeance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String seance="";
+				if(rdbtn0.isSelected()) {seance=rdbtn0.getText();}
+				if(rdbtn1.isSelected()) {seance=rdbtn1.getText();}
+				if(rdbtn2.isSelected()) {seance=rdbtn2.getText();}
+				if(rdbtn3.isSelected()) {seance=rdbtn3.getText();}
+				if(rdbtn4.isSelected()) {seance=rdbtn4.getText();}
+				if(rdbtn5.isSelected()) {seance=rdbtn5.getText();}
+				if(rdbtn6.isSelected()) {seance=rdbtn6.getText();}
+				if(rdbtn7.isSelected()) {seance=rdbtn7.getText();}
+				if(rdbtn8.isSelected()) {seance=rdbtn8.getText();}
+				if(rdbtn9.isSelected()) {seance=rdbtn9.getText();}
+				if(rdbtn10.isSelected()) {seance=rdbtn10.getText();}
+				if(rdbtn11.isSelected()) {seance=rdbtn11.getText();}
+				
+				if(seance!="")
+				{
+					//db baðlancak
+					Metod_Helper.showMsg("Seans baþarýyla kaydedildi");
+				}
+				else if(seance=="")
+				{
+					Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+				}
+				
+				
+				
+			}
+		});
+		btn_AddSeance.setBounds(60, 196, 347, 35);
 		contentPane.add(btn_AddSeance);
 	}
+			
+	
 }
