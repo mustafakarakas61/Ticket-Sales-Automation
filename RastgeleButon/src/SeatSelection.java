@@ -324,7 +324,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_EmptySeatIcon.setBounds(11, 533, 21, 28);
 		contentPane.add(lbl_EmptySeatIcon);
 
-		JLabel lbl_EmptySeatLabel = new JLabel("Bo\u015F Koltuk");
+		JLabel lbl_EmptySeatLabel = new JLabel("BoÅŸ Koltuk");
 		lbl_EmptySeatLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbl_EmptySeatLabel.setBounds(35, 540, 80, 14);
 		contentPane.add(lbl_EmptySeatLabel);
@@ -339,17 +339,17 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_SelectedSeatIcon.setBounds(11, 559, 21, 28);
 		contentPane.add(lbl_SelectedSeatIcon);
 
-		JLabel lbl_SelectedSeatLabel = new JLabel("Se\u00E7ili Koltuk");
+		JLabel lbl_SelectedSeatLabel = new JLabel("SeÃ§ili Koltuk");
 		lbl_SelectedSeatLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lbl_SelectedSeatLabel.setBounds(35, 565, 80, 14);
 		contentPane.add(lbl_SelectedSeatLabel);
 
-		JLabel lbl_SelectedTotalSeat = new JLabel("Se\u00E7ilen Koltuk Say\u0131s\u0131:");
+		JLabel lbl_SelectedTotalSeat = new JLabel("Secilen Koltuk SayÄ±sÄ±:");
 		lbl_SelectedTotalSeat.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		lbl_SelectedTotalSeat.setBounds(620, 513, 170, 20);
 		contentPane.add(lbl_SelectedTotalSeat);
 
-		JLabel lbl_SelectedSeatsNumbers = new JLabel("Se\u00E7ilen Koltuk Numaralar\u0131:");
+		JLabel lbl_SelectedSeatsNumbers = new JLabel("SeÃ§ilen Koltuk Numaralari :");
 		lbl_SelectedSeatsNumbers.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		lbl_SelectedSeatsNumbers.setBounds(620, 536, 170, 23);
 		contentPane.add(lbl_SelectedSeatsNumbers);
@@ -363,17 +363,17 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.add(txt_TotalSeats);
 		txt_TotalSeats.setColumns(10);
 
-		JLabel lbl_TicketPrice = new JLabel("Bilet Fiyatý : 20TL");
+		JLabel lbl_TicketPrice = new JLabel("Bilet Fiyati : 20TL");
 		lbl_TicketPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbl_TicketPrice.setBounds(161, 522, 170, 20);
 		contentPane.add(lbl_TicketPrice);
 
-		JLabel lbl_StudentTicketPrice = new JLabel("Öðrenci Bilet Fiyatý : 13TL");
+		JLabel lbl_StudentTicketPrice = new JLabel("Ã–ÄŸrenci Bilet Fiyati : 13TL");
 		lbl_StudentTicketPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lbl_StudentTicketPrice.setBounds(161, 550, 186, 23);
 		contentPane.add(lbl_StudentTicketPrice);
 
-		JLabel lbl_TotalStudentLabel = new JLabel("\u00D6\u011Frenci Say\u0131s\u0131:");
+		JLabel lbl_TotalStudentLabel = new JLabel("Ogrenci Sayisi :");
 		lbl_TotalStudentLabel.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		lbl_TotalStudentLabel.setBounds(620, 559, 170, 23);
 		contentPane.add(lbl_TotalStudentLabel);
