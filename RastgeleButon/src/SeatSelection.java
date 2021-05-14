@@ -150,7 +150,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 				dispose();
 			}
 		});
-		btn_Confirm.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+		btn_Confirm.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
 		btn_Confirm.setBounds(492, 525, 100, 44);
 		contentPane.add(btn_Confirm);
 
@@ -162,7 +162,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 		JLabel lbl_TopNumber = new JLabel(
 				"           1                    2                     3                   4                     5                    6                    7                                            8                    9                   10                  11                   12                   13                14");
-		lbl_TopNumber.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lbl_TopNumber.setFont(new Font("Arial", Font.BOLD, 11));
 		lbl_TopNumber.setBackground(SystemColor.desktop);
 		lbl_TopNumber.setBounds(21, 3, 1043, 14);
 		w_paneTopNumber.add(lbl_TopNumber);
@@ -174,62 +174,62 @@ public class SeatSelection extends JFrame implements MouseListener {
 		w_paneLeftChars.setLayout(null);
 
 		JLabel lbl_A = new JLabel("A");
-		lbl_A.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_A.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_A.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_A.setBounds(0, 19, 21, 14);
 		w_paneLeftChars.add(lbl_A);
 
 		JLabel lbl_B = new JLabel("B");
 		lbl_B.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_B.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_B.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_B.setBounds(0, 59, 21, 14);
 		w_paneLeftChars.add(lbl_B);
 
 		JLabel lbl_C = new JLabel("C");
 		lbl_C.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_C.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_C.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_C.setBounds(0, 99, 21, 14);
 		w_paneLeftChars.add(lbl_C);
 
 		JLabel lbl_D = new JLabel("D");
 		lbl_D.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_D.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_D.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_D.setBounds(0, 139, 21, 14);
 		w_paneLeftChars.add(lbl_D);
 
 		JLabel lbl_E = new JLabel("E");
 		lbl_E.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_E.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_E.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_E.setBounds(0, 176, 21, 14);
 		w_paneLeftChars.add(lbl_E);
 
 		JLabel lbl_F = new JLabel("F");
 		lbl_F.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_F.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_F.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_F.setBounds(0, 217, 21, 14);
 		w_paneLeftChars.add(lbl_F);
 
 		JLabel lbl_G = new JLabel("G");
 		lbl_G.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_G.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_G.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_G.setBounds(0, 257, 21, 14);
 		w_paneLeftChars.add(lbl_G);
 
 		JLabel lbl_H = new JLabel("H");
 		lbl_H.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_H.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_H.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_H.setBounds(0, 298, 21, 14);
 		w_paneLeftChars.add(lbl_H);
 
 		JLabel lbl_I = new JLabel("I");
 		lbl_I.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_I.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_I.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_I.setBounds(0, 335, 21, 14);
 		w_paneLeftChars.add(lbl_I);
 
 		JLabel lbl_J = new JLabel("J");
 		lbl_J.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_J.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_J.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_J.setBounds(0, 374, 21, 14);
 		w_paneLeftChars.add(lbl_J);
 
@@ -241,61 +241,61 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 		JLabel lbl_A_1 = new JLabel("A");
 		lbl_A_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_A_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_A_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_A_1.setBounds(0, 19, 21, 14);
 		w_paneLeftChars_1.add(lbl_A_1);
 
 		JLabel lbl_B_1 = new JLabel("B");
 		lbl_B_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_B_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_B_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_B_1.setBounds(0, 59, 21, 14);
 		w_paneLeftChars_1.add(lbl_B_1);
 
 		JLabel lbl_C_1 = new JLabel("C");
 		lbl_C_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_C_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_C_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_C_1.setBounds(0, 99, 21, 14);
 		w_paneLeftChars_1.add(lbl_C_1);
 
 		JLabel lbl_D_1 = new JLabel("D");
 		lbl_D_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_D_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_D_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_D_1.setBounds(0, 139, 21, 14);
 		w_paneLeftChars_1.add(lbl_D_1);
 
 		JLabel lbl_E_1 = new JLabel("E");
 		lbl_E_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_E_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_E_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_E_1.setBounds(0, 176, 21, 14);
 		w_paneLeftChars_1.add(lbl_E_1);
 
 		JLabel lbl_F_1 = new JLabel("F");
 		lbl_F_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_F_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_F_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_F_1.setBounds(0, 217, 21, 14);
 		w_paneLeftChars_1.add(lbl_F_1);
 
 		JLabel lbl_G_1 = new JLabel("G");
 		lbl_G_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_G_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_G_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_G_1.setBounds(0, 257, 21, 14);
 		w_paneLeftChars_1.add(lbl_G_1);
 
 		JLabel lbl_H_1 = new JLabel("H");
 		lbl_H_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_H_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_H_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_H_1.setBounds(0, 298, 21, 14);
 		w_paneLeftChars_1.add(lbl_H_1);
 
 		JLabel lbl_I_1 = new JLabel("I");
 		lbl_I_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_I_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_I_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_I_1.setBounds(0, 335, 21, 14);
 		w_paneLeftChars_1.add(lbl_I_1);
 
 		JLabel lbl_J_1 = new JLabel("J");
 		lbl_J_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_J_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_J_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_J_1.setBounds(0, 374, 21, 14);
 		w_paneLeftChars_1.add(lbl_J_1);
 
@@ -310,7 +310,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.add(lbl_TakenSeatIcon);
 
 		JLabel lbl_TakenSeatLabel = new JLabel("Dolu Koltuk");
-		lbl_TakenSeatLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_TakenSeatLabel.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_TakenSeatLabel.setBounds(35, 515, 80, 14);
 		contentPane.add(lbl_TakenSeatLabel);
 
@@ -324,8 +324,8 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_EmptySeatIcon.setBounds(11, 533, 21, 28);
 		contentPane.add(lbl_EmptySeatIcon);
 
-		JLabel lbl_EmptySeatLabel = new JLabel("BoÅŸ Koltuk");
-		lbl_EmptySeatLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		JLabel lbl_EmptySeatLabel = new JLabel("Boþ Koltuk");
+		lbl_EmptySeatLabel.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_EmptySeatLabel.setBounds(35, 540, 80, 14);
 		contentPane.add(lbl_EmptySeatLabel);
 
@@ -339,24 +339,24 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_SelectedSeatIcon.setBounds(11, 559, 21, 28);
 		contentPane.add(lbl_SelectedSeatIcon);
 
-		JLabel lbl_SelectedSeatLabel = new JLabel("SeÃ§ili Koltuk");
-		lbl_SelectedSeatLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		JLabel lbl_SelectedSeatLabel = new JLabel("Seçili Koltuk");
+		lbl_SelectedSeatLabel.setFont(new Font("Arial", Font.BOLD, 13));
 		lbl_SelectedSeatLabel.setBounds(35, 565, 80, 14);
 		contentPane.add(lbl_SelectedSeatLabel);
 
-		JLabel lbl_SelectedTotalSeat = new JLabel("Secilen Koltuk SayÄ±sÄ±:");
-		lbl_SelectedTotalSeat.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		JLabel lbl_SelectedTotalSeat = new JLabel("Secilen Koltuk Sayýsý:");
+		lbl_SelectedTotalSeat.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_SelectedTotalSeat.setBounds(620, 513, 170, 20);
 		contentPane.add(lbl_SelectedTotalSeat);
 
-		JLabel lbl_SelectedSeatsNumbers = new JLabel("SeÃ§ilen Koltuk Numaralari :");
-		lbl_SelectedSeatsNumbers.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		JLabel lbl_SelectedSeatsNumbers = new JLabel("Seçilen Koltuk Numaralari :");
+		lbl_SelectedSeatsNumbers.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_SelectedSeatsNumbers.setBounds(620, 536, 170, 23);
 		contentPane.add(lbl_SelectedSeatsNumbers);
 
 		txt_TotalSeats = new JTextField();
 		txt_TotalSeats.setEditable(false);
-		txt_TotalSeats.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txt_TotalSeats.setFont(new Font("Arial", Font.BOLD, 15));
 		txt_TotalSeats.setBackground(new Color(255, 255, 255));
 		txt_TotalSeats.setBounds(792, 513, 65, 20);
 		txt_TotalSeats.setText("0");
@@ -364,22 +364,22 @@ public class SeatSelection extends JFrame implements MouseListener {
 		txt_TotalSeats.setColumns(10);
 
 		JLabel lbl_TicketPrice = new JLabel("Bilet Fiyati : 20TL");
-		lbl_TicketPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lbl_TicketPrice.setFont(new Font("Arial", Font.BOLD, 14));
 		lbl_TicketPrice.setBounds(161, 522, 170, 20);
 		contentPane.add(lbl_TicketPrice);
 
-		JLabel lbl_StudentTicketPrice = new JLabel("Ã–ÄŸrenci Bilet Fiyati : 13TL");
-		lbl_StudentTicketPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
+		JLabel lbl_StudentTicketPrice = new JLabel("Öðrenci Bilet Fiyati : 13TL");
+		lbl_StudentTicketPrice.setFont(new Font("Arial", Font.BOLD, 14));
 		lbl_StudentTicketPrice.setBounds(161, 550, 186, 23);
 		contentPane.add(lbl_StudentTicketPrice);
 
-		JLabel lbl_TotalStudentLabel = new JLabel("Ogrenci Sayisi :");
-		lbl_TotalStudentLabel.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		JLabel lbl_TotalStudentLabel = new JLabel("Öðrenci Sayisi :");
+		lbl_TotalStudentLabel.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_TotalStudentLabel.setBounds(620, 559, 170, 23);
 		contentPane.add(lbl_TotalStudentLabel);
 
 		txt_TotalStudent = new JTextField();
-		txt_TotalStudent.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txt_TotalStudent.setFont(new Font("Arial", Font.BOLD, 15));
 		txt_TotalStudent.setColumns(10);
 		txt_TotalStudent.setBackground(Color.WHITE);
 		txt_TotalStudent.setBounds(792, 561, 65, 20);
@@ -387,7 +387,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.add(txt_TotalStudent);
 		
 		JLabel lblNewLabel = new JLabel("Tutar:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(884, 530, 55, 39);
 		contentPane.add(lblNewLabel);
 
@@ -406,7 +406,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		txt_Total.setColumns(10);
 
 		txt_SelectedSeatsNumbers = new JTextField();
-		txt_SelectedSeatsNumbers.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txt_SelectedSeatsNumbers.setFont(new Font("Arial", Font.BOLD, 15));
 		txt_SelectedSeatsNumbers.setEditable(false);
 		txt_SelectedSeatsNumbers.setColumns(10);
 		txt_SelectedSeatsNumbers.setBackground(Color.WHITE);
