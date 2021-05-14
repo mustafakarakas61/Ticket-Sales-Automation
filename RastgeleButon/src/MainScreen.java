@@ -50,9 +50,9 @@ public class MainScreen extends JFrame {
 	private JTextField fld_Salon;
 	private JTextField fld_SelectSeat;
 	private JTextField fld_Seance;
-	private JTextField fld_Name;
-	private JTextField fld_Surname;
-	private JTextField fld_Mail;
+	private JTextField fld_Name_cinema;
+	private JTextField fld_Surname_cinema;
+	private JTextField fld_Mail_cinema;
 	private JTextField fld_Price;
 	private JTextField fld_cvc;
 	private JTextField fld_CartName;
@@ -106,6 +106,12 @@ public class MainScreen extends JFrame {
 
 	/**
 	 * Create the frame.
+	 */
+	/**
+	 * @param member
+	 */
+	/**
+	 * @param member
 	 */
 	public MainScreen(user member) {
 		setResizable(false);
@@ -395,29 +401,29 @@ public class MainScreen extends JFrame {
 			}
 		});
 
-		fld_Name = new JTextField();
-		fld_Name.setText(member.getName());
-		fld_Name.setEditable(false);
-		fld_Name.setColumns(10);
-		fld_Name.setBackground(Color.WHITE);
-		fld_Name.setBounds(140, 238, 128, 20);
-		PaneCinema.add(fld_Name);
+		fld_Name_cinema = new JTextField();
+		fld_Name_cinema.setText(member.getName());
+		fld_Name_cinema.setEditable(false);
+		fld_Name_cinema.setColumns(10);
+		fld_Name_cinema.setBackground(Color.WHITE);
+		fld_Name_cinema.setBounds(140, 238, 128, 20);
+		PaneCinema.add(fld_Name_cinema);
 
-		fld_Surname = new JTextField();
-		fld_Surname.setText(member.getSurname());
-		fld_Surname.setEditable(false);
-		fld_Surname.setColumns(10);
-		fld_Surname.setBackground(Color.WHITE);
-		fld_Surname.setBounds(140, 261, 128, 20);
-		PaneCinema.add(fld_Surname);
+		fld_Surname_cinema = new JTextField();
+		fld_Surname_cinema.setText(member.getSurname());
+		fld_Surname_cinema.setEditable(false);
+		fld_Surname_cinema.setColumns(10);
+		fld_Surname_cinema.setBackground(Color.WHITE);
+		fld_Surname_cinema.setBounds(140, 261, 128, 20);
+		PaneCinema.add(fld_Surname_cinema);
 
-		fld_Mail = new JTextField();
-		fld_Mail.setText(member.getEmail());
-		fld_Mail.setEditable(false);
-		fld_Mail.setColumns(10);
-		fld_Mail.setBackground(Color.WHITE);
-		fld_Mail.setBounds(140, 284, 128, 20);
-		PaneCinema.add(fld_Mail);
+		fld_Mail_cinema = new JTextField();
+		fld_Mail_cinema.setText(member.getEmail());
+		fld_Mail_cinema.setEditable(false);
+		fld_Mail_cinema.setColumns(10);
+		fld_Mail_cinema.setBackground(Color.WHITE);
+		fld_Mail_cinema.setBounds(140, 284, 128, 20);
+		PaneCinema.add(fld_Mail_cinema);
 
 		JLabel lbl_Price = new JLabel("Toplam Tutar");
 		lbl_Price.setFont(new Font("Tahoma", Font.PLAIN, 22));
