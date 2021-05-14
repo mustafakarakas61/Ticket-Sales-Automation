@@ -51,6 +51,8 @@ public class SubAdmin extends JFrame {
 	private JTextField txt_MovieName;
 	private JTextField txt_MovieDirector;
 	private static user sub = new user();
+	private JTextField text_image;
+	private JTextField textField;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -236,7 +238,7 @@ public class SubAdmin extends JFrame {
 
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Tarih:");
 		lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_1_1_2_1.setBounds(10, 148, 102, 28);
+		lblNewLabel_1_1_2_1.setBounds(10, 181, 102, 28);
 		paneAddCinema.add(lblNewLabel_1_1_2_1);
 
 		JComboBox comboBox_Salon = new JComboBox();
@@ -244,15 +246,19 @@ public class SubAdmin extends JFrame {
 		paneAddCinema.add(comboBox_Salon);
 
 		JButton btn_AddCinema = new JButton("Film Ekle");
-		btn_AddCinema.setBounds(103, 252, 128, 31);
+		btn_AddCinema.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_AddCinema.setBounds(111, 251, 138, 31);
 		paneAddCinema.add(btn_AddCinema);
 
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(111, 153, 138, 20);
+		dateChooser.setBounds(111, 181, 138, 20);
 		paneAddCinema.add(dateChooser);
 
 		JLabel lbl_Poster = new JLabel("");
-		lbl_Poster.setBounds(278, 15, 128, 161);
+		lbl_Poster.setBounds(288, 10, 128, 161);
 		paneAddCinema.add(lbl_Poster);
 
 		JButton btn_ImageSelect = new JButton("Afi\u015F Se\u00E7");
@@ -288,10 +294,22 @@ public class SubAdmin extends JFrame {
 				
 			}
 		});
-		btn_ImageSelect.setBounds(304, 202, 102, 31);
+		btn_ImageSelect.setBounds(314, 182, 102, 31);
 		paneAddCinema.add(btn_ImageSelect);
+		
+		JLabel lblimage = new JLabel("Resim:");
+		lblimage.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblimage.setBounds(10, 211, 50, 28);
+		paneAddCinema.add(lblimage);
+		
+		text_image = new JTextField();
+		text_image.setBounds(111, 211, 138, 19);
+		paneAddCinema.add(text_image);
+		text_image.setColumns(10);
 
 		JButton btn_AddSeance = new JButton("Seans Ekle");
+		btn_AddSeance.setBounds(223, 147, 26, 24);
+		paneAddCinema.add(btn_AddSeance);
 		btn_AddSeance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddSeance AS = new AddSeance();
@@ -299,19 +317,15 @@ public class SubAdmin extends JFrame {
 			}
 		});
 		btn_AddSeance.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btn_AddSeance.setBounds(463, 415, 138, 44);
-		contentPane.add(btn_AddSeance);
-
-		JButton btn_AddSalon = new JButton("Salon Ekle");
-		btn_AddSalon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AddSalon A_S = new AddSalon();
-				A_S.setVisible(true);
-
-			}
-		});
-		btn_AddSalon.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btn_AddSalon.setBounds(638, 415, 138, 44);
-		contentPane.add(btn_AddSalon);
+		
+		JLabel lbl_CinemaSeance_1 = new JLabel("Seans:");
+		lbl_CinemaSeance_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lbl_CinemaSeance_1.setBounds(10, 143, 102, 28);
+		paneAddCinema.add(lbl_CinemaSeance_1);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(111, 148, 108, 23);
+		paneAddCinema.add(textField);
 	}
 }
