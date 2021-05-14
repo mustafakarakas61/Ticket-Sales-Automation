@@ -120,26 +120,26 @@ public class Login extends JFrame {
 						
 						statement=connection.createStatement();
 						
-						ResultSet result= statement.executeQuery("select * from register");
+						ResultSet result= statement.executeQuery("select * from booking.register");
+						
+						
 						while (result.next()) {
-							
 							
 							if (fld_Username_Login.getText().equals(result.getString("TC_No")) && 
 									fld_Password_Login.getText().equals(result.getString("Pass"))) {
 							
 								
 								if (result.getString("type").equals("user")) {
-									
-									Member member= new Member( 
+
+									user member= new user( 
 											  result.getInt("ID")
 											, result.getString("Name")
-											,result.getString("Surname")
+											, result.getString("Surname")
 											, result.getString("Pass")
 											, result.getString("TC_No")
-											,result.getString("Email")
+											, result.getString("Email")
 											, result.getString("type")
 											);
-									
 									MainScreen ms= new MainScreen(member);
 									ms.setVisible(true);
 									dispose();
@@ -271,7 +271,6 @@ public class Login extends JFrame {
 											,result.getString("UserName")
 											, result.getString("type")
 											);
-									
 									PrimeAdmin pa = new PrimeAdmin(admin);
 									pa.setVisible(true);
 									dispose();
@@ -320,11 +319,7 @@ public class Login extends JFrame {
 					
 				
 				
-				
-//				MainScreen ae= new MainScreen(member);
-//				ae.setVisible(true);
-//				dispose();
-				
+			
 			}
 		});
 		btn_Login_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));

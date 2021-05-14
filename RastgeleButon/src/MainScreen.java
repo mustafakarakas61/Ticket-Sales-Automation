@@ -85,7 +85,7 @@ public class MainScreen extends JFrame {
 	private JTextField fld_cvc3;
 	private JTextField fld_CartName3;
 	private JTextField fld_CartNumber3;
-	private static user member = new user();  
+	private static user member = new Member();
 			
 
 	/**
@@ -107,7 +107,7 @@ public class MainScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainScreen(user user ) {
+	public MainScreen(user member) {
 		setResizable(false);
 
 //////////////////////////////////////////////////////////////////////////////////Sinema
@@ -158,8 +158,8 @@ public class MainScreen extends JFrame {
 		btn_Exit.setBounds(861, 11, 89, 23);
 		contentPane.add(btn_Exit);
 
-		JLabel lbl_Name = new JLabel("Ho\u015Fgeldiniz Say\u0131n");
-		lbl_Name.setBounds(10, 11, 147, 14);
+		JLabel lbl_Name = new JLabel("Ho\u015Fgeldiniz Say\u0131n " + member.getName());
+		lbl_Name.setBounds(10, 11, 193, 14);
 		contentPane.add(lbl_Name);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -396,6 +396,7 @@ public class MainScreen extends JFrame {
 		});
 
 		fld_Name = new JTextField();
+		fld_Name.setText(member.getName());
 		fld_Name.setEditable(false);
 		fld_Name.setColumns(10);
 		fld_Name.setBackground(Color.WHITE);
@@ -403,6 +404,7 @@ public class MainScreen extends JFrame {
 		PaneCinema.add(fld_Name);
 
 		fld_Surname = new JTextField();
+		fld_Surname.setText(member.getSurname());
 		fld_Surname.setEditable(false);
 		fld_Surname.setColumns(10);
 		fld_Surname.setBackground(Color.WHITE);
@@ -410,6 +412,7 @@ public class MainScreen extends JFrame {
 		PaneCinema.add(fld_Surname);
 
 		fld_Mail = new JTextField();
+		fld_Mail.setText(member.getEmail());
 		fld_Mail.setEditable(false);
 		fld_Mail.setColumns(10);
 		fld_Mail.setBackground(Color.WHITE);
