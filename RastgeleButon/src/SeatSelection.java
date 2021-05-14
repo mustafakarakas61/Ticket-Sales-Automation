@@ -498,7 +498,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 				sss[i] = seatName;
 
-			
+			//Burdan
 
 				System.out.println(seatName);
 
