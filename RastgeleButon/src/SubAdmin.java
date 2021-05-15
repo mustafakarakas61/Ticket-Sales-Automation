@@ -181,10 +181,7 @@ public class SubAdmin extends JFrame {
 
 		JScrollPane scroll_Theater = new JScrollPane();
 		scroll_Theater.setBounds(0, 0, 400, 327);
-		table_Theater.getColumn("Konser Adý").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Konser Türü").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
+		
 		w_paneTheater.add(scroll_Theater);
 
 		table_Theater = new JTable(theaterModel);
@@ -385,3 +382,4 @@ public class SubAdmin extends JFrame {
 		paneAddCinema.add(textField);
 	}
 }
+//
