@@ -669,9 +669,8 @@ public class MainScreen extends JFrame {
 		btn_CancelTicket.setForeground(new Color(0, 0, 0));
 		btn_CancelTicket.setBackground(new Color(255, 153, 153));
 		btn_CancelTicket.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/BackGroundMainScreen.png"));
-		Image image = imageIcon.getImage();
-		Image newimg = image.getScaledInstance(246, 164, java.awt.Image.SCALE_SMOOTH);
+		
+		
 		///////////////////////////////////////////////// PANESÝNEMA/////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
