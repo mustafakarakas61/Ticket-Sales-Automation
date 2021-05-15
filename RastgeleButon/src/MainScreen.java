@@ -104,13 +104,16 @@ public class MainScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					MainScreen frame = new MainScreen(member);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+			
 		});
+		
 	}
 
 	/**
@@ -1377,6 +1380,8 @@ public class MainScreen extends JFrame {
 			}
 
 		});
-
+		
 	}
+	
+
 }

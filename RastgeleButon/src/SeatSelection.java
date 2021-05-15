@@ -27,6 +27,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -42,7 +43,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 	private JTextField txt_TotalStudent;
 	private JTextField txt_Total;
 	private JTextField txt_SelectedSeatsNumbers;
-
 	/**
 	 * Launch the application.
 	 */
@@ -146,9 +146,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 		JButton btn_Confirm = new JButton("Onayla");
 		btn_Confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//txt_Total ile parayý atayacaðýz
-				Member mb= new Member();
-				mb.setPrice(txt_Total.getText());
 				dispose();
 			}
 		});
