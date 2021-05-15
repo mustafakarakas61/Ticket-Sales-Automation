@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -30,6 +31,7 @@ import javax.swing.JFileChooser;
 import com.toedter.calendar.JDateChooser;
 
 import Helper.DbHelper;
+import Helper.Metod_Helper;
 
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -64,7 +66,6 @@ public class SubAdmin extends JFrame {
 	private static SubATheater tiyatro = new SubATheater();
 	private static SubAConcert konser = new SubAConcert();
 	private JTextField text_image;
-	private JTextField txt_Seance;
 	Connection connection = null;
 	DbHelper dbHelper = new DbHelper();
 	Statement statement;
@@ -129,7 +130,7 @@ public class SubAdmin extends JFrame {
 
 		JButton btn_ShowRemoval = new JButton("Gösteri Çýkar");
 		btn_ShowRemoval.setFont(new Font("Arial", Font.PLAIN, 11));
-		btn_ShowRemoval.setBounds(100, 421, 142, 34);
+		btn_ShowRemoval.setBounds(100, 438, 142, 34);
 		contentPane.add(btn_ShowRemoval);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -144,7 +145,7 @@ public class SubAdmin extends JFrame {
 		w_paneCinema.setLayout(null);
 
 		JScrollPane scroll_Cinema = new JScrollPane();
-		scroll_Cinema.setBounds(0, 0, 400, 327);
+		scroll_Cinema.setBounds(10, 10, 400, 337);
 		w_paneCinema.add(scroll_Cinema);
 
 		table_Cinema = new JTable(cinemaModel);
@@ -241,7 +242,7 @@ public class SubAdmin extends JFrame {
 
 		JPanel paneAddCinema = new JPanel();
 		paneAddCinema.setBackground(SystemColor.inactiveCaption);
-		paneAddCinema.setBounds(417, 41, 416, 356);
+		paneAddCinema.setBounds(417, 41, 416, 372);
 		contentPane.add(paneAddCinema);
 		paneAddCinema.setLayout(null);
 
@@ -291,32 +292,15 @@ public class SubAdmin extends JFrame {
 
 		JLabel lblNewLabel_1_1_2_1 = new JLabel("Tarih:");
 		lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_1_1_2_1.setBounds(10, 181, 102, 28);
+		lblNewLabel_1_1_2_1.setBounds(10, 143, 102, 28);
 		paneAddCinema.add(lblNewLabel_1_1_2_1);
 
 		JComboBox comboBox_Salon = new JComboBox();
 		comboBox_Salon.setBounds(111, 116, 138, 21);
-		comboBox_Salon.addItem("A1");
-		comboBox_Salon.addItem("A2");
-		comboBox_Salon.addItem("A3");
-		comboBox_Salon.addItem("B1");
-		comboBox_Salon.addItem("B2");
-		comboBox_Salon.addItem("B3");
-		comboBox_Salon.addItem("C1");
-		comboBox_Salon.addItem("C2");
-		comboBox_Salon.addItem("C3");
 		paneAddCinema.add(comboBox_Salon);
 
-		JButton btn_AddCinema = new JButton("Film Ekle");
-		btn_AddCinema.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btn_AddCinema.setBounds(111, 251, 138, 31);
-		paneAddCinema.add(btn_AddCinema);
-
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(111, 181, 138, 20);
+		dateChooser.setBounds(111, 147, 138, 20);
 		paneAddCinema.add(dateChooser);
 
 		JLabel lbl_Poster = new JLabel("");
@@ -361,39 +345,119 @@ public class SubAdmin extends JFrame {
 
 		JLabel lblimage = new JLabel("Resim:");
 		lblimage.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblimage.setBounds(10, 211, 50, 28);
+		lblimage.setBounds(10, 181, 50, 28);
 		paneAddCinema.add(lblimage);
 
 		text_image = new JTextField();
-		text_image.setBounds(111, 211, 138, 19);
+		text_image.setBounds(111, 181, 138, 19);
 		paneAddCinema.add(text_image);
 		text_image.setColumns(10);
 
-		JButton btn_AddSeance = new JButton("Seans Ekle");
-		btn_AddSeance.setBounds(223, 147, 26, 24);
-		paneAddCinema.add(btn_AddSeance);
-		btn_AddSeance.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AddSeance AS = new AddSeance();
-				AS.setVisible(true);
-			}
-		});
-		btn_AddSeance.setFont(new Font("Tahoma", Font.PLAIN, 14));
-
 		JLabel lbl_CinemaSeance_1 = new JLabel("Seans:");
 		lbl_CinemaSeance_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lbl_CinemaSeance_1.setBounds(10, 143, 102, 28);
+		lbl_CinemaSeance_1.setBounds(10, 219, 46, 28);
 		paneAddCinema.add(lbl_CinemaSeance_1);
-
-		txt_Seance = new JTextField();
-		txt_Seance.setEditable(false);
-		txt_Seance.setBackground(Color.WHITE);
-		txt_Seance.setColumns(10);
 		
-		txt_Seance.setBounds(111, 148, 108, 23);
-		paneAddCinema.add(txt_Seance);
+		JPanel SeanceHours = new JPanel();
+		SeanceHours.setBounds(59, 223, 347, 139);
+		paneAddCinema.add(SeanceHours);
+		SeanceHours.setLayout(null);
+		SeanceHours.setBackground(Color.WHITE);
+		
+		JRadioButton rdbtn0 = new JRadioButton("10:00 ");
+		rdbtn0.setBounds(6, 6, 103, 21);
+		SeanceHours.add(rdbtn0);
+		
+		JRadioButton rdbtn1 = new JRadioButton("11:00");
+		rdbtn1.setBounds(122, 6, 103, 21);
+		SeanceHours.add(rdbtn1);
+		
+		JRadioButton rdbtn2 = new JRadioButton("12:00");
+		rdbtn2.setBounds(238, 6, 103, 21);
+		SeanceHours.add(rdbtn2);
+		
+		JRadioButton rdbtn8 = new JRadioButton("18:00");
+		rdbtn8.setBounds(238, 76, 103, 21);
+		SeanceHours.add(rdbtn8);
+		
+		JRadioButton rdbtn7 = new JRadioButton("17:00");
+		rdbtn7.setBounds(122, 76, 103, 21);
+		SeanceHours.add(rdbtn7);
+		
+		JRadioButton rdbtn6 = new JRadioButton("16:00");
+		rdbtn6.setBounds(6, 76, 103, 21);
+		SeanceHours.add(rdbtn6);
+		
+		JRadioButton rdbtn11 = new JRadioButton("21:00");
+		rdbtn11.setBounds(238, 112, 103, 21);
+		SeanceHours.add(rdbtn11);
+		
+		JRadioButton rdbtn10 = new JRadioButton("20:00");
+		rdbtn10.setBounds(122, 112, 103, 21);
+		SeanceHours.add(rdbtn10);
+		
+		JRadioButton rdbtn9 = new JRadioButton("19:00");
+		rdbtn9.setBounds(6, 112, 103, 21);
+		SeanceHours.add(rdbtn9);
+		
+		JRadioButton rdbtn5 = new JRadioButton("15:00");
+		rdbtn5.setBounds(238, 41, 103, 21);
+		SeanceHours.add(rdbtn5);
+		
+		JRadioButton rdbtn4 = new JRadioButton("14:00");
+		rdbtn4.setBounds(122, 41, 103, 21);
+		SeanceHours.add(rdbtn4);
+		
+		JRadioButton rdbtn3 = new JRadioButton("13:00");
+		rdbtn3.setBounds(6, 41, 103, 21);
+		SeanceHours.add(rdbtn3);
+		
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(rdbtn0);
+		bg.add(rdbtn1);
+		bg.add(rdbtn2);
+		bg.add(rdbtn3);
+		bg.add(rdbtn4);
+		bg.add(rdbtn5);
+		bg.add(rdbtn6);
+		bg.add(rdbtn7);
+		bg.add(rdbtn8);
+		bg.add(rdbtn9);
+		bg.add(rdbtn10);
+		bg.add(rdbtn11);
+		
+				JButton btn_AddCinema = new JButton("Film Ekle");
+				btn_AddCinema.setBounds(568, 423, 138, 31);
+				contentPane.add(btn_AddCinema);
+				btn_AddCinema.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						String seance="";
+						if(rdbtn0.isSelected()) {seance=rdbtn0.getText();}
+						if(rdbtn1.isSelected()) {seance=rdbtn1.getText();}
+						if(rdbtn2.isSelected()) {seance=rdbtn2.getText();}
+						if(rdbtn3.isSelected()) {seance=rdbtn3.getText();}
+						if(rdbtn4.isSelected()) {seance=rdbtn4.getText();}
+						if(rdbtn5.isSelected()) {seance=rdbtn5.getText();}
+						if(rdbtn6.isSelected()) {seance=rdbtn6.getText();}
+						if(rdbtn7.isSelected()) {seance=rdbtn7.getText();}
+						if(rdbtn8.isSelected()) {seance=rdbtn8.getText();}
+						if(rdbtn9.isSelected()) {seance=rdbtn9.getText();}
+						if(rdbtn10.isSelected()) {seance=rdbtn10.getText();}
+						if(rdbtn11.isSelected()) {seance=rdbtn11.getText();}
+						
+						if(seance!="")
+						{
+											
+							Metod_Helper.showMsg("Seans baþarýyla kaydedildi");
+						}
+						else if(seance=="")
+						{
+							Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+						}
+					}
+				});
 	}
-
-	
 }
+
 //
