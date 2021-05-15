@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,6 +22,8 @@ import java.awt.Toolkit;
 import java.awt.Panel;
 import javax.swing.UIManager;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -217,28 +220,36 @@ public class MainScreen extends JFrame {
 		w_paneCinema.add(scrollPane_Cinema);
 ///////////////////////////////////////////////////////////////////////////////////Sinema Sütun Özellikleri
 		table_Cinema = new JTable(cinemaModel);
+		//Table içerisindeki verilerin deðiþmemesi için
+		table_Cinema.getColumn("Film Adý").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Tür").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Yönetmen").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Seans").setCellEditor(new TableEditor(new JCheckBox()));
+		
 		table_Cinema.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Cinema.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		scrollPane_Cinema.setViewportView(table_Cinema);
-		/*
-		 * table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(60);
-		 * table_Cinema.getColumnModel().getColumn(0).setResizable(false);
-		 * 
-		 * table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(30);
-		 * table_Cinema.getColumnModel().getColumn(1).setResizable(false);
-		 * 
-		 * table_Cinema.getColumnModel().getColumn(2).setPreferredWidth(10);
-		 * table_Cinema.getColumnModel().getColumn(2).setResizable(false);
-		 * 
-		 * table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(10);
-		 * table_Cinema.getColumnModel().getColumn(3).setResizable(false);
-		 * 
-		 * table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(10);
-		 * table_Cinema.getColumnModel().getColumn(4).setResizable(false);
-		 * 
-		 * table_Cinema.getColumnModel().getColumn(5).setPreferredWidth(10);
-		 * table_Cinema.getColumnModel().getColumn(5).setResizable(false);
-		 */
+	
+		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(55);
+		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
+	//	table_Cinema.getColumnModel().getColumn(0).
+
+		table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(30);
+		table_Cinema.getColumnModel().getColumn(1).setResizable(false);
+
+		table_Cinema.getColumnModel().getColumn(2).setPreferredWidth(50);
+		table_Cinema.getColumnModel().getColumn(2).setResizable(false);
+
+		table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(20);
+		table_Cinema.getColumnModel().getColumn(3).setResizable(false);
+
+		table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(5);
+		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
+
+		table_Cinema.getColumnModel().getColumn(5).setPreferredWidth(5);
+		table_Cinema.getColumnModel().getColumn(5).setResizable(false);
 
 		for (int i = 0; i < sinema.cinemaList().size(); i++) {
 			cinemaData[0] = sinema.cinemaList().get(i).getFilmName();
@@ -658,6 +669,9 @@ public class MainScreen extends JFrame {
 		btn_CancelTicket.setForeground(new Color(0, 0, 0));
 		btn_CancelTicket.setBackground(new Color(255, 153, 153));
 		btn_CancelTicket.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/BackGroundMainScreen.png"));
+		Image image = imageIcon.getImage();
+		Image newimg = image.getScaledInstance(246, 164, java.awt.Image.SCALE_SMOOTH);
 		///////////////////////////////////////////////// PANESÝNEMA/////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
