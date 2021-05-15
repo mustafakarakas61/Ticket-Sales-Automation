@@ -146,7 +146,7 @@ public class AddSeance extends JFrame {
 				
 				if(seance!="")
 				{
-					//db baðlancak
+					//db baðlancak				
 					Metod_Helper.showMsg("Seans baþarýyla kaydedildi");
 				}
 				else if(seance=="")
@@ -164,3 +164,4 @@ public class AddSeance extends JFrame {
 			
 	
 }
+//
