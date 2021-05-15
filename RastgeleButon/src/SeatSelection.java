@@ -146,7 +146,9 @@ public class SeatSelection extends JFrame implements MouseListener {
 		JButton btn_Confirm = new JButton("Onayla");
 		btn_Confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				//txt_Total ile parayý atayacaðýz
+				Member mb= new Member();
+				mb.setPrice(txt_Total.getText());
 				dispose();
 			}
 		});
@@ -729,5 +731,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 		SeatHelper s = (SeatHelper) e.getComponent();
 		s.setBackground(Color.white);
 		s.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
+		
 	}
 }

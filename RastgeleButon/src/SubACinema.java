@@ -12,8 +12,9 @@ public class SubACinema {
 	private String filmName;
 	private String filmType;
 	private String filmDirector;
+	private String filmDate;
 	private String filmSalon;
-	private String filmSeance;
+	private String filmSeans;
 
 	Connection connection = null;
 	DbHelper dbHelper = new DbHelper();
@@ -23,14 +24,15 @@ public class SubACinema {
 
 	}
 
-	public SubACinema(int filmID, String filmName, String filmType, String filmDirector, String filmSalon,
-			String filmSeance) {
+	public SubACinema(int filmID, String filmName, String filmType, String filmDirector, String filmDate,
+			String filmSalon, String filmSeans) {
 		this.filmID = filmID;
 		this.filmName = filmName;
 		this.filmType = filmType;
 		this.filmDirector = filmDirector;
+		this.filmDate = filmDate;
 		this.filmSalon = filmSalon;
-		this.filmSeance = filmSeance;
+		this.filmSeans = filmSeans;
 	}
 
 	public ArrayList<SubACinema> cinemaList() throws SQLException {
@@ -42,8 +44,8 @@ public class SubACinema {
 			SubACinema sinema;
 			while (result.next()) {
 				sinema = new SubACinema(result.getInt("filmID"), result.getString("filmName"),
-						result.getString("filmType"), result.getString("filmDirector"), result.getString("filmSalon"),
-						result.getString("filmSeance"));
+						result.getString("filmType"), result.getString("filmDirector"), result.getString("filmDate"),
+						result.getString("filmSalon"), result.getString("filmSeans"));
 				filmList.add(sinema);
 			}
 		} catch (SQLException e1) {
@@ -84,6 +86,14 @@ public class SubACinema {
 		this.filmDirector = filmDirector;
 	}
 
+	public String getFilmDate() {
+		return filmDate;
+	}
+
+	public void setFilmDate(String filmDate) {
+		this.filmDate = filmDate;
+	}
+
 	public String getFilmSalon() {
 		return filmSalon;
 	}
@@ -93,11 +103,11 @@ public class SubACinema {
 	}
 
 	public String getFilmSeans() {
-		return filmSeance;
+		return filmSeans;
 	}
 
-	public void setFilmSeans(String filmSeance) {
-		this.filmSeance = filmSeance;
+	public void setFilmSeans(String filmSeans) {
+		this.filmSeans = filmSeans;
 	}
 
 }

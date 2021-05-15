@@ -9,13 +9,15 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.Panel;
 import javax.swing.UIManager;
 import java.awt.GridBagLayout;
@@ -34,59 +36,66 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
 
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultTableModel cinemaModel; // tablo sütunlarýný isimlendirmek için
 	private DefaultTableModel theaterModel;
+	private DefaultTableModel concertModel;
 	private Object[] cinemaData = null; // sqlden veri çekmek için
 	private Object[] theaterData = null;
+	private Object[] concertData = null;
 	private JTable table_Cinema;
 	private JTable table_Theater;
 	private JTable table_Concert;
-	private JTextField txt_MovieName;
-	private JTextField txt_MovieType;
-	private JTextField txt_Director;
-	private JTextField txt_Salon;
-	private JTextField txt_SelectSeat;
-	private JTextField txt_Seance;
-	private JTextField txt_Name_cinema;
-	private JTextField txt_Surname_cinema;
-	private JTextField txt_Mail_cinema;
-	private JTextField txt_Price;
-	private JTextField txt_cvc;
-	private JTextField txt_CartName;
-	private JTextField txt_CartNumber;
+	private JTextField fld_MovieName;
+	private JTextField fld_MovieType;
+	private JTextField fld_Director;
+	private JTextField fld_Salon;
+	private JTextField fld_SelectSeat;
+	private JTextField fld_Seance;
+	private JTextField fld_Name_cinema;
+	private JTextField fld_Surname_cinema;
+	private JTextField fld_Mail_cinema;
+	private JTextField fld_Price;
+	private JTextField fld_cvc;
+	private JTextField fld_CartName;
+	private JTextField fld_CartNumber;
 
-	private JTextField txt_GameName;
-	private JTextField txt_GameType;
-	private JTextField txt_Director2;
-	private JTextField txt_Salon2;
-	private JTextField txt_SeatSelection2;
-	private JTextField txt_Time;
-	private JTextField txt_Name2;
-	private JTextField txt_Surname2;
-	private JTextField txt_Mail2;
-	private JTextField txt_Price2;
-	private JTextField txt_cvc2;
-	private JTextField txt_CartName2;
-	private JTextField txt_CartNumber2;
+	private JTextField fld_GameName;
+	private JTextField fld_GameType;
+	private JTextField fld_Director2;
+	private JTextField fld_Salon2;
+	private JTextField fld_SeatSelection2;
+	private JTextField fld_Time;
+	private JTextField fld_Name2;
+	private JTextField fld_Surname2;
+	private JTextField fld_Mail2;
+	private JTextField fld_Price2;
+	private JTextField fld_cvc2;
+	private JTextField fld_CartName2;
+	private JTextField fld_CartNumber2;
 
-	private JTextField txt_ConcertName;
-	private JTextField txt_ConcertType;
-	private JTextField txt_Date2;
-	private JTextField txt_Salon3;
-	private JTextField txt_SeatSelection3;
-	private JTextField txt_Time2;
-	private JTextField txt_Name3;
-	private JTextField txt_Surname3;
-	private JTextField txt_Mail3;
-	private JTextField txt_Price3;
-	private JTextField txt_cvc3;
-	private JTextField txt_CartName3;
-	private JTextField txt_CartNumber3;
+	private JTextField fld_ConcertName;
+	private JTextField fld_ConcertType;
+	private JTextField fld_Date2;
+	private JTextField fld_Salon3;
+	private JTextField fld_SeatSelection3;
+	private JTextField fld_Time2;
+	private JTextField fld_Name3;
+	private JTextField fld_Surname3;
+	private JTextField fld_Mail3;
+	private JTextField fld_Price3;
+	private JTextField fld_cvc3;
+	private JTextField fld_CartName3;
+	private JTextField fld_CartNumber3;
 	private static user member = new Member();
+	private static SubACinema sinema = new SubACinema();
+	private static SubATheater tiyatro = new SubATheater();
+	private static SubAConcert konser = new SubAConcert();
 
 	/**
 	 * Launch the application.
@@ -112,42 +121,54 @@ public class MainScreen extends JFrame {
 	 */
 	/**
 	 * @param member
+	 * @throws SQLException
 	 */
-	public MainScreen(user member) {
+	public MainScreen(user member) throws SQLException {
+		setTitle("Bilet Satýþ Sistemi");
 		setResizable(false);
 
 //////////////////////////////////////////////////////////////////////////////////Sinema
 		cinemaModel = new DefaultTableModel();
-		Object[] colCinema = new Object[5]; // tablo sütunlarýna isim vermek için
+		Object[] colCinema = new Object[6]; // tablo sütunlarýna isim vermek için
 
 		colCinema[0] = "Film Adý";
-		colCinema[1] = "Film Türü";
+		colCinema[1] = "Tür";
 		colCinema[2] = "Yönetmen";
-		colCinema[3] = "Salon";
-		colCinema[4] = "Seans";
+		colCinema[3] = "Tarih";
+		colCinema[4] = "Salon";
+		colCinema[5] = "Seans";
 
 		cinemaModel.setColumnIdentifiers(colCinema);
-		cinemaData = new Object[5]; // sqlden veri çekmek için
-		
-		
-		
-		
+		cinemaData = new Object[6]; // sqlden veri çekmek için
 
 //////////////////////////////////////////////////////////////////////////////////Tiyatro
 		theaterModel = new DefaultTableModel();
 		Object[] colTheater = new Object[5];
 
 		colTheater[0] = "Oyun Adý";
-		colTheater[1] = "Oyun Türü";
+		colTheater[1] = "Tür";
 		colTheater[2] = "Tarih";
 		colTheater[3] = "Salon";
 		colTheater[4] = "Saat";
 		theaterModel.setColumnIdentifiers(colTheater);
 		theaterData = new Object[5]; // sqlden veri çekmek için
 
+//////////////////////////////////////////////////////////////////////////////////Konser
+		concertModel = new DefaultTableModel();
+		Object[] colConcert = new Object[4];
+
+		colConcert[0] = "Konser Adý";
+		colConcert[1] = "Tür";
+		colConcert[2] = "Tarihi";
+		colConcert[3] = "Saat";
+
+		concertModel.setColumnIdentifiers(colConcert);
+		concertData = new Object[5];
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 980, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(
 				new BevelBorder(BevelBorder.LOWERED, UIManager.getColor("InternalFrame.activeTitleBackground"),
 						UIManager.getColor("InternalFrame.activeTitleBackground"),
@@ -155,9 +176,14 @@ public class MainScreen extends JFrame {
 						UIManager.getColor("InternalFrame.activeTitleBackground")));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-		JButton btn_Exit = new JButton("\u00C7\u0131k\u0131\u015F Yap");
-		btn_Exit.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
+		JButton btn_Exit = new JButton("Çýkýþ Yap");
+		btn_Exit.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_Exit.setBackground(new Color(204, 204, 255));
+		btn_Exit.setFocusable(false);
+		btn_Exit.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_Exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login l = new Login();
@@ -165,83 +191,87 @@ public class MainScreen extends JFrame {
 				dispose();
 			}
 		});
-		btn_Exit.setBounds(861, 11, 89, 23);
+		btn_Exit.setBounds(854, 20, 100, 25);
 		contentPane.add(btn_Exit);
 
-		JLabel lbl_Name = new JLabel("Ho\u015Fgeldiniz Say\u0131n " + member.getName());
-		lbl_Name.setBounds(10, 11, 193, 14);
+		JLabel lbl_Name = new JLabel("Hoþgeldiniz Sayýn " + member.getName());
+		lbl_Name.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Name.setBounds(10, 20, 400, 20);
 		contentPane.add(lbl_Name);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setFocusable(false);
+		tabbedPane.setBackground(new Color(255, 255, 255));
 
-		tabbedPane.setBounds(0, 36, 488, 486);
+		tabbedPane.setBounds(10, 60, 410, 476);
 		contentPane.add(tabbedPane);
 
 		JPanel w_paneCinema = new JPanel();
-		w_paneCinema.setBackground(SystemColor.inactiveCaption);
-		tabbedPane.addTab("Sinemalar", null, w_paneCinema, null);
+		w_paneCinema.setBackground(new Color(255, 255, 255));
+		tabbedPane.addTab("Sinema", null, w_paneCinema, null);
 		w_paneCinema.setLayout(null);
 
 		JScrollPane scrollPane_Cinema = new JScrollPane();
-		scrollPane_Cinema.setBounds(0, 0, 485, 461);
+		scrollPane_Cinema.setBounds(0, 0, 405, 448);
 		w_paneCinema.add(scrollPane_Cinema);
 ///////////////////////////////////////////////////////////////////////////////////Sinema Sütun Özellikleri
 		table_Cinema = new JTable(cinemaModel);
 		table_Cinema.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table_Cinema.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
-		table_Cinema.getColumn("Film Adý").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Film Türü").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Yönetmen").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Seans").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		scrollPane_Cinema.setViewportView(table_Cinema);
+		/*
+		 * table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(60);
+		 * table_Cinema.getColumnModel().getColumn(0).setResizable(false);
+		 * 
+		 * table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(30);
+		 * table_Cinema.getColumnModel().getColumn(1).setResizable(false);
+		 * 
+		 * table_Cinema.getColumnModel().getColumn(2).setPreferredWidth(10);
+		 * table_Cinema.getColumnModel().getColumn(2).setResizable(false);
+		 * 
+		 * table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(10);
+		 * table_Cinema.getColumnModel().getColumn(3).setResizable(false);
+		 * 
+		 * table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(10);
+		 * table_Cinema.getColumnModel().getColumn(4).setResizable(false);
+		 * 
+		 * table_Cinema.getColumnModel().getColumn(5).setPreferredWidth(10);
+		 * table_Cinema.getColumnModel().getColumn(5).setResizable(false);
+		 */
 
-		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(60);
-		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
+		for (int i = 0; i < sinema.cinemaList().size(); i++) {
+			cinemaData[0] = sinema.cinemaList().get(i).getFilmName();
+			cinemaData[1] = sinema.cinemaList().get(i).getFilmType();
+			cinemaData[2] = sinema.cinemaList().get(i).getFilmDirector();
+			cinemaData[3] = sinema.cinemaList().get(i).getFilmDate();
+			cinemaData[4] = sinema.cinemaList().get(i).getFilmSalon();
+			cinemaData[5] = sinema.cinemaList().get(i).getFilmSeans();
+			cinemaModel.addRow(cinemaData);
+		}
 
-		table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(30);
-		table_Cinema.getColumnModel().getColumn(1).setResizable(false);
-		// table_Sinema.getColumnModel().getColumn(2).setPreferredWidth(90);
-		table_Cinema.getColumnModel().getColumn(2).setResizable(false);
-		table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(10);
-		table_Cinema.getColumnModel().getColumn(3).setResizable(false);
-		table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(10);
-		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
+		/************************* Þimdilik Veri Ekliyorum ***************************/
+		/*
+		 * cinemaData[0] = "Recep Ývedik 7"; cinemaData[1] = "Komedi"; cinemaData[2] =
+		 * "Þahan Gökbakar"; cinemaData[3] = 1; cinemaData[4] = "13:40";
+		 * cinemaModel.addRow(cinemaData); cinemaData[0] = "Hýzlý ve Öfkeli 10";
+		 * cinemaData[1] = "Aksiyon"; cinemaData[2] = "Rob Cohen"; cinemaData[3] = 4;
+		 * cinemaData[4] = "16:30"; cinemaModel.addRow(cinemaData);
+		 */
 
-		//************************* Þimdilik Veri Ekliyorum ************************//
-	/*	cinemaData[0] = "Recep Ývedik 7";
-		cinemaData[1] = "Komedi";
-		cinemaData[2] = "Þahan Gökbakar";
-		cinemaData[3] = 1;
-		cinemaData[4] = "13:40";
-		cinemaModel.addRow(cinemaData);
-		cinemaData[0] = "Hýzlý ve Öfkeli 10";
-		cinemaData[1] = "Aksiyon";
-		cinemaData[2] = "Rob Cohen";
-		cinemaData[3] = 4;
-		cinemaData[4] = "16:30";
-		cinemaModel.addRow(cinemaData);
-*/
-		
-	
+		/****************************************************/
 		JPanel w_paneTheater = new JPanel();
-		w_paneTheater.setBackground(SystemColor.inactiveCaption);
-		tabbedPane.addTab("Tiyatrolar", null, w_paneTheater, null);
+		w_paneTheater.setBackground(new Color(255, 255, 255));
+		tabbedPane.addTab("Tiyatro", null, w_paneTheater, null);
 		w_paneTheater.setLayout(null);
 
 		JScrollPane scrollPane_Theater = new JScrollPane();
-		scrollPane_Theater.setBounds(0, 0, 485, 461);
+		scrollPane_Theater.setBounds(0, 0, 405, 448);
 		w_paneTheater.add(scrollPane_Theater);
 
 ///////////////////////////////////////////////////////////////////////////////////Tiyatro Sütun Özellikleri
 		table_Theater = new JTable(theaterModel);
 		table_Theater.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table_Theater.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
-		table_Theater.getColumn("Oyun Adý").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Oyun Türü").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		scrollPane_Theater.setViewportView(table_Theater);
 		table_Theater.getColumnModel().getColumn(0).setPreferredWidth(60);
 		table_Theater.getColumnModel().getColumn(0).setResizable(false);
@@ -255,154 +285,200 @@ public class MainScreen extends JFrame {
 		table_Theater.getColumnModel().getColumn(4).setPreferredWidth(10);
 		table_Theater.getColumnModel().getColumn(4).setResizable(false);
 
+		for (int i = 0; i < tiyatro.theaterList().size(); i++) {
+			theaterData[0] = tiyatro.theaterList().get(i).getTiyatroName();
+			theaterData[1] = tiyatro.theaterList().get(i).getTiyatroType();
+			theaterData[2] = tiyatro.theaterList().get(i).getTiyatroDate();
+			theaterData[3] = tiyatro.theaterList().get(i).getTiyatroSalon();
+			theaterData[4] = tiyatro.theaterList().get(i).getTiyatroSaat();
+			theaterModel.addRow(theaterData);
+		}
+
 		JPanel w_paneConcert = new JPanel();
-		w_paneConcert.setBackground(SystemColor.inactiveCaption);
-		tabbedPane.addTab("Konserler", null, w_paneConcert, null);
+		w_paneConcert.setBackground(new Color(255, 255, 255));
+		tabbedPane.addTab("Konser", null, w_paneConcert, null);
 
 		w_paneConcert.setLayout(null);
 
 		JScrollPane scrollPane_Concert = new JScrollPane();
-		scrollPane_Concert.setBounds(0, 0, 485, 461);
+		scrollPane_Concert.setBounds(0, 0, 405, 448);
 		w_paneConcert.add(scrollPane_Concert);
 
-		table_Concert = new JTable();
+		table_Concert = new JTable(concertModel);
+		table_Concert.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table_Concert.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		scrollPane_Concert.setViewportView(table_Concert);
+		table_Concert.getColumnModel().getColumn(0).setPreferredWidth(60);
+		table_Concert.getColumnModel().getColumn(0).setResizable(false);
+
+		table_Concert.getColumnModel().getColumn(1).setPreferredWidth(30);
+		table_Concert.getColumnModel().getColumn(1).setResizable(false);
+
+		table_Concert.getColumnModel().getColumn(2).setPreferredWidth(10);
+		table_Concert.getColumnModel().getColumn(2).setResizable(false);
+
+		table_Concert.getColumnModel().getColumn(3).setPreferredWidth(10);
+		table_Concert.getColumnModel().getColumn(3).setResizable(false);
+
+		for (int i = 0; i < konser.concertList().size(); i++) {
+			concertData[0] = konser.concertList().get(i).getConcertName();
+			concertData[1] = konser.concertList().get(i).getConcertType();
+			concertData[2] = konser.concertList().get(i).getConcertDate();
+			concertData[3] = konser.concertList().get(i).getConcertTime();
+			concertModel.addRow(concertData);
+		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////// PANESÝNEMA///////////////////////////////////////////////////////////////
 		JPanel PaneCinema = new JPanel();
-		PaneCinema.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), new Color(153, 180, 209),
-				new Color(153, 180, 209), new Color(153, 180, 209)));
-		PaneCinema.setBackground(SystemColor.inactiveCaption);
-		PaneCinema.setBounds(486, 57, 489, 504);
+		PaneCinema.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		PaneCinema.setBackground(new Color(255, 255, 255));
+		PaneCinema.setBounds(504, 60, 450, 479);
 		contentPane.add(PaneCinema);
 		PaneCinema.setLayout(null);
 
-		JButton btn_BuyTicket = new JButton("Bilet Al");
-		btn_BuyTicket.setBounds(195, 468, 102, 30);
-		PaneCinema.add(btn_BuyTicket);
-		btn_BuyTicket.setFont(new Font("Sitka Display", Font.BOLD, 18));
-
 		JLabel lbl_Poster = new JLabel("");
-		lbl_Poster.setBounds(324, 35, 128, 161);
+		lbl_Poster.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Poster.setBounds(312, 20, 120, 170);
 		PaneCinema.add(lbl_Poster);
 
-		JLabel lbl_MovieName = new JLabel("Film Ad\u0131:");
-		lbl_MovieName.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_MovieName.setBounds(33, 50, 107, 18);
+		JLabel lbl_MovieName = new JLabel("Film Adý:");
+		lbl_MovieName.setBackground(new Color(255, 255, 255));
+		lbl_MovieName.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_MovieName.setBounds(10, 50, 100, 18);
 		PaneCinema.add(lbl_MovieName);
 
-		JLabel lbl_MovieType = new JLabel("Film T\u00FCr\u00FC:");
-		lbl_MovieType.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_MovieType.setBounds(33, 73, 107, 18);
+		JLabel lbl_MovieType = new JLabel("Film Türü:");
+		lbl_MovieType.setBackground(new Color(255, 255, 255));
+		lbl_MovieType.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_MovieType.setBounds(10, 73, 100, 20);
 		PaneCinema.add(lbl_MovieType);
 
-		JLabel lbl_Admin = new JLabel("Y\u00F6netmen:");
-		lbl_Admin.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Admin.setBounds(33, 96, 107, 18);
+		JLabel lbl_Admin = new JLabel("Yönetmen:");
+		lbl_Admin.setBackground(new Color(255, 255, 255));
+		lbl_Admin.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Admin.setBounds(10, 96, 100, 20);
 		PaneCinema.add(lbl_Admin);
 
 		JLabel lbl_Salon = new JLabel("Salon:");
-		lbl_Salon.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Salon.setBounds(33, 119, 107, 18);
+		lbl_Salon.setBackground(new Color(255, 255, 255));
+		lbl_Salon.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Salon.setBounds(10, 119, 100, 18);
 		PaneCinema.add(lbl_Salon);
 
 		JLabel lbl_Seance = new JLabel("Seans:");
-		lbl_Seance.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Seance.setBounds(33, 143, 107, 18);
+		lbl_Seance.setBackground(new Color(255, 255, 255));
+		lbl_Seance.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Seance.setBounds(10, 142, 100, 20);
 		PaneCinema.add(lbl_Seance);
 
-		JButton btn_SelectSeat = new JButton("Koltuk Se\u00E7");
-		btn_SelectSeat.setFont(new Font("Tahoma", Font.BOLD, 10));
+		JButton btn_SelectSeat = new JButton("Koltuk Seç");
+		btn_SelectSeat.setFocusable(false);
+		btn_SelectSeat.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_SelectSeat.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		btn_SelectSeat.setBackground(new Color(255, 153, 102));
 		btn_SelectSeat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SeatSelection ks = new SeatSelection();
 				ks.setVisible(true);
 			}
 		});
-		btn_SelectSeat.setBounds(33, 164, 95, 23);
+		btn_SelectSeat.setBounds(10, 165, 100, 22);
 		PaneCinema.add(btn_SelectSeat);
 
-		JLabel lbl_PaymentInformation = new JLabel("\u00D6deme Bilgileri");
-		lbl_PaymentInformation.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
-		lbl_PaymentInformation.setBounds(33, 208, 149, 23);
+		JLabel lbl_PaymentInformation = new JLabel("Ödeme Bilgileri");
+		lbl_PaymentInformation.setFont(new Font("SansSerif", Font.BOLD, 16));
+		lbl_PaymentInformation.setBounds(10, 205, 130, 20);
 		PaneCinema.add(lbl_PaymentInformation);
 
 		JLabel lblMovieInfo = new JLabel("Film Bilgileri");
-		lblMovieInfo.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 16));
-		lblMovieInfo.setBounds(33, 20, 128, 23);
+		lblMovieInfo.setBackground(new Color(255, 255, 255));
+		lblMovieInfo.setFont(new Font("SansSerif", Font.BOLD, 16));
+		lblMovieInfo.setBounds(10, 20, 150, 20);
 		PaneCinema.add(lblMovieInfo);
 
 		JLabel lbl_MovieName_1 = new JLabel("Ad:");
-		lbl_MovieName_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_MovieName_1.setBounds(33, 238, 107, 18);
+		lbl_MovieName_1.setBackground(new Color(255, 255, 255));
+		lbl_MovieName_1.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_MovieName_1.setBounds(10, 235, 100, 20);
 		PaneCinema.add(lbl_MovieName_1);
 
 		JLabel lbl_MovieType_1 = new JLabel("Soyad:");
-		lbl_MovieType_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_MovieType_1.setBounds(33, 261, 107, 18);
+		lbl_MovieType_1.setBackground(new Color(255, 255, 255));
+		lbl_MovieType_1.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_MovieType_1.setBounds(10, 258, 100, 20);
 		PaneCinema.add(lbl_MovieType_1);
 
 		JLabel lbl_Admin_1 = new JLabel("E-Mail:");
-		lbl_Admin_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_Admin_1.setBounds(33, 284, 107, 18);
+		lbl_Admin_1.setBackground(new Color(255, 255, 255));
+		lbl_Admin_1.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Admin_1.setBounds(10, 281, 100, 20);
 		PaneCinema.add(lbl_Admin_1);
 
-		txt_MovieName = new JTextField();
-		txt_MovieName.setBackground(Color.WHITE);
-		txt_MovieName.setEditable(false);
-		txt_MovieName.setBounds(140, 51, 128, 20);
-		PaneCinema.add(txt_MovieName);
-		txt_MovieName.setColumns(10);
+		fld_MovieName = new JTextField();
+		fld_MovieName.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_MovieName.setBackground(new Color(255, 255, 255));
+		fld_MovieName.setEditable(false);
+		fld_MovieName.setBounds(140, 50, 130, 20);
+		PaneCinema.add(fld_MovieName);
+		fld_MovieName.setColumns(10);
 
-		txt_MovieType = new JTextField();
-		txt_MovieType.setBackground(Color.WHITE);
-		txt_MovieType.setEditable(false);
-		txt_MovieType.setColumns(10);
-		txt_MovieType.setBounds(140, 74, 128, 20);
-		PaneCinema.add(txt_MovieType);
+		fld_MovieType = new JTextField();
+		fld_MovieType.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_MovieType.setBackground(new Color(255, 255, 255));
+		fld_MovieType.setEditable(false);
+		fld_MovieType.setColumns(10);
+		fld_MovieType.setBounds(140, 73, 130, 20);
+		PaneCinema.add(fld_MovieType);
 
-		txt_Director = new JTextField();
-		txt_Director.setBackground(Color.WHITE);
-		txt_Director.setEditable(false);
-		txt_Director.setColumns(10);
-		txt_Director.setBounds(140, 97, 128, 20);
-		PaneCinema.add(txt_Director);
+		fld_Director = new JTextField();
+		fld_Director.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_Director.setBackground(new Color(255, 255, 255));
+		fld_Director.setEditable(false);
+		fld_Director.setColumns(10);
+		fld_Director.setBounds(140, 96, 130, 20);
+		PaneCinema.add(fld_Director);
 
-		txt_Salon = new JTextField();
-		txt_Salon.setBackground(Color.WHITE);
-		txt_Salon.setEditable(false);
-		txt_Salon.setColumns(10);
-		txt_Salon.setBounds(140, 120, 42, 20);
-		PaneCinema.add(txt_Salon);
+		fld_Salon = new JTextField();
+		fld_Salon.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_Salon.setBackground(new Color(255, 255, 255));
+		fld_Salon.setEditable(false);
+		fld_Salon.setColumns(10);
+		fld_Salon.setBounds(140, 119, 65, 20);
+		PaneCinema.add(fld_Salon);
 
-		txt_SelectSeat = new JTextField();
-		txt_SelectSeat.setBackground(Color.WHITE);
-		txt_SelectSeat.setEditable(false);
-		txt_SelectSeat.setColumns(10);
-		txt_SelectSeat.setBounds(140, 165, 42, 20);
-		PaneCinema.add(txt_SelectSeat);
+		fld_SelectSeat = new JTextField();
+		fld_SelectSeat.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_SelectSeat.setBackground(new Color(255, 255, 255));
+		fld_SelectSeat.setEditable(false);
+		fld_SelectSeat.setColumns(10);
+		fld_SelectSeat.setBounds(140, 165, 65, 20);
+		PaneCinema.add(fld_SelectSeat);
 
-		txt_Seance = new JTextField();
-		txt_Seance.setBackground(Color.WHITE);
-		txt_Seance.setEditable(false);
-		txt_Seance.setColumns(10);
-		txt_Seance.setBounds(140, 143, 42, 20);
-		PaneCinema.add(txt_Seance);
+		fld_Seance = new JTextField();
+		fld_Seance.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_Seance.setBackground(new Color(255, 255, 255));
+		fld_Seance.setEditable(false);
+		fld_Seance.setColumns(10);
+		fld_Seance.setBounds(140, 142, 65, 20);
+		PaneCinema.add(fld_Seance);
 
-		JLabel lbl_PaymentMethod = new JLabel("\u00D6deme Y\u00F6ntemi");
-		lbl_PaymentMethod.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-		lbl_PaymentMethod.setBounds(33, 307, 128, 18);
+		JLabel lbl_PaymentMethod = new JLabel("Ödeme Yöntemi:");
+		lbl_PaymentMethod.setBackground(new Color(255, 255, 255));
+		lbl_PaymentMethod.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_PaymentMethod.setBounds(10, 304, 120, 18);
 		PaneCinema.add(lbl_PaymentMethod);
 
 		JComboBox comboBox_Method = new JComboBox();
-		comboBox_Method.setBounds(33, 326, 110, 22);
-		comboBox_Method.addItem("Nakit ödeme");
-		comboBox_Method.addItem("Kart ile ödeme");
+		comboBox_Method.setBackground(new Color(255, 255, 255));
+		comboBox_Method.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Method.setBounds(140, 304, 130, 25);
+		comboBox_Method.addItem("Nakit");
+		comboBox_Method.addItem("Banka/Kredi Kartý");
 		PaneCinema.add(comboBox_Method);
 
 		JPanel w_pane_Kart = new JPanel();
 		w_pane_Kart.setBackground(SystemColor.inactiveCaption);
-		w_pane_Kart.setBounds(33, 359, 452, 98);
+		w_pane_Kart.setBounds(10, 340, 430, 80);
 		PaneCinema.add(w_pane_Kart);
 		w_pane_Kart.setLayout(null);
 		w_pane_Kart.setVisible(false);
@@ -418,60 +494,66 @@ public class MainScreen extends JFrame {
 			}
 		});
 
-		txt_Name_cinema = new JTextField();
-		txt_Name_cinema.setText(member.getName());
-		txt_Name_cinema.setEditable(false);
-		txt_Name_cinema.setColumns(10);
-		txt_Name_cinema.setBackground(Color.WHITE);
-		txt_Name_cinema.setBounds(140, 238, 128, 20);
-		PaneCinema.add(txt_Name_cinema);
+		fld_Name_cinema = new JTextField();
+		fld_Name_cinema.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_Name_cinema.setText(member.getName());
+		fld_Name_cinema.setEditable(false);
+		fld_Name_cinema.setColumns(10);
+		fld_Name_cinema.setBackground(new Color(255, 255, 255));
+		fld_Name_cinema.setBounds(140, 235, 130, 20);
+		PaneCinema.add(fld_Name_cinema);
 
-		txt_Surname_cinema = new JTextField();
-		txt_Surname_cinema.setText(member.getSurname());
-		txt_Surname_cinema.setEditable(false);
-		txt_Surname_cinema.setColumns(10);
-		txt_Surname_cinema.setBackground(Color.WHITE);
-		txt_Surname_cinema.setBounds(140, 261, 128, 20);
-		PaneCinema.add(txt_Surname_cinema);
+		fld_Surname_cinema = new JTextField();
+		fld_Surname_cinema.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_Surname_cinema.setText(member.getSurname());
+		fld_Surname_cinema.setEditable(false);
+		fld_Surname_cinema.setColumns(10);
+		fld_Surname_cinema.setBackground(new Color(255, 255, 255));
+		fld_Surname_cinema.setBounds(140, 258, 130, 20);
+		PaneCinema.add(fld_Surname_cinema);
 
-		txt_Mail_cinema = new JTextField();
-		txt_Mail_cinema.setText(member.getEmail());
-		txt_Mail_cinema.setEditable(false);
-		txt_Mail_cinema.setColumns(10);
-		txt_Mail_cinema.setBackground(Color.WHITE);
-		txt_Mail_cinema.setBounds(140, 284, 128, 20);
-		PaneCinema.add(txt_Mail_cinema);
+		fld_Mail_cinema = new JTextField();
+		fld_Mail_cinema.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_Mail_cinema.setText(member.getEmail());
+		fld_Mail_cinema.setEditable(false);
+		fld_Mail_cinema.setColumns(10);
+		fld_Mail_cinema.setBackground(new Color(255, 255, 255));
+		fld_Mail_cinema.setBounds(140, 281, 130, 20);
+		PaneCinema.add(fld_Mail_cinema);
 
 		JLabel lbl_Price = new JLabel("Toplam Tutar");
-		lbl_Price.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lbl_Price.setBounds(322, 207, 154, 47);
+		lbl_Price.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_Price.setBackground(new Color(255, 255, 255));
+		lbl_Price.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Price.setBounds(310, 260, 100, 20);
 		PaneCinema.add(lbl_Price);
 
-		txt_Price = new JTextField();
+		fld_Price = new JTextField();
+		fld_Price.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_Price.setBackground(new Color(255, 255, 255));
+		fld_Price.setEditable(false);
+		fld_Price.setBounds(310, 280, 100, 30);
+		PaneCinema.add(fld_Price);
+		fld_Price.setColumns(10);
 
-		txt_Price.setBackground(Color.WHITE);
-		txt_Price.setEditable(false);
-		txt_Price.setBounds(322, 247, 130, 55);
-		PaneCinema.add(txt_Price);
-		txt_Price.setColumns(10);
-
-		JLabel lbl_CartName = new JLabel("Kart \u00FCzerindeki \u0130sim:");
-		lbl_CartName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_CartName.setBounds(10, 11, 123, 14);
+		JLabel lbl_CartName = new JLabel("Kart Üzerindeki Ýsim:");
+		lbl_CartName.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_CartName.setBounds(10, 8, 140, 20);
 		w_pane_Kart.add(lbl_CartName);
 
-		JLabel lbl_CartNumber = new JLabel("Kart Numaras\u0131:");
-		lbl_CartNumber.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_CartNumber.setBounds(10, 34, 123, 14);
+		JLabel lbl_CartNumber = new JLabel("Kart Numarasý:");
+		lbl_CartNumber.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_CartNumber.setBounds(10, 30, 140, 20);
 		w_pane_Kart.add(lbl_CartNumber);
 
-		JLabel lbl_LastUsageDate = new JLabel("Son Kullan\u0131m Tarihi:");
-		lbl_LastUsageDate.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_LastUsageDate.setBounds(10, 56, 123, 14);
+		JLabel lbl_LastUsageDate = new JLabel("Son Kullaným Tarihi:");
+		lbl_LastUsageDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_LastUsageDate.setBounds(10, 52, 140, 20);
 		w_pane_Kart.add(lbl_LastUsageDate);
 
 		JComboBox comboBox_Month = new JComboBox();
-		comboBox_Month.setBounds(143, 53, 60, 22);
+		comboBox_Month.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Month.setBounds(160, 52, 60, 22);
 		comboBox_Month.addItem("Ay");
 		for (int m = 1; m <= 12; m++) {
 			comboBox_Month.addItem(m);
@@ -479,7 +561,8 @@ public class MainScreen extends JFrame {
 		w_pane_Kart.add(comboBox_Month);
 
 		JComboBox comboBox_Year = new JComboBox();
-		comboBox_Year.setBounds(210, 53, 72, 22);
+		comboBox_Year.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Year.setBounds(235, 52, 72, 22);
 		comboBox_Year.addItem("Yýl");
 		for (int y = 2021; y <= 2030; y++) {
 			comboBox_Year.addItem(y);
@@ -488,38 +571,40 @@ public class MainScreen extends JFrame {
 		w_pane_Kart.add(comboBox_Year);
 
 		JLabel lbl_Cvc = new JLabel("CVC:");
-		lbl_Cvc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_Cvc.setBounds(317, 56, 46, 14);
+		lbl_Cvc.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Cvc.setBounds(325, 52, 40, 20);
 		w_pane_Kart.add(lbl_Cvc);
 
-		txt_cvc = new JTextField();
-		txt_cvc.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_cvc.setBounds(356, 54, 46, 20);
-		txt_cvc.addKeyListener(new KeyAdapter() {
+		fld_cvc = new JTextField();
+		fld_cvc.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_cvc.setHorizontalAlignment(SwingConstants.CENTER);
+		fld_cvc.setBounds(374, 52, 46, 20);
+		fld_cvc.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_cvc.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_cvc.setEditable(true);
+					if (fld_cvc.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_cvc.setEditable(true);
 					} else {
-						txt_cvc.setEditable(false);
+						fld_cvc.setEditable(false);
 					}
 
 				} else {
-					txt_cvc.setEditable(false);
+					fld_cvc.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Kart.add(txt_cvc);
-		txt_cvc.setColumns(10);
+		w_pane_Kart.add(fld_cvc);
+		fld_cvc.setColumns(10);
 
-		txt_CartName = new JTextField();
-		txt_CartName.setColumns(10);
-		txt_CartName.setBackground(Color.WHITE);
-		txt_CartName.setBounds(143, 9, 139, 20);
-		txt_CartName.addKeyListener(new KeyAdapter() {
+		fld_CartName = new JTextField();
+		fld_CartName.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_CartName.setColumns(10);
+		fld_CartName.setBackground(Color.WHITE);
+		fld_CartName.setBounds(160, 8, 260, 20);
+		fld_CartName.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() == ' '
@@ -531,56 +616,70 @@ public class MainScreen extends JFrame {
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_CartName.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_CartName.setEditable(true);
+					if (fld_CartName.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_CartName.setEditable(true);
 					} else {
-						txt_CartName.setEditable(false);
+						fld_CartName.setEditable(false);
 					}
 
 				} else {
-					txt_CartName.setEditable(false);
+					fld_CartName.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Kart.add(txt_CartName);
+		w_pane_Kart.add(fld_CartName);
 
-		txt_CartNumber = new JTextField();
-		txt_CartNumber.setColumns(10);
-		txt_CartNumber.setBackground(Color.WHITE);
-		txt_CartNumber.setBounds(143, 31, 139, 20);
-		txt_CartNumber.addKeyListener(new KeyAdapter() {
+		fld_CartNumber = new JTextField();
+		fld_CartNumber.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_CartNumber.setColumns(10);
+		fld_CartNumber.setBackground(Color.WHITE);
+		fld_CartNumber.setBounds(160, 30, 260, 20);
+		fld_CartNumber.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_CartNumber.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_CartNumber.setEditable(true);
+					if (fld_CartNumber.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_CartNumber.setEditable(true);
 					} else {
-						txt_CartNumber.setEditable(false);
+						fld_CartNumber.setEditable(false);
 					}
 
 				} else {
-					txt_CartNumber.setEditable(false);
+					fld_CartNumber.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Kart.add(txt_CartNumber);
-
-		JButton btn_CancelTicket = new JButton("Bilet \u0130ptal");
-		btn_CancelTicket.setForeground(SystemColor.menu);
-		btn_CancelTicket.setBackground(SystemColor.textHighlight);
-		btn_CancelTicket.setBounds(317, 464, 102, 35);
-		PaneCinema.add(btn_CancelTicket);
-		btn_CancelTicket.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
+		w_pane_Kart.add(fld_CartNumber);
 
 		JButton btn_MyTickets = new JButton("Biletlerim");
-		btn_MyTickets.setForeground(SystemColor.menu);
-		btn_MyTickets.setBackground(SystemColor.textHighlight);
-		btn_MyTickets.setBounds(72, 464, 102, 35);
+		btn_MyTickets.setFocusable(false);
+		btn_MyTickets.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_MyTickets.setBounds(60, 435, 100, 30);
 		PaneCinema.add(btn_MyTickets);
-		btn_MyTickets.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
+		btn_MyTickets.setForeground(new Color(0, 0, 0));
+		btn_MyTickets.setBackground(new Color(255, 255, 153));
+		btn_MyTickets.setFont(new Font("SansSerif", Font.PLAIN, 15));
+
+		JButton btn_BuyTicket = new JButton("Bilet Al");
+		btn_BuyTicket.setFocusable(false);
+		btn_BuyTicket.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_BuyTicket.setForeground(new Color(0, 0, 0));
+		btn_BuyTicket.setBackground(new Color(153, 255, 153));
+		btn_BuyTicket.setBounds(175, 435, 100, 30);
+		PaneCinema.add(btn_BuyTicket);
+		btn_BuyTicket.setFont(new Font("SansSerif", Font.BOLD, 15));
+
+		JButton btn_CancelTicket = new JButton("Bilet \u0130ptal");
+		btn_CancelTicket.setFocusable(false);
+		btn_CancelTicket.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_CancelTicket.setBounds(285, 435, 100, 30);
+		PaneCinema.add(btn_CancelTicket);
+		btn_CancelTicket.setForeground(new Color(0, 0, 0));
+		btn_CancelTicket.setBackground(new Color(255, 153, 153));
+		btn_CancelTicket.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		///////////////////////////////////////////////// PANESÝNEMA/////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -590,7 +689,7 @@ public class MainScreen extends JFrame {
 		PaneTheater.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), new Color(153, 180, 209),
 				new Color(153, 180, 209), new Color(153, 180, 209)));
 		PaneTheater.setBackground(SystemColor.inactiveCaption);
-		PaneTheater.setBounds(486, 57, 489, 504);
+		PaneTheater.setBounds(504, 60, 450, 479);
 		contentPane.add(PaneTheater);
 		PaneTheater.setLayout(null);
 
@@ -657,47 +756,47 @@ public class MainScreen extends JFrame {
 		lbl_Date_2.setBounds(33, 284, 107, 18);
 		PaneTheater.add(lbl_Date_2);
 
-		txt_GameName = new JTextField();
-		txt_GameName.setBackground(Color.WHITE);
-		txt_GameName.setEditable(false);
-		txt_GameName.setBounds(140, 51, 128, 20);
-		PaneTheater.add(txt_GameName);
-		txt_GameName.setColumns(10);
+		fld_GameName = new JTextField();
+		fld_GameName.setBackground(Color.WHITE);
+		fld_GameName.setEditable(false);
+		fld_GameName.setBounds(140, 51, 128, 20);
+		PaneTheater.add(fld_GameName);
+		fld_GameName.setColumns(10);
 
-		txt_GameType = new JTextField();
-		txt_GameType.setBackground(Color.WHITE);
-		txt_GameType.setEditable(false);
-		txt_GameType.setColumns(10);
-		txt_GameType.setBounds(140, 74, 128, 20);
-		PaneTheater.add(txt_GameType);
+		fld_GameType = new JTextField();
+		fld_GameType.setBackground(Color.WHITE);
+		fld_GameType.setEditable(false);
+		fld_GameType.setColumns(10);
+		fld_GameType.setBounds(140, 74, 128, 20);
+		PaneTheater.add(fld_GameType);
 
-		txt_Director2 = new JTextField();
-		txt_Director2.setBackground(Color.WHITE);
-		txt_Director2.setEditable(false);
-		txt_Director2.setColumns(10);
-		txt_Director2.setBounds(140, 97, 128, 20);
-		PaneTheater.add(txt_Director2);
+		fld_Director2 = new JTextField();
+		fld_Director2.setBackground(Color.WHITE);
+		fld_Director2.setEditable(false);
+		fld_Director2.setColumns(10);
+		fld_Director2.setBounds(140, 97, 128, 20);
+		PaneTheater.add(fld_Director2);
 
-		txt_Salon2 = new JTextField();
-		txt_Salon2.setBackground(Color.WHITE);
-		txt_Salon2.setEditable(false);
-		txt_Salon2.setColumns(10);
-		txt_Salon2.setBounds(140, 120, 42, 20);
-		PaneTheater.add(txt_Salon2);
+		fld_Salon2 = new JTextField();
+		fld_Salon2.setBackground(Color.WHITE);
+		fld_Salon2.setEditable(false);
+		fld_Salon2.setColumns(10);
+		fld_Salon2.setBounds(140, 120, 42, 20);
+		PaneTheater.add(fld_Salon2);
 
-		txt_SeatSelection2 = new JTextField();
-		txt_SeatSelection2.setBackground(Color.WHITE);
-		txt_SeatSelection2.setEditable(false);
-		txt_SeatSelection2.setColumns(10);
-		txt_SeatSelection2.setBounds(140, 165, 42, 20);
-		PaneTheater.add(txt_SeatSelection2);
+		fld_SeatSelection2 = new JTextField();
+		fld_SeatSelection2.setBackground(Color.WHITE);
+		fld_SeatSelection2.setEditable(false);
+		fld_SeatSelection2.setColumns(10);
+		fld_SeatSelection2.setBounds(140, 165, 42, 20);
+		PaneTheater.add(fld_SeatSelection2);
 
-		txt_Time = new JTextField();
-		txt_Time.setBackground(Color.WHITE);
-		txt_Time.setEditable(false);
-		txt_Time.setColumns(10);
-		txt_Time.setBounds(140, 143, 42, 20);
-		PaneTheater.add(txt_Time);
+		fld_Time = new JTextField();
+		fld_Time.setBackground(Color.WHITE);
+		fld_Time.setEditable(false);
+		fld_Time.setColumns(10);
+		fld_Time.setBounds(140, 143, 42, 20);
+		PaneTheater.add(fld_Time);
 
 		JLabel lbl_PaymentMethod2 = new JLabel("\u00D6deme Y\u00F6ntemi");
 		lbl_PaymentMethod2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
@@ -712,7 +811,7 @@ public class MainScreen extends JFrame {
 
 		JPanel w_pane_Cart2 = new JPanel();
 		w_pane_Cart2.setBackground(SystemColor.inactiveCaption);
-		w_pane_Cart2.setBounds(33, 359, 452, 98);
+		w_pane_Cart2.setBounds(10, 340, 430, 80);
 		PaneTheater.add(w_pane_Cart2);
 		w_pane_Cart2.setLayout(null);
 		w_pane_Cart2.setVisible(false);
@@ -728,38 +827,38 @@ public class MainScreen extends JFrame {
 			}
 		});
 
-		txt_Name2 = new JTextField();
-		txt_Name2.setEditable(false);
-		txt_Name2.setColumns(10);
-		txt_Name2.setBackground(Color.WHITE);
-		txt_Name2.setBounds(140, 238, 128, 20);
-		PaneTheater.add(txt_Name2);
+		fld_Name2 = new JTextField();
+		fld_Name2.setEditable(false);
+		fld_Name2.setColumns(10);
+		fld_Name2.setBackground(Color.WHITE);
+		fld_Name2.setBounds(140, 238, 128, 20);
+		PaneTheater.add(fld_Name2);
 
-		txt_Surname2 = new JTextField();
-		txt_Surname2.setEditable(false);
-		txt_Surname2.setColumns(10);
-		txt_Surname2.setBackground(Color.WHITE);
-		txt_Surname2.setBounds(140, 261, 128, 20);
-		PaneTheater.add(txt_Surname2);
+		fld_Surname2 = new JTextField();
+		fld_Surname2.setEditable(false);
+		fld_Surname2.setColumns(10);
+		fld_Surname2.setBackground(Color.WHITE);
+		fld_Surname2.setBounds(140, 261, 128, 20);
+		PaneTheater.add(fld_Surname2);
 
-		txt_Mail2 = new JTextField();
-		txt_Mail2.setEditable(false);
-		txt_Mail2.setColumns(10);
-		txt_Mail2.setBackground(Color.WHITE);
-		txt_Mail2.setBounds(140, 284, 128, 20);
-		PaneTheater.add(txt_Mail2);
+		fld_Mail2 = new JTextField();
+		fld_Mail2.setEditable(false);
+		fld_Mail2.setColumns(10);
+		fld_Mail2.setBackground(Color.WHITE);
+		fld_Mail2.setBounds(140, 284, 128, 20);
+		PaneTheater.add(fld_Mail2);
 
 		JLabel lbl_Price2 = new JLabel("Toplam Tutar");
 		lbl_Price2.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lbl_Price2.setBounds(322, 207, 154, 47);
 		PaneTheater.add(lbl_Price2);
 
-		txt_Price2 = new JTextField();
-		txt_Price2.setBackground(Color.WHITE);
-		txt_Price2.setEditable(false);
-		txt_Price2.setBounds(322, 247, 130, 55);
-		PaneTheater.add(txt_Price2);
-		txt_Price2.setColumns(10);
+		fld_Price2 = new JTextField();
+		fld_Price2.setBackground(Color.WHITE);
+		fld_Price2.setEditable(false);
+		fld_Price2.setBounds(322, 247, 130, 55);
+		PaneTheater.add(fld_Price2);
+		fld_Price2.setColumns(10);
 
 		JLabel lbl_CartName2 = new JLabel("Kart \u00FCzerindeki \u0130sim:");
 		lbl_CartName2.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -797,34 +896,34 @@ public class MainScreen extends JFrame {
 		lbl_Cvc2.setBounds(317, 56, 46, 14);
 		w_pane_Cart2.add(lbl_Cvc2);
 
-		txt_cvc2 = new JTextField();
-		txt_cvc2.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_cvc2.setBounds(356, 54, 46, 20);
-		txt_cvc2.addKeyListener(new KeyAdapter() {
+		fld_cvc2 = new JTextField();
+		fld_cvc2.setHorizontalAlignment(SwingConstants.CENTER);
+		fld_cvc2.setBounds(356, 54, 46, 20);
+		fld_cvc2.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_cvc2.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_cvc2.setEditable(true);
+					if (fld_cvc2.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_cvc2.setEditable(true);
 					} else {
-						txt_cvc2.setEditable(false);
+						fld_cvc2.setEditable(false);
 					}
 
 				} else {
-					txt_cvc2.setEditable(false);
+					fld_cvc2.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Cart2.add(txt_cvc2);
-		txt_cvc2.setColumns(10);
+		w_pane_Cart2.add(fld_cvc2);
+		fld_cvc2.setColumns(10);
 
-		txt_CartName2 = new JTextField();
-		txt_CartName2.setColumns(10);
-		txt_CartName2.setBackground(Color.WHITE);
-		txt_CartName2.setBounds(143, 9, 139, 20);
-		txt_CartName2.addKeyListener(new KeyAdapter() {
+		fld_CartName2 = new JTextField();
+		fld_CartName2.setColumns(10);
+		fld_CartName2.setBackground(Color.WHITE);
+		fld_CartName2.setBounds(143, 9, 139, 20);
+		fld_CartName2.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() == ' '
@@ -836,43 +935,43 @@ public class MainScreen extends JFrame {
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_CartName2.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_CartName2.setEditable(true);
+					if (fld_CartName2.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_CartName2.setEditable(true);
 					} else {
-						txt_CartName2.setEditable(false);
+						fld_CartName2.setEditable(false);
 					}
 
 				} else {
-					txt_CartName2.setEditable(false);
+					fld_CartName2.setEditable(false);
 
 				}
 			}
 		});
 
-		w_pane_Cart2.add(txt_CartName2);
+		w_pane_Cart2.add(fld_CartName2);
 
-		txt_CartNumber2 = new JTextField();
-		txt_CartNumber2.setColumns(10);
-		txt_CartNumber2.setBackground(Color.WHITE);
-		txt_CartNumber2.setBounds(143, 31, 139, 20);
-		txt_CartNumber2.addKeyListener(new KeyAdapter() {
+		fld_CartNumber2 = new JTextField();
+		fld_CartNumber2.setColumns(10);
+		fld_CartNumber2.setBackground(Color.WHITE);
+		fld_CartNumber2.setBounds(143, 31, 139, 20);
+		fld_CartNumber2.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_CartNumber2.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_CartNumber2.setEditable(true);
+					if (fld_CartNumber2.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_CartNumber2.setEditable(true);
 					} else {
-						txt_CartNumber2.setEditable(false);
+						fld_CartNumber2.setEditable(false);
 					}
 
 				} else {
-					txt_CartNumber2.setEditable(false);
+					fld_CartNumber2.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Cart2.add(txt_CartNumber2);
+		w_pane_Cart2.add(fld_CartNumber2);
 
 		JButton btn_MyTickets_1 = new JButton("Biletlerim");
 		btn_MyTickets_1.setForeground(SystemColor.menu);
@@ -896,7 +995,7 @@ public class MainScreen extends JFrame {
 		PaneConcert.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(153, 180, 209), new Color(153, 180, 209),
 				new Color(153, 180, 209), new Color(153, 180, 209)));
 		PaneConcert.setBackground(SystemColor.inactiveCaption);
-		PaneConcert.setBounds(486, 57, 489, 504);
+		PaneConcert.setBounds(504, 60, 450, 479);
 		contentPane.add(PaneConcert);
 		PaneConcert.setLayout(null);
 
@@ -963,47 +1062,47 @@ public class MainScreen extends JFrame {
 		lbl_Date_3.setBounds(33, 284, 107, 18);
 		PaneConcert.add(lbl_Date_3);
 
-		txt_ConcertName = new JTextField();
-		txt_ConcertName.setBackground(Color.WHITE);
-		txt_ConcertName.setEditable(false);
-		txt_ConcertName.setBounds(140, 51, 128, 20);
-		PaneConcert.add(txt_ConcertName);
-		txt_ConcertName.setColumns(10);
+		fld_ConcertName = new JTextField();
+		fld_ConcertName.setBackground(Color.WHITE);
+		fld_ConcertName.setEditable(false);
+		fld_ConcertName.setBounds(140, 51, 128, 20);
+		PaneConcert.add(fld_ConcertName);
+		fld_ConcertName.setColumns(10);
 
-		txt_ConcertType = new JTextField();
-		txt_ConcertType.setBackground(Color.WHITE);
-		txt_ConcertType.setEditable(false);
-		txt_ConcertType.setColumns(10);
-		txt_ConcertType.setBounds(140, 74, 128, 20);
-		PaneConcert.add(txt_ConcertType);
+		fld_ConcertType = new JTextField();
+		fld_ConcertType.setBackground(Color.WHITE);
+		fld_ConcertType.setEditable(false);
+		fld_ConcertType.setColumns(10);
+		fld_ConcertType.setBounds(140, 74, 128, 20);
+		PaneConcert.add(fld_ConcertType);
 
-		txt_Date2 = new JTextField();
-		txt_Date2.setBackground(Color.WHITE);
-		txt_Date2.setEditable(false);
-		txt_Date2.setColumns(10);
-		txt_Date2.setBounds(140, 97, 128, 20);
-		PaneConcert.add(txt_Date2);
+		fld_Date2 = new JTextField();
+		fld_Date2.setBackground(Color.WHITE);
+		fld_Date2.setEditable(false);
+		fld_Date2.setColumns(10);
+		fld_Date2.setBounds(140, 97, 128, 20);
+		PaneConcert.add(fld_Date2);
 
-		txt_Salon3 = new JTextField();
-		txt_Salon3.setBackground(Color.WHITE);
-		txt_Salon3.setEditable(false);
-		txt_Salon3.setColumns(10);
-		txt_Salon3.setBounds(140, 120, 42, 20);
-		PaneConcert.add(txt_Salon3);
+		fld_Salon3 = new JTextField();
+		fld_Salon3.setBackground(Color.WHITE);
+		fld_Salon3.setEditable(false);
+		fld_Salon3.setColumns(10);
+		fld_Salon3.setBounds(140, 120, 42, 20);
+		PaneConcert.add(fld_Salon3);
 
-		txt_SeatSelection3 = new JTextField();
-		txt_SeatSelection3.setBackground(Color.WHITE);
-		txt_SeatSelection3.setEditable(false);
-		txt_SeatSelection3.setColumns(10);
-		txt_SeatSelection3.setBounds(140, 165, 42, 20);
-		PaneConcert.add(txt_SeatSelection3);
+		fld_SeatSelection3 = new JTextField();
+		fld_SeatSelection3.setBackground(Color.WHITE);
+		fld_SeatSelection3.setEditable(false);
+		fld_SeatSelection3.setColumns(10);
+		fld_SeatSelection3.setBounds(140, 165, 42, 20);
+		PaneConcert.add(fld_SeatSelection3);
 
-		txt_Time2 = new JTextField();
-		txt_Time2.setBackground(Color.WHITE);
-		txt_Time2.setEditable(false);
-		txt_Time2.setColumns(10);
-		txt_Time2.setBounds(140, 143, 42, 20);
-		PaneConcert.add(txt_Time2);
+		fld_Time2 = new JTextField();
+		fld_Time2.setBackground(Color.WHITE);
+		fld_Time2.setEditable(false);
+		fld_Time2.setColumns(10);
+		fld_Time2.setBounds(140, 143, 42, 20);
+		PaneConcert.add(fld_Time2);
 
 		JLabel lbl_PaymentMethod3 = new JLabel("\u00D6deme Y\u00F6ntemi");
 		lbl_PaymentMethod3.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
@@ -1018,7 +1117,7 @@ public class MainScreen extends JFrame {
 
 		JPanel w_pane_Cart3 = new JPanel();
 		w_pane_Cart3.setBackground(SystemColor.inactiveCaption);
-		w_pane_Cart3.setBounds(33, 359, 452, 98);
+		w_pane_Cart3.setBounds(10, 340, 430, 80);
 		PaneConcert.add(w_pane_Cart3);
 		w_pane_Cart3.setLayout(null);
 		w_pane_Cart3.setVisible(false);
@@ -1034,38 +1133,38 @@ public class MainScreen extends JFrame {
 			}
 		});
 
-		txt_Name3 = new JTextField();
-		txt_Name3.setEditable(false);
-		txt_Name3.setColumns(10);
-		txt_Name3.setBackground(Color.WHITE);
-		txt_Name3.setBounds(140, 238, 128, 20);
-		PaneConcert.add(txt_Name3);
+		fld_Name3 = new JTextField();
+		fld_Name3.setEditable(false);
+		fld_Name3.setColumns(10);
+		fld_Name3.setBackground(Color.WHITE);
+		fld_Name3.setBounds(140, 238, 128, 20);
+		PaneConcert.add(fld_Name3);
 
-		txt_Surname3 = new JTextField();
-		txt_Surname3.setEditable(false);
-		txt_Surname3.setColumns(10);
-		txt_Surname3.setBackground(Color.WHITE);
-		txt_Surname3.setBounds(140, 261, 128, 20);
-		PaneConcert.add(txt_Surname3);
+		fld_Surname3 = new JTextField();
+		fld_Surname3.setEditable(false);
+		fld_Surname3.setColumns(10);
+		fld_Surname3.setBackground(Color.WHITE);
+		fld_Surname3.setBounds(140, 261, 128, 20);
+		PaneConcert.add(fld_Surname3);
 
-		txt_Mail3 = new JTextField();
-		txt_Mail3.setEditable(false);
-		txt_Mail3.setColumns(10);
-		txt_Mail3.setBackground(Color.WHITE);
-		txt_Mail3.setBounds(140, 284, 128, 20);
-		PaneConcert.add(txt_Mail3);
+		fld_Mail3 = new JTextField();
+		fld_Mail3.setEditable(false);
+		fld_Mail3.setColumns(10);
+		fld_Mail3.setBackground(Color.WHITE);
+		fld_Mail3.setBounds(140, 284, 128, 20);
+		PaneConcert.add(fld_Mail3);
 
 		JLabel lbl_Price3 = new JLabel("Toplam Tutar");
 		lbl_Price3.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lbl_Price3.setBounds(322, 207, 154, 47);
 		PaneConcert.add(lbl_Price3);
 
-		txt_Price3 = new JTextField();
-		txt_Price3.setBackground(Color.WHITE);
-		txt_Price3.setEditable(false);
-		txt_Price3.setBounds(322, 247, 130, 55);
-		PaneConcert.add(txt_Price3);
-		txt_Price3.setColumns(10);
+		fld_Price3 = new JTextField();
+		fld_Price3.setBackground(Color.WHITE);
+		fld_Price3.setEditable(false);
+		fld_Price3.setBounds(322, 247, 130, 55);
+		PaneConcert.add(fld_Price3);
+		fld_Price3.setColumns(10);
 
 		JLabel lbl_CartName3 = new JLabel("Kart \u00FCzerindeki \u0130sim:");
 		lbl_CartName3.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -1103,34 +1202,34 @@ public class MainScreen extends JFrame {
 		lbl_Cvc3.setBounds(317, 56, 46, 14);
 		w_pane_Cart3.add(lbl_Cvc3);
 
-		txt_cvc3 = new JTextField();
-		txt_cvc3.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_cvc3.setBounds(356, 54, 46, 20);
-		txt_cvc3.addKeyListener(new KeyAdapter() {
+		fld_cvc3 = new JTextField();
+		fld_cvc3.setHorizontalAlignment(SwingConstants.CENTER);
+		fld_cvc3.setBounds(356, 54, 46, 20);
+		fld_cvc3.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_cvc3.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_cvc3.setEditable(true);
+					if (fld_cvc3.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_cvc3.setEditable(true);
 					} else {
-						txt_cvc3.setEditable(false);
+						fld_cvc3.setEditable(false);
 					}
 
 				} else {
-					txt_cvc3.setEditable(false);
+					fld_cvc3.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Cart3.add(txt_cvc3);
-		txt_cvc3.setColumns(10);
+		w_pane_Cart3.add(fld_cvc3);
+		fld_cvc3.setColumns(10);
 
-		txt_CartName3 = new JTextField();
-		txt_CartName3.setColumns(10);
-		txt_CartName3.setBackground(Color.WHITE);
-		txt_CartName3.setBounds(143, 9, 139, 20);
-		txt_CartName3.addKeyListener(new KeyAdapter() {
+		fld_CartName3 = new JTextField();
+		fld_CartName3.setColumns(10);
+		fld_CartName3.setBackground(Color.WHITE);
+		fld_CartName3.setBounds(143, 9, 139, 20);
+		fld_CartName3.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() == ' '
@@ -1142,42 +1241,42 @@ public class MainScreen extends JFrame {
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_CartName3.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_CartName3.setEditable(true);
+					if (fld_CartName3.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_CartName3.setEditable(true);
 					} else {
-						txt_CartName3.setEditable(false);
+						fld_CartName3.setEditable(false);
 					}
 
 				} else {
-					txt_CartName3.setEditable(false);
+					fld_CartName3.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Cart3.add(txt_CartName3);
+		w_pane_Cart3.add(fld_CartName3);
 
-		txt_CartNumber3 = new JTextField();
-		txt_CartNumber3.setColumns(10);
-		txt_CartNumber3.setBackground(Color.WHITE);
-		txt_CartNumber3.setBounds(143, 31, 139, 20);
-		txt_CartNumber3.addKeyListener(new KeyAdapter() {
+		fld_CartNumber3 = new JTextField();
+		fld_CartNumber3.setColumns(10);
+		fld_CartNumber3.setBackground(Color.WHITE);
+		fld_CartNumber3.setBounds(143, 31, 139, 20);
+		fld_CartNumber3.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (txt_CartNumber3.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						txt_CartNumber3.setEditable(true);
+					if (fld_CartNumber3.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_CartNumber3.setEditable(true);
 					} else {
-						txt_CartNumber3.setEditable(false);
+						fld_CartNumber3.setEditable(false);
 					}
 
 				} else {
-					txt_CartNumber3.setEditable(false);
+					fld_CartNumber3.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Cart3.add(txt_CartNumber3);
+		w_pane_Cart3.add(fld_CartNumber3);
 
 		JButton btn_MyTickets_1_1 = new JButton("Biletlerim");
 		btn_MyTickets_1_1.setForeground(SystemColor.menu);
@@ -1194,7 +1293,13 @@ public class MainScreen extends JFrame {
 		PaneConcert.add(btn_TicketCancel_1_1);
 
 		JButton btn_SelectCinema = new JButton("Se\u00E7");
-		btn_SelectCinema.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+		btn_SelectCinema.setFocusable(false);
+		btn_SelectCinema.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_SelectCinema.setForeground(new Color(0, 0, 0));
+		btn_SelectCinema.setBackground(new Color(204, 204, 255));
+		btn_SelectCinema.setBounds(432, 270, 60, 30);
+		contentPane.add(btn_SelectCinema);
+		btn_SelectCinema.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_SelectCinema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tabbedPane.getSelectedIndex() == 0) {
@@ -1206,11 +1311,11 @@ public class MainScreen extends JFrame {
 						String selCinemaSalon = table_Cinema.getModel().getValueAt(selRow, 3).toString();
 						String selCinemaSeance = table_Cinema.getModel().getValueAt(selRow, 4).toString();
 
-						txt_MovieName.setText(selCinemaName);
-						txt_MovieType.setText(selCinemaType);
-						txt_Director.setText(selCinemaDirector);
-						txt_Salon.setText(selCinemaSalon);
-						txt_Seance.setText(selCinemaSeance);
+						fld_MovieName.setText(selCinemaName);
+						fld_MovieType.setText(selCinemaType);
+						fld_Director.setText(selCinemaDirector);
+						fld_Salon.setText(selCinemaSalon);
+						fld_Seance.setText(selCinemaSeance);
 						lbl_Poster.setText("Poster");// Poster, Film Kayýt iþleminde poster ekledikten sonra
 														// ayarlanýlacak
 
@@ -1229,11 +1334,11 @@ public class MainScreen extends JFrame {
 						String selTheaterSalon = table_Theater.getModel().getValueAt(selRow1, 3).toString();
 						String selTheaterTime = table_Theater.getModel().getValueAt(selRow1, 4).toString();
 
-						txt_GameName.setText(selTheaterName);
-						txt_GameType.setText(selTheaterType);
-						txt_Director2.setText(selTheaterDirector);
-						txt_Salon2.setText(selTheaterSalon);
-						txt_Time.setText(selTheaterTime);
+						fld_GameName.setText(selTheaterName);
+						fld_GameType.setText(selTheaterType);
+						fld_Director2.setText(selTheaterDirector);
+						fld_Salon2.setText(selTheaterSalon);
+						fld_Time.setText(selTheaterTime);
 						lbl_Poster2.setText("Poster1");// Poster, Film Kayýt iþleminde poster ekledikten sonra
 														// ayarlanýlacak
 
@@ -1247,8 +1352,6 @@ public class MainScreen extends JFrame {
 				///////////////////////////////////////////////////////////////// oluþturulmadý.
 			}
 		});
-		btn_SelectCinema.setBounds(197, 526, 89, 30);
-		contentPane.add(btn_SelectCinema);
 		PaneConcert.setVisible(false);
 ///////////////////////////////////////////////////// PANEKONSER////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

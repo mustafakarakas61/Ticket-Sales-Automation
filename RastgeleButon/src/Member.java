@@ -6,6 +6,17 @@ import Helper.Metod_Helper;
 public class Member extends user{
 
 	DbHelper dbhelper = new DbHelper();
+	private String price ;
+
+	public String getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
 
 	public Member() {
 		super();
@@ -114,5 +125,6 @@ public class Member extends user{
 			return false;
 	}
 
+	
 	
 }
