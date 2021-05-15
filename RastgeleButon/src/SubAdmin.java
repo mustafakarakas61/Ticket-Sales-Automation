@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
@@ -96,9 +97,9 @@ public class SubAdmin extends JFrame {
 
 		cinemaModel = new DefaultTableModel();
 		Object[] colCinema = new Object[5];
-		colCinema[0] = "Film Adi";
-		colCinema[1] = "Film TÃ¼rÃ¼";
-		colCinema[2] = "YÃ¶netmen";
+		colCinema[0] = "Film Adý";
+		colCinema[1] = "Film Türü";
+		colCinema[2] = "Yönetmen";
 		colCinema[3] = "Salon";
 		colCinema[4] = "Seans";
 
@@ -107,8 +108,8 @@ public class SubAdmin extends JFrame {
 
 		concertModel = new DefaultTableModel();
 		Object[] colConcert = new Object[4];
-		colConcert[0] = "Konser AdÄ±";
-		colConcert[1] = "Konser TÃ¼rÃ¼";
+		colConcert[0] = "Konser Adý";
+		colConcert[1] = "Konser Türü";
 		colConcert[2] = "Tarih";
 		colConcert[3] = "Saat";
 
@@ -117,8 +118,8 @@ public class SubAdmin extends JFrame {
 
 		theaterModel = new DefaultTableModel();
 		Object[] colTheater = new Object[5];
-		colTheater[0] = "Oyun AdÄ±";
-		colTheater[1] = "Oyun TÃ¼rÃ¼";
+		colTheater[0] = "Oyun Adý";
+		colTheater[1] = "Oyun Türü";
 		colTheater[2] = "Tarih";
 		colTheater[3] = "Salon";
 		colTheater[4] = "Saat";
@@ -126,7 +127,8 @@ public class SubAdmin extends JFrame {
 		theaterModel.setColumnIdentifiers(colTheater);
 		theaterData = new Object[5];
 
-		JButton btn_ShowRemoval = new JButton("GÃ¶steri Ã‡Ä±kar");
+		JButton btn_ShowRemoval = new JButton("Gösteri Çýkar");
+		btn_ShowRemoval.setFont(new Font("Arial", Font.PLAIN, 11));
 		btn_ShowRemoval.setBounds(100, 421, 142, 34);
 		contentPane.add(btn_ShowRemoval);
 
@@ -146,6 +148,11 @@ public class SubAdmin extends JFrame {
 		w_paneCinema.add(scroll_Cinema);
 
 		table_Cinema = new JTable(cinemaModel);
+		table_Cinema.getColumn("Film Adý").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film Türü").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Yönetmen").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Seans").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Cinema.setViewportView(table_Cinema);
 		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(20);
 		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
@@ -174,9 +181,18 @@ public class SubAdmin extends JFrame {
 
 		JScrollPane scroll_Theater = new JScrollPane();
 		scroll_Theater.setBounds(0, 0, 400, 327);
+		table_Theater.getColumn("Konser Adý").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Konser Türü").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
 		w_paneTheater.add(scroll_Theater);
 
 		table_Theater = new JTable(theaterModel);
+		table_Theater.getColumn("Oyun Adý").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Oyun Türü").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Theater.setViewportView(table_Theater);
 		table_Theater.getColumnModel().getColumn(0).setPreferredWidth(20);
 		table_Theater.getColumnModel().getColumn(0).setResizable(false);
@@ -216,10 +232,7 @@ public class SubAdmin extends JFrame {
 		table_Concert.getColumnModel().getColumn(2).setResizable(false);
 		table_Concert.getColumnModel().getColumn(3).setPreferredWidth(20);
 		table_Concert.getColumnModel().getColumn(3).setResizable(false);
-		/*
-		 * table_Concert.getColumnModel().getColumn(4).setPreferredWidth(20);
-		 * table_Concert.getColumnModel().getColumn(4).setResizable(false);
-		 */
+	
 
 		for (int k = 0; k < konser.concertList().size(); k++) {
 			concertData[0] = konser.concertList().get(k).getConcertName();
@@ -236,22 +249,22 @@ public class SubAdmin extends JFrame {
 		paneAddCinema.setLayout(null);
 
 		JLabel lbl_MovieName = new JLabel("Film Adi:");
-		lbl_MovieName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lbl_MovieName.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_MovieName.setBounds(10, 10, 102, 28);
 		paneAddCinema.add(lbl_MovieName);
 
-		JLabel lbl_FilmDirector = new JLabel("YÃ¶netmen:");
-		lbl_FilmDirector.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JLabel lbl_FilmDirector = new JLabel("Yönetmen:");
+		lbl_FilmDirector.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_FilmDirector.setBounds(10, 45, 102, 28);
 		paneAddCinema.add(lbl_FilmDirector);
 
-		JLabel lbl_MovieType = new JLabel("Film TÃ¼rÃ¼:");
-		lbl_MovieType.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JLabel lbl_MovieType = new JLabel("Film Türü:");
+		lbl_MovieType.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_MovieType.setBounds(10, 72, 102, 28);
 		paneAddCinema.add(lbl_MovieType);
 
 		JLabel lbl_CinemaSalon = new JLabel("Salon:");
-		lbl_CinemaSalon.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lbl_CinemaSalon.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_CinemaSalon.setBounds(10, 110, 102, 28);
 		paneAddCinema.add(lbl_CinemaSalon);
 
@@ -316,12 +329,11 @@ public class SubAdmin extends JFrame {
 				int Adress = fs.showOpenDialog(null);
 				if (Adress == JFileChooser.APPROVE_OPTION) {
 					{
-						// System.out.println(fs.getSelectedFile());
-						// w:128 h:161
+						
 						ImageIcon imageIcon = new ImageIcon(fs.getSelectedFile().toString());
 						Image image = imageIcon.getImage();
 						Image newimg = image.getScaledInstance(128, 161, java.awt.Image.SCALE_SMOOTH);
-						// imageIcon = new ImageIcon(newimg);
+					
 						lbl_Poster.setIcon(new ImageIcon(newimg));
 						BufferedImage bImage = null;
 						try {
