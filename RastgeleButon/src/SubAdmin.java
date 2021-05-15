@@ -64,7 +64,7 @@ public class SubAdmin extends JFrame {
 	private static SubATheater tiyatro = new SubATheater();
 	private static SubAConcert konser = new SubAConcert();
 	private JTextField text_image;
-	private JTextField textField;
+	private JTextField txt_Seance;
 	Connection connection = null;
 	DbHelper dbHelper = new DbHelper();
 	Statement statement;
@@ -296,6 +296,15 @@ public class SubAdmin extends JFrame {
 
 		JComboBox comboBox_Salon = new JComboBox();
 		comboBox_Salon.setBounds(111, 116, 138, 21);
+		comboBox_Salon.addItem("A1");
+		comboBox_Salon.addItem("A2");
+		comboBox_Salon.addItem("A3");
+		comboBox_Salon.addItem("B1");
+		comboBox_Salon.addItem("B2");
+		comboBox_Salon.addItem("B3");
+		comboBox_Salon.addItem("C1");
+		comboBox_Salon.addItem("C2");
+		comboBox_Salon.addItem("C3");
 		paneAddCinema.add(comboBox_Salon);
 
 		JButton btn_AddCinema = new JButton("Film Ekle");
@@ -376,10 +385,19 @@ public class SubAdmin extends JFrame {
 		lbl_CinemaSeance_1.setBounds(10, 143, 102, 28);
 		paneAddCinema.add(lbl_CinemaSeance_1);
 
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(111, 148, 108, 23);
-		paneAddCinema.add(textField);
+		txt_Seance = new JTextField();
+		txt_Seance.setEditable(false);
+		txt_Seance.setBackground(Color.WHITE);
+		txt_Seance.setColumns(10);
+		
+		txt_Seance.setBounds(111, 148, 108, 23);
+		paneAddCinema.add(txt_Seance);
 	}
+	public String txtGetir(String seancee) {
+		txt_Seance.setText(seancee);
+
+		return seancee; 
+				}
+	
 }
 //

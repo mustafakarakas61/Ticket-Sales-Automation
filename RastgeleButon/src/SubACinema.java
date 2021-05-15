@@ -13,7 +13,7 @@ public class SubACinema {
 	private String filmType;
 	private String filmDirector;
 	private String filmSalon;
-	private String filmSeans;
+	private String filmSeance;
 
 	Connection connection = null;
 	DbHelper dbHelper = new DbHelper();
@@ -24,13 +24,13 @@ public class SubACinema {
 	}
 
 	public SubACinema(int filmID, String filmName, String filmType, String filmDirector, String filmSalon,
-			String filmSeans) {
+			String filmSeance) {
 		this.filmID = filmID;
 		this.filmName = filmName;
 		this.filmType = filmType;
 		this.filmDirector = filmDirector;
 		this.filmSalon = filmSalon;
-		this.filmSeans = filmSeans;
+		this.filmSeance = filmSeance;
 	}
 
 	public ArrayList<SubACinema> cinemaList() throws SQLException {
@@ -43,7 +43,7 @@ public class SubACinema {
 			while (result.next()) {
 				sinema = new SubACinema(result.getInt("filmID"), result.getString("filmName"),
 						result.getString("filmType"), result.getString("filmDirector"), result.getString("filmSalon"),
-						result.getString("filmSeans"));
+						result.getString("filmSeance"));
 				filmList.add(sinema);
 			}
 		} catch (SQLException e1) {
@@ -93,11 +93,11 @@ public class SubACinema {
 	}
 
 	public String getFilmSeans() {
-		return filmSeans;
+		return filmSeance;
 	}
 
-	public void setFilmSeans(String filmSeans) {
-		this.filmSeans = filmSeans;
+	public void setFilmSeans(String filmSeance) {
+		this.filmSeance = filmSeance;
 	}
 
 }

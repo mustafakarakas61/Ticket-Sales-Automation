@@ -128,6 +128,10 @@ public class MainScreen extends JFrame {
 
 		cinemaModel.setColumnIdentifiers(colCinema);
 		cinemaData = new Object[5]; // sqlden veri çekmek için
+		
+		
+		
+		
 
 //////////////////////////////////////////////////////////////////////////////////Tiyatro
 		theaterModel = new DefaultTableModel();
@@ -204,8 +208,8 @@ public class MainScreen extends JFrame {
 		table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(10);
 		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
 
-		/************************* Þimdilik Veri Ekliyorum ***************************/
-		cinemaData[0] = "Recep Ývedik 7";
+		//************************* Þimdilik Veri Ekliyorum ************************//
+	/*	cinemaData[0] = "Recep Ývedik 7";
 		cinemaData[1] = "Komedi";
 		cinemaData[2] = "Þahan Gökbakar";
 		cinemaData[3] = 1;
@@ -217,8 +221,9 @@ public class MainScreen extends JFrame {
 		cinemaData[3] = 4;
 		cinemaData[4] = "16:30";
 		cinemaModel.addRow(cinemaData);
-
-		/****************************************************/
+*/
+		
+	
 		JPanel w_paneTheater = new JPanel();
 		w_paneTheater.setBackground(SystemColor.inactiveCaption);
 		tabbedPane.addTab("Tiyatrolar", null, w_paneTheater, null);
