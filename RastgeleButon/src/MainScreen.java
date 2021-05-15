@@ -55,12 +55,10 @@ public class MainScreen extends JFrame {
 	private JTextField fld_MovieType;
 	private JTextField fld_Director;
 	private JTextField fld_Salon;
-	private JTextField fld_SelectSeat;
 	private JTextField fld_Seance;
 	private JTextField fld_Name_cinema;
 	private JTextField fld_Surname_cinema;
 	private JTextField fld_Mail_cinema;
-	private JTextField fld_Price;
 	private JTextField fld_cvc;
 	private JTextField fld_CartName;
 	private JTextField fld_CartNumber;
@@ -449,14 +447,6 @@ public class MainScreen extends JFrame {
 		fld_Salon.setBounds(140, 119, 65, 20);
 		PaneCinema.add(fld_Salon);
 
-		fld_SelectSeat = new JTextField();
-		fld_SelectSeat.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		fld_SelectSeat.setBackground(new Color(255, 255, 255));
-		fld_SelectSeat.setEditable(false);
-		fld_SelectSeat.setColumns(10);
-		fld_SelectSeat.setBounds(140, 165, 65, 20);
-		PaneCinema.add(fld_SelectSeat);
-
 		fld_Seance = new JTextField();
 		fld_Seance.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		fld_Seance.setBackground(new Color(255, 255, 255));
@@ -523,21 +513,6 @@ public class MainScreen extends JFrame {
 		fld_Mail_cinema.setBackground(new Color(255, 255, 255));
 		fld_Mail_cinema.setBounds(140, 281, 130, 20);
 		PaneCinema.add(fld_Mail_cinema);
-
-		JLabel lbl_Price = new JLabel("Toplam Tutar");
-		lbl_Price.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_Price.setBackground(new Color(255, 255, 255));
-		lbl_Price.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Price.setBounds(310, 260, 100, 20);
-		PaneCinema.add(lbl_Price);
-
-		fld_Price = new JTextField();
-		fld_Price.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		fld_Price.setBackground(new Color(255, 255, 255));
-		fld_Price.setEditable(false);
-		fld_Price.setBounds(310, 280, 100, 30);
-		PaneCinema.add(fld_Price);
-		fld_Price.setColumns(10);
 
 		JLabel lbl_CartName = new JLabel("Kart Üzerindeki Ýsim:");
 		lbl_CartName.setFont(new Font("SansSerif", Font.PLAIN, 15));
@@ -1380,7 +1355,5 @@ public class MainScreen extends JFrame {
 			}
 
 		});
-		
 	}
-
 }
