@@ -393,11 +393,7 @@ public class SubAdmin extends JFrame {
 		txt_Seance.setBounds(111, 148, 108, 23);
 		paneAddCinema.add(txt_Seance);
 	}
-	public String txtGetir(String seancee) {
-		txt_Seance.setText(seancee);
 
-		return seancee; 
-				}
 	
 }
 //
