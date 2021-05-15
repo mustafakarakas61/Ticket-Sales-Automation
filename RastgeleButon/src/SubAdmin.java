@@ -27,6 +27,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 
 import com.toedter.calendar.JDateChooser;
+
+import Helper.DbHelper;
+
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -35,15 +38,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class SubAdmin extends JFrame {
-	private DefaultTableModel CinemaModel;
-	private DefaultTableModel TheaterModel;
-	private DefaultTableModel ConcertModel;
-	private Object[] CinemaData = null;
-	private Object[] ConcertData = null;
-	private Object[] TheaterData = null;
+	private DefaultTableModel cinemaModel;
+	private DefaultTableModel theaterModel;
+	private DefaultTableModel concertModel;
+	private Object[] cinemaData = null;
+	private Object[] concertData = null;
+	private Object[] theaterData = null;
 	private JPanel contentPane;
 	private JTable table_Cinema;
 	private JTable table_Theater;
@@ -51,8 +59,14 @@ public class SubAdmin extends JFrame {
 	private JTextField txt_MovieName;
 	private JTextField txt_MovieDirector;
 	private static user sub = new user();
+	private static SubACinema sinema = new SubACinema();
+	private static SubATheater tiyatro = new SubATheater();
+	private static SubAConcert konser = new SubAConcert();
 	private JTextField text_image;
 	private JTextField textField;
+	Connection connection = null;
+	DbHelper dbHelper = new DbHelper();
+	Statement statement;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -69,8 +83,10 @@ public class SubAdmin extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @throws SQLException
 	 */
-	public SubAdmin(user sub) {
+	public SubAdmin(user sub) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 857, 518);
 		contentPane = new JPanel();
@@ -78,40 +94,39 @@ public class SubAdmin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		CinemaModel = new DefaultTableModel();
+		cinemaModel = new DefaultTableModel();
 		Object[] colCinema = new Object[5];
 		colCinema[0] = "Film Adi";
-		colCinema[1] = "Film Türü";
-		colCinema[2] = "Yönetmen";
+		colCinema[1] = "Film TÃ¼rÃ¼";
+		colCinema[2] = "YÃ¶netmen";
 		colCinema[3] = "Salon";
 		colCinema[4] = "Seans";
 
-		CinemaModel.setColumnIdentifiers(colCinema);
-		CinemaData = new Object[5];
+		cinemaModel.setColumnIdentifiers(colCinema);
+		cinemaData = new Object[5];
 
-		ConcertModel = new DefaultTableModel();
-		Object[] colConcert = new Object[5];
-		colConcert[0] = "Konser Adi";
-		colConcert[1] = "Konser türü";
+		concertModel = new DefaultTableModel();
+		Object[] colConcert = new Object[4];
+		colConcert[0] = "Konser AdÄ±";
+		colConcert[1] = "Konser TÃ¼rÃ¼";
 		colConcert[2] = "Tarih";
-		colConcert[3] = "Salon";
-		colConcert[4] = "Saat";
+		colConcert[3] = "Saat";
 
-		ConcertModel.setColumnIdentifiers(colConcert);
-		ConcertData = new Object[5];
+		concertModel.setColumnIdentifiers(colConcert);
+		concertData = new Object[4];
 
-		TheaterModel = new DefaultTableModel();
+		theaterModel = new DefaultTableModel();
 		Object[] colTheater = new Object[5];
-		colTheater[0] = "Oyun Adi";
-		colTheater[1] = "Oyun Türü";
+		colTheater[0] = "Oyun AdÄ±";
+		colTheater[1] = "Oyun TÃ¼rÃ¼";
 		colTheater[2] = "Tarih";
 		colTheater[3] = "Salon";
 		colTheater[4] = "Saat";
 
-		TheaterModel.setColumnIdentifiers(colTheater);
-		TheaterData = new Object[5];
+		theaterModel.setColumnIdentifiers(colTheater);
+		theaterData = new Object[5];
 
-		JButton btn_ShowRemoval = new JButton("G\u00F6steri \u00C7\u0131kar");
+		JButton btn_ShowRemoval = new JButton("GÃ¶steri Ã‡Ä±kar");
 		btn_ShowRemoval.setBounds(100, 421, 142, 34);
 		contentPane.add(btn_ShowRemoval);
 
@@ -130,7 +145,7 @@ public class SubAdmin extends JFrame {
 		scroll_Cinema.setBounds(0, 0, 400, 327);
 		w_paneCinema.add(scroll_Cinema);
 
-		table_Cinema = new JTable(CinemaModel);
+		table_Cinema = new JTable(cinemaModel);
 		scroll_Cinema.setViewportView(table_Cinema);
 		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(20);
 		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
@@ -143,6 +158,15 @@ public class SubAdmin extends JFrame {
 		table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(20);
 		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
 
+		for (int i = 0; i < sinema.cinemaList().size(); i++) {
+			cinemaData[0] = sinema.cinemaList().get(i).getFilmName();
+			cinemaData[1] = sinema.cinemaList().get(i).getFilmType();
+			cinemaData[2] = sinema.cinemaList().get(i).getFilmDirector();
+			cinemaData[3] = sinema.cinemaList().get(i).getFilmSalon();
+			cinemaData[4] = sinema.cinemaList().get(i).getFilmSeans();
+			cinemaModel.addRow(cinemaData);
+		}
+
 		JPanel w_paneTheater = new JPanel();
 		w_paneTheater.setBackground(Color.LIGHT_GRAY);
 		tabbedPane.addTab("Tiyatro", null, w_paneTheater, null);
@@ -152,7 +176,7 @@ public class SubAdmin extends JFrame {
 		scroll_Theater.setBounds(0, 0, 400, 327);
 		w_paneTheater.add(scroll_Theater);
 
-		table_Theater = new JTable(TheaterModel);
+		table_Theater = new JTable(theaterModel);
 		scroll_Theater.setViewportView(table_Theater);
 		table_Theater.getColumnModel().getColumn(0).setPreferredWidth(20);
 		table_Theater.getColumnModel().getColumn(0).setResizable(false);
@@ -165,6 +189,15 @@ public class SubAdmin extends JFrame {
 		table_Theater.getColumnModel().getColumn(4).setPreferredWidth(20);
 		table_Theater.getColumnModel().getColumn(4).setResizable(false);
 
+		for (int j = 0; j < tiyatro.theaterList().size(); j++) {
+			theaterData[0] = tiyatro.theaterList().get(j).getTiyatroName();
+			theaterData[1] = tiyatro.theaterList().get(j).getTiyatroType();
+			theaterData[2] = tiyatro.theaterList().get(j).getTiyatroDate();
+			theaterData[3] = tiyatro.theaterList().get(j).getTiyatroSalon();
+			theaterData[4] = tiyatro.theaterList().get(j).getTiyatroSaat();
+			theaterModel.addRow(theaterData);
+		}
+
 		JPanel w_paneConcert = new JPanel();
 		w_paneConcert.setBackground(SystemColor.info);
 		tabbedPane.addTab("Konser", null, w_paneConcert, null);
@@ -174,7 +207,7 @@ public class SubAdmin extends JFrame {
 		scroll_Concert.setBounds(0, 0, 400, 327);
 		w_paneConcert.add(scroll_Concert);
 
-		table_Concert = new JTable(ConcertModel);
+		table_Concert = new JTable(concertModel);
 		scroll_Concert.setViewportView(table_Concert);
 		table_Concert.getColumnModel().getColumn(0).setResizable(false);
 		table_Concert.getColumnModel().getColumn(1).setPreferredWidth(20);
@@ -183,8 +216,18 @@ public class SubAdmin extends JFrame {
 		table_Concert.getColumnModel().getColumn(2).setResizable(false);
 		table_Concert.getColumnModel().getColumn(3).setPreferredWidth(20);
 		table_Concert.getColumnModel().getColumn(3).setResizable(false);
-		table_Concert.getColumnModel().getColumn(4).setPreferredWidth(20);
-		table_Concert.getColumnModel().getColumn(4).setResizable(false);
+		/*
+		 * table_Concert.getColumnModel().getColumn(4).setPreferredWidth(20);
+		 * table_Concert.getColumnModel().getColumn(4).setResizable(false);
+		 */
+
+		for (int k = 0; k < konser.concertList().size(); k++) {
+			concertData[0] = konser.concertList().get(k).getConcertName();
+			concertData[1] = konser.concertList().get(k).getConcertType();
+			concertData[2] = konser.concertList().get(k).getConcertDate();
+			concertData[3] = konser.concertList().get(k).getConcertTime();
+			concertModel.addRow(concertData);
+		}
 
 		JPanel paneAddCinema = new JPanel();
 		paneAddCinema.setBackground(SystemColor.inactiveCaption);
@@ -197,12 +240,12 @@ public class SubAdmin extends JFrame {
 		lbl_MovieName.setBounds(10, 10, 102, 28);
 		paneAddCinema.add(lbl_MovieName);
 
-		JLabel lbl_FilmDirector = new JLabel("Yönetmen:");
+		JLabel lbl_FilmDirector = new JLabel("YÃ¶netmen:");
 		lbl_FilmDirector.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_FilmDirector.setBounds(10, 45, 102, 28);
 		paneAddCinema.add(lbl_FilmDirector);
 
-		JLabel lbl_MovieType = new JLabel("Film Türü:");
+		JLabel lbl_MovieType = new JLabel("Film TÃ¼rÃ¼:");
 		lbl_MovieType.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_MovieType.setBounds(10, 72, 102, 28);
 		paneAddCinema.add(lbl_MovieType);
@@ -266,42 +309,43 @@ public class SubAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				JFileChooser fs = new JFileChooser();
-				fs.setDialogTitle("Bir Resim Seç");
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Resim Dosyasý", "jpg", "jpeg", "png");
+				fs.setDialogTitle("Bir Resim SeÃ§");
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Resim DosyasÄ±", "jpg", "jpeg", "png");
 
 				fs.setFileFilter(filter);
-                int Adress = fs.showOpenDialog(null);
-                if (Adress == JFileChooser.APPROVE_OPTION) { {
-                      //   System.out.println(fs.getSelectedFile());
-                        //w:128 h:161
-                	ImageIcon imageIcon = new ImageIcon(fs.getSelectedFile().toString());
-					Image image = imageIcon.getImage();
-					Image newimg = image.getScaledInstance(128, 161,  java.awt.Image.SCALE_SMOOTH);
-					//imageIcon = new ImageIcon(newimg);
-                         lbl_Poster.setIcon(new ImageIcon(newimg));
-                         BufferedImage bImage = null;
-                         try {
-                             File initialImage = new File(fs.getSelectedFile().toString());
-                             bImage = ImageIO.read(initialImage);
-                             ImageIO.write(bImage, "jpg", new File("C://Users/dogak/git/booking2/RastgeleButon/src/Images/image.png"));
-                         } catch (IOException j) {
-                               System.out.println("Exception occured :" + j.getMessage());
-                         }
-                         
-                  
-                         	
-                }}
-				
+				int Adress = fs.showOpenDialog(null);
+				if (Adress == JFileChooser.APPROVE_OPTION) {
+					{
+						// System.out.println(fs.getSelectedFile());
+						// w:128 h:161
+						ImageIcon imageIcon = new ImageIcon(fs.getSelectedFile().toString());
+						Image image = imageIcon.getImage();
+						Image newimg = image.getScaledInstance(128, 161, java.awt.Image.SCALE_SMOOTH);
+						// imageIcon = new ImageIcon(newimg);
+						lbl_Poster.setIcon(new ImageIcon(newimg));
+						BufferedImage bImage = null;
+						try {
+							File initialImage = new File(fs.getSelectedFile().toString());
+							bImage = ImageIO.read(initialImage);
+							ImageIO.write(bImage, "jpg",
+									new File("C://Users/dogak/git/booking2/RastgeleButon/src/Images/image.png"));
+						} catch (IOException j) {
+							System.out.println("Exception occured :" + j.getMessage());
+						}
+
+					}
+				}
+
 			}
 		});
 		btn_ImageSelect.setBounds(314, 182, 102, 31);
 		paneAddCinema.add(btn_ImageSelect);
-		
+
 		JLabel lblimage = new JLabel("Resim:");
 		lblimage.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblimage.setBounds(10, 211, 50, 28);
 		paneAddCinema.add(lblimage);
-		
+
 		text_image = new JTextField();
 		text_image.setBounds(111, 211, 138, 19);
 		paneAddCinema.add(text_image);
@@ -317,12 +361,12 @@ public class SubAdmin extends JFrame {
 			}
 		});
 		btn_AddSeance.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
+
 		JLabel lbl_CinemaSeance_1 = new JLabel("Seans:");
 		lbl_CinemaSeance_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_CinemaSeance_1.setBounds(10, 143, 102, 28);
 		paneAddCinema.add(lbl_CinemaSeance_1);
-		
+
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(111, 148, 108, 23);
