@@ -298,6 +298,15 @@ public class SubAdmin extends JFrame {
 		JComboBox comboBox_Salon = new JComboBox();
 		comboBox_Salon.setBounds(111, 116, 138, 21);
 		paneAddCinema.add(comboBox_Salon);
+		comboBox_Salon.addItem("A-1");
+		comboBox_Salon.addItem("A-2");
+		comboBox_Salon.addItem("A-3");
+		comboBox_Salon.addItem("B-1");
+		comboBox_Salon.addItem("B-2");
+		comboBox_Salon.addItem("B-3");
+		comboBox_Salon.addItem("C-1");
+		comboBox_Salon.addItem("C-2");
+		comboBox_Salon.addItem("C-3");
 
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(111, 147, 138, 20);
