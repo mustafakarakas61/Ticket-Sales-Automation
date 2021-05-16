@@ -40,10 +40,11 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 	private JPanel contentPane;
 	SeatHelper[][] seat = new SeatHelper[10][15];
-	private JTextField txt_TotalSeats;
+	public JTextField txt_TotalSeats;
 	private JTextField txt_TotalStudent;
 	private JTextField txt_Total;
 	private JTextField txt_SelectedSeatsNumbers;
+
 	/**
 	 * Launch the application.
 	 */
@@ -147,8 +148,14 @@ public class SeatSelection extends JFrame implements MouseListener {
 		JButton btn_Confirm = new JButton("Onayla");
 		btn_Confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BuyTicket.seat=txt_SelectedSeatsNumbers.getText();
-				BuyTicket.price=txt_Total.getText();
+				BuyTicket.seat = txt_SelectedSeatsNumbers.getText();
+				BuyTicket.price = txt_Total.getText();
+				BuyTicket.seatCount = txt_TotalSeats.getText();
+				BuyTicket.studentCount = txt_TotalStudent.getText();
+				if(txt_TotalStudent.getText().length()==0)
+				{
+					BuyTicket.studentCount="0";
+				}
 				dispose();
 			}
 		});
@@ -326,7 +333,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_EmptySeatIcon.setBounds(11, 533, 21, 28);
 		contentPane.add(lbl_EmptySeatIcon);
 
-		JLabel lbl_EmptySeatLabel = new JLabel("Boþ Koltuk");
+		JLabel lbl_EmptySeatLabel = new JLabel("BoÅŸ Koltuk");
 		lbl_EmptySeatLabel.setFont(new Font("Arial", Font.BOLD, 12));
 		lbl_EmptySeatLabel.setBounds(35, 540, 80, 14);
 		contentPane.add(lbl_EmptySeatLabel);
@@ -341,17 +348,17 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_SelectedSeatIcon.setBounds(11, 559, 21, 28);
 		contentPane.add(lbl_SelectedSeatIcon);
 
-		JLabel lbl_SelectedSeatLabel = new JLabel("Seçili Koltuk");
+		JLabel lbl_SelectedSeatLabel = new JLabel("SeÃ§ili Koltuk");
 		lbl_SelectedSeatLabel.setFont(new Font("Arial", Font.BOLD, 13));
 		lbl_SelectedSeatLabel.setBounds(35, 565, 80, 14);
 		contentPane.add(lbl_SelectedSeatLabel);
 
-		JLabel lbl_SelectedTotalSeat = new JLabel("Secilen Koltuk Sayýsý:");
+		JLabel lbl_SelectedTotalSeat = new JLabel("Secilen Koltuk SayÄ±sÄ±:");
 		lbl_SelectedTotalSeat.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_SelectedTotalSeat.setBounds(620, 513, 170, 20);
 		contentPane.add(lbl_SelectedTotalSeat);
 
-		JLabel lbl_SelectedSeatsNumbers = new JLabel("Seçilen Koltuk Numaralari :");
+		JLabel lbl_SelectedSeatsNumbers = new JLabel("SeÃ§ilen Koltuk Numaralari :");
 		lbl_SelectedSeatsNumbers.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_SelectedSeatsNumbers.setBounds(620, 536, 170, 23);
 		contentPane.add(lbl_SelectedSeatsNumbers);
@@ -370,40 +377,39 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_TicketPrice.setBounds(161, 522, 170, 20);
 		contentPane.add(lbl_TicketPrice);
 
-		JLabel lbl_StudentTicketPrice = new JLabel("Öðrenci Bilet Fiyati : 13TL");
+		JLabel lbl_StudentTicketPrice = new JLabel("Ã–ÄŸrenci Bilet Fiyati : 13TL");
 		lbl_StudentTicketPrice.setFont(new Font("Arial", Font.BOLD, 14));
 		lbl_StudentTicketPrice.setBounds(161, 550, 186, 23);
 		contentPane.add(lbl_StudentTicketPrice);
 
-		JLabel lbl_TotalStudentLabel = new JLabel("Öðrenci Sayisi :");
+		JLabel lbl_TotalStudentLabel = new JLabel("Ã–ÄŸrenci Sayisi :");
 		lbl_TotalStudentLabel.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_TotalStudentLabel.setBounds(620, 559, 170, 23);
 		contentPane.add(lbl_TotalStudentLabel);
 
-		txt_TotalStudent = new JTextField();
+		txt_TotalStudent = new JTextField("0");
 		txt_TotalStudent.setFont(new Font("Arial", Font.BOLD, 15));
 		txt_TotalStudent.setColumns(10);
 		txt_TotalStudent.setBackground(Color.WHITE);
 		txt_TotalStudent.setBounds(792, 561, 65, 20);
-	
+
 		contentPane.add(txt_TotalStudent);
-		
+
 		JLabel lblNewLabel = new JLabel("Tutar:");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
 		lblNewLabel.setBounds(884, 530, 55, 39);
 		contentPane.add(lblNewLabel);
 
 		txt_Total = new JTextField();
-		
+
 		txt_Total.setBackground(new Color(255, 255, 255));
 		txt_Total.setEditable(false);
 		txt_Total.setForeground(new Color(0, 128, 0));
 		txt_Total.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 26));
 		txt_Total.setHorizontalAlignment(SwingConstants.CENTER);
-	
+
 		txt_Total.setBounds(949, 517, 125, 61);
-		
-		
+
 		contentPane.add(txt_Total);
 		txt_Total.setColumns(10);
 
@@ -421,7 +427,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		SeatHelper s = (SeatHelper) e.getComponent();
 		String seatName = null;
-		
+
 		if (e.getButton() == 1) {
 			if (!(s.isSeatSelect())) {
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatSelect.png"));
@@ -505,29 +511,24 @@ public class SeatSelection extends JFrame implements MouseListener {
 					seatName = ("J" + (s.getCol()));
 
 				}
-				
-				
-				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText()+"*"+seatName);
-				
-				String sentence=txt_SelectedSeatsNumbers.getText();
-				int charCount=0;
-				System.out.println(sentence);
-				for(int i=0;i<sentence.length();i++)
-				{
-					
-					if(sentence.charAt(i)=='*')
-					{
-						
-						txt_TotalSeats.setText(""+(charCount+1));
+
+				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText() + "*" + seatName);
+
+				String sentence = txt_SelectedSeatsNumbers.getText();
+				int charCount = 0;
+				for (int i = 0; i < sentence.length(); i++) {
+
+					if (sentence.charAt(i) == '*') {
+
+						txt_TotalSeats.setText("" + (charCount + 1));
 						charCount++;
 					}
 				}
-				
-				
+
 				s.setIcon(imageIcon);
-				
+
 				s.setSeatSelect(true);
-				
+
 			} else {
 				if (s.getRow() == 0 && s.getCol() < 7) {
 					seatName = ("A" + (s.getCol() + 1));
@@ -609,44 +610,43 @@ public class SeatSelection extends JFrame implements MouseListener {
 					seatName = ("J" + (s.getCol()));
 
 				}
-				
+
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatOn.png"));
 				s.setIcon(imageIcon);
-				
-				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText().replace("*"+seatName, ""));
-				int totalSeatsCount=Integer.parseInt(txt_TotalSeats.getText());
-				int newCount=totalSeatsCount-1;
-				txt_TotalSeats.setText(""+newCount);
+
+				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText().replace("*" + seatName, ""));
+				int totalSeatsCount = Integer.parseInt(txt_TotalSeats.getText());
+				int newCount = totalSeatsCount - 1;
+				txt_TotalSeats.setText("" + newCount);
 				s.setSeatSelect(false);
-			
+
 			}
-			
+
 		}
-		txt_TotalStudent.addKeyListener(new KeyAdapter(){
-			
-	         public void keyPressed(KeyEvent ke) {
-	            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
-	            	
-	            if( txt_TotalStudent.getText().length()<=4 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
-	            {	
-	            	
-	            	txt_TotalStudent.setEditable(true);
-	            }
-	            else {
-	            	txt_TotalStudent.setEditable(false);
-	            }
-	            
-	            } else{
-	            	txt_TotalStudent.setEditable(false);
-	            	
-	            }
-	         }
-	      });
-		if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
-		{
-		txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"TL");
-		}
-		else {
+		txt_TotalStudent.addKeyListener(new KeyAdapter() {
+
+			public void keyPressed(KeyEvent ke) {
+				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+
+					if (txt_TotalStudent.getText().length() <= 4 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+
+						txt_TotalStudent.setEditable(true);
+					} else {
+						txt_TotalStudent.setEditable(false);
+					}
+
+				} else {
+					txt_TotalStudent.setEditable(false);
+
+				}
+			}
+		});
+		if (Integer.parseInt(txt_TotalSeats.getText()) >= Integer.parseInt("0" + txt_TotalStudent.getText())) {
+			txt_Total.setText("" + Math.abs(
+					((Integer.parseInt(txt_TotalSeats.getText()) - Integer.parseInt("0" + txt_TotalStudent.getText()))
+							* 20 + Integer.parseInt("0" + txt_TotalStudent.getText()) * 13))
+					+ "TL");
+		} else {
 			txt_Total.setText("");
 		}
 		txt_TotalStudent.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
@@ -654,46 +654,47 @@ public class SeatSelection extends JFrame implements MouseListener {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				txt_TotalStudent.addKeyListener(new KeyAdapter(){
-					
-			         public void keyPressed(KeyEvent ke) {
-			            if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE ) {
-			            	
-			            if( txt_TotalStudent.getText().length()<=4 || ke.getKeyCode()== KeyEvent.VK_BACK_SPACE )	
-			            {	
-			            	
-			            	txt_TotalStudent.setEditable(true);
-			            }
-			            else {
-			            	txt_TotalStudent.setEditable(false);
-			            }
-			            
-			            } else{
-			            	txt_TotalStudent.setEditable(false);
-			            	
-			            }
-			         }
-			      });
-				
-				if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
-				{
-				txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"TL");
+				txt_TotalStudent.addKeyListener(new KeyAdapter() {
+
+					public void keyPressed(KeyEvent ke) {
+						if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+								|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+
+							if (txt_TotalStudent.getText().length() <= 4 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+
+								txt_TotalStudent.setEditable(true);
+							} else {
+								txt_TotalStudent.setEditable(false);
+							}
+
+						} else {
+							txt_TotalStudent.setEditable(false);
+
+						}
+					}
+				});
+
+				if (Integer.parseInt(txt_TotalSeats.getText()) >= Integer.parseInt("0" + txt_TotalStudent.getText())) {
+					txt_Total.setText("" + Math.abs(((Integer.parseInt(txt_TotalSeats.getText())
+							- Integer.parseInt("0" + txt_TotalStudent.getText())) * 20
+							+ Integer.parseInt("0" + txt_TotalStudent.getText()) * 13)) + "TL");
 				}
-			
+
 				else {
 					txt_Total.setText("");
 				}
-				
+
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				if(Integer.parseInt(txt_TotalSeats.getText())>=Integer.parseInt("0"+txt_TotalStudent.getText()))
-				{
-				txt_Total.setText(""+Math.abs(((Integer.parseInt(txt_TotalSeats.getText())-Integer.parseInt("0"+txt_TotalStudent.getText()))*20+Integer.parseInt("0"+txt_TotalStudent.getText())*13))+"TL");
+				if (Integer.parseInt(txt_TotalSeats.getText()) >= Integer.parseInt("0" + txt_TotalStudent.getText())) {
+					txt_Total.setText("" + Math.abs(((Integer.parseInt(txt_TotalSeats.getText())
+							- Integer.parseInt("0" + txt_TotalStudent.getText())) * 20
+							+ Integer.parseInt("0" + txt_TotalStudent.getText()) * 13)) + "TL");
 				}
-			
+
 				else {
 					txt_Total.setText("");
 				}
@@ -702,12 +703,12 @@ public class SeatSelection extends JFrame implements MouseListener {
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			 
-				});
+
+		});
 	}
- 
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 
@@ -731,6 +732,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 		SeatHelper s = (SeatHelper) e.getComponent();
 		s.setBackground(Color.white);
 		s.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
-		
+
 	}
 }
