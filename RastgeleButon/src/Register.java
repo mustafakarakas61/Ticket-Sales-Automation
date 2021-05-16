@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -22,16 +21,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JComboBox;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
-//Register
+
 public class Register extends JFrame {
 
 	private JPanel contentPane;
@@ -128,10 +125,13 @@ public class Register extends JFrame {
 					 JOptionPane.showMessageDialog(null, "Kullanýcý sözleþmesini ve davranýþ kurallarýný kabul etmelisiniz.", "Mesaj", JOptionPane.INFORMATION_MESSAGE);
 					 passfld_p2.setText("");
 				 }
-				else {  
+				else {  		//kayýt ol kýsmý -------------------------------------
 					boolean control = member.register(txt_TCNo.getText()
 							, passfld_p1.getText()
-							, txt_Name.getText());
+							, txt_Name.getText()
+							,txt_mail.getText()
+							,txt_Surname.getText()
+							);
 					
 					if (control) {
 						Metod_Helper.showMsg("succes");

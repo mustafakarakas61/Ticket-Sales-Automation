@@ -23,12 +23,12 @@ public class Member extends user{
 	}
 
 	
-	public boolean register(String tcno, String pass, String name) {
+	public boolean register(String tcno, String pass, String name ,String email, String surname) {
 
 		int key = 0;
 
 		boolean duplicate = false;
-		String query = "insert into register (TC_No,Pass,Name) values (?,?,?)";
+		String query = "insert into register (TC_No,Pass,Name,Email,Surname) values (?,?,?,?,?)";
 
 		try {
 			connection = dbhelper.getConnection();
@@ -50,6 +50,8 @@ public class Member extends user{
 				pStatement.setString(1, tcno);
 				pStatement.setString(2, pass);
 				pStatement.setString(3, name);
+				pStatement.setString(4, email);
+				pStatement.setString(5, surname);
 				pStatement.executeUpdate();
 				key = 1;
 			}
