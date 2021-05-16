@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import Helper.Metod_Helper;
 import Helper.SeatHelper;
 
 import javax.swing.JLabel;
@@ -148,7 +149,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 				BuyTicket.seat=txt_SelectedSeatsNumbers.getText();
 				BuyTicket.price=txt_Total.getText();
-
 				dispose();
 			}
 		});
