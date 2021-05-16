@@ -302,11 +302,11 @@ public class MainScreen extends JFrame {
 		 */
 
 		for (int i = 0; i < tiyatro.theaterList().size(); i++) {
-			theaterData[0] = tiyatro.theaterList().get(i).getTiyatroName();
-			theaterData[1] = tiyatro.theaterList().get(i).getTiyatroType();
-			theaterData[2] = tiyatro.theaterList().get(i).getTiyatroDate();
-			theaterData[3] = tiyatro.theaterList().get(i).getTiyatroSalon();
-			theaterData[4] = tiyatro.theaterList().get(i).getTiyatroSaat();
+			theaterData[0] = tiyatro.theaterList().get(i).getTheaterName();
+			theaterData[1] = tiyatro.theaterList().get(i).getTheaterType();
+			theaterData[2] = tiyatro.theaterList().get(i).getTheaterDate();
+			theaterData[3] = tiyatro.theaterList().get(i).getTheaterDate();
+			theaterData[4] = tiyatro.theaterList().get(i).getTheaterHour();
 			theaterModel.addRow(theaterData);
 		}
 
