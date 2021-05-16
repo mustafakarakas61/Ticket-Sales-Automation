@@ -204,11 +204,11 @@ public class SubAdmin extends JFrame {
 		table_Theater.getColumnModel().getColumn(4).setResizable(false);
 
 		for (int j = 0; j < tiyatro.theaterList().size(); j++) {
-			theaterData[0] = tiyatro.theaterList().get(j).getTiyatroName();
-			theaterData[1] = tiyatro.theaterList().get(j).getTiyatroType();
-			theaterData[2] = tiyatro.theaterList().get(j).getTiyatroDate();
-			theaterData[3] = tiyatro.theaterList().get(j).getTiyatroSalon();
-			theaterData[4] = tiyatro.theaterList().get(j).getTiyatroSaat();
+			theaterData[0] = tiyatro.theaterList().get(j).getTheaterName();
+			theaterData[1] = tiyatro.theaterList().get(j).getTheaterType();
+			theaterData[2] = tiyatro.theaterList().get(j).getTheaterDate();
+			theaterData[3] = tiyatro.theaterList().get(j).getTheaterSalon();
+			theaterData[4] = tiyatro.theaterList().get(j).getTheaterHour();
 			theaterModel.addRow(theaterData);
 		}
 

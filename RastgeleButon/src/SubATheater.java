@@ -8,12 +8,12 @@ import Helper.DbHelper;
 
 public class SubATheater {
 
-	private int tiyatroID;
-	private String tiyatroName;
-	private String tiyatroType;
-	private String tiyatroDate;
-	private String tiyatroSalon;
-	private String tiyatroSaat;
+	private int TheaterID;
+	private String TheaterName;
+	private String TheaterType;
+	private String TheaterDate;
+	private String TheaterSalon;
+	private String TheaterHour;
 
 	Connection connection = null;
 	DbHelper dbHelper = new DbHelper();
@@ -23,14 +23,14 @@ public class SubATheater {
 
 	}
 
-	public SubATheater(int tiyatroID, String tiyatroName, String tiyatroType, String tiyatroDate, String tiyatroSalon,
-			String tiyatroSaat) {
-		this.tiyatroID = tiyatroID;
-		this.tiyatroName = tiyatroName;
-		this.tiyatroType = tiyatroType;
-		this.tiyatroDate = tiyatroDate;
-		this.tiyatroSalon = tiyatroSalon;
-		this.tiyatroSaat = tiyatroSaat;
+	public SubATheater(int TheaterID, String TheaterName, String TheaterType, String TheaterDate, String TheaterSalon,
+			String TheaterHour) {
+		this.TheaterID = TheaterID;
+		this.TheaterName = TheaterName;
+		this.TheaterType = TheaterType;
+		this.TheaterDate = TheaterDate;
+		this.TheaterSalon = TheaterSalon;
+		this.TheaterHour = TheaterHour;
 	}
 
 	public ArrayList<SubATheater> theaterList() throws SQLException {
@@ -41,9 +41,9 @@ public class SubATheater {
 			ResultSet result = statement.executeQuery("SELECT * FROM booking.tiyatro");
 			SubATheater tiyatro;
 			while (result.next()) {
-				tiyatro = new SubATheater(result.getInt("tiyatroID"), result.getString("tiyatroName"),
-						result.getString("tiyatroType"), result.getString("tiyatroDate"),
-						result.getString("tiyatroSalon"), result.getString("tiyatroSaat"));
+				tiyatro = new SubATheater(result.getInt("TheaterID"), result.getString("TheaterName"),
+						result.getString("TheaterType"), result.getString("TheaterDate"),
+						result.getString("TheaterSalon"), result.getString("TheaterHour"));
 				oyunList.add(tiyatro);
 			}
 		} catch (SQLException e1) {
@@ -52,52 +52,52 @@ public class SubATheater {
 		return oyunList;
 	}
 
-	public int getTiyatroID() {
-		return tiyatroID;
+	public int getTheaterID() {
+		return TheaterID;
 	}
 
-	public void setTiyatroID(int tiyatroID) {
-		this.tiyatroID = tiyatroID;
+	public void setTheaterID(int TheaterID) {
+		this.TheaterID = TheaterID;
 	}
 
-	public String getTiyatroName() {
-		return tiyatroName;
+	public String getTheaterName() {
+		return TheaterName;
 	}
 
-	public void setTiyatroName(String tiyatroName) {
-		this.tiyatroName = tiyatroName;
+	public void setTheaterName(String TheaterName) {
+		this.TheaterName = TheaterName;
 	}
 
-	public String getTiyatroType() {
-		return tiyatroType;
+	public String getTheaterType() {
+		return TheaterType;
 	}
 
-	public void setTiyatroType(String tiyatroType) {
-		this.tiyatroType = tiyatroType;
+	public void setTheaterType(String TheaterType) {
+		this.TheaterType = TheaterType;
 	}
 
-	public String getTiyatroDate() {
-		return tiyatroDate;
+	public String getTheaterDate() {
+		return TheaterDate;
 	}
 
-	public void setTiyatroDate(String tiyatroDate) {
-		this.tiyatroDate = tiyatroDate;
+	public void TheaterDate(String TheaterDate) {
+		this.TheaterDate = TheaterDate;
 	}
 
-	public String getTiyatroSalon() {
-		return tiyatroSalon;
+	public String getTheaterSalon() {
+		return TheaterSalon;
 	}
 
-	public void setTiyatroSalon(String tiyatroSalon) {
-		this.tiyatroSalon = tiyatroSalon;
+	public void setTheaterSalon(String TheaterSalon) {
+		this.TheaterSalon = TheaterSalon;
 	}
 
-	public String getTiyatroSaat() {
-		return tiyatroSaat;
+	public String getTheaterHour() {
+		return TheaterHour;
 	}
 
-	public void setTiyatroSaat(String tiyatroSaat) {
-		this.tiyatroSaat = tiyatroSaat;
+	public void setTheaterHour(String TheaterHour) {
+		this.TheaterHour = TheaterHour;
 	}
 
 }
