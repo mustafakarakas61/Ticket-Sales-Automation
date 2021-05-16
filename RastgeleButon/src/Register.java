@@ -31,7 +31,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
-
+//Register
 public class Register extends JFrame {
 
 	private JPanel contentPane;
@@ -197,7 +197,7 @@ public class Register extends JFrame {
 
 				} else {
 					txt_Name.setEditable(false);
-
+ 
 				}
 			}
 		});
