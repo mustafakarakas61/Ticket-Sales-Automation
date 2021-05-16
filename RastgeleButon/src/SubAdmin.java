@@ -37,6 +37,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -47,7 +48,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-//SubAdmin Boþ güncelleme
+
 public class SubAdmin extends JFrame {
 	private DefaultTableModel cinemaModel;
 	private DefaultTableModel theaterModel;
@@ -316,37 +317,60 @@ public class SubAdmin extends JFrame {
 		lbl_Poster.setBounds(288, 10, 128, 161);
 		paneAddCinema.add(lbl_Poster);
 
-		JButton btn_ImageSelect = new JButton("Afi\u015F Se\u00E7");
+		JButton btn_ImageSelect = new JButton("Afiþ Seç");
 		btn_ImageSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//------------------------------------------------------------------------------------------------
+//			try {
+//				FileInputStream fis= new FileInputStream("gora.jpg");
+//				
+//				boolean control =sinema.insertPic(fis);
+//				if (control) {
+//					System.out.println("islem basarýlý");
+//				}else
+//					System.out.println("bir yanlýþlýk oldu");
+//
+//			} catch (FileNotFoundException e1) {
+//				e1.printStackTrace();
+//			}
+			
+//-------------------------------------------------------------------------------------------------
 
-				JFileChooser fs = new JFileChooser();
-				fs.setDialogTitle("Bir Resim SeÃ§");
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Resim DosyasÄ±", "jpg", "jpeg", "png");
+			JFileChooser fs = new JFileChooser();
+			fs.setDialogTitle("Bir Resim Sec");
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("Resim Dosyassi", "jpg", "jpeg", "png");
 
-				fs.setFileFilter(filter);
-				int Adress = fs.showOpenDialog(null);
-				if (Adress == JFileChooser.APPROVE_OPTION) {
-					{
-						
-						ImageIcon imageIcon = new ImageIcon(fs.getSelectedFile().toString());
-						Image image = imageIcon.getImage();
-						Image newimg = image.getScaledInstance(128, 161, java.awt.Image.SCALE_SMOOTH);
+			fs.setFileFilter(filter);
+			int Adress = fs.showOpenDialog(null);
+			if (Adress == JFileChooser.APPROVE_OPTION) {
+				{
 					
-						lbl_Poster.setIcon(new ImageIcon(newimg));
-						BufferedImage bImage = null;
-						try {
-							File initialImage = new File(fs.getSelectedFile().toString());
-							bImage = ImageIO.read(initialImage);
-							ImageIO.write(bImage, "jpg",
-									new File("C://Users/dogak/git/booking2/RastgeleButon/src/Images/image.png"));
-						} catch (IOException j) {
-							System.out.println("Exception occured :" + j.getMessage());
-						}
-
+					ImageIcon imageIcon = new ImageIcon(fs.getSelectedFile().toString());
+					Image image = imageIcon.getImage();
+					Image newimg = image.getScaledInstance(128, 161, java.awt.Image.SCALE_SMOOTH);
+				
+					lbl_Poster.setIcon(new ImageIcon(newimg));
+					BufferedImage bImage = null;
+					try {
+						File initialImage = new File(fs.getSelectedFile().toString());
+						bImage = ImageIO.read(initialImage);
+				//-------------------------------------------------------------------------		
+						FileInputStream fis = new FileInputStream("C://Users/yakup/git/booking2/RastgeleButon/src/Images/image.png"); 
+						boolean control =sinema.insertPic(fis);
+						if (control) {
+							System.out.println("islem basarýlý");
+						}else
+						System.out.println("bir yanlýþlýk oldu");
+			 //-----------------------------------------------------------------------------
+//						ImageIO.write(bImage, "jpg",
+//								new File("C://Users/yakup//git/booking2/RastgeleButon/src/Images/image.png"));
+					} catch (IOException j) {
+						System.out.println("Exception occured :" + j.getMessage());
 					}
-				}
 
+				}
+			}
+//-----------------------------------------------------------------------------------------------
 			}
 		});
 		btn_ImageSelect.setBounds(314, 182, 102, 31);
@@ -469,4 +493,3 @@ public class SubAdmin extends JFrame {
 	}
 }
 
-//

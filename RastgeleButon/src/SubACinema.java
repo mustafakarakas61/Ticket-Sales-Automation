@@ -1,4 +1,7 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,6 +21,7 @@ public class SubACinema {
 
 	Connection connection = null;
 	DbHelper dbHelper = new DbHelper();
+	PreparedStatement pStatement;
 	Statement statement;
 
 	public SubACinema() {
@@ -53,6 +57,29 @@ public class SubACinema {
 		}
 		return filmList;
 	}
+	
+	
+	public boolean insertPic(FileInputStream fs ) {
+		int c =0;
+		
+		try {
+			connection  =dbHelper.getConnection();
+			pStatement =connection.prepareStatement("instert into cinema(pic) values(?)");
+			pStatement.setBinaryStream(1, fs, fs.available());
+			pStatement.executeUpdate();
+			c++;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		if (c==1) {
+			
+			return true;
+			
+		}else
+		return false;
+		
+	} 
 
 	public int getFilmID() {
 		return filmID;
@@ -111,3 +138,19 @@ public class SubACinema {
 	}
 
 }
+
+//------------------------------------------------------------------------------------------------
+//try {
+//	FileInputStream fis= new FileInputStream("gora.jpg");
+//	
+//	boolean control =sinema.insertPic(fis);
+//	if (control) {
+//		System.out.println("islem basarýlý");
+//	}else
+//		System.out.println("bir yanlýþlýk oldu");
+//
+//} catch (FileNotFoundException e1) {
+//	e1.printStackTrace();
+//}
+
+//-------------------------------------------------------------------------------------------------
