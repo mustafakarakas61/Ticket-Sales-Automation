@@ -382,6 +382,7 @@ public class MainScreen extends JFrame {
 		PaneCinema.add(lbl_Seance);
 
 		JButton btn_SelectSeat = new JButton("Koltuk Seç");
+		btn_SelectSeat.setEnabled(false);
 		btn_SelectSeat.setFocusable(false);
 		btn_SelectSeat.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_SelectSeat.setFont(new Font("SansSerif", Font.PLAIN, 15));
@@ -1430,6 +1431,7 @@ public class MainScreen extends JFrame {
 				BuyTicket ticket = new BuyTicket();
 				BuyTicket.movie=fld_MovieName.getText();
 				BuyTicket.seance=fld_Seance.getText();
+				btn_SelectSeat.setEnabled(true);
 				
 				///////////////////////////////////////////////////////////////// Konser için
 				///////////////////////////////////////////////////////////////// henüz
