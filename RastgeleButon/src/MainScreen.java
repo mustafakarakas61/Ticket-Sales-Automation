@@ -645,6 +645,13 @@ public class MainScreen extends JFrame {
 		btn_MyTickets.setFont(new Font("SansSerif", Font.PLAIN, 15));
 
 		JButton btn_BuyTicket = new JButton("Bilet Al");
+		btn_BuyTicket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuyTicket ticket = new BuyTicket();
+				
+				ticket.setVisible(true);
+			}
+		});
 		btn_BuyTicket.setFocusable(false);
 		btn_BuyTicket.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_BuyTicket.setForeground(new Color(0, 0, 0));
@@ -1418,6 +1425,12 @@ public class MainScreen extends JFrame {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
+				
+				
+				BuyTicket ticket = new BuyTicket();
+				BuyTicket.movie=fld_MovieName.getText();
+				BuyTicket.seance=fld_Seance.getText();
+				
 				///////////////////////////////////////////////////////////////// Konser için
 				///////////////////////////////////////////////////////////////// henüz
 				///////////////////////////////////////////////////////////////// oluþturulmadý.

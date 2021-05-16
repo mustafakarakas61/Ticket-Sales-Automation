@@ -146,6 +146,9 @@ public class SeatSelection extends JFrame implements MouseListener {
 		JButton btn_Confirm = new JButton("Onayla");
 		btn_Confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				BuyTicket.seat=txt_SelectedSeatsNumbers.getText();
+				BuyTicket.price=txt_Total.getText();
+
 				dispose();
 			}
 		});
