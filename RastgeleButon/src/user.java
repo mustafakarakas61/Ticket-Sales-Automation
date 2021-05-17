@@ -10,12 +10,17 @@ import Helper.DbHelper;
 public class user {
 
 	private int ID;
-	private String Name, Surname, Pass, TC_No, Email, Type;
+	private String Name;
+	private String Surname;
+	private String Pass;
+	private String TC_No;
+	private String Email;
+	private String Type;
+	private String UserName;
 	Statement statement = null;
 	Connection connection = null;
 	ResultSet result = null;
 	PreparedStatement pStatement = null;
-	private String UserName;
 
 	DbHelper dbHelper = new DbHelper();
 
@@ -72,17 +77,47 @@ public class user {
 		boolean key = false;
 		try {
 			String query = "INSERT INTO booking.admin (Name, Surname, Pass, UserName) VALUES (?, ?, ?, ?)";
-			statement = connection.createStatement();
 			pStatement = connection.prepareStatement(query);
 			pStatement.setString(1, Name);
 			pStatement.setString(2, Surname);
 			pStatement.setString(3, Pass);
-			pStatement.setString(4, "burayi_duzelt");
+			pStatement.setString(4, UserName);
 			pStatement.executeUpdate();
 			key = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return key;
+	}
+
+	public boolean updateSubAdmin(int ID, String Name, String Surname, String Pass, String UserName) {
+		boolean key = false;
+		String query = "UPDATE booking.admin SET Name = ?, Surname = ?, Pass = ?, UserName = ? WHERE ID = ?";
+		try {
+			connection = dbHelper.getConnection();
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1, Name);
+			pStatement.setString(2, Surname);
+			pStatement.setString(3, Pass);
+			pStatement.setString(4, UserName);
+			pStatement.setInt(5, ID);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		return key;
+	}
+
+	public boolean delSubAdmin(int ID) throws SQLException {
+		boolean key;
+		String query = "DELETE FROM booking.admin WHERE ID = ?";
+		statement = connection.createStatement();
+		pStatement = connection.prepareStatement(query);
+		pStatement.setInt(1, ID);
+		pStatement.executeUpdate();
+		key = true;
 
 		if (key) {
 			return true;
@@ -91,9 +126,9 @@ public class user {
 		}
 	}
 
-	public boolean delSubAdmin(int ID) throws SQLException {
+	public boolean delMember(int ID) throws SQLException {
 		boolean key;
-		String query = "DELETE FROM booking.admin WHERE ID = ?";
+		String query = "DELETE FROM booking.register WHERE ID = ?";
 		statement = connection.createStatement();
 		pStatement = connection.prepareStatement(query);
 		pStatement.setInt(1, ID);
