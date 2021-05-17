@@ -18,6 +18,8 @@ import java.awt.SystemColor;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 
 import javax.swing.JTextField;
@@ -440,7 +442,6 @@ public class SubAdmin extends JFrame {
 		paneAddCinema.add(btn_AddCinema);
 		btn_AddCinema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				String seance = "";
 				if (rdbtn0_0_0.isSelected()) {
 					seance = rdbtn0_0_0.getText();
@@ -454,8 +455,8 @@ public class SubAdmin extends JFrame {
 				if (rdbtn3_3_3.isSelected()) {
 					seance = rdbtn3_3_3.getText();
 				}
-				if (rdbtn3_3_3.isSelected()) {
-					seance = rdbtn3_3_3.getText();
+				if (rdbtn4_4_4.isSelected()) {
+					seance = rdbtn4_4_4.getText();
 				}
 				if (rdbtn5_5_5.isSelected()) {
 					seance = rdbtn5_5_5.getText();
@@ -478,13 +479,19 @@ public class SubAdmin extends JFrame {
 				if (rdbtn11_1_1.isSelected()) {
 					seance = rdbtn11_1_1.getText();
 				}
-
-				if (seance != "") {
-
-					Metod_Helper.showMsg("Seans baþarýyla kaydedildi");
-				} else if (seance == "") {
-					Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+				
+				if (txt_MovieDirector.getText().length()==0
+						||txt_MovieName.getText().length()==0||dateChooser.getDate() ==null||seance.length()==0) {
+					Metod_Helper.showMsg("fill");
+					 if (seance == "") {
+						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+					}
 				}
+				else {
+								//db baðlanacak
+				}		
+
+				
 			}
 		});
 
@@ -673,7 +680,6 @@ public class SubAdmin extends JFrame {
 		paneAddTheater.add(btn_AddTheater);
 		btn_AddTheater.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				String seance = "";
 				if (rdbtn02.isSelected()) {
 					seance = rdbtn02.getText();
@@ -687,8 +693,8 @@ public class SubAdmin extends JFrame {
 				if (rdbtn35.isSelected()) {
 					seance = rdbtn35.getText();
 				}
-				if (rdbtn35.isSelected()) {
-					seance = rdbtn35.getText();
+				if (rdbtn46.isSelected()) {
+					seance = rdbtn46.getText();
 				}
 				if (rdbtn57.isSelected()) {
 					seance = rdbtn57.getText();
@@ -711,13 +717,18 @@ public class SubAdmin extends JFrame {
 				if (rdbtn111.isSelected()) {
 					seance = rdbtn111.getText();
 				}
-
-				if (seance != "") {
-
-					Metod_Helper.showMsg("Seans baþarýyla kaydedildi");
-				} else if (seance == "") {
-					Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+				
+				if (txt_TheaterName.getText().length()==0
+						||txt_TheaterType.getText().length()==0||dateChooser.getDate() ==null||seance.length()==0) {
+					Metod_Helper.showMsg("fill");
+					 if (seance == "") {
+						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+					}
 				}
+				else {
+								//db baðlanacak
+				}
+				
 			}
 		});
 		paneAddTheater.setVisible(false);
@@ -902,7 +913,6 @@ public class SubAdmin extends JFrame {
 		
 		btn_AddConcert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				String seance = "";
 				if (rdbtn01.isSelected()) {
 					seance = rdbtn01.getText();
@@ -916,8 +926,8 @@ public class SubAdmin extends JFrame {
 				if (rdbtn34.isSelected()) {
 					seance = rdbtn34.getText();
 				}
-				if (rdbtn34.isSelected()) {
-					seance = rdbtn34.getText();
+				if (rdbtn45.isSelected()) {
+					seance = rdbtn45.getText();
 				}
 				if (rdbtn56.isSelected()) {
 					seance = rdbtn56.getText();
@@ -940,13 +950,20 @@ public class SubAdmin extends JFrame {
 				if (rdbtn112.isSelected()) {
 					seance = rdbtn112.getText();
 				}
-
-				if (seance != "") {
-
-					Metod_Helper.showMsg("Seans baþarýyla kaydedildi");
-				} else if (seance == "") {
-					Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+				
+				if (txt_ConcertType.getText().length()==0
+						||txt_ConcertName.getText().length()==0||dateChooser.getDate() ==null||seance.length()==0) {
+					Metod_Helper.showMsg("fill");
+					 if (seance == "") {
+						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+					}
 				}
+				else {
+								//db baðlanacak
+				}
+				
+				
+				
 			}
 		});
 		
