@@ -11,11 +11,15 @@ import javax.swing.JTabbedPane;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -89,6 +93,45 @@ public class Login extends JFrame {
 		
 		fld_Password_Login = new JPasswordField();
 		fld_Password_Login.setBounds(116, 58, 122, 20);
+		
+		fld_Password_Login.addKeyListener(new KeyAdapter() {
+
+			public void keyPressed(KeyEvent ke) {
+				if (ke.getKeyChar() == ' '
+						||ke.getKeyChar() == '.'
+						||ke.getKeyChar() == '?'
+						||ke.getKeyChar() == '!'
+						||(ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
+						||(ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
+						||(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9')
+						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+						|| ke.getKeyCode()==KeyEvent.VK_ENTER
+						|| ke.getKeyCode()==KeyEvent.VK_SHIFT
+						|| ke.getKeyCode()==KeyEvent.VK_CAPS_LOCK
+						|| ke.getKeyCode()==KeyEvent.VK_ESCAPE) {
+
+					if (fld_Password_Login.getText().length() <= 30 
+							|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+							|| ke.getKeyCode()==KeyEvent.VK_ENTER
+							|| ke.getKeyCode()==KeyEvent.VK_SHIFT
+							|| ke.getKeyCode()==KeyEvent.VK_CAPS_LOCK
+							|| ke.getKeyCode()==KeyEvent.VK_ESCAPE) {
+						fld_Password_Login.setEditable(true);
+					} else {
+						fld_Password_Login.setEditable(false);
+					}
+
+				} else {
+					fld_Password_Login.setEditable(false);
+
+				}
+			}
+		});
+		
+		
+		
+		
+		
 		w_paneCustomer.add(fld_Password_Login);
 		
 		JButton btn_Register = new JButton("Kayýt Ol");
@@ -166,7 +209,7 @@ public class Login extends JFrame {
 					}
 					
 					if (key) 
-						Metod_Helper.showMsg("Böyle bir kayýt yok lütfen kaydolunuz");
+						Metod_Helper.showMsg("Böyle bir kayýt yok lütfen kaydolunuz.");
 					
 				}
 				
@@ -241,9 +284,55 @@ public class Login extends JFrame {
 		
 		fld_Password_Admin = new JPasswordField();
 		fld_Password_Admin.setBounds(116, 58, 122, 20);
+		
+		fld_Password_Admin.addKeyListener(new KeyAdapter() {
+
+			public void keyPressed(KeyEvent ke) {
+				if (ke.getKeyChar() == ' '
+						||ke.getKeyChar() == '.'
+						||ke.getKeyChar() == '?'
+						||ke.getKeyChar() == '!'
+						||(ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
+						||(ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
+						||(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9')
+						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+						|| ke.getKeyCode()==KeyEvent.VK_ENTER
+						|| ke.getKeyCode()==KeyEvent.VK_SHIFT
+						|| ke.getKeyCode()==KeyEvent.VK_CAPS_LOCK
+						|| ke.getKeyCode()==KeyEvent.VK_ESCAPE) {
+
+					if (fld_Password_Admin.getText().length() <= 30 
+							|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+							|| ke.getKeyCode()==KeyEvent.VK_ENTER
+							|| ke.getKeyCode()==KeyEvent.VK_SHIFT
+							|| ke.getKeyCode()==KeyEvent.VK_CAPS_LOCK
+							|| ke.getKeyCode()==KeyEvent.VK_ESCAPE) {
+						fld_Password_Admin.setEditable(true);
+					} else {
+						fld_Password_Admin.setEditable(false);
+					}
+
+				} else {
+					fld_Password_Admin.setEditable(false);
+
+				}
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		w_paneAdmin.add(fld_Password_Admin);
 		//---------------------------------------------------------------------Admin login-------------------------
 		JButton btn_Login_1 = new JButton("Giris Yap");
+		btn_Login_1.setBackground(new Color(255, 235, 205));
 		btn_Login_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -319,7 +408,7 @@ public class Login extends JFrame {
 					}
 					
 					if (key) 
-						Metod_Helper.showMsg("Böyle bir hasta yok lütfen kaydolunuz");
+						Metod_Helper.showMsg("Sistemde böyle bir yönetici bulunamadý.");
 					
 				} 
 					
@@ -336,6 +425,18 @@ public class Login extends JFrame {
 		lbl_ForgottenAdmin.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		lbl_ForgottenAdmin.setBounds(10, 127, 389, 14);
 		w_paneAdmin.add(lbl_ForgottenAdmin);
+		
+		
+		ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/admin.png"));
+		Image image = imageIcon.getImage();
+		Image newimg = image.getScaledInstance(160, 125, java.awt.Image.SCALE_SMOOTH);
+
+		
+		
+		JLabel lbl_adminIcon = new JLabel();
+		lbl_adminIcon.setBounds(248, 11, 161, 117);
+		lbl_adminIcon.setIcon(new ImageIcon(newimg));
+		w_paneAdmin.add(lbl_adminIcon);
 		
 		JLabel lblWelcome = new JLabel("Welcome to Ticket Sales System");
 		lblWelcome.setFont(new Font("Tempus Sans ITC", Font.BOLD | Font.ITALIC, 16));
