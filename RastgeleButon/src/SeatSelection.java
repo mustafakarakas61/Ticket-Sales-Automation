@@ -320,7 +320,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 		JLabel lbl_TakenSeatLabel = new JLabel("Dolu Koltuk");
 		lbl_TakenSeatLabel.setFont(new Font("Arial", Font.BOLD, 12));
-		lbl_TakenSeatLabel.setBounds(35, 515, 80, 14);
+		lbl_TakenSeatLabel.setBounds(35, 515, 94, 14);
 		contentPane.add(lbl_TakenSeatLabel);
 
 		JLabel lbl_EmptySeatIcon = new JLabel();
@@ -333,9 +333,9 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_EmptySeatIcon.setBounds(11, 533, 21, 28);
 		contentPane.add(lbl_EmptySeatIcon);
 
-		JLabel lbl_EmptySeatLabel = new JLabel("Boş Koltuk");
+		JLabel lbl_EmptySeatLabel = new JLabel("Bos Koltuk");
 		lbl_EmptySeatLabel.setFont(new Font("Arial", Font.BOLD, 12));
-		lbl_EmptySeatLabel.setBounds(35, 540, 80, 14);
+		lbl_EmptySeatLabel.setBounds(35, 540, 94, 14);
 		contentPane.add(lbl_EmptySeatLabel);
 
 		JLabel lbl_SelectedSeatIcon = new JLabel();
@@ -348,17 +348,17 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_SelectedSeatIcon.setBounds(11, 559, 21, 28);
 		contentPane.add(lbl_SelectedSeatIcon);
 
-		JLabel lbl_SelectedSeatLabel = new JLabel("Seçili Koltuk");
+		JLabel lbl_SelectedSeatLabel = new JLabel("Secili Koltuk");
 		lbl_SelectedSeatLabel.setFont(new Font("Arial", Font.BOLD, 13));
-		lbl_SelectedSeatLabel.setBounds(35, 565, 80, 14);
+		lbl_SelectedSeatLabel.setBounds(35, 565, 94, 14);
 		contentPane.add(lbl_SelectedSeatLabel);
 
-		JLabel lbl_SelectedTotalSeat = new JLabel("Secilen Koltuk Sayısı:");
+		JLabel lbl_SelectedTotalSeat = new JLabel("Secilen Koltuk Sayisi");
 		lbl_SelectedTotalSeat.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_SelectedTotalSeat.setBounds(620, 513, 170, 20);
 		contentPane.add(lbl_SelectedTotalSeat);
 
-		JLabel lbl_SelectedSeatsNumbers = new JLabel("Seçilen Koltuk Numaralari :");
+		JLabel lbl_SelectedSeatsNumbers = new JLabel("Secilen Koltuk Numaralari :");
 		lbl_SelectedSeatsNumbers.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_SelectedSeatsNumbers.setBounds(620, 536, 170, 23);
 		contentPane.add(lbl_SelectedSeatsNumbers);
@@ -377,12 +377,12 @@ public class SeatSelection extends JFrame implements MouseListener {
 		lbl_TicketPrice.setBounds(161, 522, 170, 20);
 		contentPane.add(lbl_TicketPrice);
 
-		JLabel lbl_StudentTicketPrice = new JLabel("Öğrenci Bilet Fiyati : 13TL");
+		JLabel lbl_StudentTicketPrice = new JLabel("Ogrenci Bilet Fiyati : 13TL");
 		lbl_StudentTicketPrice.setFont(new Font("Arial", Font.BOLD, 14));
 		lbl_StudentTicketPrice.setBounds(161, 550, 186, 23);
 		contentPane.add(lbl_StudentTicketPrice);
 
-		JLabel lbl_TotalStudentLabel = new JLabel("Öğrenci Sayisi :");
+		JLabel lbl_TotalStudentLabel = new JLabel("Ogrenci Sayisi :");
 		lbl_TotalStudentLabel.setFont(new Font("Arial", Font.ITALIC, 13));
 		lbl_TotalStudentLabel.setBounds(620, 559, 170, 23);
 		contentPane.add(lbl_TotalStudentLabel);
