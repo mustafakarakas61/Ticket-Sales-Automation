@@ -18,6 +18,8 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -35,8 +37,17 @@ public class BuyTicket extends JFrame {
 	JTextField txt_StudentCount;
 	public static JLabel lbl_Card;
 	public static JLabel lbl_InfoStudent;
-	public static String movie, seance, seat, price, salon, movie_type, seatCount, studentCount,lblCard,lblInfoStudent;
+	public static String movie, seance, seat, price, salon, movie_type, seatCount, studentCount,lblCard,lblInfoStudent,user;
 	public static JComboBox comboBox_seat;
+	
+	
+	public static String getUser() {
+		return user;
+	}
+
+	public static void setUser(String user) {
+		BuyTicket.user = user;
+	}
 
 	public static String getMovie() {
 		return movie;
@@ -227,10 +238,26 @@ public class BuyTicket extends JFrame {
 		fld_Salon.setBounds(147, 88, 188, 23);
 		panel.add(fld_Salon);
 
-		JButton btn_print = new JButton("Fi\u015Fi yazd\u0131r");
+		JButton btn_print = new JButton("Fisi yazddir");
 		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				 try {  
+				      FileWriter myWriter = new FileWriter("Bilet.txt");
+				      myWriter.write("Alýnan film :" +fld_movie_name.getText() 
+				      +"\nFiyati : "+fld_price.getText()
+				      +"\nSAlon: "+fld_Salon.getText()
+				      +"\nKoltuklar : "+txt_seatCount.getText()
+				      +"\nSeans : "+fld_seance.getText()
+				      +"\n"+lbl_Card.getText()
+				      +"\nBu bilet "+user+"adýna kesilmiþtir"
+				      );
+				      myWriter.close();
+				      System.out.println("Successfully wrote to the file.");
+				    } catch (IOException e1) {
+				      System.out.println("An error occurred.");
+				      e1.printStackTrace();
+				    }
 			}
 		});
 		btn_print.setBounds(132, 355, 157, 35);
