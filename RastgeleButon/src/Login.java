@@ -188,8 +188,14 @@ public class Login extends JFrame {
 		btn_Login_Guest.setBackground(Color.PINK);
 		btn_Login_Guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GuestScreen uak= new GuestScreen();
-				uak.setVisible(true);
+				GuestScreen uak;
+				try {
+					uak = new GuestScreen(null);
+					uak.setVisible(true);
+				} catch (SQLException e1) {
+					
+				}
+			
 				dispose();
 			}
 		});
