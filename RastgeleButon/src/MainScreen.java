@@ -49,10 +49,10 @@ import javax.swing.border.EtchedBorder;
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
-	private DefaultTableModel cinemaModel; // tablo sÃ¼tunlarÄ±nÄ± isimlendirmek iÃ§in
+	private DefaultTableModel cinemaModel; // tablo sütunlarýný isimlendirmek için
 	private DefaultTableModel theaterModel;
 	private DefaultTableModel concertModel;
-	private Object[] cinemaData = null; // sqlden veri Ã§ekmek iÃ§in
+	private Object[] cinemaData = null; // sqlden veri çekmek için
 	private Object[] theaterData = null;
 	private Object[] concertData = null;
 	private JTable table_Cinema;
@@ -129,41 +129,41 @@ public class MainScreen extends JFrame {
 	 * @throws SQLException
 	 */
 	public MainScreen(user member) throws SQLException {
-		setTitle("Bilet SatÄ±ÅŸ Sistemi");
+		setTitle("Bilet Satýþ Sistemi");
 		setResizable(false);
 
 //////////////////////////////////////////////////////////////////////////////////Sinema
 		cinemaModel = new DefaultTableModel();
-		Object[] colCinema = new Object[6]; // tablo sÃ¼tunlarÄ±na isim vermek iÃ§in
+		Object[] colCinema = new Object[6]; // tablo sütunlarýna isim vermek için
 
-		colCinema[0] = "Film AdÄ±";
-		colCinema[1] = "TÃ¼r";
-		colCinema[2] = "YÃ¶netmen";
+		colCinema[0] = "Film Adý";
+		colCinema[1] = "Tür";
+		colCinema[2] = "Yönetmen";
 		colCinema[3] = "Tarih";
 		colCinema[4] = "Salon";
 		colCinema[5] = "Seans";
 
 		cinemaModel.setColumnIdentifiers(colCinema);
-		cinemaData = new Object[6]; // sqlden veri Ã§ekmek iÃ§in
+		cinemaData = new Object[6]; // sqlden veri çekmek için
 
 //////////////////////////////////////////////////////////////////////////////////Tiyatro
 		theaterModel = new DefaultTableModel();
 		Object[] colTheater = new Object[5];
 
-		colTheater[0] = "Oyun AdÄ±";
-		colTheater[1] = "TÃ¼r";
+		colTheater[0] = "Oyun Adý";
+		colTheater[1] = "Tür";
 		colTheater[2] = "Tarih";
 		colTheater[3] = "Salon";
 		colTheater[4] = "Saat";
 		theaterModel.setColumnIdentifiers(colTheater);
-		theaterData = new Object[5]; // sqlden veri Ã§ekmek iÃ§in
+		theaterData = new Object[5]; // sqlden veri çekmek için
 
 //////////////////////////////////////////////////////////////////////////////////Konser
 		concertModel = new DefaultTableModel();
 		Object[] colConcert = new Object[4];
 
-		colConcert[0] = "Konser AdÄ±";
-		colConcert[1] = "TÃ¼r";
+		colConcert[0] = "Konser Adý";
+		colConcert[1] = "Tür";
 		colConcert[2] = "Tarihi";
 		colConcert[3] = "Saat";
 
@@ -184,7 +184,7 @@ public class MainScreen extends JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-		JButton btn_Exit = new JButton("Ã‡Ä±kÄ±ÅŸ Yap");
+		JButton btn_Exit = new JButton("Çýkýþ Yap");
 		btn_Exit.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Exit.setBackground(new Color(204, 204, 255));
 		btn_Exit.setFocusable(false);
@@ -199,7 +199,7 @@ public class MainScreen extends JFrame {
 		btn_Exit.setBounds(854, 20, 100, 25);
 		contentPane.add(btn_Exit);
 
-		JLabel lbl_Name = new JLabel("HoÅŸgeldiniz SayÄ±n " + member.getName());
+		JLabel lbl_Name = new JLabel("Hoþgeldiniz Sayýn " + member.getName());
 		lbl_Name.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_Name.setBounds(10, 20, 400, 20);
 		contentPane.add(lbl_Name);
@@ -219,14 +219,14 @@ public class MainScreen extends JFrame {
 		JScrollPane scrollPane_Cinema = new JScrollPane();
 		scrollPane_Cinema.setBounds(0, 0, 405, 448);
 		w_paneCinema.add(scrollPane_Cinema);
-///////////////////////////////////////////////////////////////////////////////////Sinema SÃ¼tun Ã–zellikleri
+///////////////////////////////////////////////////////////////////////////////////Sinema Sütun Özellikleri
 		table_Cinema = new JTable(cinemaModel);
 		table_Cinema.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Cinema.setFont(new Font("SansSerif", Font.PLAIN, 13));
 
-		table_Cinema.getColumn("Film AdÄ±").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("TÃ¼r").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("YÃ¶netmen").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film Adý").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Tür").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Yönetmen").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Seans").setCellEditor(new TableEditor(new JCheckBox()));
@@ -262,11 +262,11 @@ public class MainScreen extends JFrame {
 			cinemaModel.addRow(cinemaData);
 		}
 
-		/************************* Åžimdilik Veri Ekliyorum ***************************/
+		/************************* Þimdilik Veri Ekliyorum ***************************/
 		/*
-		 * cinemaData[0] = "Recep Ä°vedik 7"; cinemaData[1] = "Komedi"; cinemaData[2] =
-		 * "Åžahan GÃ¶kbakar"; cinemaData[3] = 1; cinemaData[4] = "13:40";
-		 * cinemaModel.addRow(cinemaData); cinemaData[0] = "HÄ±zlÄ± ve Ã–fkeli 10";
+		 * cinemaData[0] = "Recep Ývedik 7"; cinemaData[1] = "Komedi"; cinemaData[2] =
+		 * "Þahan Gökbakar"; cinemaData[3] = 1; cinemaData[4] = "13:40";
+		 * cinemaModel.addRow(cinemaData); cinemaData[0] = "Hýzlý ve Öfkeli 10";
 		 * cinemaData[1] = "Aksiyon"; cinemaData[2] = "Rob Cohen"; cinemaData[3] = 4;
 		 * cinemaData[4] = "16:30"; cinemaModel.addRow(cinemaData);
 		 */
@@ -281,7 +281,7 @@ public class MainScreen extends JFrame {
 		scrollPane_Theater.setBounds(0, 0, 405, 448);
 		w_paneTheater.add(scrollPane_Theater);
 
-///////////////////////////////////////////////////////////////////////////////////Tiyatro SÃ¼tun Ã–zellikleri
+///////////////////////////////////////////////////////////////////////////////////Tiyatro Sütun Özellikleri
 		table_Theater = new JTable(theaterModel);
 		table_Theater.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Theater.setFont(new Font("SansSerif", Font.PLAIN, 13));
@@ -305,8 +305,8 @@ public class MainScreen extends JFrame {
 			theaterData[0] = tiyatro.theaterList().get(i).getTheaterName();
 			theaterData[1] = tiyatro.theaterList().get(i).getTheaterType();
 			theaterData[2] = tiyatro.theaterList().get(i).getTheaterDate();
-			theaterData[3] = tiyatro.theaterList().get(i).getTheaterDate();
-			theaterData[4] = tiyatro.theaterList().get(i).getTheaterHour();
+			theaterData[3] = tiyatro.theaterList().get(i).getTheaterSalon();
+			theaterData[4] = tiyatro.theaterList().get(i).getTheaterDate();
 			theaterModel.addRow(theaterData);
 		}
 
@@ -344,7 +344,7 @@ public class MainScreen extends JFrame {
 			concertModel.addRow(concertData);
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		/////////////////////////////////////////////////// PANESÄ°NEMA///////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////// PANESÝNEMA///////////////////////////////////////////////////////////////
 		JPanel PaneCinema = new JPanel();
 		PaneCinema.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		PaneCinema.setBackground(new Color(255, 255, 255));
@@ -357,19 +357,19 @@ public class MainScreen extends JFrame {
 		lbl_Poster.setBounds(312, 20, 120, 170);
 		PaneCinema.add(lbl_Poster);
 
-		JLabel lbl_MovieName = new JLabel("Film AdÄ±:");
+		JLabel lbl_MovieName = new JLabel("Film Adý:");
 		lbl_MovieName.setBackground(new Color(255, 255, 255));
 		lbl_MovieName.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_MovieName.setBounds(10, 50, 100, 20);
 		PaneCinema.add(lbl_MovieName);
 
-		JLabel lbl_MovieType = new JLabel("Film TÃ¼rÃ¼:");
+		JLabel lbl_MovieType = new JLabel("Film Türü:");
 		lbl_MovieType.setBackground(new Color(255, 255, 255));
 		lbl_MovieType.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_MovieType.setBounds(10, 73, 100, 20);
 		PaneCinema.add(lbl_MovieType);
 
-		JLabel lbl_Admin = new JLabel("YÃ¶netmen:");
+		JLabel lbl_Admin = new JLabel("Yönetmen:");
 		lbl_Admin.setBackground(new Color(255, 255, 255));
 		lbl_Admin.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_Admin.setBounds(10, 96, 100, 20);
@@ -387,7 +387,7 @@ public class MainScreen extends JFrame {
 		lbl_Seance.setBounds(10, 142, 100, 20);
 		PaneCinema.add(lbl_Seance);
 
-		JButton btn_SelectSeat = new JButton("Koltuk SeÃ§");
+		JButton btn_SelectSeat = new JButton("Koltuk Seç");
 		btn_SelectSeat.setEnabled(false);
 		btn_SelectSeat.setFocusable(false);
 		btn_SelectSeat.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -402,7 +402,7 @@ public class MainScreen extends JFrame {
 		btn_SelectSeat.setBounds(10, 165, 100, 22);
 		PaneCinema.add(btn_SelectSeat);
 
-		JLabel lbl_PaymentInformation = new JLabel("Ã–deme Bilgileri");
+		JLabel lbl_PaymentInformation = new JLabel("Ödeme Bilgileri");
 		lbl_PaymentInformation.setFont(new Font("SansSerif", Font.BOLD, 16));
 		lbl_PaymentInformation.setBounds(10, 205, 130, 20);
 		PaneCinema.add(lbl_PaymentInformation);
@@ -471,7 +471,7 @@ public class MainScreen extends JFrame {
 		fld_Seance.setBounds(140, 142, 75, 20);
 		PaneCinema.add(fld_Seance);
 
-		JLabel lbl_PaymentMethod = new JLabel("Ã–deme YÃ¶ntemi:");
+		JLabel lbl_PaymentMethod = new JLabel("Ödeme Yöntemi:");
 		lbl_PaymentMethod.setBackground(new Color(255, 255, 255));
 		lbl_PaymentMethod.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_PaymentMethod.setBounds(10, 304, 120, 20);
@@ -482,7 +482,7 @@ public class MainScreen extends JFrame {
 		comboBox_Method.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Method.setBounds(140, 304, 150, 25);
 		comboBox_Method.addItem("Nakit");
-		comboBox_Method.addItem("Banka/Kredi KartÄ±");
+		comboBox_Method.addItem("Banka/Kredi Kartý");
 		PaneCinema.add(comboBox_Method);
 
 		JPanel w_pane_Kart = new JPanel();
@@ -496,10 +496,10 @@ public class MainScreen extends JFrame {
 
 				if (comboBox_Method.getSelectedIndex() == 0) {
 					w_pane_Kart.setVisible(false);
-					// BuyTicket.setlblCard(BuyTicket.price+" Ã¶demeniz vardÄ±r.");
+					// BuyTicket.setlblCard(BuyTicket.price+" ödemeniz vardýr.");
 				} else {
 					w_pane_Kart.setVisible(true);
-					// BuyTicket.setlblCard("Ãœcret, BANKA/KREDÄ° KARTI ile Ã¶denmiÅŸtir. Borcunuz
+					// BuyTicket.setlblCard("Ücret, BANKA/KREDÝ KARTI ile ödenmiþtir. Borcunuz
 					// yoktur.");
 				}
 			}
@@ -532,17 +532,17 @@ public class MainScreen extends JFrame {
 		fld_Mail_cinema.setBounds(140, 281, 150, 20);
 		PaneCinema.add(fld_Mail_cinema);
 
-		JLabel lbl_CartName = new JLabel("Kart Ãœzerindeki Ä°sim:");
+		JLabel lbl_CartName = new JLabel("Kart Üzerindeki Ýsim:");
 		lbl_CartName.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_CartName.setBounds(10, 8, 140, 20);
 		w_pane_Kart.add(lbl_CartName);
 
-		JLabel lbl_CartNumber = new JLabel("Kart NumarasÄ±:");
+		JLabel lbl_CartNumber = new JLabel("Kart Numarasý:");
 		lbl_CartNumber.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_CartNumber.setBounds(10, 30, 140, 20);
 		w_pane_Kart.add(lbl_CartNumber);
 
-		JLabel lbl_LastUsageDate = new JLabel("Son KullanÄ±m Tarihi:");
+		JLabel lbl_LastUsageDate = new JLabel("Son Kullaným Tarihi:");
 		lbl_LastUsageDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_LastUsageDate.setBounds(10, 52, 140, 20);
 		w_pane_Kart.add(lbl_LastUsageDate);
@@ -556,7 +556,7 @@ public class MainScreen extends JFrame {
 		JComboBox comboBox_Year = new JComboBox();
 		comboBox_Year.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Year.setBounds(235, 52, 72, 22);
-		comboBox_Year.addItem("YÄ±l");
+		comboBox_Year.addItem("Yýl");
 
 		w_pane_Kart.add(comboBox_Year);
 
@@ -598,10 +598,10 @@ public class MainScreen extends JFrame {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() == ' '
-						|| (ke.getKeyChar() == 'Ä±' || ke.getKeyChar() == 'ÄŸ' || ke.getKeyChar() == 'Ã¼'
-								|| ke.getKeyChar() == 'ÅŸ' || ke.getKeyChar() == 'Ã¶' || ke.getKeyChar() == 'Ã§'
-								|| ke.getKeyChar() == 'Ä°' || ke.getKeyChar() == 'Äž' || ke.getKeyChar() == 'Ãœ'
-								|| ke.getKeyChar() == 'Åž' || ke.getKeyChar() == 'Ã–' || ke.getKeyChar() == 'Ã‡')
+						|| (ke.getKeyChar() == 'ý' || ke.getKeyChar() == 'ð' || ke.getKeyChar() == 'ü'
+								|| ke.getKeyChar() == 'þ' || ke.getKeyChar() == 'ö' || ke.getKeyChar() == 'ç'
+								|| ke.getKeyChar() == 'Ý' || ke.getKeyChar() == 'Ð' || ke.getKeyChar() == 'Ü'
+								|| ke.getKeyChar() == 'Þ' || ke.getKeyChar() == 'Ö' || ke.getKeyChar() == 'Ç')
 						|| (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -657,14 +657,14 @@ public class MainScreen extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox_Method.getSelectedIndex() == 1) {
-					BuyTicket.setlblCard("Ãœcret, BANKA/KREDÄ° KARTI ile Ã¶denmiÅŸtir. Borcunuz yoktur.");
-					BuyTicket.setPrice("Ã–dendi");
+					BuyTicket.setlblCard("Ücret, BANKA/KREDÝ KARTI ile ödenmiþtir. Borcunuz yoktur.");
+					BuyTicket.setPrice("Ödendi");
 
 					if (fld_MovieName.getText().length() == 0 || fld_MovieType.getText().length() == 0
 							|| fld_Director.getText().length() == 0 || fld_Salon.getText().length() == 0
 							|| fld_Seance.getText().length() == 0 || fld_Name_cinema.getText().length() == 0
 							|| fld_Surname_cinema.getText().length() == 0 || fld_Mail_cinema.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "Gerekli birkaÃ§ bilgi eksik.", "Mesaj",
+						JOptionPane.showMessageDialog(null, "Gerekli birkaç bilgi eksik.", "Mesaj",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 
@@ -761,7 +761,7 @@ public class MainScreen extends JFrame {
 							});
 						}
 						
-						JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatalÄ± giriÅŸ.", "Mesaj",
+						JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatalý giriþ.", "Mesaj",
 								JOptionPane.ERROR_MESSAGE);
 					}
 					
@@ -770,22 +770,22 @@ public class MainScreen extends JFrame {
 						BuyTicket ticket = new BuyTicket();
 
 						if (ticket.comboBox_seat.getItemCount() == 0) {
-							JOptionPane.showMessageDialog(null, "LÃ¼tfen Koltuk SeÃ§iniz.", "Mesaj",
+							JOptionPane.showMessageDialog(null, "Lütfen Koltuk Seçiniz.", "Mesaj",
 									JOptionPane.INFORMATION_MESSAGE);
 
 						}
 						else {
-							if (JOptionPane.showConfirmDialog(null, "SatÄ±n AlmayÄ± OnaylÄ±yor musunuz?", "Dikkat!",
+							if (JOptionPane.showConfirmDialog(null, "Satýn Almayý Onaylýyor musunuz?", "Dikkat!",
 									JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 							
-								Metod_Helper.showMsg("Ã–demeniz AlÄ±nÄ±yor. LÃ¼tfen Bekleyiniz...");
+								Metod_Helper.showMsg("Ödemeniz Alýnýyor. Lütfen Bekleyiniz...");
 							try {
 								TimeUnit.SECONDS.sleep(3);
 							} catch (InterruptedException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-							Metod_Helper.showMsg("Ã–demeniz BaÅŸarÄ±yla GerÃ§ekleÅŸti");
+							Metod_Helper.showMsg("Ödemeniz Baþarýyla Gerçekleþti");
 								ticket.setVisible(true);
 							} 
 
@@ -794,22 +794,22 @@ public class MainScreen extends JFrame {
 
 				} else {
 
-					BuyTicket.setlblCard(BuyTicket.price + " Ã¶demeniz vardÄ±r. Ä°yi gÃ¼nler Dileriz.");
+					BuyTicket.setlblCard(BuyTicket.price + " ödemeniz vardýr. Ýyi günler Dileriz.");
 					if (fld_MovieName.getText().length() == 0 || fld_MovieType.getText().length() == 0
 							|| fld_Director.getText().length() == 0 || fld_Salon.getText().length() == 0
 							|| fld_Seance.getText().length() == 0 || fld_Name_cinema.getText().length() == 0
 							|| fld_Surname_cinema.getText().length() == 0 || fld_Mail_cinema.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "Gerekli birkaÃ§ bilgi eksik.", "Mesaj",
+						JOptionPane.showMessageDialog(null, "Gerekli birkaç bilgi eksik.", "Mesaj",
 								JOptionPane.INFORMATION_MESSAGE);
 					} else {
 						BuyTicket ticket = new BuyTicket();
 
 						if (ticket.comboBox_seat.getItemCount() == 0) {
-							JOptionPane.showMessageDialog(null, "LÃ¼tfen Koltuk SeÃ§iniz.", "Mesaj",
+							JOptionPane.showMessageDialog(null, "Lütfen Koltuk Seçiniz.", "Mesaj",
 									JOptionPane.INFORMATION_MESSAGE);
 
 						} else {
-							if (JOptionPane.showConfirmDialog(null, "SatÄ±n AlmayÄ± OnaylÄ±yor musunuz?", "Dikkat!",
+							if (JOptionPane.showConfirmDialog(null, "Satýn Almayý Onaylýyor musunuz?", "Dikkat!",
 									JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 								Metod_Helper.showMsg("succes");
 								ticket.setVisible(true);
@@ -831,7 +831,7 @@ public class MainScreen extends JFrame {
 		PaneCinema.add(btn_BuyTicket);
 		btn_BuyTicket.setFont(new Font("SansSerif", Font.BOLD, 15));
 
-		JButton btn_CancelTicket = new JButton("Bilet Ä°ptal");
+		JButton btn_CancelTicket = new JButton("Bilet Ýptal");
 		btn_CancelTicket.setFocusable(false);
 		btn_CancelTicket.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_CancelTicket.setBounds(290, 435, 100, 30);
@@ -839,11 +839,11 @@ public class MainScreen extends JFrame {
 		btn_CancelTicket.setForeground(new Color(0, 0, 0));
 		btn_CancelTicket.setBackground(new Color(255, 153, 153));
 		btn_CancelTicket.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		///////////////////////////////////////////////// PANESÄ°NEMA/////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////// PANESÝNEMA/////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////// PANETÄ°YATRO///////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////// PANETÝYATRO///////////////////////////////////////////////////////////////
 		JPanel PaneTheater = new JPanel();
 		PaneTheater.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		PaneTheater.setBackground(Color.WHITE);
@@ -864,13 +864,13 @@ public class MainScreen extends JFrame {
 		lbl_Poster2.setBounds(312, 20, 120, 170);
 		PaneTheater.add(lbl_Poster2);
 
-		JLabel lbl_GameName = new JLabel("Oyun AdÄ±:");
+		JLabel lbl_GameName = new JLabel("Oyun Adý:");
 		lbl_GameName.setBackground(Color.WHITE);
 		lbl_GameName.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_GameName.setBounds(10, 50, 100, 20);
 		PaneTheater.add(lbl_GameName);
 
-		JLabel lbl_GameType = new JLabel("Oyun TÃ¼rÃ¼:");
+		JLabel lbl_GameType = new JLabel("Oyun Türü:");
 		lbl_GameType.setBackground(Color.WHITE);
 		lbl_GameType.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_GameType.setBounds(10, 73, 100, 20);
@@ -894,7 +894,7 @@ public class MainScreen extends JFrame {
 		lbl_Time.setBounds(10, 142, 100, 20);
 		PaneTheater.add(lbl_Time);
 
-		JButton btn_SelectSeat2 = new JButton("Koltuk SeÃ§");
+		JButton btn_SelectSeat2 = new JButton("Koltuk Seç");
 		btn_SelectSeat2.setFocusable(false);
 		btn_SelectSeat2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_SelectSeat2.setFont(new Font("SansSerif", Font.PLAIN, 15));
@@ -902,7 +902,7 @@ public class MainScreen extends JFrame {
 		btn_SelectSeat2.setBounds(10, 165, 100, 22);
 		PaneTheater.add(btn_SelectSeat2);
 
-		JLabel lbl_PaymentInfo2 = new JLabel("Ã–deme Bilgileri");
+		JLabel lbl_PaymentInfo2 = new JLabel("Ödeme Bilgileri");
 		lbl_PaymentInfo2.setFont(new Font("SansSerif", Font.BOLD, 16));
 		lbl_PaymentInfo2.setBounds(10, 205, 130, 20);
 		PaneTheater.add(lbl_PaymentInfo2);
@@ -978,7 +978,7 @@ public class MainScreen extends JFrame {
 		fld_Time.setBounds(140, 142, 75, 20);
 		PaneTheater.add(fld_Time);
 
-		JLabel lbl_PaymentMethod2 = new JLabel("Ã–deme YÃ¶ntemi:");
+		JLabel lbl_PaymentMethod2 = new JLabel("Ödeme Yöntemi:");
 		lbl_PaymentMethod2.setBackground(Color.WHITE);
 		lbl_PaymentMethod2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_PaymentMethod2.setBounds(10, 304, 120, 20);
@@ -989,7 +989,7 @@ public class MainScreen extends JFrame {
 		comboBox_Method2.setBackground(Color.WHITE);
 		comboBox_Method2.setBounds(140, 304, 130, 25);
 		comboBox_Method2.addItem("Nakit");
-		comboBox_Method2.addItem("Banka/Kredi KartÄ±");
+		comboBox_Method2.addItem("Banka/Kredi Kartý");
 		PaneTheater.add(comboBox_Method2);
 
 		JPanel w_pane_Cart2 = new JPanel();
@@ -1048,17 +1048,17 @@ public class MainScreen extends JFrame {
 		PaneTheater.add(fld_Price2);
 		fld_Price2.setColumns(10);
 
-		JLabel lbl_CartName2 = new JLabel("Kart Ãœzerindeki Ä°sim:");
+		JLabel lbl_CartName2 = new JLabel("Kart Üzerindeki Ýsim:");
 		lbl_CartName2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_CartName2.setBounds(10, 8, 140, 20);
 		w_pane_Cart2.add(lbl_CartName2);
 
-		JLabel lbl_CartNumber2 = new JLabel("Kart NumarasÄ±:");
+		JLabel lbl_CartNumber2 = new JLabel("Kart Numarasý:");
 		lbl_CartNumber2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_CartNumber2.setBounds(10, 30, 140, 20);
 		w_pane_Cart2.add(lbl_CartNumber2);
 
-		JLabel lbl_LastUsageDate2 = new JLabel("Son KullanÄ±m Tarihi:");
+		JLabel lbl_LastUsageDate2 = new JLabel("Son Kullaným Tarihi:");
 		lbl_LastUsageDate2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_LastUsageDate2.setBounds(10, 52, 140, 20);
 		w_pane_Cart2.add(lbl_LastUsageDate2);
@@ -1072,7 +1072,7 @@ public class MainScreen extends JFrame {
 		JComboBox comboBox_Year2 = new JComboBox();
 		comboBox_Year2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Year2.setBounds(235, 52, 72, 22);
-		comboBox_Year2.addItem("YÄ±l");
+		comboBox_Year2.addItem("Yýl");
 		w_pane_Cart2.add(comboBox_Year2);
 
 		JLabel lbl_Cvc2 = new JLabel("CVC:");
@@ -1113,10 +1113,10 @@ public class MainScreen extends JFrame {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() == ' '
-						|| (ke.getKeyChar() == 'Ä±' || ke.getKeyChar() == 'ÄŸ' || ke.getKeyChar() == 'Ã¼'
-								|| ke.getKeyChar() == 'ÅŸ' || ke.getKeyChar() == 'Ã¶' || ke.getKeyChar() == 'Ã§'
-								|| ke.getKeyChar() == 'Ä°' || ke.getKeyChar() == 'Äž' || ke.getKeyChar() == 'Ãœ'
-								|| ke.getKeyChar() == 'Åž' || ke.getKeyChar() == 'Ã–' || ke.getKeyChar() == 'Ã‡')
+						|| (ke.getKeyChar() == 'ý' || ke.getKeyChar() == 'ð' || ke.getKeyChar() == 'ü'
+								|| ke.getKeyChar() == 'þ' || ke.getKeyChar() == 'ö' || ke.getKeyChar() == 'ç'
+								|| ke.getKeyChar() == 'Ý' || ke.getKeyChar() == 'Ð' || ke.getKeyChar() == 'Ü'
+								|| ke.getKeyChar() == 'Þ' || ke.getKeyChar() == 'Ö' || ke.getKeyChar() == 'Ç')
 						|| (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -1169,7 +1169,7 @@ public class MainScreen extends JFrame {
 		btn_MyTickets_1.setBounds(60, 435, 100, 30);
 		PaneTheater.add(btn_MyTickets_1);
 
-		JButton btn_TicketCancel_1 = new JButton("Bilet Ä°ptal");
+		JButton btn_TicketCancel_1 = new JButton("Bilet Ýptal");
 		btn_TicketCancel_1.setFocusable(false);
 		btn_TicketCancel_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_TicketCancel_1.setForeground(new Color(0, 0, 0));
@@ -1178,7 +1178,7 @@ public class MainScreen extends JFrame {
 		btn_TicketCancel_1.setBounds(290, 435, 100, 30);
 		PaneTheater.add(btn_TicketCancel_1);
 		PaneTheater.setVisible(false);
-		///////////////////////////////////////////////////// PANETÄ°YATRO////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////// PANETÝYATRO////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		///////////////////////////////////////////////////// PANEKONSERs///////////////////////////////////////////////////////////////
@@ -1202,12 +1202,12 @@ public class MainScreen extends JFrame {
 		lbl_Poster3.setBounds(324, 35, 128, 161);
 		PaneConcert.add(lbl_Poster3);
 
-		JLabel lbl_ConcertName = new JLabel("Konser AdÄ±:");
+		JLabel lbl_ConcertName = new JLabel("Konser Adý:");
 		lbl_ConcertName.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_ConcertName.setBounds(10, 50, 100, 20);
 		PaneConcert.add(lbl_ConcertName);
 
-		JLabel lbl_ConcertType = new JLabel("Konser TÃ¼rÃ¼:");
+		JLabel lbl_ConcertType = new JLabel("Konser Türü:");
 		lbl_ConcertType.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_ConcertType.setBounds(10, 73, 100, 20);
 		PaneConcert.add(lbl_ConcertType);
@@ -1229,7 +1229,7 @@ public class MainScreen extends JFrame {
 		lbl_Time2.setBounds(10, 142, 100, 20);
 		PaneConcert.add(lbl_Time2);
 
-		JButton btn_SeatSelection3 = new JButton("Koltuk SeÃ§");
+		JButton btn_SeatSelection3 = new JButton("Koltuk Seç");
 		btn_SeatSelection3.setFocusable(false);
 		btn_SeatSelection3.setEnabled(false);
 		btn_SeatSelection3.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -1237,7 +1237,7 @@ public class MainScreen extends JFrame {
 		btn_SeatSelection3.setBounds(10, 165, 100, 22);
 		PaneConcert.add(btn_SeatSelection3);
 
-		JLabel lbl_PaymentInfo3 = new JLabel("Ã–deme Bilgileri");
+		JLabel lbl_PaymentInfo3 = new JLabel("Ödeme Bilgileri");
 		lbl_PaymentInfo3.setFont(new Font("SansSerif", Font.BOLD, 16));
 		lbl_PaymentInfo3.setBounds(10, 205, 130, 20);
 		PaneConcert.add(lbl_PaymentInfo3);
@@ -1319,7 +1319,7 @@ public class MainScreen extends JFrame {
 		fld_Time2.setBounds(140, 142, 75, 20);
 		PaneConcert.add(fld_Time2);
 
-		JLabel lbl_PaymentMethod3 = new JLabel("Ã–deme YÃ¶ntemi:");
+		JLabel lbl_PaymentMethod3 = new JLabel("Ödeme Yöntemi:");
 		lbl_PaymentMethod3.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_PaymentMethod3.setBounds(10, 304, 120, 20);
 		PaneConcert.add(lbl_PaymentMethod3);
@@ -1331,7 +1331,7 @@ public class MainScreen extends JFrame {
 		comboBox_Method3.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Method3.setBounds(140, 304, 130, 25);
 		comboBox_Method3.addItem("Nakit");
-		comboBox_Method3.addItem("Banka/Kredi KartÄ±");
+		comboBox_Method3.addItem("Banka/Kredi Kartý");
 		PaneConcert.add(comboBox_Method3);
 
 		JPanel w_pane_Cart3 = new JPanel();
@@ -1393,17 +1393,17 @@ public class MainScreen extends JFrame {
 		PaneConcert.add(fld_Price3);
 		fld_Price3.setColumns(10);
 
-		JLabel lbl_CartName3 = new JLabel("Kart Ãœzerindeki Ä°sim:");
+		JLabel lbl_CartName3 = new JLabel("Kart Üzerindeki Ýsim:");
 		lbl_CartName3.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_CartName3.setBounds(10, 8, 140, 20);
 		w_pane_Cart3.add(lbl_CartName3);
 
-		JLabel lbl_CartNumber3 = new JLabel("Kart NumarasÄ±:");
+		JLabel lbl_CartNumber3 = new JLabel("Kart Numarasý:");
 		lbl_CartNumber3.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_CartNumber3.setBounds(10, 30, 140, 20);
 		w_pane_Cart3.add(lbl_CartNumber3);
 
-		JLabel lbl_LastUsageDate3 = new JLabel("Son KullanÄ±m Tarihi:");
+		JLabel lbl_LastUsageDate3 = new JLabel("Son Kullaným Tarihi:");
 		lbl_LastUsageDate3.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_LastUsageDate3.setBounds(10, 52, 140, 20);
 		w_pane_Cart3.add(lbl_LastUsageDate3);
@@ -1417,7 +1417,7 @@ public class MainScreen extends JFrame {
 		JComboBox comboBox_Year3 = new JComboBox();
 		comboBox_Year3.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Year3.setBounds(235, 52, 72, 22);
-		comboBox_Year3.addItem("YÄ±l");
+		comboBox_Year3.addItem("Yýl");
 		w_pane_Cart3.add(comboBox_Year3);
 
 		JLabel lbl_Cvc3 = new JLabel("CVC:");
@@ -1458,10 +1458,10 @@ public class MainScreen extends JFrame {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() == ' '
-						|| (ke.getKeyChar() == 'Ä±' || ke.getKeyChar() == 'ÄŸ' || ke.getKeyChar() == 'Ã¼'
-								|| ke.getKeyChar() == 'ÅŸ' || ke.getKeyChar() == 'Ã¶' || ke.getKeyChar() == 'Ã§'
-								|| ke.getKeyChar() == 'Ä°' || ke.getKeyChar() == 'Äž' || ke.getKeyChar() == 'Ãœ'
-								|| ke.getKeyChar() == 'Åž' || ke.getKeyChar() == 'Ã–' || ke.getKeyChar() == 'Ã‡')
+						|| (ke.getKeyChar() == 'ý' || ke.getKeyChar() == 'ð' || ke.getKeyChar() == 'ü'
+								|| ke.getKeyChar() == 'þ' || ke.getKeyChar() == 'ö' || ke.getKeyChar() == 'ç'
+								|| ke.getKeyChar() == 'Ý' || ke.getKeyChar() == 'Ð' || ke.getKeyChar() == 'Ü'
+								|| ke.getKeyChar() == 'Þ' || ke.getKeyChar() == 'Ö' || ke.getKeyChar() == 'Ç')
 						|| (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
@@ -1513,7 +1513,7 @@ public class MainScreen extends JFrame {
 		btn_MyTickets_1_1.setBounds(60, 435, 100, 30);
 		PaneConcert.add(btn_MyTickets_1_1);
 
-		JButton btn_TicketCancel_1_1 = new JButton("Bilet Ä°ptal");
+		JButton btn_TicketCancel_1_1 = new JButton("Bilet Ýptal");
 		btn_TicketCancel_1_1.setFocusable(false);
 		btn_TicketCancel_1_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_TicketCancel_1_1.setForeground(new Color(0, 0, 0));
@@ -1541,7 +1541,7 @@ public class MainScreen extends JFrame {
 			comboBox_Year3.addItem(y3);
 		}
 
-		JButton btn_SelectCinema = new JButton("SeÃ§");
+		JButton btn_SelectCinema = new JButton("Seç");
 		btn_SelectCinema.setFocusable(false);
 		btn_SelectCinema.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_SelectCinema.setForeground(new Color(0, 0, 0));
@@ -1565,11 +1565,11 @@ public class MainScreen extends JFrame {
 						fld_Director.setText(selCinemaDirector);
 						fld_Salon.setText(selCinemaSalon);
 						fld_Seance.setText(selCinemaSeance);
-						lbl_Poster.setText("Poster");// Poster, Film KayÄ±t iÅŸleminde poster ekledikten sonra
-														// ayarlanÄ±lacak
+						lbl_Poster.setText("Poster");// Poster, Film Kayýt iþleminde poster ekledikten sonra
+														// ayarlanýlacak
 
 					} else {
-						JOptionPane.showMessageDialog(null, "LÃ¼tfen Bir Sinema SeÃ§iniz.", "Mesaj",
+						JOptionPane.showMessageDialog(null, "Lütfen Bir Sinema Seçiniz.", "Mesaj",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
@@ -1588,11 +1588,11 @@ public class MainScreen extends JFrame {
 						fld_Director2.setText(selTheaterDirector);
 						fld_Salon2.setText(selTheaterSalon);
 						fld_Time.setText(selTheaterTime);
-						lbl_Poster2.setText("Poster1");// Poster, Film KayÄ±t iÅŸleminde poster ekledikten sonra
-														// ayarlanÄ±lacak
+						lbl_Poster2.setText("Poster1");// Poster, Film Kayýt iþleminde poster ekledikten sonra
+														// ayarlanýlacak
 
 					} else {
-						JOptionPane.showMessageDialog(null, "LÃ¼tfen Bir Tiyatro Oyunu SeÃ§iniz.", "Mesaj",
+						JOptionPane.showMessageDialog(null, "Lütfen Bir Tiyatro Oyunu Seçiniz.", "Mesaj",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
@@ -1604,9 +1604,9 @@ public class MainScreen extends JFrame {
 				BuyTicket.salon = fld_Salon.getText();
 				BuyTicket.movie_type = fld_MovieType.getText();
 
-				///////////////////////////////////////////////////////////////// Konser iÃ§in
-				///////////////////////////////////////////////////////////////// henÃ¼z
-				///////////////////////////////////////////////////////////////// oluÅŸturulmadÄ±.
+				///////////////////////////////////////////////////////////////// Konser için
+				///////////////////////////////////////////////////////////////// henüz
+				///////////////////////////////////////////////////////////////// oluþturulmadý.
 			}
 		});
 ///////////////////////////////////////////////////// PANEKONSER////////////////////////////////////////////////////////////////
