@@ -1,9 +1,7 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.imageio.ImageIO;
@@ -22,7 +20,6 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
-import javax.swing.table.TableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -41,14 +38,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 //SubAdmin Boþ güncelleme
 public class SubAdmin extends JFrame {
@@ -69,9 +61,10 @@ public class SubAdmin extends JFrame {
 	private static SubATheater tiyatro = new SubATheater();
 	private static SubAConcert konser = new SubAConcert();
 	private JTextField text_image;
+	DbHelper dbhelper = new DbHelper();
 	Connection connection = null;
-	DbHelper dbHelper = new DbHelper();
-	Statement statement;
+	PreparedStatement pStatement;
+	
 	private JTextField txt_GameName;
 	private JTextField txt_director;
 	private JTextField txt_ConcertName;
@@ -170,7 +163,7 @@ public class SubAdmin extends JFrame {
 				txt_director.setBounds(111, 48, 138, 23);
 				paneAddConcert.add(txt_director);
 				
-				JComboBox combo_ConcertType = new JComboBox();
+				JComboBox<String> combo_ConcertType = new JComboBox<String>();
 				combo_ConcertType.setBounds(111, 77, 138, 21);
 				paneAddConcert.add(combo_ConcertType);
 				combo_ConcertType.addItem("Aksiyon");
@@ -189,7 +182,7 @@ public class SubAdmin extends JFrame {
 				lblNewLabel_1_1_2_3.setBounds(10, 143, 102, 28);
 				paneAddConcert.add(lblNewLabel_1_1_2_3);
 				
-				JComboBox combo_Salon = new JComboBox();
+				JComboBox<String> combo_Salon = new JComboBox<String>();
 				combo_Salon.setBounds(111, 110, 138, 21);
 				paneAddConcert.add(combo_Salon);
 				combo_Salon.addItem("A-1");
@@ -210,38 +203,33 @@ public class SubAdmin extends JFrame {
 						lbl_Poster.setBounds(288, 10, 128, 161);
 						paneAddConcert.add(lbl_Poster);
 						
-						JButton btn_ImageSelect = new JButton("Afi\u015F Se\u00E7");
+						JButton btn_ImageSelect = new JButton("Afis Sec");
 						btn_ImageSelect.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								
-
-								JFileChooser fs = new JFileChooser();
-								fs.setDialogTitle("Bir Resim SeÃ§");
-								FileNameExtensionFilter filter = new FileNameExtensionFilter("Resim DosyasÄ±", "jpg", "jpeg", "png");
-
-								fs.setFileFilter(filter);
-								int Adress = fs.showOpenDialog(null);
-								if (Adress == JFileChooser.APPROVE_OPTION) {
-									{
-										
-										ImageIcon imageIcon = new ImageIcon(fs.getSelectedFile().toString());
-										Image image = imageIcon.getImage();
-										Image newimg = image.getScaledInstance(128, 161, java.awt.Image.SCALE_SMOOTH);
+//------------------------------------------------------------------------------------------foto ekleme alaný bozma :)
+								try {
+									Class.forName("com.mysql.cj.jdbc.Driver");
+									connection = dbhelper.getConnection();
+									pStatement = connection.prepareStatement("insert into cinema(pic) values(?)");
 									
-										lbl_Poster.setIcon(new ImageIcon(newimg));
-										BufferedImage bImage = null;
-										try {
-											File initialImage = new File(fs.getSelectedFile().toString());
-											bImage = ImageIO.read(initialImage);
-											ImageIO.write(bImage, "jpg",
-													new File("C://Users/dogak/git/booking2/RastgeleButon/src/Images/image.png"));
-										} catch (IOException j) {
-											System.out.println("Exception occured :" + j.getMessage());
-										}
-
-									}
+									JFileChooser jfc = new JFileChooser();
+									jfc.showOpenDialog(null);
+									File file = jfc.getSelectedFile();
+									
+									FileInputStream fis = new FileInputStream(file);
+									pStatement.setBinaryStream(1, fis , fis.available());
+									
+									pStatement.executeUpdate();
+									
+									Metod_Helper.showMsg("succes");
+									
+								} catch (Exception e2) {
+									// TODO: handle exception
+									System.out.println(e2);
 								}
-
+							
+//-----------------------------------------------------------------------------------------------------------------								
+								
 							}
 						});
 						
@@ -369,7 +357,7 @@ public class SubAdmin extends JFrame {
 						txt_director.setBounds(111, 48, 138, 23);
 						paneAddTheatre.add(txt_director);
 						
-						JComboBox combo_GameType = new JComboBox();
+						JComboBox<String> combo_GameType = new JComboBox<String>();
 						combo_GameType.setBounds(111, 77, 138, 21);
 						paneAddTheatre.add(combo_GameType);
 						combo_GameType.addItem("Aksiyon");
@@ -388,7 +376,7 @@ public class SubAdmin extends JFrame {
 						lblNewLabel_1_1_2_1.setBounds(10, 143, 102, 28);
 						paneAddTheatre.add(lblNewLabel_1_1_2_1);
 						
-						JComboBox combo_Saloon = new JComboBox();
+						JComboBox<String> combo_Saloon = new JComboBox<String>();
 						combo_Saloon.setBounds(111, 110, 138, 21);
 						paneAddTheatre.add(combo_Saloon);
 						combo_Saloon.addItem("A-1");
@@ -719,7 +707,7 @@ public class SubAdmin extends JFrame {
 		txt_MovieDirector.setBounds(111, 48, 138, 23);
 		paneAddCinema.add(txt_MovieDirector);
 
-		JComboBox combo_MovieType = new JComboBox();
+		JComboBox<String> combo_MovieType = new JComboBox<String>();
 		combo_MovieType.setBounds(111, 78, 138, 21);
 		paneAddCinema.add(combo_MovieType);
 		combo_MovieType.addItem("Aksiyon");
@@ -738,7 +726,7 @@ public class SubAdmin extends JFrame {
 		lblNewLabel_1_1_2.setBounds(10, 143, 102, 28);
 		paneAddCinema.add(lblNewLabel_1_1_2);
 /////////////////////////Trrrrrrrrrrrrrrrr
-		JComboBox comboBox_Salon = new JComboBox();
+		JComboBox<String> comboBox_Salon = new JComboBox<String>();
 		comboBox_Salon.setBounds(111, 116, 138, 21);
 		paneAddCinema.add(comboBox_Salon);
 		comboBox_Salon.addItem("A-1");
@@ -764,7 +752,7 @@ public class SubAdmin extends JFrame {
 
 				JFileChooser fs = new JFileChooser();
 				fs.setDialogTitle("Bir Resim SeÃ§");
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Resim DosyasÄ±", "jpg", "jpeg", "png");
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Resim Dosyasi", "jpg", "jpeg", "png");
 
 				fs.setFileFilter(filter);
 				int Adress = fs.showOpenDialog(null);
