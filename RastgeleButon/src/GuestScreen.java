@@ -299,7 +299,7 @@ public class GuestScreen extends JFrame {
 		btn_SelectCinema.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_SelectCinema.setForeground(new Color(0, 0, 0));
 		btn_SelectCinema.setBackground(new Color(240, 255, 240));
-		btn_SelectCinema.setBounds(248, 547, 93, 30);
+		btn_SelectCinema.setBounds(255, 547, 93, 30);
 		contentPane.add(btn_SelectCinema);
 		btn_SelectCinema.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_SelectCinema.addActionListener(new ActionListener() {
