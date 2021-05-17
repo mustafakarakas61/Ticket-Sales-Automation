@@ -81,9 +81,8 @@ public class MainScreen extends JFrame {
 	private JTextField fld_cvc2;
 	private JTextField fld_CartNumber2;
 
-
 	private JTextField fld_ConcertType;
-	
+
 	private JTextField fld_cvc3;
 	private JTextField fld_CartNumber3;
 	private static user member = new Member();
@@ -517,14 +516,15 @@ public class MainScreen extends JFrame {
 		w_pane_Kart.add(lbl_LastUsageDate);
 
 		JComboBox comboBox_Month = new JComboBox();
-		comboBox_Month.setModel(new DefaultComboBoxModel(new String[] {"Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
+		comboBox_Month.setModel(new DefaultComboBoxModel(
+				new String[] { "Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 		comboBox_Month.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Month.setBounds(160, 52, 60, 22);
 		comboBox_Month.addItem("Ay");
 		w_pane_Kart.add(comboBox_Month);
 
 		JComboBox comboBox_Year = new JComboBox();
-		
+
 		comboBox_Year.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Year.setBounds(235, 52, 72, 22);
 		comboBox_Year.setModel(new DefaultComboBoxModel(new String[] { "Yil", "2021", "2022", "2023", "2024", "2025",
@@ -737,12 +737,11 @@ public class MainScreen extends JFrame {
 							JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
 									JOptionPane.INFORMATION_MESSAGE);
 
-						} 
-						else if(fld_CartNumber.getText().length()!=16 || fld_cvc.getText().length()!=3) {
+						} else if (fld_CartNumber.getText().length() != 16 || fld_cvc.getText().length() != 3) {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
 						}
-						
+
 						else {
 							if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
 									JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -1031,7 +1030,8 @@ public class MainScreen extends JFrame {
 		JComboBox comboBox_Month2 = new JComboBox();
 		comboBox_Month2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Month2.setBounds(160, 52, 60, 22);
-		comboBox_Month2.setModel(new DefaultComboBoxModel(new String[] {"Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
+		comboBox_Month2.setModel(new DefaultComboBoxModel(
+				new String[] { "Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 		w_pane_Kart2.add(comboBox_Month2);
 
 		JComboBox comboBox_Year2 = new JComboBox();
@@ -1248,12 +1248,11 @@ public class MainScreen extends JFrame {
 							JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
 									JOptionPane.INFORMATION_MESSAGE);
 
-						} 
-						else if(fld_CartNumber2.getText().length()!=16 || fld_cvc2.getText().length()!=3) {
+						} else if (fld_CartNumber2.getText().length() != 16 || fld_cvc2.getText().length() != 3) {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
 						}
-						
+
 						else {
 							if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
 									JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -1497,7 +1496,8 @@ public class MainScreen extends JFrame {
 		JComboBox comboBox_Month3 = new JComboBox();
 		comboBox_Month3.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		comboBox_Month3.setBounds(160, 52, 60, 22);
-		comboBox_Month3.setModel(new DefaultComboBoxModel(new String[] {"Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
+		comboBox_Month3.setModel(new DefaultComboBoxModel(
+				new String[] { "Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 		w_pane_Kart3.add(comboBox_Month3);
 
 		JComboBox comboBox_Year3 = new JComboBox();
@@ -1724,35 +1724,29 @@ public class MainScreen extends JFrame {
 
 						BuyTicket ticket = new BuyTicket();
 
-						
 						if (ticket.comboBox_seat.getItemCount() == 0) {
 							JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
 									JOptionPane.INFORMATION_MESSAGE);
 
-						} 
-						else if(fld_CartNumber3.getText().length()!=16 || fld_cvc3.getText().length()!=3) {
+						} else if (fld_CartNumber3.getText().length() != 16 || fld_cvc3.getText().length() != 3) {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
 						}
-						
-						
-						
-						
-						
-						else {
-						if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
-								JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-							Metod_Helper.showMsg("Odemeniz Aliniyor. Lutfen Bekleyiniz...");
-							try {
-								TimeUnit.SECONDS.sleep(3);
-							} catch (InterruptedException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
+						else {
+							if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
+									JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+								Metod_Helper.showMsg("Odemeniz Aliniyor. Lutfen Bekleyiniz...");
+								try {
+									TimeUnit.SECONDS.sleep(3);
+								} catch (InterruptedException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								Metod_Helper.showMsg("Odemeniz Basarıyla Gerceklesti");
+								ticket.setVisible(true);
 							}
-							Metod_Helper.showMsg("Odemeniz Basarıyla Gerceklesti");
-							ticket.setVisible(true);
-						}
 						}
 					}
 
@@ -1880,29 +1874,28 @@ public class MainScreen extends JFrame {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
-				
-				if(tabbedPane.getSelectedIndex() == 0){
+
+				if (tabbedPane.getSelectedIndex() == 0) {
 					btn_SelectSeat.setEnabled(true);
 					BuyTicket.setMovie(fld_MovieName.getText());
 					BuyTicket.setSeance(fld_Seance.getText());
 					BuyTicket.setSalon(fld_Salon.getText());
 					BuyTicket.setMovieType(fld_MovieType.getText());
-				}//1 ve 2 için düzenleme gerekli olabilr
-				if(tabbedPane.getSelectedIndex() == 1){
+				} // 1 ve 2 için düzenleme gerekli olabilr
+				if (tabbedPane.getSelectedIndex() == 1) {
 					btn_SelectSeat.setEnabled(true);
 					BuyTicket.setMovie(fld_TheaterName.getText());
 					BuyTicket.setSeance(fld_Seance2.getText());
 					BuyTicket.setSalon(fld_Salon22.getText());
 					BuyTicket.setMovieType(fld_ThetaerType.getText());
 				}
-				if(tabbedPane.getSelectedIndex() == 2){
+				if (tabbedPane.getSelectedIndex() == 2) {
 					btn_SelectSeat.setEnabled(true);
 					BuyTicket.setMovie(fld_concertName.getText());
 					BuyTicket.setSeance(fld_Seance3.getText());
 					BuyTicket.setSalon(txt_ConcertPlace.getText());
 					BuyTicket.setMovieType(fld_ConcertType.getText());
 				}
-			
 
 			}
 		});
