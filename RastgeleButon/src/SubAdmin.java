@@ -4,9 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTabbedPane;
@@ -14,7 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
 import java.awt.SystemColor;
@@ -22,7 +19,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.Image;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -34,7 +30,6 @@ import Helper.DbHelper;
 import Helper.Metod_Helper;
 
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -75,7 +70,6 @@ public class SubAdmin extends JFrame {
 	PreparedStatement pStatement;
 	private JTextField txt_MovieName;
 	private JTextField txt_MovieDirector;
-	private JTextField txt_ArtistSurName;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -330,7 +324,7 @@ public class SubAdmin extends JFrame {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					connection = dbhelper.getConnection();
-					pStatement = connection.prepareStatement("insert into cinema(pic) values(?)");
+					pStatement = connection.prepareStatement("update cinema set pic=? where filmID =?");
 
 					JFileChooser jfc = new JFileChooser();
 					jfc.showOpenDialog(null);
@@ -338,7 +332,8 @@ public class SubAdmin extends JFrame {
 
 					FileInputStream fis = new FileInputStream(file);
 					pStatement.setBinaryStream(1, fis, fis.available());
-
+					pStatement.setString(2,"1");
+					
 					pStatement.executeUpdate();
 
 					Metod_Helper.showMsg("succes");
@@ -353,7 +348,7 @@ public class SubAdmin extends JFrame {
 			}
 		});
 
-		btn_ImageSelect.setBounds(314, 182, 102, 31);
+		btn_ImageSelect.setBounds(304, 182, 102, 31);
 		paneAddCinema.add(btn_ImageSelect);
 
 		JLabel lbl_Image = new JLabel("Resim:");
@@ -496,6 +491,8 @@ public class SubAdmin extends JFrame {
 ///////////////////////////////////////////////////////////////PaneCinema//////////////////////////////////////////////////////////////////////////
 
 		//////////////////////////////////////////////// PaneTheater
+
+
 		JPanel paneAddTheater = new JPanel();
 		paneAddTheater.setBackground(new Color(221, 160, 221));
 		paneAddTheater.setBounds(417, 41, 416, 438);
@@ -583,16 +580,16 @@ public class SubAdmin extends JFrame {
 			}
 		});
 
-		btn_ImageSelect2.setBounds(314, 182, 102, 31);
+		btn_ImageSelect2.setBounds(304, 182, 102, 31);
 		paneAddTheater.add(btn_ImageSelect2);
 
 		JLabel lbl_Image2 = new JLabel("Resim:");
 		lbl_Image2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_Image2.setBounds(10, 181, 50, 28);
+		lbl_Image2.setBounds(10, 153, 50, 19);
 		paneAddTheater.add(lbl_Image2);
 
 		text_image2 = new JTextField();
-		text_image2.setBounds(111, 181, 138, 19);
+		text_image2.setBounds(111, 153, 138, 19);
 		paneAddTheater.add(text_image2);
 		text_image2.setColumns(10);
 
@@ -724,11 +721,13 @@ public class SubAdmin extends JFrame {
 			}
 		});
 		paneAddTheater.setVisible(false);
+
 		//////////////////////////////////// PaneTheater////////////////////////////////////////////////////////////////////
 		///////////////////////////// PaneConcert
+		
 		JPanel paneAddConcert = new JPanel();
 		paneAddConcert.setBackground(new Color(143, 188, 143));
-		paneAddConcert.setBounds(417, 41, 416, 438);
+		paneAddConcert.setBounds(417, 43, 416, 438);
 		contentPane.add(paneAddConcert);
 		paneAddConcert.setLayout(null);
 
@@ -794,16 +793,16 @@ public class SubAdmin extends JFrame {
 			}
 		});
 
-		btn_ImageSelect3.setBounds(314, 182, 102, 31);
+		btn_ImageSelect3.setBounds(304, 182, 102, 31);
 		paneAddConcert.add(btn_ImageSelect3);
 
 		JLabel lbl_Image3 = new JLabel("Resim:");
 		lbl_Image3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_Image3.setBounds(10, 181, 50, 28);
+		lbl_Image3.setBounds(10, 153, 50, 23);
 		paneAddConcert.add(lbl_Image3);
 
 		text_image3 = new JTextField();
-		text_image3.setBounds(111, 181, 138, 19);
+		text_image3.setBounds(111, 153, 138, 19);
 		paneAddConcert.add(text_image3);
 		text_image3.setColumns(10);
 
@@ -885,15 +884,22 @@ public class SubAdmin extends JFrame {
 		btn_AddConcert.setBounds(141, 396, 138, 31);
 		paneAddConcert.add(btn_AddConcert);
 
-		JLabel lbl_ArtistSurName = new JLabel("Sanat\u00E7\u0131 Soyad\u0131:");
+		JLabel lbl_ArtistSurName = new JLabel("Konser Yeri:");
 		lbl_ArtistSurName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lbl_ArtistSurName.setBounds(2, 82, 108, 28);
+		lbl_ArtistSurName.setBounds(10, 83, 108, 28);
 		paneAddConcert.add(lbl_ArtistSurName);
-
-		txt_ArtistSurName = new JTextField();
-		txt_ArtistSurName.setColumns(10);
-		txt_ArtistSurName.setBounds(111, 85, 138, 23);
-		paneAddConcert.add(txt_ArtistSurName);
+		
+		JComboBox combo_ConcertPlace = new JComboBox();
+		combo_ConcertPlace.setBounds(111, 83, 138, 21);
+		paneAddConcert.add(combo_ConcertPlace);
+		combo_ConcertPlace.addItem("Babylon");
+		combo_ConcertPlace.addItem("Dorock XL");
+		combo_ConcertPlace.addItem("Zorlu Center");
+		combo_ConcertPlace.addItem("Wolkswagen Arena");
+		combo_ConcertPlace.addItem("Jolly Joker");
+		combo_ConcertPlace.addItem("Bronx Pi Sahne");
+		combo_ConcertPlace.addItem("Shaft");
+		
 		btn_AddConcert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -945,6 +951,8 @@ public class SubAdmin extends JFrame {
 		});
 		
 		paneAddConcert.setVisible(false);
+		
+		
 		//////////////////////////////////// PaneConcert////////////////////////////////////////////////////////////////////
 
 		tabbedPane.addChangeListener((ChangeListener) new ChangeListener() {
