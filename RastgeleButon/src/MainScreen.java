@@ -149,7 +149,7 @@ public class MainScreen extends JFrame {
 		concertData = new Object[5];
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 980, 600);
+		setBounds(100, 100, 1030, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(
@@ -174,7 +174,7 @@ public class MainScreen extends JFrame {
 				dispose();
 			}
 		});
-		btn_Exit.setBounds(854, 20, 100, 25);
+		btn_Exit.setBounds(902, 20, 100, 25);
 		contentPane.add(btn_Exit);
 
 		JLabel lbl_Name = new JLabel("Hoşgeldiniz Sayın " + member.getName());
@@ -186,7 +186,7 @@ public class MainScreen extends JFrame {
 		tabbedPane.setFocusable(false);
 		tabbedPane.setBackground(new Color(255, 255, 255));
 
-		tabbedPane.setBounds(10, 60, 410, 476);
+		tabbedPane.setBounds(10, 60, 459, 476);
 		contentPane.add(tabbedPane);
 
 		JPanel w_paneCinema = new JPanel();
@@ -195,7 +195,7 @@ public class MainScreen extends JFrame {
 		w_paneCinema.setLayout(null);
 
 		JScrollPane scrollPane_Cinema = new JScrollPane();
-		scrollPane_Cinema.setBounds(0, 0, 405, 448);
+		scrollPane_Cinema.setBounds(0, 0, 454, 448);
 		w_paneCinema.add(scrollPane_Cinema);
 ///////////////////////////////////////////////////////////////////////////////////Sinema Sütun Özellikleri
 		table_Cinema = new JTable(cinemaModel);
@@ -245,7 +245,7 @@ public class MainScreen extends JFrame {
 		w_paneTheater.setLayout(null);
 
 		JScrollPane scrollPane_Theater = new JScrollPane();
-		scrollPane_Theater.setBounds(0, 0, 405, 448);
+		scrollPane_Theater.setBounds(0, 0, 454, 448);
 		w_paneTheater.add(scrollPane_Theater);
 
 ///////////////////////////////////////////////////////////////////////////////////Tiyatro Sütun Özellikleri
@@ -272,7 +272,7 @@ public class MainScreen extends JFrame {
 			theaterData[1] = subadmin.theaterList().get(i).getTiyatroType();
 			theaterData[2] = subadmin.theaterList().get(i).getTiyatroDate();
 			theaterData[3] = subadmin.theaterList().get(i).getTiyatroSalon();
-			theaterData[4] = subadmin.theaterList().get(i).getTiyatroDate();
+			theaterData[4] = subadmin.theaterList().get(i).getTiyatroSaat();
 			theaterModel.addRow(theaterData);
 		}
 
@@ -283,7 +283,7 @@ public class MainScreen extends JFrame {
 		w_paneConcert.setLayout(null);
 
 		JScrollPane scrollPane_Concert = new JScrollPane();
-		scrollPane_Concert.setBounds(0, 0, 405, 448);
+		scrollPane_Concert.setBounds(0, 0, 454, 448);
 		w_paneConcert.add(scrollPane_Concert);
 
 		table_Concert = new JTable(concertModel);
@@ -316,7 +316,7 @@ public class MainScreen extends JFrame {
 		JPanel PaneCinema = new JPanel();
 		PaneCinema.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		PaneCinema.setBackground(new Color(255, 255, 255));
-		PaneCinema.setBounds(504, 60, 450, 479);
+		PaneCinema.setBounds(552, 60, 450, 479);
 		contentPane.add(PaneCinema);
 		PaneCinema.setLayout(null);
 
@@ -829,7 +829,7 @@ public class MainScreen extends JFrame {
 		JPanel PaneTheater = new JPanel();
 		PaneTheater.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		PaneTheater.setBackground(new Color(255, 255, 255));
-		PaneTheater.setBounds(504, 60, 450, 479);
+		PaneTheater.setBounds(552, 60, 450, 479);
 		contentPane.add(PaneTheater);
 		PaneTheater.setLayout(null);
 
@@ -1325,7 +1325,7 @@ public class MainScreen extends JFrame {
 		JPanel PaneConcert = new JPanel();
 		PaneConcert.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		PaneConcert.setBackground(new Color(255, 255, 255));
-		PaneConcert.setBounds(504, 60, 450, 479);
+		PaneConcert.setBounds(552, 60, 450, 479);
 		contentPane.add(PaneConcert);
 		PaneConcert.setLayout(null);
 
@@ -1798,7 +1798,7 @@ public class MainScreen extends JFrame {
 		btn_Select.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Select.setForeground(new Color(0, 0, 0));
 		btn_Select.setBackground(new Color(204, 204, 255));
-		btn_Select.setBounds(431, 270, 60, 30);
+		btn_Select.setBounds(479, 270, 60, 30);
 		contentPane.add(btn_Select);
 		btn_Select.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_Select.addActionListener(new ActionListener() {
@@ -1833,15 +1833,15 @@ public class MainScreen extends JFrame {
 					if (selRow1 >= 0) {
 						String selTheaterName = table_Theater.getModel().getValueAt(selRow1, 0).toString();
 						String selTheaterType = table_Theater.getModel().getValueAt(selRow1, 1).toString();
-						String selTheaterDirector = table_Theater.getModel().getValueAt(selRow1, 2).toString();
+						String selTheaterYear = table_Theater.getModel().getValueAt(selRow1, 2).toString();
 						String selTheaterSalon = table_Theater.getModel().getValueAt(selRow1, 3).toString();
 						String selTheaterTime = table_Theater.getModel().getValueAt(selRow1, 4).toString();
 
-						fld_GameName.setText(selTheaterName);
-						fld_GameType.setText(selTheaterType);
-						fld_Director2.setText(selTheaterDirector);
-						fld_Salon2.setText(selTheaterSalon);
-						fld_Time.setText(selTheaterTime);
+						fld_TheaterName.setText(selTheaterName);
+						fld_ThetaerType.setText(selTheaterType);
+						txt_theaterYear.setText(selTheaterYear);
+						fld_Salon22.setText(selTheaterSalon);
+						fld_Seance2.setText(selTheaterTime);
 						lbl_Poster2.setText("Poster1");// Poster, Tiyatro Kay�t i�leminde poster ekledikten sonra
 														// ayarlan�lacak
 
@@ -1893,7 +1893,7 @@ public class MainScreen extends JFrame {
 					BuyTicket.setMovie(fld_concertName.getText());
 					BuyTicket.setSeance(fld_Seance3.getText());
 					BuyTicket.setSalon(txt_ConcertPlace.getText());
-					BuyTicket.setMovieType(fld_ConcertType.getText());
+					BuyTicket.setMovieType(fld_Artist33.getText());
 				}
 
 			}
