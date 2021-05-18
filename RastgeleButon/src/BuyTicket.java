@@ -372,10 +372,10 @@ public class BuyTicket extends JFrame {
 		
 		try{if(Integer.parseInt(txt_StudentCount.getText())>0&&Integer.parseInt(txt_StudentCount.getText())<2)
 		{
-			BuyTicket.lblInfoStudent="Ogrenci, Ogrenci Kimligini yanýnda bulundurmalýdýr.";
+			BuyTicket.lblInfoStudent="Ogrenci, Ogrenci Kimligini yanýnda bulundurmalidir.";
 		}else if(Integer.parseInt(txt_StudentCount.getText())>1)
 		{
-			BuyTicket.lblInfoStudent="Ogrenciler, Ogrenci Kimliklerini yanlarýnda bulundurmalýdýr.";
+			BuyTicket.lblInfoStudent="Ogrenciler, Ogrenci Kimliklerini yanlarinda bulundurmalidir.";
 		}else{BuyTicket.lblInfoStudent="";}}catch(Exception e2) {}
 		
 		lbl_InfoStudent = new JLabel();
