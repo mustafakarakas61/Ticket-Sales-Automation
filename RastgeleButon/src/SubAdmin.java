@@ -436,7 +436,7 @@ public class SubAdmin extends JFrame {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 
-					String id = (subadmin.getFilmID()+2)+"";
+					String id = (subadmin.getFilmID()+1)+"";
 
 					connection = dbhelper.getConnection();
 					pStatement = connection.prepareStatement("update cinema set pic=? where filmID =?");
@@ -611,6 +611,7 @@ public class SubAdmin extends JFrame {
 						Metod_Helper.showMsg("LÃ¼tfen Seans seÃ§iniz!");
 					}
 				} else {
+					
 					String cboxMovieType = String.valueOf(combo_MovieType.getSelectedItem());
 					String cboxSalon = String.valueOf(comboBox_Salon.getSelectedItem());
 
@@ -713,7 +714,7 @@ public class SubAdmin extends JFrame {
 				// ------------------------------------------------------------------------------------------foto
 				// ekleme alanÃ½ bozma :)
 				try {
-					String id = (subadmin.getTiyatroID()+2)+"";
+					String id = (subadmin.getTiyatroID()+1)+"";
 					
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					connection = dbhelper.getConnection();
@@ -903,7 +904,7 @@ public class SubAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 //------------------------------------------------------------------------------------------foto ekleme alanÃ½ bozma :)
 				try {
-					String id = (subadmin.getConcertID()+2)+"";
+					String id = (subadmin.getConcertID()+1)+"";
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					connection = dbhelper.getConnection();
 					pStatement = connection.prepareStatement("insert into concert(pic) values(?)");
