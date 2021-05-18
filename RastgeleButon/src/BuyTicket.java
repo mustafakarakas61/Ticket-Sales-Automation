@@ -250,7 +250,7 @@ public class BuyTicket extends JFrame {
 				      +"\nKoltuklar : "+txt_seatCount.getText()
 				      +"\nSeans : "+fld_seance.getText()
 				      +"\n"+lbl_Card.getText()
-				      +"\nBu bilet "+user+"adýna kesilmiþtir"
+				      +"\nBu bilet "+user+"adÄ±na kesilmiÅŸtir"
 				      );
 				      myWriter.close();
 				      System.out.println("Successfully wrote to the file.");
@@ -372,7 +372,7 @@ public class BuyTicket extends JFrame {
 		
 		try{if(Integer.parseInt(txt_StudentCount.getText())>0&&Integer.parseInt(txt_StudentCount.getText())<2)
 		{
-			BuyTicket.lblInfoStudent="Ogrenci, Ogrenci Kimligini yanýnda bulundurmalidir.";
+			BuyTicket.lblInfoStudent="Ogrenci, Ogrenci Kimligini yaninda bulundurmalidir.";
 		}else if(Integer.parseInt(txt_StudentCount.getText())>1)
 		{
 			BuyTicket.lblInfoStudent="Ogrenciler, Ogrenci Kimliklerini yanlarinda bulundurmalidir.";
