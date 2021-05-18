@@ -316,7 +316,6 @@ public class BuyTicketConcert extends JFrame {
 		
 		txt_TicketPrice = new JTextField();
 		txt_TicketPrice.setText(ticketPrice);
-		System.out.println(ticketPrice);
 		txt_TicketPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		txt_TicketPrice.setFont(new Font("SansSerif", Font.BOLD, 14));
 		txt_TicketPrice.setEditable(false);
