@@ -91,6 +91,7 @@ public class MainScreen extends JFrame {
 	private JTextField txt_TicketCount;
 	private JTextField txt_StudentCount;
 	private JTextField txt_GhostTicketPrice;
+	private JTextField txt_Total;
 
 	/**
 	 * Launch the application.
@@ -1648,6 +1649,134 @@ public class MainScreen extends JFrame {
 		txt_StudentCount.setBackground(Color.WHITE);
 		txt_StudentCount.setBounds(312, 193, 34, 20);
 		PaneConcert.add(txt_StudentCount);
+
+		txt_GhostTicketPrice = new JTextField();
+		txt_GhostTicketPrice.setVisible(false);
+		txt_GhostTicketPrice.setEditable(false);
+		txt_GhostTicketPrice.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txt_GhostTicketPrice.setColumns(10);
+		txt_GhostTicketPrice.setBackground(Color.WHITE);
+		txt_GhostTicketPrice.setBounds(392, 195, 34, 20);
+		PaneConcert.add(txt_GhostTicketPrice);
+
+		JLabel lbl_Total = new JLabel("Ucret");
+		lbl_Total.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_Total.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 21));
+		lbl_Total.setBackground(Color.WHITE);
+		lbl_Total.setBounds(300, 233, 130, 25);
+		PaneConcert.add(lbl_Total);
+
+		txt_Total = new JTextField();
+		txt_Total.setForeground(Color.LIGHT_GRAY);
+		txt_Total.setFont(new Font("Yu Gothic UI Semibold", Font.ITALIC, 25));
+		txt_Total.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_Total.setEditable(false);
+		txt_Total.setBackground(Color.BLACK);
+		txt_Total.setBounds(300, 258, 140, 71);
+		// txt_StudentCount
+		// txt_TicketCount
+		// txt_GhostTicketPrice
+
+		
+		txt_StudentCount.addKeyListener(new KeyAdapter() {
+
+			public void keyPressed(KeyEvent ke) {
+				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+						|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
+						|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+
+					if (txt_StudentCount.getText().length() < 4 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+							|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
+							|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+						txt_StudentCount.setEditable(true);
+					} else {
+						txt_StudentCount.setEditable(false);
+					}
+
+				} else {
+					txt_StudentCount.setEditable(false);
+
+				}
+			}
+		});
+		txt_TicketCount.addKeyListener(new KeyAdapter() {
+
+			public void keyPressed(KeyEvent ke) {
+				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+						|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
+						|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+
+					if (txt_TicketCount.getText().length() < 4 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+							|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
+							|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+						txt_TicketCount.setEditable(true);
+					} else {
+						txt_TicketCount.setEditable(false);
+					}
+
+				} else {
+					txt_TicketCount.setEditable(false);
+
+				}
+			}
+		});
+		
+		
+		
+		txt_StudentCount.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				
+				txt_Total.setText(Math.round(Double.parseDouble(txt_GhostTicketPrice.getText())
+						* Double.parseDouble(txt_TicketCount.getText())
+						- ((0.4) * Double.parseDouble(txt_StudentCount.getText())
+								* Double.parseDouble(txt_TicketCount.getText())))
+						+ "TL");
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+		txt_TicketCount.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+
+				txt_Total.setText(Math.round(Double.parseDouble(txt_GhostTicketPrice.getText())
+						* Double.parseDouble(txt_TicketCount.getText())
+						- ((0.4) * Double.parseDouble(txt_StudentCount.getText())
+								* Double.parseDouble(txt_TicketCount.getText())))
+						+ "TL");
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+
+		PaneConcert.add(txt_Total);
 		JButton btn_BuyTicket3 = new JButton("Bilet Al");
 		btn_BuyTicket3.addActionListener(new ActionListener() {
 
@@ -1658,17 +1787,10 @@ public class MainScreen extends JFrame {
 
 				ticket.setStudentCount(txt_StudentCount.getText());
 
-			if(txt_TicketCount.getText().length()>0)
-			{
-				double totalPrice = Double.parseDouble(txt_GhostTicketPrice.getText())
-						* Double.parseDouble(txt_TicketCount.getText())
-						- (Double.parseDouble(txt_GhostTicketPrice.getText()) * (15 / 100)
-								* Double.parseDouble(txt_StudentCount.getText()));
+				if (txt_TicketCount.getText().length() > 0) {
 
-				String totalPriceString = totalPrice + "";
-
-				ticket.setPrice(totalPriceString);
-			}
+					ticket.setPrice(txt_Total.getText());
+				}
 				if (comboBox_Method3.getSelectedIndex() == 1) {
 					BuyTicketConcert.setlblCard("Ucret, BANKA/KREDI KARTI ile Odenmistir. Borcunuz yoktur.");
 					BuyTicketConcert.setPrice("Odendi");
@@ -1779,20 +1901,16 @@ public class MainScreen extends JFrame {
 						if (fld_CartNumber3.getText().length() != 16 || fld_cvc3.getText().length() != 3) {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
-						}
-						else if(txt_TicketCount.getText().length()==0)
-						{
+						} else if (txt_TicketCount.getText().length() == 0) {
 							Metod_Helper.showMsg("Lutfen alacaginiz bilet sayisini giriniz.");
-						}
-						else if(txt_TicketCount.getText()==null||Integer.parseInt(txt_TicketCount.getText())==0 )
-						{
+						} else if (txt_TicketCount.getText() == null
+								|| Integer.parseInt(txt_TicketCount.getText()) == 0) {
 							Metod_Helper.showMsg("Lutfen alacaginiz bilet sayisini giriniz.");
-						}
-						else if(Integer.parseInt(txt_TicketCount.getText())>Integer.parseInt(table_Concert.getModel().getValueAt(table_Concert.getSelectedRow(), 5).toString()))
-						{
+						} else if (Integer.parseInt(txt_TicketCount.getText()) > Integer.parseInt(
+								table_Concert.getModel().getValueAt(table_Concert.getSelectedRow(), 5).toString())) {
 							Metod_Helper.showMsg("Lutfen gecerli bir bilet sayisi giriniz.");
 						}
-						
+
 						else if (Integer.parseInt(txt_TicketCount.getText()) < Integer
 								.parseInt(txt_StudentCount.getText())) {
 							Metod_Helper.showMsg("Ogrenci sayisi, bilet sayisindan fazla!");
@@ -1829,12 +1947,10 @@ public class MainScreen extends JFrame {
 					} else if (Integer.parseInt(txt_TicketCount.getText()) < Integer
 							.parseInt(txt_StudentCount.getText())) {
 						Metod_Helper.showMsg("Ogrenci sayisi, bilet sayisindan fazla!");
-					}
-					else if(Integer.parseInt(txt_TicketCount.getText())>Integer.parseInt(table_Concert.getModel().getValueAt(table_Concert.getSelectedRow(), 5).toString()))
-					{
+					} else if (Integer.parseInt(txt_TicketCount.getText()) > Integer.parseInt(
+							table_Concert.getModel().getValueAt(table_Concert.getSelectedRow(), 5).toString())) {
 						Metod_Helper.showMsg("Lutfen gecerli bir bilet sayisi giriniz.");
-					}
-					else {
+					} else {
 						ticket = new BuyTicketConcert();
 
 						if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
@@ -1848,15 +1964,6 @@ public class MainScreen extends JFrame {
 
 			}
 		});
-		
-				txt_GhostTicketPrice = new JTextField();
-				txt_GhostTicketPrice.setVisible(false);
-				txt_GhostTicketPrice.setEditable(false);
-				txt_GhostTicketPrice.setFont(new Font("SansSerif", Font.PLAIN, 14));
-				txt_GhostTicketPrice.setColumns(10);
-				txt_GhostTicketPrice.setBackground(Color.WHITE);
-				txt_GhostTicketPrice.setBounds(392, 195, 34, 20);
-				PaneConcert.add(txt_GhostTicketPrice);
 		btn_BuyTicket3.setFocusable(false);
 		btn_BuyTicket3.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_BuyTicket3.setForeground(new Color(0, 0, 0));
@@ -1983,7 +2090,7 @@ public class MainScreen extends JFrame {
 						String selConcertArtist = table_Concert.getModel().getValueAt(selRow2, 2).toString();
 						String selConcertDate = table_Concert.getModel().getValueAt(selRow2, 3).toString();
 						String selConcertTime = table_Concert.getModel().getValueAt(selRow2, 4).toString();
-						String selConcertTicketPrice= table_Concert.getModel().getValueAt(selRow2, 6).toString();
+						String selConcertTicketPrice = table_Concert.getModel().getValueAt(selRow2, 6).toString();
 						txt_GhostTicketPrice.setText(selConcertTicketPrice);
 						fld_concertName.setText(selConcertName);
 						txt_ConcertPlace.setText(selConcertPlace);
@@ -2012,7 +2119,7 @@ public class MainScreen extends JFrame {
 								JOptionPane.showMessageDialog(null, "No Data");
 							}
 						} catch (Exception ex) {
-							//ex.printStackTrace();
+							// ex.printStackTrace();
 						}
 
 //-----------------------------------------------------------------------------------------------------------------
