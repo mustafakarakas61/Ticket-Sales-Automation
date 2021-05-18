@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import Helper.DbHelper;
 import Helper.Metod_Helper;
 import Helper.SeatHelper;
 
@@ -44,6 +45,11 @@ public class SeatSelection extends JFrame implements MouseListener {
 	private JTextField txt_TotalStudent;
 	private JTextField txt_Total;
 	private JTextField txt_SelectedSeatsNumbers;
+	String seatName = null;
+	SeatHelper shelper= new SeatHelper(); 
+	DbHelper dbhelper = new DbHelper();
+			
+			
 
 	/**
 	 * Launch the application.
@@ -144,24 +150,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 				}
 			}
 		}
-
-		JButton btn_Confirm = new JButton("Onayla");
-		btn_Confirm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				BuyTicket.setSeat(txt_SelectedSeatsNumbers.getText());;
-				BuyTicket.setPrice(txt_Total.getText());
-				BuyTicket.setSeatCount(txt_TotalSeats.getText());
-				BuyTicket.setStudentCount(txt_TotalStudent.getText());;
-				if(txt_TotalStudent.getText().length()==0)
-				{
-					BuyTicket.setStudentCount("0");
-				}
-				dispose();
-			}
-		});
-		btn_Confirm.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
-		btn_Confirm.setBounds(492, 525, 100, 44);
-		contentPane.add(btn_Confirm);
 
 		JPanel w_paneTopNumber = new JPanel();
 		w_paneTopNumber.setBackground(SystemColor.desktop);
@@ -420,13 +408,47 @@ public class SeatSelection extends JFrame implements MouseListener {
 		txt_SelectedSeatsNumbers.setBackground(Color.WHITE);
 		txt_SelectedSeatsNumbers.setBounds(792, 537, 65, 20);
 		contentPane.add(txt_SelectedSeatsNumbers);
+		
+				JButton btn_Confirm = new JButton("Onayla");
+				btn_Confirm.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						System.out.println(seatName);
+						
+						try {
+							
+							boolean control = shelper.seatAdd(seatName, "d");
+							if (control) {
+								Metod_Helper.showMsg("succes");
+							}else
+								
+								Metod_Helper.showMsg("Bu koltuk dolu !");
+							
+						} catch (Exception e2) {
+							System.out.println(e2);
+						}
+						BuyTicket.setSeat(txt_SelectedSeatsNumbers.getText());
+						BuyTicket.setPrice(txt_Total.getText());
+						BuyTicket.setSeatCount(txt_TotalSeats.getText());
+						BuyTicket.setStudentCount(txt_TotalStudent.getText());
+						
+						if(txt_TotalStudent.getText().length()==0)
+						{
+							BuyTicket.setStudentCount("0");
+							
+						}
+						dispose();
+					}
+				});
+				btn_Confirm.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
+				btn_Confirm.setBounds(492, 525, 100, 44);
+				contentPane.add(btn_Confirm);
 
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		SeatHelper s = (SeatHelper) e.getComponent();
-		String seatName = null;
+		
 
 		if (e.getButton() == 1) {
 			if (!(s.isSeatSelect())) {
