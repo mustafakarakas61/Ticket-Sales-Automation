@@ -1097,7 +1097,7 @@ public class SubAdmin extends JFrame {
 
 				if (txt_ConcertName.getText().length() == 0 || txt_ConcertType.getText().length() == 0 || txt_TicketCount.getText().length()==0
 						|| txt_TicketPrice.getText().length()==0
-						|| combo_ConcertPlace.getSelectedIndex() == -1 || dateChooser.getDate() == null
+						|| combo_ConcertPlace.getSelectedIndex() == -1 || dateChooser3.getDate() == null
 						|| seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
 					if (seance == "") {
@@ -1179,7 +1179,7 @@ public class SubAdmin extends JFrame {
 				}
 
 				if (txt_TheaterName.getText().length() == 0 || comboBox_TheaterType.getSelectedIndex() == -1
-						|| comboBox_Salon2.getSelectedIndex() == -1 || dateChooser.getDate() == null
+						|| comboBox_Salon2.getSelectedIndex() == -1 || dateChooser2.getDate() == null
 						|| seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
 					if (seance == "") {
