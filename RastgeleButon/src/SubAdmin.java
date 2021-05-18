@@ -4,17 +4,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JLabel;
@@ -38,21 +44,21 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.EventObject;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
-//SubAdmin Boþ güncelleme
 public class SubAdmin extends JFrame {
-	private DefaultTableModel cinemaModel;
-	private DefaultTableModel theaterModel;
-	private DefaultTableModel concertModel;
-	private Object[] cinemaData = null;
-	private Object[] concertData = null;
-	private Object[] theaterData = null;
+	private static DefaultTableModel cinemaModel;
+	private static DefaultTableModel theaterModel;
+	private static DefaultTableModel concertModel;
+	private static Object[] cinemaData = null;
+	private static Object[] concertData = null;
+	private static Object[] theaterData = null;
 	private JPanel contentPane;
-	private JTable table_Cinema;
-	private JTable table_Theater;
-	private JTable table_Concert;
+	private static JTable table_Cinema;
+	private static JTable table_Theater;
+	private static JTable table_Concert;
 	private JTextField txt_TheaterName;
 	private JTextField txt_TheaterType;
 	private JTextField txt_ConcertName;
@@ -61,9 +67,7 @@ public class SubAdmin extends JFrame {
 	private JLabel lbl_Poster;
 
 	private static user sub = new user();
-	private static SubACinema sinema = new SubACinema();
-	private static SubATheater tiyatro = new SubATheater();
-	private static SubAConcert konser = new SubAConcert();
+	private static SAdmin subadmin = new SAdmin();
 	private JTextField text_image;
 	private JTextField text_image2;
 	private JTextField text_image3;
@@ -92,161 +96,253 @@ public class SubAdmin extends JFrame {
 	 * @throws SQLException
 	 */
 	public SubAdmin(user sub) throws SQLException {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 857, 518);
+		setBounds(100, 100, 982, 518);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		cinemaModel = new DefaultTableModel();
-		Object[] colCinema = new Object[5];
-		colCinema[0] = "Film Adý";
-		colCinema[1] = "Film Türü";
-		colCinema[2] = "Yönetmen";
-		colCinema[3] = "Salon";
-		colCinema[4] = "Seans";
+		Object[] colCinema = new Object[7];
+		colCinema[0] = "Film ID";
+		colCinema[1] = "Film AdÄ±";
+		colCinema[2] = "Film TÃ¼rÃ¼";
+		colCinema[3] = "YÃ¶netmen";
+		colCinema[4] = "Tarih";
+		colCinema[5] = "Salon";
+		colCinema[6] = "Seans";
 
 		cinemaModel.setColumnIdentifiers(colCinema);
-		cinemaData = new Object[5];
+		cinemaData = new Object[7];
 
 		concertModel = new DefaultTableModel();
-		Object[] colConcert = new Object[4];
-		colConcert[0] = "Konser Adý";
-		colConcert[1] = "Konser Türü";
-		colConcert[2] = "Tarih";
-		colConcert[3] = "Saat";
+		Object[] colConcert = new Object[6];
+		colConcert[0] = "Konser ID";
+		colConcert[1] = "Konser AdÄ±";
+		colConcert[2] = "Konser Yeri";
+		colConcert[3] = "SanatÃ§Ä±";
+		colConcert[4] = "Tarih";
+		colConcert[5] = "Saat";
 
 		concertModel.setColumnIdentifiers(colConcert);
-		concertData = new Object[4];
+		concertData = new Object[6];
 
 		theaterModel = new DefaultTableModel();
-		Object[] colTheater = new Object[5];
-		colTheater[0] = "Oyun Adý";
-		colTheater[1] = "Oyun Türü";
-		colTheater[2] = "Tarih";
-		colTheater[3] = "Salon";
-		colTheater[4] = "Saat";
+		Object[] colTheater = new Object[6];
+		colTheater[0] = "Oyun ID";
+		colTheater[1] = "Oyun AdÄ±";
+		colTheater[2] = "Oyun TÃ¼rÃ¼";
+		colTheater[3] = "Tarih";
+		colTheater[4] = "Salon";
+		colTheater[5] = "Saat";
 
 		theaterModel.setColumnIdentifiers(colTheater);
-		theaterData = new Object[5];
-
-		JButton btn_ShowRemoval = new JButton("Gösteri Çýkar");
-		btn_ShowRemoval.setFont(new Font("Arial", Font.PLAIN, 11));
-		btn_ShowRemoval.setBounds(99, 422, 142, 34);
-		contentPane.add(btn_ShowRemoval);
+		theaterData = new Object[6];
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.CYAN);
 		tabbedPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		tabbedPane.setBounds(0, 41, 407, 371);
+		tabbedPane.setBounds(0, 41, 535, 438);
 		contentPane.add(tabbedPane);
 
 		JPanel w_paneCinema = new JPanel();
-		w_paneCinema.setBackground(SystemColor.inactiveCaption);
+		w_paneCinema.setBackground(new Color(224, 255, 255));
 		tabbedPane.addTab("Sinema", null, w_paneCinema, null);
 		w_paneCinema.setLayout(null);
 
 		JScrollPane scroll_Cinema = new JScrollPane();
-		scroll_Cinema.setBounds(0, 0, 400, 347);
+		scroll_Cinema.setBounds(0, 0, 528, 355);
 		w_paneCinema.add(scroll_Cinema);
 
 		table_Cinema = new JTable(cinemaModel);
-		table_Cinema.getColumn("Film Adý").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Film Türü").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Yönetmen").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film ID").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film AdÄ±").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film TÃ¼rÃ¼").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("YÃ¶netmen").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Seans").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Cinema.setViewportView(table_Cinema);
-		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(20);
-		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
-		table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(20);
-		table_Cinema.getColumnModel().getColumn(1).setResizable(false);
-		table_Cinema.getColumnModel().getColumn(2).setPreferredWidth(20);
-		table_Cinema.getColumnModel().getColumn(2).setResizable(false);
-		table_Cinema.getColumnModel().getColumn(3).setPreferredWidth(20);
-		table_Cinema.getColumnModel().getColumn(3).setResizable(false);
-		table_Cinema.getColumnModel().getColumn(4).setPreferredWidth(20);
-		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
 
-		for (int i = 0; i < sinema.cinemaList().size(); i++) {
-			cinemaData[0] = sinema.cinemaList().get(i).getFilmName();
-			cinemaData[1] = sinema.cinemaList().get(i).getFilmType();
-			cinemaData[2] = sinema.cinemaList().get(i).getFilmDirector();
-			cinemaData[3] = sinema.cinemaList().get(i).getFilmSalon();
-			cinemaData[4] = sinema.cinemaList().get(i).getFilmSeans();
+		JButton btn_ShowRemoval = new JButton("GÃ¶steri Ã‡Ä±kar");
+		btn_ShowRemoval.setBounds(188, 365, 142, 34);
+		w_paneCinema.add(btn_ShowRemoval);
+		btn_ShowRemoval.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (table_Cinema.getSelectionModel().isSelectionEmpty()) {
+					Metod_Helper.showMsg("LÃ¼tfen silmek istediÄŸiniz gÃ¶steriyi seÃ§iniz!");
+				} else {
+					if (Metod_Helper.confirm("sure")) {
+						int selectedRow = Integer
+								.parseInt(table_Cinema.getValueAt(table_Cinema.getSelectedRow(), 0).toString());
+						try {
+							boolean control = subadmin.delCinema(selectedRow);
+							if (control) {
+								Metod_Helper.showMsg("succes");
+								updateCinemaList();
+							}
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+		});
+		btn_ShowRemoval.setFont(new Font("Arial", Font.PLAIN, 11));
+		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(50);
+		table_Cinema.getColumnModel().getColumn(1).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(2).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(3).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(4).setResizable(false);
+		table_Cinema.getColumnModel().getColumn(5).setResizable(false);
+
+		for (int i = 0; i < subadmin.cinemaList().size(); i++) {
+			cinemaData[0] = subadmin.cinemaList().get(i).getFilmID();
+			cinemaData[1] = subadmin.cinemaList().get(i).getFilmName();
+			cinemaData[2] = subadmin.cinemaList().get(i).getFilmType();
+			cinemaData[3] = subadmin.cinemaList().get(i).getFilmDirector();
+			cinemaData[4] = subadmin.cinemaList().get(i).getFilmDate();
+			cinemaData[5] = subadmin.cinemaList().get(i).getFilmSalon();
+			cinemaData[6] = subadmin.cinemaList().get(i).getFilmSeans();
 			cinemaModel.addRow(cinemaData);
 		}
 
 		JPanel w_paneTheater = new JPanel();
-		w_paneTheater.setBackground(Color.LIGHT_GRAY);
+		w_paneTheater.setBackground(new Color(221, 160, 221));
 		tabbedPane.addTab("Tiyatro", null, w_paneTheater, null);
 		w_paneTheater.setLayout(null);
 
 		JScrollPane scroll_Theater = new JScrollPane();
-		scroll_Theater.setBounds(0, 0, 400, 342);
+		scroll_Theater.setBounds(0, 0, 528, 355);
 
 		w_paneTheater.add(scroll_Theater);
 
 		table_Theater = new JTable(theaterModel);
-		table_Theater.getColumn("Oyun Adý").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Oyun Türü").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Oyun ID").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Oyun AdÄ±").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Oyun TÃ¼rÃ¼").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Theater.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Theater.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Theater.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Theater.setViewportView(table_Theater);
-		table_Theater.getColumnModel().getColumn(0).setPreferredWidth(20);
+
+		JButton btn_ShowRemoval_1 = new JButton("GÃ¶steri Ã‡Ä±kar");
+		btn_ShowRemoval_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (table_Theater.getSelectionModel().isSelectionEmpty()) {
+					Metod_Helper.showMsg("LÃ¼tfen silmek istediÄŸiniz gÃ¶steriyi seÃ§iniz!");
+				} else {
+					if (Metod_Helper.confirm("sure")) {
+						int selectedRow = Integer
+								.parseInt(table_Theater.getValueAt(table_Theater.getSelectedRow(), 0).toString());
+						try {
+							boolean control = subadmin.delTheater(selectedRow);
+							if (control) {
+								Metod_Helper.showMsg("succes");
+								updateTheaterList();
+							}
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+		});
+		btn_ShowRemoval_1.setFont(new Font("Arial", Font.PLAIN, 11));
+		btn_ShowRemoval_1.setBounds(188, 365, 142, 34);
+		w_paneTheater.add(btn_ShowRemoval_1);
 		table_Theater.getColumnModel().getColumn(0).setResizable(false);
-		table_Theater.getColumnModel().getColumn(1).setPreferredWidth(20);
+		table_Theater.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table_Theater.getColumnModel().getColumn(1).setResizable(false);
-		table_Theater.getColumnModel().getColumn(2).setPreferredWidth(20);
 		table_Theater.getColumnModel().getColumn(2).setResizable(false);
-		table_Theater.getColumnModel().getColumn(3).setPreferredWidth(20);
 		table_Theater.getColumnModel().getColumn(3).setResizable(false);
-		table_Theater.getColumnModel().getColumn(4).setPreferredWidth(20);
 		table_Theater.getColumnModel().getColumn(4).setResizable(false);
 
-		for (int j = 0; j < tiyatro.theaterList().size(); j++) {
-			theaterData[0] = tiyatro.theaterList().get(j).getTheaterName();
-			theaterData[1] = tiyatro.theaterList().get(j).getTheaterType();
-			theaterData[2] = tiyatro.theaterList().get(j).getTheaterDate();
-			theaterData[3] = tiyatro.theaterList().get(j).getTheaterSalon();
-			theaterData[4] = tiyatro.theaterList().get(j).getTheaterHour();
+		for (int j = 0; j < subadmin.theaterList().size(); j++) {
+			theaterData[0] = subadmin.theaterList().get(j).getTiyatroID();
+			theaterData[1] = subadmin.theaterList().get(j).getTiyatroName();
+			theaterData[2] = subadmin.theaterList().get(j).getTiyatroType();
+			theaterData[3] = subadmin.theaterList().get(j).getTiyatroDate();
+			theaterData[4] = subadmin.theaterList().get(j).getTiyatroSalon();
+			theaterData[5] = subadmin.theaterList().get(j).getTiyatroSaat();
 			theaterModel.addRow(theaterData);
 		}
 
 		JPanel w_paneConcert = new JPanel();
-		w_paneConcert.setBackground(SystemColor.info);
+		w_paneConcert.setBackground(new Color(143, 188, 143));
 		tabbedPane.addTab("Konser", null, w_paneConcert, null);
 		w_paneConcert.setLayout(null);
 
 		JScrollPane scroll_Concert = new JScrollPane();
-		scroll_Concert.setBounds(0, 0, 400, 342);
+		scroll_Concert.setBounds(0, 0, 528, 355);
 		w_paneConcert.add(scroll_Concert);
 
 		table_Concert = new JTable(concertModel);
+		table_Concert.getColumn("Konser ID").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Konser AdÄ±").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Konser Yeri").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("SanatÃ§Ä±").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Concert.setViewportView(table_Concert);
-		table_Concert.getColumnModel().getColumn(0).setResizable(false);
-		table_Concert.getColumnModel().getColumn(1).setPreferredWidth(20);
-		table_Concert.getColumnModel().getColumn(1).setResizable(false);
-		table_Concert.getColumnModel().getColumn(2).setPreferredWidth(20);
-		table_Concert.getColumnModel().getColumn(2).setResizable(false);
-		table_Concert.getColumnModel().getColumn(3).setPreferredWidth(20);
-		table_Concert.getColumnModel().getColumn(3).setResizable(false);
 
-		for (int k = 0; k < konser.concertList().size(); k++) {
-			concertData[0] = konser.concertList().get(k).getConcertName();
-			concertData[1] = konser.concertList().get(k).getConcertType();
-			concertData[2] = konser.concertList().get(k).getConcertDate();
-			concertData[3] = konser.concertList().get(k).getConcertTime();
+		JButton btn_ShowRemoval_1_1 = new JButton("GÃ¶steri Ã‡Ä±kar");
+		btn_ShowRemoval_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (table_Concert.getSelectionModel().isSelectionEmpty()) {
+					Metod_Helper.showMsg("LÃ¼tfen silmek istediÄŸiniz gÃ¶steriyi seÃ§iniz!");
+				} else {
+					if (Metod_Helper.confirm("sure")) {
+						int selectedRow = Integer
+								.parseInt(table_Concert.getValueAt(table_Concert.getSelectedRow(), 0).toString());
+						try {
+							boolean control = subadmin.delConcert(selectedRow);
+							if (control) {
+								Metod_Helper.showMsg("succes");
+								updateConcertList();
+							}
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+
+		});
+		btn_ShowRemoval_1_1.setFont(new Font("Arial", Font.PLAIN, 11));
+		btn_ShowRemoval_1_1.setBounds(188, 365, 142, 34);
+		w_paneConcert.add(btn_ShowRemoval_1_1);
+		table_Concert.getColumnModel().getColumn(0).setResizable(false);
+		table_Concert.getColumnModel().getColumn(0).setPreferredWidth(50);
+		table_Concert.getColumnModel().getColumn(1).setResizable(false);
+		table_Concert.getColumnModel().getColumn(2).setResizable(false);
+		table_Concert.getColumnModel().getColumn(3).setResizable(false);
+		table_Concert.getColumnModel().getColumn(4).setResizable(false);
+		table_Concert.getColumnModel().getColumn(5).setResizable(false);
+
+		for (int k = 0; k < subadmin.concertList().size(); k++) {
+			concertData[0] = subadmin.concertList().get(k).getConcertID();
+			concertData[1] = subadmin.concertList().get(k).getConcertName();
+			concertData[2] = subadmin.concertList().get(k).getConcertPlace();
+			concertData[3] = subadmin.concertList().get(k).getConcertArtist();
+			concertData[4] = subadmin.concertList().get(k).getConcertDate();
+			concertData[5] = subadmin.concertList().get(k).getConcertTime();
 			concertModel.addRow(concertData);
 		}
 
-/////////////////////////////PANECÝNEMA///////////////////////////////////////////////////////////////////////////
+/////////////////////////////PANECÃNEMA///////////////////////////////////////////////////////////////////////////
 
 		JPanel paneAddCinema = new JPanel();
 		paneAddCinema.setBackground(new Color(224, 255, 255));
-		paneAddCinema.setBounds(417, 41, 416, 438);
+		paneAddCinema.setBounds(545, 41, 423, 438);
 		contentPane.add(paneAddCinema);
 		paneAddCinema.setLayout(null);
 
@@ -255,12 +351,12 @@ public class SubAdmin extends JFrame {
 		lbl_MovieName.setBounds(10, 10, 102, 28);
 		paneAddCinema.add(lbl_MovieName);
 
-		JLabel lbl_FilmDirector = new JLabel("Yönetmen:");
+		JLabel lbl_FilmDirector = new JLabel("YÃ¶netmen:");
 		lbl_FilmDirector.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_FilmDirector.setBounds(10, 45, 102, 28);
 		paneAddCinema.add(lbl_FilmDirector);
 
-		JLabel lbl_MovieType = new JLabel("Film Türü:");
+		JLabel lbl_MovieType = new JLabel("Film TÃ¼rÃ¼:");
 		lbl_MovieType.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_MovieType.setBounds(10, 72, 102, 28);
 		paneAddCinema.add(lbl_MovieType);
@@ -271,7 +367,7 @@ public class SubAdmin extends JFrame {
 		paneAddCinema.add(lbl_CinemaSalon);
 
 		txt_MovieName = new JTextField();
-		txt_MovieName.setBounds(111, 17, 138, 19);
+		txt_MovieName.setBounds(111, 17, 138, 20);
 		paneAddCinema.add(txt_MovieName);
 		txt_MovieName.setColumns(10);
 
@@ -322,7 +418,7 @@ public class SubAdmin extends JFrame {
 		JButton btn_ImageSelect = new JButton("Afis Sec");
 		btn_ImageSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//------------------------------------------------------------------------------------------foto ekleme alaný bozma :)
+//------------------------------------------------------------------------------------------foto ekleme alanÃ½ bozma :)
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					connection = dbhelper.getConnection();
@@ -334,8 +430,8 @@ public class SubAdmin extends JFrame {
 
 					FileInputStream fis = new FileInputStream(file);
 					pStatement.setBinaryStream(1, fis, fis.available());
-					pStatement.setString(2,"1");
-					
+					pStatement.setString(2, "1");
+
 					pStatement.executeUpdate();
 
 					Metod_Helper.showMsg("succes");
@@ -479,19 +575,17 @@ public class SubAdmin extends JFrame {
 				if (rdbtn11_1_1.isSelected()) {
 					seance = rdbtn11_1_1.getText();
 				}
-				
-				if (txt_MovieDirector.getText().length()==0
-						||txt_MovieName.getText().length()==0||dateChooser.getDate() ==null||seance.length()==0) {
-					Metod_Helper.showMsg("fill");
-					 if (seance == "") {
-						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
-					}
-				}
-				else {
-								//db baðlanacak
-				}		
 
-				
+				if (txt_MovieDirector.getText().length() == 0 || txt_MovieName.getText().length() == 0
+						|| dateChooser.getDate() == null || seance.length() == 0) {
+					Metod_Helper.showMsg("fill");
+					if (seance == "") {
+						Metod_Helper.showMsg("LÃ¼tfen Seans seÃ§iniz!");
+					}
+				} else {
+					// db baÃ°lanacak
+				}
+
 			}
 		});
 
@@ -499,10 +593,9 @@ public class SubAdmin extends JFrame {
 
 		//////////////////////////////////////////////// PaneTheater
 
-
 		JPanel paneAddTheater = new JPanel();
 		paneAddTheater.setBackground(new Color(221, 160, 221));
-		paneAddTheater.setBounds(417, 41, 416, 438);
+		paneAddTheater.setBounds(545, 41, 423, 438);
 		contentPane.add(paneAddTheater);
 		paneAddTheater.setLayout(null);
 
@@ -522,7 +615,7 @@ public class SubAdmin extends JFrame {
 		paneAddTheater.add(lbl_TheaterSalon);
 
 		txt_TheaterName = new JTextField();
-		txt_TheaterName.setBounds(111, 17, 138, 19);
+		txt_TheaterName.setBounds(111, 17, 138, 20);
 		paneAddTheater.add(txt_TheaterName);
 		txt_TheaterName.setColumns(10);
 
@@ -560,7 +653,7 @@ public class SubAdmin extends JFrame {
 		btn_ImageSelect2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// ------------------------------------------------------------------------------------------foto
-				// ekleme alaný bozma :)
+				// ekleme alanÃ½ bozma :)
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					connection = dbhelper.getConnection();
@@ -717,28 +810,27 @@ public class SubAdmin extends JFrame {
 				if (rdbtn111.isSelected()) {
 					seance = rdbtn111.getText();
 				}
-				
-				if (txt_TheaterName.getText().length()==0
-						||txt_TheaterType.getText().length()==0||dateChooser.getDate() ==null||seance.length()==0) {
+
+				if (txt_TheaterName.getText().length() == 0 || txt_TheaterType.getText().length() == 0
+						|| dateChooser.getDate() == null || seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
-					 if (seance == "") {
-						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+					if (seance == "") {
+						Metod_Helper.showMsg("LÃ¼tfen Seans seÃ§iniz!");
 					}
+				} else {
+					// db baÃ°lanacak
 				}
-				else {
-								//db baðlanacak
-				}
-				
+
 			}
 		});
 		paneAddTheater.setVisible(false);
 
 		//////////////////////////////////// PaneTheater////////////////////////////////////////////////////////////////////
 		///////////////////////////// PaneConcert
-		
+
 		JPanel paneAddConcert = new JPanel();
 		paneAddConcert.setBackground(new Color(143, 188, 143));
-		paneAddConcert.setBounds(417, 43, 416, 438);
+		paneAddConcert.setBounds(545, 41, 423, 438);
 		contentPane.add(paneAddConcert);
 		paneAddConcert.setLayout(null);
 
@@ -753,7 +845,7 @@ public class SubAdmin extends JFrame {
 		paneAddConcert.add(lbl_ArtistName);
 
 		txt_ConcertName = new JTextField();
-		txt_ConcertName.setBounds(111, 17, 138, 23);
+		txt_ConcertName.setBounds(111, 17, 138, 20);
 		paneAddConcert.add(txt_ConcertName);
 		txt_ConcertName.setColumns(10);
 
@@ -777,7 +869,7 @@ public class SubAdmin extends JFrame {
 		JButton btn_ImageSelect3 = new JButton("Afis Sec");
 		btn_ImageSelect3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//------------------------------------------------------------------------------------------foto ekleme alaný bozma :)
+//------------------------------------------------------------------------------------------foto ekleme alanÃ½ bozma :)
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					connection = dbhelper.getConnection();
@@ -899,7 +991,7 @@ public class SubAdmin extends JFrame {
 		lbl_ArtistSurName.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_ArtistSurName.setBounds(10, 83, 108, 28);
 		paneAddConcert.add(lbl_ArtistSurName);
-		
+
 		JComboBox combo_ConcertPlace = new JComboBox();
 		combo_ConcertPlace.setBounds(111, 83, 138, 21);
 		paneAddConcert.add(combo_ConcertPlace);
@@ -910,7 +1002,7 @@ public class SubAdmin extends JFrame {
 		combo_ConcertPlace.addItem("Jolly Joker");
 		combo_ConcertPlace.addItem("Bronx Pi Sahne");
 		combo_ConcertPlace.addItem("Shaft");
-		
+
 		btn_AddConcert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String seance = "";
@@ -950,26 +1042,22 @@ public class SubAdmin extends JFrame {
 				if (rdbtn112.isSelected()) {
 					seance = rdbtn112.getText();
 				}
-				
-				if (txt_ConcertType.getText().length()==0
-						||txt_ConcertName.getText().length()==0||dateChooser.getDate() ==null||seance.length()==0) {
+
+				if (txt_ConcertType.getText().length() == 0 || txt_ConcertName.getText().length() == 0
+						|| dateChooser.getDate() == null || seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
-					 if (seance == "") {
-						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+					if (seance == "") {
+						Metod_Helper.showMsg("LÃ¼tfen Seans seÃ§iniz!");
 					}
+				} else {
+					// db baÃ°lanacak
 				}
-				else {
-								//db baðlanacak
-				}
-				
-				
-				
+
 			}
 		});
-		
+
 		paneAddConcert.setVisible(false);
-		
-		
+
 		//////////////////////////////////// PaneConcert////////////////////////////////////////////////////////////////////
 
 		tabbedPane.addChangeListener((ChangeListener) new ChangeListener() {
@@ -994,6 +1082,49 @@ public class SubAdmin extends JFrame {
 
 		});
 
+	}
+
+	public static void updateCinemaList() throws SQLException {
+		DefaultTableModel clearList = (DefaultTableModel) table_Cinema.getModel();
+		clearList.setRowCount(0);
+		for (int i = 0; i < subadmin.cinemaList().size(); i++) {
+			cinemaData[0] = subadmin.cinemaList().get(i).getFilmID();
+			cinemaData[1] = subadmin.cinemaList().get(i).getFilmName();
+			cinemaData[2] = subadmin.cinemaList().get(i).getFilmType();
+			cinemaData[3] = subadmin.cinemaList().get(i).getFilmDirector();
+			cinemaData[4] = subadmin.cinemaList().get(i).getFilmDate();
+			cinemaData[5] = subadmin.cinemaList().get(i).getFilmSalon();
+			cinemaData[6] = subadmin.cinemaList().get(i).getFilmSeans();
+			cinemaModel.addRow(cinemaData);
+		}
+	}
+
+	public static void updateTheaterList() throws SQLException {
+		DefaultTableModel clearList = (DefaultTableModel) table_Theater.getModel();
+		clearList.setRowCount(0);
+		for (int i = 0; i < subadmin.theaterList().size(); i++) {
+			theaterData[0] = subadmin.theaterList().get(i).getTiyatroID();
+			theaterData[1] = subadmin.theaterList().get(i).getTiyatroName();
+			theaterData[2] = subadmin.theaterList().get(i).getTiyatroType();
+			theaterData[3] = subadmin.theaterList().get(i).getTiyatroDate();
+			theaterData[4] = subadmin.theaterList().get(i).getTiyatroSalon();
+			theaterData[5] = subadmin.theaterList().get(i).getTiyatroSaat();
+			theaterModel.addRow(theaterData);
+		}
+	}
+
+	public static void updateConcertList() throws SQLException {
+		DefaultTableModel clearList = (DefaultTableModel) table_Concert.getModel();
+		clearList.setRowCount(0);
+		for (int i = 0; i < subadmin.concertList().size(); i++) {
+			concertData[0] = subadmin.concertList().get(i).getConcertID();
+			concertData[1] = subadmin.concertList().get(i).getConcertName();
+			concertData[2] = subadmin.concertList().get(i).getConcertPlace();
+			concertData[3] = subadmin.concertList().get(i).getConcertArtist();
+			concertData[4] = subadmin.concertList().get(i).getConcertDate();
+			concertData[5] = subadmin.concertList().get(i).getConcertTime();
+			concertModel.addRow(concertData);
+		}
 	}
 }
 

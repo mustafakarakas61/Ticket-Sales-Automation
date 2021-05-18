@@ -86,9 +86,7 @@ public class MainScreen extends JFrame {
 	private JTextField fld_cvc3;
 	private JTextField fld_CartNumber3;
 	private static user member = new Member();
-	private static SubACinema sinema = new SubACinema();
-	private static SubATheater tiyatro = new SubATheater();
-	private static SubAConcert konser = new SubAConcert();
+	private static SAdmin subadmin = new SAdmin();
 	private JTextField fld_CinemaDate;
 
 	/**
@@ -231,13 +229,13 @@ public class MainScreen extends JFrame {
 		table_Cinema.getColumnModel().getColumn(5).setPreferredWidth(5);
 		table_Cinema.getColumnModel().getColumn(5).setResizable(false);
 
-		for (int i = 0; i < sinema.cinemaList().size(); i++) {
-			cinemaData[0] = sinema.cinemaList().get(i).getFilmName();
-			cinemaData[1] = sinema.cinemaList().get(i).getFilmType();
-			cinemaData[2] = sinema.cinemaList().get(i).getFilmDirector();
-			cinemaData[3] = sinema.cinemaList().get(i).getFilmDate();
-			cinemaData[4] = sinema.cinemaList().get(i).getFilmSalon();
-			cinemaData[5] = sinema.cinemaList().get(i).getFilmSeans();
+		for (int i = 0; i < subadmin.cinemaList().size(); i++) {
+			cinemaData[0] = subadmin.cinemaList().get(i).getFilmName();
+			cinemaData[1] = subadmin.cinemaList().get(i).getFilmType();
+			cinemaData[2] = subadmin.cinemaList().get(i).getFilmDirector();
+			cinemaData[3] = subadmin.cinemaList().get(i).getFilmDate();
+			cinemaData[4] = subadmin.cinemaList().get(i).getFilmSalon();
+			cinemaData[5] = subadmin.cinemaList().get(i).getFilmSeans();
 			cinemaModel.addRow(cinemaData);
 		}
 
@@ -269,12 +267,12 @@ public class MainScreen extends JFrame {
 		table_Theater.getColumnModel().getColumn(3).setResizable(false);
 		table_Theater.getColumnModel().getColumn(4).setResizable(false);
 
-		for (int i = 0; i < tiyatro.theaterList().size(); i++) {
-			theaterData[0] = tiyatro.theaterList().get(i).getTheaterName();
-			theaterData[1] = tiyatro.theaterList().get(i).getTheaterType();
-			theaterData[2] = tiyatro.theaterList().get(i).getTheaterDate();
-			theaterData[3] = tiyatro.theaterList().get(i).getTheaterSalon();
-			theaterData[4] = tiyatro.theaterList().get(i).getTheaterDate();
+		for (int i = 0; i < subadmin.theaterList().size(); i++) {
+			theaterData[0] = subadmin.theaterList().get(i).getTiyatroName();
+			theaterData[1] = subadmin.theaterList().get(i).getTiyatroType();
+			theaterData[2] = subadmin.theaterList().get(i).getTiyatroDate();
+			theaterData[3] = subadmin.theaterList().get(i).getTiyatroSalon();
+			theaterData[4] = subadmin.theaterList().get(i).getTiyatroDate();
 			theaterModel.addRow(theaterData);
 		}
 
@@ -305,11 +303,12 @@ public class MainScreen extends JFrame {
 		table_Concert.getColumnModel().getColumn(2).setResizable(false);
 		table_Concert.getColumnModel().getColumn(3).setResizable(false);
 
-		for (int i = 0; i < konser.concertList().size(); i++) {
-			concertData[0] = konser.concertList().get(i).getConcertName();
-			concertData[1] = konser.concertList().get(i).getConcertType();
-			concertData[2] = konser.concertList().get(i).getConcertDate();
-			concertData[3] = konser.concertList().get(i).getConcertTime();
+		for (int i = 0; i < subadmin.concertList().size(); i++) {
+			concertData[0] = subadmin.concertList().get(i).getConcertName();
+			concertData[1] = subadmin.concertList().get(i).getConcertPlace();
+			concertData[2] = subadmin.concertList().get(i).getConcertArtist();
+			concertData[3] = subadmin.concertList().get(i).getConcertDate();
+			concertData[4] = subadmin.concertList().get(i).getConcertTime();
 			concertModel.addRow(concertData);
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
