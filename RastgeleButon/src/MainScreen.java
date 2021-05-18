@@ -1381,15 +1381,6 @@ public class MainScreen extends JFrame {
 		lbl_ConcertInfo.setBounds(10, 20, 150, 20);
 		PaneConcert.add(lbl_ConcertInfo);
 
-		txt_GhostTicketPrice = new JTextField();
-		txt_GhostTicketPrice.setVisible(false);
-		txt_GhostTicketPrice.setEditable(false);
-		txt_GhostTicketPrice.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txt_GhostTicketPrice.setColumns(10);
-		txt_GhostTicketPrice.setBackground(Color.WHITE);
-		txt_GhostTicketPrice.setBounds(392, 195, 34, 20);
-		PaneConcert.add(txt_GhostTicketPrice);
-
 		JLabel lbl_UserName3 = new JLabel("Ad:");
 		lbl_UserName3.setBackground(new Color(255, 255, 255));
 		lbl_UserName3.setFont(new Font("SansSerif", Font.PLAIN, 15));
@@ -1664,18 +1655,18 @@ public class MainScreen extends JFrame {
 				BuyTicketConcert ticket = new BuyTicketConcert();
 				ticket.setTicketCount(txt_TicketCount.getText());
 				ticket.setTicketPrice(txt_GhostTicketPrice.getText());
-				
+
 				ticket.setStudentCount(txt_StudentCount.getText());
-				
-			
-//                double totalPrice = Double.parseDouble(txt_GhostTicketPrice.getText())
-//                        * Double.parseDouble(txt_TicketCount.getText())
-//                        - (Double.parseDouble(txt_GhostTicketPrice.getText()) * (15 / 100)
-//                                * Double.parseDouble(txt_StudentCount.getText()));
-//                String totalPriceString =totalPrice + "";
-                
-//                ticket.setPrice(totalPriceString);
-                
+
+				double totalPrice = Double.parseDouble(txt_GhostTicketPrice.getText())
+						* Double.parseDouble(txt_TicketCount.getText())
+						- (Double.parseDouble(txt_GhostTicketPrice.getText()) * (15 / 100)
+								* Double.parseDouble(txt_StudentCount.getText()));
+
+				String totalPriceString = totalPrice + "";
+
+				ticket.setPrice(totalPriceString);
+
 				if (comboBox_Method3.getSelectedIndex() == 1) {
 					BuyTicketConcert.setlblCard("Ucret, BANKA/KREDI KARTI ile Odenmistir. Borcunuz yoktur.");
 					BuyTicketConcert.setPrice("Odendi");
@@ -1782,7 +1773,7 @@ public class MainScreen extends JFrame {
 
 					else {
 
-						 ticket = new BuyTicketConcert();
+						ticket = new BuyTicketConcert();
 						if (fld_CartNumber3.getText().length() != 16 || fld_cvc3.getText().length() != 3) {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
@@ -1827,8 +1818,8 @@ public class MainScreen extends JFrame {
 					}
 
 					else {
-						 ticket = new BuyTicketConcert();
-						
+						ticket = new BuyTicketConcert();
+
 						if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
 								JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 							Metod_Helper.showMsg("succes");
@@ -1840,6 +1831,15 @@ public class MainScreen extends JFrame {
 
 			}
 		});
+		
+				txt_GhostTicketPrice = new JTextField();
+				txt_GhostTicketPrice.setVisible(false);
+				txt_GhostTicketPrice.setEditable(false);
+				txt_GhostTicketPrice.setFont(new Font("SansSerif", Font.PLAIN, 14));
+				txt_GhostTicketPrice.setColumns(10);
+				txt_GhostTicketPrice.setBackground(Color.WHITE);
+				txt_GhostTicketPrice.setBounds(392, 195, 34, 20);
+				PaneConcert.add(txt_GhostTicketPrice);
 		btn_BuyTicket3.setFocusable(false);
 		btn_BuyTicket3.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_BuyTicket3.setForeground(new Color(0, 0, 0));
@@ -1965,13 +1965,14 @@ public class MainScreen extends JFrame {
 						String selConcertPlace = table_Concert.getModel().getValueAt(selRow2, 1).toString();
 						String selConcertArtist = table_Concert.getModel().getValueAt(selRow2, 2).toString();
 						String selConcertDate = table_Concert.getModel().getValueAt(selRow2, 3).toString();
-						String selTheaterTime = table_Concert.getModel().getValueAt(selRow2, 4).toString();
-
+						String selConcertTime = table_Concert.getModel().getValueAt(selRow2, 4).toString();
+						String selConcertTicketPrice= table_Concert.getModel().getValueAt(selRow2, 6).toString();
+						txt_GhostTicketPrice.setText(selConcertTicketPrice);
 						fld_concertName.setText(selConcertName);
 						txt_ConcertPlace.setText(selConcertPlace);
 						fld_Artist3.setText(selConcertArtist);
 						txt_ConcertYear.setText(selConcertDate);
-						fld_Seance3.setText(selTheaterTime);
+						fld_Seance3.setText(selConcertTime);
 						// -----------------------------------------------------------------------------------------------------------------
 						try {
 							Connection con = dbhelper.getConnection();
@@ -1994,7 +1995,7 @@ public class MainScreen extends JFrame {
 								JOptionPane.showMessageDialog(null, "No Data");
 							}
 						} catch (Exception ex) {
-							ex.printStackTrace();
+							//ex.printStackTrace();
 						}
 
 //-----------------------------------------------------------------------------------------------------------------
@@ -2027,15 +2028,14 @@ public class MainScreen extends JFrame {
 					BuyTicketConcert.setArtist(fld_Artist3.getText());
 					BuyTicketConcert.setConcertDate(txt_ConcertYear.getText());
 					BuyTicketConcert.setStudentCount(txt_StudentCount.getText());
-					
+
 					BuyTicketConcert.setTicketCount(txt_TicketCount.getText());
-					int totalPrice = Integer.parseInt(txt_GhostTicketPrice.getText())
+					/*int totalPrice = Integer.parseInt(txt_GhostTicketPrice.getText())
 							* Integer.parseInt(txt_TicketCount.getText())
 							- (Integer.parseInt(txt_GhostTicketPrice.getText()) * (15 / 100)
 									* Integer.parseInt(txt_StudentCount.getText()));
 					String totalPriceString = totalPrice + "";
-					BuyTicketConcert.setPrice((totalPriceString));
-					
+					BuyTicketConcert.setPrice((totalPriceString));*/
 
 				}
 
