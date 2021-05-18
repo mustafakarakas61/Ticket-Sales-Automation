@@ -59,9 +59,7 @@ public class GuestScreen extends JFrame {
 	private JTable table_Theater;
 	private JTable table_Concert;
 	private static user member = new Member();
-	private static SubACinema sinema = new SubACinema();
-	private static SubATheater tiyatro = new SubATheater();
-	private static SubAConcert konser = new SubAConcert();
+	
 
 	/**
 	 * Launch the application.
@@ -199,16 +197,7 @@ public class GuestScreen extends JFrame {
 		table_Cinema.getColumnModel().getColumn(5).setPreferredWidth(5);
 		table_Cinema.getColumnModel().getColumn(5).setResizable(false);
 
-		for (int i = 0; i < sinema.cinemaList().size(); i++) {
-			cinemaData[0] = sinema.cinemaList().get(i).getFilmName();
-			cinemaData[1] = sinema.cinemaList().get(i).getFilmType();
-			cinemaData[2] = sinema.cinemaList().get(i).getFilmDirector();
-			cinemaData[3] = sinema.cinemaList().get(i).getFilmDate();
-			cinemaData[4] = sinema.cinemaList().get(i).getFilmSalon();
-			cinemaData[5] = sinema.cinemaList().get(i).getFilmSeans();
-			cinemaModel.addRow(cinemaData);
-		}
-
+		
 		/************************* Þimdilik Veri Ekliyorum ***************************/
 		/*
 		 * cinemaData[0] = "Recep Ývedik 7"; cinemaData[1] = "Komedi"; cinemaData[2] =
@@ -249,14 +238,7 @@ public class GuestScreen extends JFrame {
 		 * table_Theater.getColumnModel().getColumn(4).setResizable(false);
 		 */
 
-		for (int i = 0; i < tiyatro.theaterList().size(); i++) {
-			theaterData[0] = tiyatro.theaterList().get(i).getTheaterName();
-			theaterData[1] = tiyatro.theaterList().get(i).getTheaterType();
-			theaterData[2] = tiyatro.theaterList().get(i).getTheaterDate();
-			theaterData[3] = tiyatro.theaterList().get(i).getTheaterSalon();
-			theaterData[4] = tiyatro.theaterList().get(i).getTheaterDate();
-			theaterModel.addRow(theaterData);
-		}
+		
 
 		JPanel w_paneConcert = new JPanel();
 		w_paneConcert.setBackground(new Color(255, 248, 220));
@@ -285,14 +267,7 @@ public class GuestScreen extends JFrame {
 		table_Concert.getColumnModel().getColumn(3).setPreferredWidth(10);
 		table_Concert.getColumnModel().getColumn(3).setResizable(false);
 
-		for (int i = 0; i < konser.concertList().size(); i++) {
-			concertData[0] = konser.concertList().get(i).getConcertName();
-			concertData[1] = konser.concertList().get(i).getConcertType();
-			concertData[2] = konser.concertList().get(i).getConcertDate();
-			concertData[3] = konser.concertList().get(i).getConcertTime();
-			concertModel.addRow(concertData);
-		}
-		
+	
 
 		JButton btn_SelectCinema = new JButton("Geri D\u00F6n");
 		btn_SelectCinema.setFocusable(false);
