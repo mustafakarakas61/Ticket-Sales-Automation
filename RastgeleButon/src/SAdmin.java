@@ -61,12 +61,13 @@ public class SAdmin {
 		this.tiyatroSaat = tiyatroSaat;
 	}
 
-	 public SAdmin( String concertName,int concertID, String concertPlace,String concertArtist, String concertDate, String concertTime) {
-	
+	public SAdmin(String concertName, int concertID, String concertPlace, String concertArtist, String concertDate,
+			String concertTime) {
+
 		this.concertName = concertName;
 		this.concertID = concertID;
 		this.concertPlace = concertPlace;
-		this.concertArtist=concertArtist;
+		this.concertArtist = concertArtist;
 		this.concertDate = concertDate;
 		this.concertTime = concertTime;
 	}
@@ -117,7 +118,7 @@ public class SAdmin {
 			ResultSet result = statement.executeQuery("SELECT * FROM booking.concert");
 			SAdmin konser;
 			while (result.next()) {
-				konser = new SAdmin(result.getString("concertName"),result.getInt("concertID"), 	
+				konser = new SAdmin(result.getString("concertName"), result.getInt("concertID"),
 						result.getString("concertPlace"), result.getString("concertArtist"),
 						result.getString("concertDate"), result.getString("concertTime"));
 				konserList.add(konser);
@@ -126,6 +127,27 @@ public class SAdmin {
 			e1.printStackTrace();
 		}
 		return konserList;
+	}
+
+	public boolean addCinema(String filmName, String filmType, String filmDirector, String filmDate, String filmSalon,
+			String filmSeans) {
+		boolean key = false;
+		String query = "INSERT INTO booking.cinema (filmName, filmType, filmDirector, filmDate, filmSalon, filmSeans) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1, filmName);
+			pStatement.setString(2, filmType);
+			pStatement.setString(3, filmDirector);
+			pStatement.setString(4, filmDate);
+			pStatement.setString(5, filmSalon);
+			pStatement.setString(6, filmSeans);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return key;
 	}
 
 	public boolean delCinema(int filmID) throws SQLException {
@@ -143,6 +165,26 @@ public class SAdmin {
 		}
 	}
 
+	public boolean addTheater(String tiyatroName, String tiyatroType, String tiyatroDate, String tiyatroSalon,
+			String tiyatroSaat) {
+		boolean key = false;
+		String query = "INSERT INTO booking.tiyatro (tiyatroName, tiyatroType, tiyatroDate, tiyatroSalon, tiyatroSaat) VALUES (?, ?, ?, ?, ?)";
+		try {
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1, tiyatroName);
+			pStatement.setString(2, tiyatroType);
+			pStatement.setString(3, tiyatroDate);
+			pStatement.setString(4, tiyatroSalon);
+			pStatement.setString(5, tiyatroSaat);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return key;
+	}
+
 	public boolean delTheater(int tiyatroID) throws SQLException {
 		boolean key;
 		String query = "DELETE FROM booking.tiyatro WHERE tiyatroID = ?";
@@ -156,6 +198,26 @@ public class SAdmin {
 		} else {
 			return false;
 		}
+	}
+
+	public boolean addConcert(String concertName, String concertPlace, String concertArtist, String concertDate,
+			String concertTime) {
+		boolean key = false;
+		String query = "INSERT INTO booking.concert (concertName, concertPlace, concertArtist, concertDate, concertTime) VALUES (?, ?, ?, ?, ?)";
+		try {
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1, concertName);
+			pStatement.setString(2, concertPlace);
+			pStatement.setString(3, concertArtist);
+			pStatement.setString(4, concertDate);
+			pStatement.setString(5, concertTime);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return key;
 	}
 
 	public boolean delConcert(int concertID) throws SQLException {
@@ -300,7 +362,7 @@ public class SAdmin {
 	public void setConcertPlace(String concertPlace) {
 		this.concertPlace = concertPlace;
 	}
-	
+
 	public String getConcertArtist() {
 		return concertArtist;
 	}
