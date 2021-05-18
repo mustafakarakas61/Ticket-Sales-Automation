@@ -237,10 +237,10 @@ public class BuyTicketConcert extends JFrame {
 		fld_concert_Place.setBounds(147, 37, 188, 23);
 		panel.add(fld_concert_Place);
 
-		JLabel lbl_TicketCount = new JLabel("Bilet Sayisi :");
+		JLabel lbl_TicketCount = new JLabel("Bilet Adeti :");
 		lbl_TicketCount.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_TicketCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_TicketCount.setBounds(21, 194, 118, 29);
+		lbl_TicketCount.setBounds(25, 194, 118, 29);
 		panel.add(lbl_TicketCount);
 
 		txt_ticketCount = new JTextField();
@@ -330,12 +330,12 @@ public class BuyTicketConcert extends JFrame {
 						try {
 							FileWriter myWriter = new FileWriter("Bilet.txt");
 							myWriter.write(
-									"AlÄ±nan Konser Ismi :" + fld_ConcertName.getText() + "\nBilet Fiyati : " + txt_TicketPrice.getText()
+									"Alýnan Konser Ismi :" + fld_ConcertName.getText() + "\nBilet Fiyati : " + txt_TicketPrice.getText()
 									 + "\nBilet Adeti : " + txt_ticketCount.getText() + "\nToplam Ucret : " + fld_price.getText()
 											+ "\nSanatci: " + fld_Artist.getText() + "\nKonser Yeri : " + fld_concert_Place.getText()
 											+ "\nTarih : " + txt_concertDate.getText() + "\nSaat : " + fld_hour.getText()
-											+ "\n" + lbl_Card.getText() + "\nBu bilet " + user + "adÄ±na kesilmiÅŸtir"
-											+"\n------------------------IyÄ± Eglenceler------------------------");
+											+ "\n" + lbl_Card.getText() + "\nBu bilet " + user + "adýna kesilmiþtir"
+											+"\n------------------------Iyý Eglenceler------------------------");
 							myWriter.close();
 							System.out.println("Successfully wrote to the file.");
 						} catch (IOException e1) {
