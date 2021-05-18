@@ -211,7 +211,7 @@ public class BuyTicket extends JFrame {
 		
 		panel.add(lbl_seat);
 
-		JLabel lblcret = new JLabel("\u00DCcret :");
+		JLabel lblcret = new JLabel("Ucret :");
 		lblcret.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcret.setFont(new Font("SansSerif", Font.BOLD, 20));
 		lblcret.setBounds(49, 280, 82, 29);
@@ -238,13 +238,13 @@ public class BuyTicket extends JFrame {
 		fld_Salon.setBounds(147, 88, 188, 23);
 		panel.add(fld_Salon);
 
-		JButton btn_print = new JButton("Fisi yazddir");
+		JButton btn_print = new JButton("Fisi yazdir");
 		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 try {  
 				      FileWriter myWriter = new FileWriter("Bilet.txt");
-				      myWriter.write("Al�nan film :" +fld_movie_name.getText() 
+				      myWriter.write("Alinan film :" +fld_movie_name.getText() 
 				      +"\nFiyati : "+fld_price.getText()
 				      +"\nSAlon: "+fld_Salon.getText()
 				      +"\nKoltuklar : "+txt_seatCount.getText()
@@ -318,7 +318,7 @@ public class BuyTicket extends JFrame {
 
 		panel.add(comboBox_seat);
 
-		JLabel lbl_moviyetype = new JLabel("Film T\u00FCr\u00FC :");
+		JLabel lbl_moviyetype = new JLabel("Film Turu :");
 		lbl_moviyetype.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_moviyetype.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_moviyetype.setBounds(44, 55, 82, 29);
@@ -331,7 +331,7 @@ public class BuyTicket extends JFrame {
 		fld_movie_type.setBounds(147, 58, 188, 23);
 		panel.add(fld_movie_type);
 
-		JLabel lbl_seatCount = new JLabel("Koltuk Say\u0131s\u0131 :");
+		JLabel lbl_seatCount = new JLabel("Koltuk Sayisi :");
 		lbl_seatCount.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_seatCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_seatCount.setBounds(15, 194, 118, 29);
@@ -353,7 +353,7 @@ public class BuyTicket extends JFrame {
 		lbl_Card.setText(lblCard);
 		panel.add(lbl_Card);
 
-		JLabel lbl_Student = new JLabel("\u00D6\u011Frenci Say\u0131s\u0131 :");
+		JLabel lbl_Student = new JLabel("Ogrenci Sayisi :");
 		lbl_Student.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Student.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_Student.setBounds(3, 223, 130, 29);
@@ -372,10 +372,10 @@ public class BuyTicket extends JFrame {
 		
 		try{if(Integer.parseInt(txt_StudentCount.getText())>0&&Integer.parseInt(txt_StudentCount.getText())<2)
 		{
-			BuyTicket.lblInfoStudent="Öğrenci, \"Öğrenci Kimliği\"'ni yanında bulundurmalıdır.";
+			BuyTicket.lblInfoStudent="Ogrenci, Ogrenci Kimligini yan�nda bulundurmal�d�r.";
 		}else if(Integer.parseInt(txt_StudentCount.getText())>1)
 		{
-			BuyTicket.lblInfoStudent="Öğrenciler, \"Öğrenci Kimlik\"'lerini yanlarında bulundurmalıdır.";
+			BuyTicket.lblInfoStudent="Ogrenciler, Ogrenci Kimliklerini yanlar�nda bulundurmal�d�r.";
 		}else{BuyTicket.lblInfoStudent="";}}catch(Exception e2) {}
 		
 		lbl_InfoStudent = new JLabel();
