@@ -1,7 +1,9 @@
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Helper.DbHelper;
@@ -34,7 +36,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,15 +67,15 @@ public class MainScreen extends JFrame {
 	private JTable table_Theater;
 	private JTable table_Concert;
 	private JTextField fld_concertName;
-	private JTextField fld_Artist33;
+	private JTextField fld_Artist3;
 	private JTextField fld_Seance3;
 	private JTextField fld_Name_concert;
 	private JTextField fld_Surname_concert;
 	private JTextField fld_Mail_concert;
-	private JTextField fld_cvc33;
-	private JTextField fld_CartName33;
-	private JTextField fld_CartNumber33;
-
+	private JTextField fld_cvc3;
+	private JTextField fld_CartName3;
+	private JTextField fld_CartNumber3;
+	DbHelper dbhelper = new DbHelper();
 	private JTextField fld_MovieName;
 	private JTextField fld_MovieType;
 	private JTextField fld_GameName;
@@ -84,16 +85,14 @@ public class MainScreen extends JFrame {
 	private JTextField fld_Salon2;
 	private JTextField fld_Time;
 	private JTextField fld_cvc2;
-	private JTextField fld_CartNumber2;
 
 	private JTextField fld_ConcertType;
 
-	private JTextField fld_cvc3;
-	private JTextField fld_CartNumber3;
 	private static user member = new Member();
 	private static SAdmin subadmin = new SAdmin();
 	private JTextField fld_CinemaDate;
-	DbHelper dbhelper = new DbHelper();			
+	private JTextField txt_TicketCount;
+	private JTextField txt_StudentCount;
 
 	/**
 	 * Launch the application.
@@ -143,19 +142,21 @@ public class MainScreen extends JFrame {
 
 //////////////////////////////////////////////////////////////////////////////////Konser
 		concertModel = new DefaultTableModel();
-		Object[] colConcert = new Object[5];
+		Object[] colConcert = new Object[7];
 
 		colConcert[0] = "Konser Adi";
 		colConcert[1] = "Konser Yeri";
 		colConcert[2] = "Sanatci";
 		colConcert[3] = "Tarih";
 		colConcert[4] = "Saat";
-
+		colConcert[5] = "Bilet Adeti";
+		colConcert[6] = "Bilet Fiyati";
+		
 		concertModel.setColumnIdentifiers(colConcert);
-		concertData = new Object[5];
+		concertData = new Object[7];
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1030, 600);
+		setBounds(100, 100, 1100, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(
@@ -180,7 +181,7 @@ public class MainScreen extends JFrame {
 				dispose();
 			}
 		});
-		btn_Exit.setBounds(902, 20, 100, 25);
+		btn_Exit.setBounds(973, 20, 100, 25);
 		contentPane.add(btn_Exit);
 
 		JLabel lbl_Name = new JLabel("Hoşgeldiniz Sayın " + member.getName());
@@ -192,7 +193,7 @@ public class MainScreen extends JFrame {
 		tabbedPane.setFocusable(false);
 		tabbedPane.setBackground(new Color(255, 255, 255));
 
-		tabbedPane.setBounds(10, 60, 459, 476);
+		tabbedPane.setBounds(10, 60, 526, 476);
 		contentPane.add(tabbedPane);
 
 		JPanel w_paneCinema = new JPanel();
@@ -201,7 +202,7 @@ public class MainScreen extends JFrame {
 		w_paneCinema.setLayout(null);
 
 		JScrollPane scrollPane_Cinema = new JScrollPane();
-		scrollPane_Cinema.setBounds(0, 0, 454, 448);
+		scrollPane_Cinema.setBounds(0, 0, 521, 448);
 		w_paneCinema.add(scrollPane_Cinema);
 ///////////////////////////////////////////////////////////////////////////////////Sinema Sütun Özellikleri
 		table_Cinema = new JTable(cinemaModel);
@@ -251,7 +252,7 @@ public class MainScreen extends JFrame {
 		w_paneTheater.setLayout(null);
 
 		JScrollPane scrollPane_Theater = new JScrollPane();
-		scrollPane_Theater.setBounds(0, 0, 454, 448);
+		scrollPane_Theater.setBounds(0, 0, 521, 448);
 		w_paneTheater.add(scrollPane_Theater);
 
 ///////////////////////////////////////////////////////////////////////////////////Tiyatro Sütun Özellikleri
@@ -289,7 +290,7 @@ public class MainScreen extends JFrame {
 		w_paneConcert.setLayout(null);
 
 		JScrollPane scrollPane_Concert = new JScrollPane();
-		scrollPane_Concert.setBounds(0, 0, 454, 448);
+		scrollPane_Concert.setBounds(0, 0, 521, 448);
 		w_paneConcert.add(scrollPane_Concert);
 
 		table_Concert = new JTable(concertModel);
@@ -301,20 +302,30 @@ public class MainScreen extends JFrame {
 		table_Concert.getColumn("Sanatci").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Bilet Adeti").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Bilet Fiyati").setCellEditor(new TableEditor(new JCheckBox()));
 
 		scrollPane_Concert.setViewportView(table_Concert);
 
 		table_Concert.getColumnModel().getColumn(0).setResizable(false);
+		table_Concert.getColumnModel().getColumn(0).setPreferredWidth(100);
 		table_Concert.getColumnModel().getColumn(1).setResizable(false);
 		table_Concert.getColumnModel().getColumn(2).setResizable(false);
+		table_Concert.getColumnModel().getColumn(2).setPreferredWidth(100);
 		table_Concert.getColumnModel().getColumn(3).setResizable(false);
-
+		table_Concert.getColumnModel().getColumn(4).setResizable(false);
+		table_Concert.getColumnModel().getColumn(4).setPreferredWidth(50);
+		table_Concert.getColumnModel().getColumn(5).setResizable(false);
+		table_Concert.getColumnModel().getColumn(6).setResizable(false);
+		table_Concert.getColumnModel().getColumn(6).setPreferredWidth(70);
 		for (int i = 0; i < subadmin.concertList().size(); i++) {
 			concertData[0] = subadmin.concertList().get(i).getConcertName();
 			concertData[1] = subadmin.concertList().get(i).getConcertPlace();
 			concertData[2] = subadmin.concertList().get(i).getConcertArtist();
 			concertData[3] = subadmin.concertList().get(i).getConcertDate();
 			concertData[4] = subadmin.concertList().get(i).getConcertTime();
+			concertData[5] = subadmin.concertList().get(i).getTicketCount();
+			concertData[6] = subadmin.concertList().get(i).getTicketPrice();
 			concertModel.addRow(concertData);
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -322,7 +333,7 @@ public class MainScreen extends JFrame {
 		JPanel PaneCinema = new JPanel();
 		PaneCinema.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		PaneCinema.setBackground(new Color(255, 255, 255));
-		PaneCinema.setBounds(552, 60, 450, 479);
+		PaneCinema.setBounds(623, 60, 450, 479);
 		contentPane.add(PaneCinema);
 		PaneCinema.setLayout(null);
 
@@ -574,12 +585,7 @@ public class MainScreen extends JFrame {
 		fld_CartName.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
-				if (ke.getKeyChar() == ' '
-						|| (ke.getKeyChar() == 'ı' || ke.getKeyChar() == 'ğ' || ke.getKeyChar() == 'ü'
-								|| ke.getKeyChar() == 'ş' || ke.getKeyChar() == 'ö' || ke.getKeyChar() == 'ç'
-								|| ke.getKeyChar() == 'İ' || ke.getKeyChar() == 'Ğ' || ke.getKeyChar() == 'Ü'
-								|| ke.getKeyChar() == 'Ş' || ke.getKeyChar() == 'Ö' || ke.getKeyChar() == 'Ç')
-						|| (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
+				if (ke.getKeyChar() == ' ' || (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
@@ -835,7 +841,7 @@ public class MainScreen extends JFrame {
 		JPanel PaneTheater = new JPanel();
 		PaneTheater.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		PaneTheater.setBackground(new Color(255, 255, 255));
-		PaneTheater.setBounds(552, 60, 450, 479);
+		PaneTheater.setBounds(623, 60, 450, 479);
 		contentPane.add(PaneTheater);
 		PaneTheater.setLayout(null);
 
@@ -889,7 +895,7 @@ public class MainScreen extends JFrame {
 		btn_SelectSeat2.setBackground(new Color(255, 153, 102));
 		btn_SelectSeat2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SeatSelection ks = new SeatSelection();
+				SeatSelectionTheater ks = new SeatSelectionTheater();
 				ks.setVisible(true);
 			}
 		});
@@ -1052,29 +1058,29 @@ public class MainScreen extends JFrame {
 		lbl_Cvc2.setBounds(325, 52, 40, 20);
 		w_pane_Kart2.add(lbl_Cvc2);
 
-		JTextField fld_cvc22 = new JTextField();
-		fld_cvc22.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_cvc22.setHorizontalAlignment(SwingConstants.CENTER);
-		fld_cvc22.setBounds(374, 52, 46, 20);
-		fld_cvc22.addKeyListener(new KeyAdapter() {
+		fld_cvc2 = new JTextField();
+		fld_cvc2.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_cvc2.setHorizontalAlignment(SwingConstants.CENTER);
+		fld_cvc2.setBounds(374, 52, 46, 20);
+		fld_cvc2.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (fld_cvc22.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						fld_cvc22.setEditable(true);
+					if (fld_cvc2.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_cvc2.setEditable(true);
 					} else {
-						fld_cvc22.setEditable(false);
+						fld_cvc2.setEditable(false);
 					}
 
 				} else {
-					fld_cvc22.setEditable(false);
+					fld_cvc2.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Kart2.add(fld_cvc22);
-		fld_cvc22.setColumns(10);
+		w_pane_Kart2.add(fld_cvc2);
+		fld_cvc2.setColumns(10);
 
 		JTextField fld_CartName22 = new JTextField();
 		fld_CartName22.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -1084,12 +1090,7 @@ public class MainScreen extends JFrame {
 		fld_CartName22.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
-				if (ke.getKeyChar() == ' '
-						|| (ke.getKeyChar() == 'ı' || ke.getKeyChar() == 'ğ' || ke.getKeyChar() == 'ü'
-								|| ke.getKeyChar() == 'ş' || ke.getKeyChar() == 'ö' || ke.getKeyChar() == 'ç'
-								|| ke.getKeyChar() == 'İ' || ke.getKeyChar() == 'Ğ' || ke.getKeyChar() == 'Ü'
-								|| ke.getKeyChar() == 'Ş' || ke.getKeyChar() == 'Ö' || ke.getKeyChar() == 'Ç')
-						|| (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
+				if (ke.getKeyChar() == ' ' || (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
@@ -1144,8 +1145,8 @@ public class MainScreen extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox_Method2.getSelectedIndex() == 1) {
-					BuyTicket.setlblCard("Ucret, BANKA/KREDI KARTI ile odenmistir. Borcunuz yoktur.");
-					BuyTicket.setPrice("Odendi");
+					BuyTicketTheater.setlblCard("Ucret, BANKA/KREDI KARTI ile odenmistir. Borcunuz yoktur.");
+					BuyTicketTheater.setPrice("Odendi");
 
 					if (fld_TheaterName.getText().length() == 0 || fld_ThetaerType.getText().length() == 0
 							|| fld_Salon22.getText().length() == 0 || fld_Seance2.getText().length() == 0
@@ -1156,7 +1157,7 @@ public class MainScreen extends JFrame {
 					}
 
 					if (fld_CartName22.getText().length() == 0 || fld_CartNumber22.getText().length() == 0
-							|| fld_cvc22.getText().length() == 0 || comboBox_Month2.getSelectedIndex() == 0
+							|| fld_cvc2.getText().length() == 0 || comboBox_Month2.getSelectedIndex() == 0
 							|| comboBox_Year2.getSelectedIndex() == 0) {
 						if (fld_CartName22.getText().length() == 0) {
 							fld_CartName22.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
@@ -1213,23 +1214,23 @@ public class MainScreen extends JFrame {
 
 									});
 						}
-						if (fld_cvc22.getText().length() == 0) {
-							fld_cvc22.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
+						if (fld_cvc2.getText().length() == 0) {
+							fld_cvc2.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
 
 								@Override
 								public void insertUpdate(DocumentEvent e) {
 									// TODO Auto-generated method stub
-									if (fld_cvc22.getText().length() == 3) {
-										fld_cvc22.setBackground(Color.white);
+									if (fld_cvc2.getText().length() == 3) {
+										fld_cvc2.setBackground(Color.white);
 									} else {
-										fld_cvc22.setBackground(Color.ORANGE);
+										fld_cvc2.setBackground(Color.ORANGE);
 									}
 								}
 
 								@Override
 								public void removeUpdate(DocumentEvent e) {
 									// TODO Auto-generated method stub
-									fld_cvc22.setBackground(Color.white);
+									fld_cvc2.setBackground(Color.white);
 								}
 
 								@Override
@@ -1247,13 +1248,13 @@ public class MainScreen extends JFrame {
 
 					else {
 
-						BuyTicket ticket = new BuyTicket();
+						BuyTicketTheater ticketTheater = new BuyTicketTheater();
 
-						if (ticket.comboBox_seat.getItemCount() == 0) {
+						if (ticketTheater.comboBox_seatTheater.getItemCount() == 0) {
 							JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
 									JOptionPane.INFORMATION_MESSAGE);
 
-						} else if (fld_CartNumber2.getText().length() != 16 || fld_cvc2.getText().length() != 3) {
+						} else if (fld_CartNumber22.getText().length() != 16 || fld_cvc2.getText().length() != 3) {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
 						}
@@ -1270,7 +1271,7 @@ public class MainScreen extends JFrame {
 									e1.printStackTrace();
 								}
 								Metod_Helper.showMsg("Odemeniz Basariyla Gerceklesti");
-								ticket.setVisible(true);
+								ticketTheater.setVisible(true);
 							}
 
 						}
@@ -1278,7 +1279,7 @@ public class MainScreen extends JFrame {
 
 				} else {
 
-					BuyTicket.setlblCard(BuyTicket.getPrice() + " odemeniz vardır. Iyi gunler Dileriz.");
+					BuyTicketTheater.setlblCard(BuyTicketTheater.getPrice() + " odemeniz vardır. Iyi gunler Dileriz.");
 					if (fld_TheaterName.getText().length() == 0 || fld_ThetaerType.getText().length() == 0
 							|| txt_theaterYear.getText().length() == 0 || fld_Salon22.getText().length() == 0
 							|| fld_Seance2.getText().length() == 0 || fld_Name_theater.getText().length() == 0
@@ -1287,8 +1288,8 @@ public class MainScreen extends JFrame {
 						JOptionPane.showMessageDialog(null, "Gerekli birkac bilgi eksik.", "Mesaj",
 								JOptionPane.INFORMATION_MESSAGE);
 					} else {
-						BuyTicket ticket = new BuyTicket();
-						if (ticket.comboBox_seat.getItemCount() == 0) {
+						BuyTicketTheater ticketTheater = new BuyTicketTheater();
+						if (ticketTheater.comboBox_seatTheater.getItemCount() == 0) {
 							JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
 									JOptionPane.INFORMATION_MESSAGE);
 
@@ -1296,7 +1297,7 @@ public class MainScreen extends JFrame {
 							if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
 									JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 								Metod_Helper.showMsg("succes");
-								ticket.setVisible(true);
+								ticketTheater.setVisible(true);
 							} else {
 								// no option
 							}
@@ -1331,7 +1332,7 @@ public class MainScreen extends JFrame {
 		JPanel PaneConcert = new JPanel();
 		PaneConcert.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		PaneConcert.setBackground(new Color(255, 255, 255));
-		PaneConcert.setBounds(552, 60, 450, 479);
+		PaneConcert.setBounds(623, 60, 450, 479);
 		contentPane.add(PaneConcert);
 		PaneConcert.setLayout(null);
 
@@ -1372,7 +1373,7 @@ public class MainScreen extends JFrame {
 
 		JLabel lbl_PaymentInformation3 = new JLabel("Odeme Bilgileri");
 		lbl_PaymentInformation3.setFont(new Font("SansSerif", Font.BOLD, 16));
-		lbl_PaymentInformation3.setBounds(10, 205, 130, 20);
+		lbl_PaymentInformation3.setBounds(10, 214, 130, 20);
 		PaneConcert.add(lbl_PaymentInformation3);
 
 		JLabel lbl_ConcertInfo = new JLabel("Konser Bilgileri");
@@ -1407,13 +1408,13 @@ public class MainScreen extends JFrame {
 		PaneConcert.add(fld_concertName);
 		fld_concertName.setColumns(10);
 
-		fld_Artist33 = new JTextField();
-		fld_Artist33.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_Artist33.setBackground(new Color(255, 255, 255));
-		fld_Artist33.setEditable(false);
-		fld_Artist33.setColumns(10);
-		fld_Artist33.setBounds(140, 96, 150, 20);
-		PaneConcert.add(fld_Artist33);
+		fld_Artist3 = new JTextField();
+		fld_Artist3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Artist3.setBackground(new Color(255, 255, 255));
+		fld_Artist3.setEditable(false);
+		fld_Artist3.setColumns(10);
+		fld_Artist3.setBounds(140, 96, 150, 20);
+		PaneConcert.add(fld_Artist3);
 
 		fld_Seance3 = new JTextField();
 		fld_Seance3.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -1518,84 +1519,79 @@ public class MainScreen extends JFrame {
 		lbl_Cvc3.setBounds(325, 52, 40, 20);
 		w_pane_Kart3.add(lbl_Cvc3);
 
-		fld_cvc33 = new JTextField();
-		fld_cvc33.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_cvc33.setHorizontalAlignment(SwingConstants.CENTER);
-		fld_cvc33.setBounds(374, 52, 46, 20);
-		fld_cvc33.addKeyListener(new KeyAdapter() {
+		fld_cvc3 = new JTextField();
+		fld_cvc3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_cvc3.setHorizontalAlignment(SwingConstants.CENTER);
+		fld_cvc3.setBounds(374, 52, 46, 20);
+		fld_cvc3.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (fld_cvc33.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						fld_cvc33.setEditable(true);
+					if (fld_cvc3.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_cvc3.setEditable(true);
 					} else {
-						fld_cvc33.setEditable(false);
+						fld_cvc3.setEditable(false);
 					}
 
 				} else {
-					fld_cvc33.setEditable(false);
+					fld_cvc3.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Kart3.add(fld_cvc33);
-		fld_cvc33.setColumns(10);
+		w_pane_Kart3.add(fld_cvc3);
+		fld_cvc3.setColumns(10);
 
-		fld_CartName33 = new JTextField();
-		fld_CartName33.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_CartName33.setColumns(10);
-		fld_CartName33.setBackground(Color.WHITE);
-		fld_CartName33.setBounds(160, 8, 260, 20);
-		fld_CartName33.addKeyListener(new KeyAdapter() {
+		fld_CartName3 = new JTextField();
+		fld_CartName3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CartName3.setColumns(10);
+		fld_CartName3.setBackground(Color.WHITE);
+		fld_CartName3.setBounds(160, 8, 260, 20);
+		fld_CartName3.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
-				if (ke.getKeyChar() == ' '
-						|| (ke.getKeyChar() == 'ı' || ke.getKeyChar() == 'ğ' || ke.getKeyChar() == 'ü'
-								|| ke.getKeyChar() == 'ş' || ke.getKeyChar() == 'ö' || ke.getKeyChar() == 'ç'
-								|| ke.getKeyChar() == 'İ' || ke.getKeyChar() == 'Ğ' || ke.getKeyChar() == 'Ü'
-								|| ke.getKeyChar() == 'Ş' || ke.getKeyChar() == 'Ö' || ke.getKeyChar() == 'Ç')
-						|| (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
+				if (ke.getKeyChar() == ' ' || (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
 						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
 						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (fld_CartName33.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						fld_CartName33.setEditable(true);
+					if (fld_CartName3.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_CartName3.setEditable(true);
 					} else {
-						fld_CartName33.setEditable(false);
+						fld_CartName3.setEditable(false);
 					}
 
 				} else {
-					fld_CartName33.setEditable(false);
+					fld_CartName3.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Kart3.add(fld_CartName33);
+		w_pane_Kart3.add(fld_CartName3);
 
-		fld_CartNumber33 = new JTextField();
-		fld_CartNumber33.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_CartNumber33.setColumns(10);
-		fld_CartNumber33.setBackground(Color.WHITE);
-		fld_CartNumber33.setBounds(160, 30, 260, 20);
-		fld_CartNumber33.addKeyListener(new KeyAdapter() {
+		fld_CartNumber3 = new JTextField();
+		fld_CartNumber3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CartNumber3.setColumns(10);
+		fld_CartNumber3.setBackground(Color.WHITE);
+		fld_CartNumber3.setBounds(160, 30, 260, 20);
+		fld_CartNumber3.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-					if (fld_CartNumber33.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						fld_CartNumber33.setEditable(true);
+					if (fld_CartNumber3.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+						fld_CartNumber3.setEditable(true);
 					} else {
-						fld_CartNumber33.setEditable(false);
+						fld_CartNumber3.setEditable(false);
 					}
 
 				} else {
-					fld_CartNumber33.setEditable(false);
+					fld_CartNumber3.setEditable(false);
 
 				}
 			}
 		});
-		w_pane_Kart3.add(fld_CartNumber33);
+		w_pane_Kart3.add(fld_CartNumber3);
 
 		JTextField txt_ConcertYear = new JTextField();
 		txt_ConcertYear.setBackground(new Color(255, 255, 255));
@@ -1623,38 +1619,39 @@ public class MainScreen extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox_Method3.getSelectedIndex() == 1) {
-					BuyTicket.setlblCard("Ucret, BANKA/KREDİ KARTI ile ödenmistir. Borcunuz yoktur.");
-					BuyTicket.setPrice("Odendi");
+					BuyTicketConcert.setlblCard("Ucret, BANKA/KREDİ KARTI ile ödenmistir. Borcunuz yoktur.");
+					BuyTicketConcert.setPrice("Odendi");
 
-					if (fld_concertName.getText().length() == 0 || fld_ThetaerType.getText().length() == 0
-							|| fld_Director.getText().length() == 0 || fld_Artist33.getText().length() == 0
+					if (fld_concertName.getText().length() == 0 || txt_ConcertPlace.getText().length() == 0
+							|| fld_Artist3.getText().length() == 0 || txt_ConcertYear.getText().length() == 0
 							|| fld_Seance3.getText().length() == 0 || fld_Name_concert.getText().length() == 0
+							|| txt_TicketCount.getText().length()==0 || txt_StudentCount.getText().length()==0
 							|| fld_Surname_concert.getText().length() == 0
 							|| fld_Mail_concert.getText().length() == 0) {
 						JOptionPane.showMessageDialog(null, "Gerekli birkac bilgi eksik.", "Mesaj",
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 
-					if (fld_CartName33.getText().length() == 0 || fld_CartNumber33.getText().length() == 0
-							|| fld_cvc33.getText().length() == 0 || comboBox_Month3.getSelectedIndex() == 0
+					if (fld_CartName3.getText().length() == 0 || fld_CartNumber3.getText().length() == 0
+							|| fld_cvc3.getText().length() == 0 || comboBox_Month3.getSelectedIndex() == 0
 							|| comboBox_Year3.getSelectedIndex() == 0) {
-						if (fld_CartName33.getText().length() == 0) {
-							fld_CartName33.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
+						if (fld_CartName3.getText().length() == 0) {
+							fld_CartName3.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
 
 								@Override
 								public void insertUpdate(DocumentEvent e) {
 									// TODO Auto-generated method stub
-									if (fld_CartName33.getText().length() > 0) {
-										fld_CartName33.setBackground(Color.white);
+									if (fld_CartName3.getText().length() > 0) {
+										fld_CartName3.setBackground(Color.white);
 									} else {
-										fld_CartName33.setBackground(Color.ORANGE);
+										fld_CartName3.setBackground(Color.ORANGE);
 									}
 								}
 
 								@Override
 								public void removeUpdate(DocumentEvent e) {
 									// TODO Auto-generated method stub
-									fld_CartName33.setBackground(Color.white);
+									fld_CartName3.setBackground(Color.white);
 								}
 
 								@Override
@@ -1665,24 +1662,24 @@ public class MainScreen extends JFrame {
 
 							});
 						}
-						if (fld_CartNumber33.getText().length() == 0) {
-							fld_CartNumber33.getDocument()
+						if (fld_CartNumber3.getText().length() == 0) {
+							fld_CartNumber3.getDocument()
 									.addDocumentListener((DocumentListener) new DocumentListener() {
 
 										@Override
 										public void insertUpdate(DocumentEvent e) {
 											// TODO Auto-generated method stub
-											if (fld_CartNumber33.getText().length() == 16) {
-												fld_CartNumber33.setBackground(Color.white);
+											if (fld_CartNumber3.getText().length() == 16) {
+												fld_CartNumber3.setBackground(Color.white);
 											} else {
-												fld_CartNumber33.setBackground(Color.ORANGE);
+												fld_CartNumber3.setBackground(Color.ORANGE);
 											}
 										}
 
 										@Override
 										public void removeUpdate(DocumentEvent e) {
 											// TODO Auto-generated method stub
-											fld_CartNumber33.setBackground(Color.white);
+											fld_CartNumber3.setBackground(Color.white);
 										}
 
 										@Override
@@ -1693,23 +1690,23 @@ public class MainScreen extends JFrame {
 
 									});
 						}
-						if (fld_cvc33.getText().length() == 0) {
-							fld_cvc33.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
+						if (fld_cvc3.getText().length() == 0) {
+							fld_cvc3.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
 
 								@Override
 								public void insertUpdate(DocumentEvent e) {
 									// TODO Auto-generated method stub
-									if (fld_cvc33.getText().length() == 3) {
-										fld_cvc33.setBackground(Color.white);
+									if (fld_cvc3.getText().length() == 3) {
+										fld_cvc3.setBackground(Color.white);
 									} else {
-										fld_cvc33.setBackground(Color.ORANGE);
+										fld_cvc3.setBackground(Color.ORANGE);
 									}
 								}
 
 								@Override
 								public void removeUpdate(DocumentEvent e) {
 									// TODO Auto-generated method stub
-									fld_cvc33.setBackground(Color.white);
+									fld_cvc3.setBackground(Color.white);
 								}
 
 								@Override
@@ -1727,13 +1724,8 @@ public class MainScreen extends JFrame {
 
 					else {
 
-						BuyTicket ticket = new BuyTicket();
-
-						if (ticket.comboBox_seat.getItemCount() == 0) {
-							JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
-									JOptionPane.INFORMATION_MESSAGE);
-
-						} else if (fld_CartNumber3.getText().length() != 16 || fld_cvc3.getText().length() != 3) {
+						BuyTicketConcert ticket = new BuyTicketConcert();
+						if (fld_CartNumber3.getText().length() != 16 || fld_cvc3.getText().length() != 3) {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
 						}
@@ -1757,16 +1749,16 @@ public class MainScreen extends JFrame {
 
 				} else {
 
-					BuyTicket.setlblCard(BuyTicket.getPrice() + " odemeniz vardır. Iyi günler Dileriz.");
-					if (fld_concertName.getText().length() == 0 || fld_ThetaerType.getText().length() == 0
-							|| fld_Artist33.getText().length() == 0 || txt_ConcertYear.getText().length() == 0
-							|| txt_ConcertPlace.getText().length() == 0 || fld_Seance3.getText().length() == 0
-							|| fld_Name_concert.getText().length() == 0 || fld_Surname_concert.getText().length() == 0
+					BuyTicketConcert.setlblCard(BuyTicketConcert.getPrice() + " odemeniz vardır. Iyi günler Dileriz.");
+					if (fld_concertName.getText().length() == 0 || fld_Artist3.getText().length() == 0
+							|| txt_ConcertYear.getText().length() == 0 || txt_ConcertPlace.getText().length() == 0
+							|| fld_Seance3.getText().length() == 0 || fld_Name_concert.getText().length() == 0
+							|| fld_Surname_concert.getText().length() == 0
 							|| fld_Mail_concert.getText().length() == 0) {
 						JOptionPane.showMessageDialog(null, "Gerekli birkac bilgi eksik.", "Mesaj",
 								JOptionPane.INFORMATION_MESSAGE);
 					} else {
-						BuyTicket ticket = new BuyTicket();
+						BuyTicketConcert ticket = new BuyTicketConcert();
 
 						if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
 								JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -1796,15 +1788,41 @@ public class MainScreen extends JFrame {
 		btn_CancelTicket3.setBackground(new Color(255, 153, 153));
 		btn_CancelTicket3.setFont(new Font("SansSerif", Font.PLAIN, 15));
 
-///////////////////////////////////////////////////// PANEKONSER////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		JLabel lbl_TicketCount = new JLabel("Bilet adeti girin:");
+		lbl_TicketCount.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 15));
+		lbl_TicketCount.setBackground(Color.WHITE);
+		lbl_TicketCount.setBounds(10, 193, 130, 20);
+		PaneConcert.add(lbl_TicketCount);
+
+		txt_TicketCount = new JTextField();
+		txt_TicketCount.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txt_TicketCount.setColumns(10);
+		txt_TicketCount.setBackground(Color.WHITE);
+		txt_TicketCount.setBounds(140, 193, 34, 20);
+		PaneConcert.add(txt_TicketCount);
+
+		JLabel lbl_StudentCount = new JLabel("Ogrenci sayisi:");
+		lbl_StudentCount.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 15));
+		lbl_StudentCount.setBackground(Color.WHITE);
+		lbl_StudentCount.setBounds(185, 193, 130, 20);
+		PaneConcert.add(lbl_StudentCount);
+
+		txt_StudentCount = new JTextField();
+		txt_StudentCount.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txt_StudentCount.setColumns(10);
+		txt_StudentCount.setBackground(Color.WHITE);
+		txt_StudentCount.setBounds(312, 193, 34, 20);
+		PaneConcert.add(txt_StudentCount);
+
+		///////////////////////////////////////////////////// PANEKONSER////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JButton btn_Select = new JButton("Sec");
 		btn_Select.setFocusable(false);
 		btn_Select.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Select.setForeground(new Color(0, 0, 0));
 		btn_Select.setBackground(new Color(204, 204, 255));
-		btn_Select.setBounds(479, 270, 60, 30);
+		btn_Select.setBounds(550, 270, 60, 30);
 		contentPane.add(btn_Select);
 		btn_Select.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_Select.addActionListener(new ActionListener() {
@@ -1818,42 +1836,42 @@ public class MainScreen extends JFrame {
 						String selCinemaDate = table_Cinema.getModel().getValueAt(selRow, 3).toString();
 						String selCinemaSalon = table_Cinema.getModel().getValueAt(selRow, 4).toString();
 						String selCinemaSeance = table_Cinema.getModel().getValueAt(selRow, 5).toString();
+						
+						//-----------------------------------------------------------------------------------------------------------------
+                        try{
+                              Connection con = dbhelper.getConnection(); 
+                              Statement st = con.createStatement();
+                              ResultSet rs = st.executeQuery("select * from cinema where filmID ="+(selRow+1));
+                              if(rs.next()){
+                                  byte[] img = rs.getBytes("pic");
 
+
+
+                                  //Resize The ImageIcon
+                                  ImageIcon image = new ImageIcon(img);
+                                  Image im = image.getImage();
+                                  Image myImg = im.getScaledInstance(lbl_Poster.getWidth(), lbl_Poster.getHeight(),Image.SCALE_SMOOTH);
+                                  ImageIcon newImage = new ImageIcon(myImg);
+                                  lbl_Poster.setIcon(newImage);
+                              }
+
+                              else{
+                                  JOptionPane.showMessageDialog(null, "No Data");
+                              }
+                          }catch(Exception ex){
+                              ex.printStackTrace();
+                          }
+
+//-----------------------------------------------------------------------------------------------------------------
+						
+						
 						fld_MovieName.setText(selCinemaName);
 						fld_MovieType.setText(selCinemaType);
 						fld_Director.setText(selCinemaDirector);
 						fld_CinemaDate.setText(selCinemaDate);
 						fld_Salon.setText(selCinemaSalon);
 						fld_Seance.setText(selCinemaSeance);
-						lbl_Poster.setText("Poster");// Poster, Film Kay�t i�leminde poster ekledikten sonra
-														// ayarlan�lacak
 						
-//-----------------------------------------------------------------------------------------------------------------
-						  try{
-				                Connection con = dbhelper.getConnection(); 
-				                Statement st = con.createStatement();
-				                ResultSet rs = st.executeQuery("select * from cinema where filmID ="+(selRow+1));
-				                if(rs.next()){
-				                    byte[] img = rs.getBytes("pic");
-
-
-
-				                    //Resize The ImageIcon
-				                    ImageIcon image = new ImageIcon(img);
-				                    Image im = image.getImage();
-				                    Image myImg = im.getScaledInstance(lbl_Poster.getWidth(), lbl_Poster.getHeight(),Image.SCALE_SMOOTH);
-				                    ImageIcon newImage = new ImageIcon(myImg);
-				                    lbl_Poster.setIcon(newImage);
-				                }
-				                
-				                else{
-				                    JOptionPane.showMessageDialog(null, "No Data");
-				                }
-				            }catch(Exception ex){
-				                ex.printStackTrace();
-				            }
-				        
-//-----------------------------------------------------------------------------------------------------------------						
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Lutfen bir film seciniz.", "Mesaj",
@@ -1875,8 +1893,32 @@ public class MainScreen extends JFrame {
 						txt_theaterYear.setText(selTheaterYear);
 						fld_Salon22.setText(selTheaterSalon);
 						fld_Seance2.setText(selTheaterTime);
-						lbl_Poster2.setText("Poster1");// Poster, Tiyatro Kay�t i�leminde poster ekledikten sonra
-														// ayarlan�lacak
+						//-----------------------------------------------------------------------------------------------------------------
+                        try{
+                              Connection con = dbhelper.getConnection(); 
+                              Statement st = con.createStatement();
+                              ResultSet rs = st.executeQuery("select * from tiyatro where tiyatroID ="+(selRow1+1));
+                              if(rs.next()){
+                                  byte[] img = rs.getBytes("pic");
+
+
+
+                                  //Resize The ImageIcon
+                                  ImageIcon image = new ImageIcon(img);
+                                  Image im = image.getImage();
+                                  Image myImg = im.getScaledInstance(lbl_Poster2.getWidth(), lbl_Poster2.getHeight(),Image.SCALE_SMOOTH);
+                                  ImageIcon newImage = new ImageIcon(myImg);
+                                  lbl_Poster2.setIcon(newImage);
+                              }
+
+                              else{
+                                  JOptionPane.showMessageDialog(null, "No Data");
+                              }
+                          }catch(Exception ex){
+                              ex.printStackTrace();
+                          }
+
+//-----------------------------------------------------------------------------------------------------------------
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Lutfen Bir Tiyatro Oyunu Seciniz.", "Mesaj",
@@ -1895,12 +1937,35 @@ public class MainScreen extends JFrame {
 
 						fld_concertName.setText(selConcertName);
 						txt_ConcertPlace.setText(selConcertPlace);
-						fld_Artist33.setText(selConcertArtist);
+						fld_Artist3.setText(selConcertArtist);
 						txt_ConcertYear.setText(selConcertDate);
 						fld_Seance3.setText(selTheaterTime);
-						lbl_Poster3.setText("Poster2");// Poster, Konser Kay�t isleminde poster ekledikten sonra
-														// ayarlanilacak
+						//-----------------------------------------------------------------------------------------------------------------
+                        try{
+                              Connection con = dbhelper.getConnection(); 
+                              Statement st = con.createStatement();
+                              ResultSet rs = st.executeQuery("select * from concert where concertID ="+(selRow2+1));
+                              if(rs.next()){
+                                  byte[] img = rs.getBytes("pic");
 
+
+
+                                  //Resize The ImageIcon
+                                  ImageIcon image = new ImageIcon(img);
+                                  Image im = image.getImage();
+                                  Image myImg = im.getScaledInstance(lbl_Poster2.getWidth(), lbl_Poster2.getHeight(),Image.SCALE_SMOOTH);
+                                  ImageIcon newImage = new ImageIcon(myImg);
+                                  lbl_Poster2.setIcon(newImage);
+                              }
+
+                              else{
+                                  JOptionPane.showMessageDialog(null, "No Data");
+                              }
+                          }catch(Exception ex){
+                              ex.printStackTrace();
+                          }
+
+//-----------------------------------------------------------------------------------------------------------------
 					} else {
 						JOptionPane.showMessageDialog(null, "Lutfen Bir Konser Seciniz.", "Mesaj",
 								JOptionPane.INFORMATION_MESSAGE);
@@ -1915,18 +1980,23 @@ public class MainScreen extends JFrame {
 					BuyTicket.setMovieType(fld_MovieType.getText());
 				} // 1 ve 2 için düzenleme gerekli olabilr
 				if (tabbedPane.getSelectedIndex() == 1) {
-					btn_SelectSeat.setEnabled(true);
-					BuyTicket.setMovie(fld_TheaterName.getText());
-					BuyTicket.setSeance(fld_Seance2.getText());
-					BuyTicket.setSalon(fld_Salon22.getText());
-					BuyTicket.setMovieType(fld_ThetaerType.getText());
+					btn_SelectSeat2.setEnabled(true);
+					BuyTicketTheater.setTheater(fld_TheaterName.getText());
+					BuyTicketTheater.setSeance(fld_Seance2.getText());
+					BuyTicketTheater.setSalon(fld_Salon22.getText());
+					BuyTicketTheater.setTheaterDate(txt_theaterYear.getText());
+					BuyTicketTheater.setTheaterType(fld_ThetaerType.getText());
+
 				}
 				if (tabbedPane.getSelectedIndex() == 2) {
-					btn_SelectSeat.setEnabled(true);
-					BuyTicket.setMovie(fld_concertName.getText());
-					BuyTicket.setSeance(fld_Seance3.getText());
-					BuyTicket.setSalon(txt_ConcertPlace.getText());
-					BuyTicket.setMovieType(fld_Artist33.getText());
+					BuyTicketConcert.setConcert(fld_concertName.getText());
+					BuyTicketConcert.setHour(fld_Seance3.getText());
+					BuyTicketConcert.setConcertPlace(txt_ConcertPlace.getText());
+					BuyTicketConcert.setArtist(fld_Artist3.getText());
+					BuyTicketConcert.setConcertDate(txt_ConcertYear.getText());
+					BuyTicketConcert.setStudentCount(txt_StudentCount.getText());
+					BuyTicketConcert.setTicketCount(txt_TicketCount.getText());
+					
 				}
 
 			}
