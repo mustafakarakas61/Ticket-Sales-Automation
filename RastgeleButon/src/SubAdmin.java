@@ -76,6 +76,8 @@ public class SubAdmin extends JFrame {
 	PreparedStatement pStatement;
 	private JTextField txt_MovieName;
 	private JTextField txt_MovieDirector;
+	private JTextField txt_TicketCount;
+	private JTextField txt_TicketPrice;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -98,7 +100,7 @@ public class SubAdmin extends JFrame {
 	public SubAdmin(user sub) throws SQLException {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 982, 518);
+		setBounds(100, 100, 1100, 518);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -120,16 +122,18 @@ public class SubAdmin extends JFrame {
 		cinemaData = new Object[7];
 
 		concertModel = new DefaultTableModel();
-		Object[] colConcert = new Object[6];
+		Object[] colConcert = new Object[8];
 		colConcert[0] = "Konser ID";
 		colConcert[1] = "Konser Adı";
 		colConcert[2] = "Konser Yeri";
 		colConcert[3] = "Sanatçı";
 		colConcert[4] = "Tarih";
 		colConcert[5] = "Saat";
+		colConcert[6] = "Bilet Adeti";
+		colConcert[7] = "Bilet Fiyati";
 
 		concertModel.setColumnIdentifiers(colConcert);
-		concertData = new Object[6];
+		concertData = new Object[8];
 
 		theaterModel = new DefaultTableModel();
 		Object[] colTheater = new Object[6];
@@ -146,7 +150,7 @@ public class SubAdmin extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.CYAN);
 		tabbedPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		tabbedPane.setBounds(0, 41, 535, 438);
+		tabbedPane.setBounds(0, 41, 651, 438);
 		contentPane.add(tabbedPane);
 
 		JPanel w_paneCinema = new JPanel();
@@ -155,7 +159,7 @@ public class SubAdmin extends JFrame {
 		w_paneCinema.setLayout(null);
 
 		JScrollPane scroll_Cinema = new JScrollPane();
-		scroll_Cinema.setBounds(0, 0, 528, 355);
+		scroll_Cinema.setBounds(0, 0, 644, 355);
 		w_paneCinema.add(scroll_Cinema);
 
 		table_Cinema = new JTable(cinemaModel);
@@ -169,7 +173,7 @@ public class SubAdmin extends JFrame {
 		scroll_Cinema.setViewportView(table_Cinema);
 
 		JButton btn_ShowRemoval = new JButton("Gösteri Çıkar");
-		btn_ShowRemoval.setBounds(188, 365, 142, 34);
+		btn_ShowRemoval.setBounds(243, 365, 142, 34);
 		w_paneCinema.add(btn_ShowRemoval);
 		btn_ShowRemoval.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -219,7 +223,7 @@ public class SubAdmin extends JFrame {
 		w_paneTheater.setLayout(null);
 
 		JScrollPane scroll_Theater = new JScrollPane();
-		scroll_Theater.setBounds(0, 0, 528, 355);
+		scroll_Theater.setBounds(0, 0, 644, 355);
 
 		w_paneTheater.add(scroll_Theater);
 
@@ -256,7 +260,7 @@ public class SubAdmin extends JFrame {
 			}
 		});
 		btn_ShowRemoval_1.setFont(new Font("Arial", Font.PLAIN, 11));
-		btn_ShowRemoval_1.setBounds(188, 365, 142, 34);
+		btn_ShowRemoval_1.setBounds(243, 365, 142, 34);
 		w_paneTheater.add(btn_ShowRemoval_1);
 		table_Theater.getColumnModel().getColumn(0).setResizable(false);
 		table_Theater.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -281,7 +285,7 @@ public class SubAdmin extends JFrame {
 		w_paneConcert.setLayout(null);
 
 		JScrollPane scroll_Concert = new JScrollPane();
-		scroll_Concert.setBounds(0, 0, 528, 355);
+		scroll_Concert.setBounds(0, 0, 644, 355);
 		w_paneConcert.add(scroll_Concert);
 
 		table_Concert = new JTable(concertModel);
@@ -291,6 +295,8 @@ public class SubAdmin extends JFrame {
 		table_Concert.getColumn("Sanatçı").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Bilet Adeti").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Bilet Fiyati").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Concert.setViewportView(table_Concert);
 
 		JButton btn_ShowRemoval_1_1 = new JButton("Gösteri Çıkar");
@@ -318,7 +324,7 @@ public class SubAdmin extends JFrame {
 
 		});
 		btn_ShowRemoval_1_1.setFont(new Font("Arial", Font.PLAIN, 11));
-		btn_ShowRemoval_1_1.setBounds(188, 365, 142, 34);
+		btn_ShowRemoval_1_1.setBounds(243, 365, 142, 34);
 		w_paneConcert.add(btn_ShowRemoval_1_1);
 		table_Concert.getColumnModel().getColumn(0).setResizable(false);
 		table_Concert.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -327,6 +333,8 @@ public class SubAdmin extends JFrame {
 		table_Concert.getColumnModel().getColumn(3).setResizable(false);
 		table_Concert.getColumnModel().getColumn(4).setResizable(false);
 		table_Concert.getColumnModel().getColumn(5).setResizable(false);
+		table_Concert.getColumnModel().getColumn(6).setResizable(false);
+		table_Concert.getColumnModel().getColumn(7).setResizable(false);
 
 		for (int k = 0; k < subadmin.concertList().size(); k++) {
 			concertData[0] = subadmin.concertList().get(k).getConcertID();
@@ -335,14 +343,18 @@ public class SubAdmin extends JFrame {
 			concertData[3] = subadmin.concertList().get(k).getConcertArtist();
 			concertData[4] = subadmin.concertList().get(k).getConcertDate();
 			concertData[5] = subadmin.concertList().get(k).getConcertTime();
+			concertData[6] = subadmin.concertList().get(k).getTicketCount();
+			concertData[7] = subadmin.concertList().get(k).getTicketPrice();
 			concertModel.addRow(concertData);
 		}
+
+	
 
 /////////////////////////////PANECÝNEMA///////////////////////////////////////////////////////////////////////////
 
 		JPanel paneAddCinema = new JPanel();
 		paneAddCinema.setBackground(new Color(224, 255, 255));
-		paneAddCinema.setBounds(545, 41, 423, 438);
+		paneAddCinema.setBounds(661, 41, 423, 438);
 		contentPane.add(paneAddCinema);
 		paneAddCinema.setLayout(null);
 
@@ -443,7 +455,8 @@ public class SubAdmin extends JFrame {
 					System.out.println(e2);
 				}
 
-//-----------------------------------------------------------------------------------------------------------------								
+//-----------------------------------------------------------------------------------------------------------------	
+				
 
 			}
 		});
@@ -540,7 +553,7 @@ public class SubAdmin extends JFrame {
 		JButton btn_AddCinema = new JButton("Film Ekle");
 		btn_AddCinema.setBounds(141, 396, 138, 31);
 		paneAddCinema.add(btn_AddCinema);
-		
+
 		JLabel lbl_MoviePitcure = new JLabel("");
 		lbl_MoviePitcure.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_MoviePitcure.setBounds(288, 17, 125, 148);
@@ -630,7 +643,7 @@ public class SubAdmin extends JFrame {
 
 		JPanel paneAddTheater = new JPanel();
 		paneAddTheater.setBackground(new Color(221, 160, 221));
-		paneAddTheater.setBounds(545, 41, 423, 438);
+		paneAddTheater.setBounds(661, 41, 423, 438);
 		contentPane.add(paneAddTheater);
 		paneAddTheater.setLayout(null);
 
@@ -699,7 +712,7 @@ public class SubAdmin extends JFrame {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					connection = dbhelper.getConnection();
-					pStatement = connection.prepareStatement("insert into cinema(pic) values(?)");
+					pStatement = connection.prepareStatement("insert into tiyatro(pic) values(?)");
 
 					JFileChooser jfc2 = new JFileChooser();
 					jfc2.showOpenDialog(null);
@@ -815,11 +828,306 @@ public class SubAdmin extends JFrame {
 		JButton btn_AddTheater = new JButton("Oyun Ekle");
 		btn_AddTheater.setBounds(141, 396, 138, 31);
 		paneAddTheater.add(btn_AddTheater);
-		
+
 		JLabel lbl_TheatrePitcure = new JLabel("");
-		lbl_MoviePitcure.setFont(new Font("Arial", Font.PLAIN, 15));
-		lbl_MoviePitcure.setBounds(288, 10, 125, 148);
-		paneAddTheater.add(lbl_MoviePitcure);
+		lbl_TheatrePitcure.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_TheatrePitcure.setBounds(288, 10, 125, 148);
+		paneAddTheater.add(lbl_TheatrePitcure);
+
+		//////////////////////////////////// PaneTheater////////////////////////////////////////////////////////////////////
+		///////////////////////////// PaneConcert
+
+		JPanel paneAddConcert = new JPanel();
+		paneAddConcert.setBackground(new Color(143, 188, 143));
+		paneAddConcert.setBounds(661, 41, 423, 438);
+		contentPane.add(paneAddConcert);
+		paneAddConcert.setLayout(null);
+
+		JLabel lbl_ConcertName = new JLabel("Konser Ad\u0131:");
+		lbl_ConcertName.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_ConcertName.setBounds(10, 10, 102, 28);
+		paneAddConcert.add(lbl_ConcertName);
+
+		JLabel lbl_ArtistName = new JLabel("Sanat\u00E7\u0131 Ad\u0131:");
+		lbl_ArtistName.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_ArtistName.setBounds(10, 45, 102, 28);
+		paneAddConcert.add(lbl_ArtistName);
+
+		txt_ConcertName = new JTextField();
+		txt_ConcertName.setBounds(111, 17, 138, 20);
+		paneAddConcert.add(txt_ConcertName);
+		txt_ConcertName.setColumns(10);
+
+		txt_ConcertType = new JTextField();
+		txt_ConcertType.setColumns(10);
+		txt_ConcertType.setBounds(111, 48, 138, 20);
+		paneAddConcert.add(txt_ConcertType);
+
+		JLabel lbl_ConcertPlace = new JLabel("Konser Yeri:");
+		lbl_ConcertPlace.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_ConcertPlace.setBounds(10, 83, 108, 28);
+		paneAddConcert.add(lbl_ConcertPlace);
+
+		JComboBox combo_ConcertPlace = new JComboBox();
+		combo_ConcertPlace.setBounds(111, 83, 138, 21);
+		paneAddConcert.add(combo_ConcertPlace);
+		combo_ConcertPlace.addItem(null);
+		combo_ConcertPlace.addItem("Babylon");
+		combo_ConcertPlace.addItem("Dorock XL");
+		combo_ConcertPlace.addItem("Zorlu Center");
+		combo_ConcertPlace.addItem("Wolkswagen Arena");
+		combo_ConcertPlace.addItem("Jolly Joker");
+		combo_ConcertPlace.addItem("Bronx Pi Sahne");
+		combo_ConcertPlace.addItem("Shaft");
+
+		JLabel lbl_ConcertDate = new JLabel("Tarih:");
+		lbl_ConcertDate.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lbl_ConcertDate.setBounds(10, 115, 102, 28);
+		paneAddConcert.add(lbl_ConcertDate);
+
+		JDateChooser dateChooser3 = new JDateChooser();
+		dateChooser3.setBounds(111, 119, 138, 20);
+		paneAddConcert.add(dateChooser3);
+
+		JLabel lbl_Poster3 = new JLabel("");
+		paneAddConcert.add(lbl_Poster3);
+
+		JButton btn_ImageSelect3 = new JButton("Afis Sec");
+		btn_ImageSelect3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//------------------------------------------------------------------------------------------foto ekleme alaný bozma :)
+				try {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					connection = dbhelper.getConnection();
+					pStatement = connection.prepareStatement("insert into concert(pic) values(?)");
+
+					JFileChooser jfc3 = new JFileChooser();
+					jfc3.showOpenDialog(null);
+					File file3 = jfc3.getSelectedFile();
+
+					FileInputStream fis3 = new FileInputStream(file3);
+					pStatement.setBinaryStream(1, fis3, fis3.available());
+
+					pStatement.executeUpdate();
+
+					Metod_Helper.showMsg("succes");
+
+				} catch (Exception e3) {
+					// TODO: handle exception
+					System.out.println(e3);
+				}
+
+//-----------------------------------------------------------------------------------------------------------------								
+
+			}
+		});
+
+		btn_ImageSelect3.setBounds(304, 182, 102, 31);
+		paneAddConcert.add(btn_ImageSelect3);
+
+		JLabel lbl_ConcertSeance = new JLabel("Saat:");
+		lbl_ConcertSeance.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_ConcertSeance.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lbl_ConcertSeance.setBounds(10, 219, 46, 28);
+		paneAddConcert.add(lbl_ConcertSeance);
+
+		JPanel ConcertSeanceHours = new JPanel();
+		ConcertSeanceHours.setBounds(59, 223, 347, 139);
+		paneAddConcert.add(ConcertSeanceHours);
+		ConcertSeanceHours.setLayout(null);
+		ConcertSeanceHours.setBackground(Color.WHITE);
+
+		JRadioButton rdbtn01 = new JRadioButton("10:00 ");
+		rdbtn01.setBounds(6, 6, 103, 21);
+		rdbtn01.setActionCommand(rdbtn01.getText());
+		ConcertSeanceHours.add(rdbtn01);
+
+		JRadioButton rdbtn12 = new JRadioButton("11:00");
+		rdbtn12.setBounds(122, 6, 103, 21);
+		rdbtn12.setActionCommand(rdbtn12.getText());
+		ConcertSeanceHours.add(rdbtn12);
+
+		JRadioButton rdbtn23 = new JRadioButton("12:00");
+		rdbtn23.setBounds(238, 6, 103, 21);
+		rdbtn23.setActionCommand(rdbtn23.getText());
+		ConcertSeanceHours.add(rdbtn23);
+
+		JRadioButton rdbtn89 = new JRadioButton("18:00");
+		rdbtn89.setBounds(238, 76, 103, 21);
+		rdbtn89.setActionCommand(rdbtn89.getText());
+		ConcertSeanceHours.add(rdbtn89);
+
+		JRadioButton rdbtn78 = new JRadioButton("17:00");
+		rdbtn78.setBounds(122, 76, 103, 21);
+		rdbtn78.setActionCommand(rdbtn78.getText());
+		ConcertSeanceHours.add(rdbtn78);
+
+		JRadioButton rdbtn67 = new JRadioButton("16:00");
+		rdbtn67.setBounds(6, 76, 103, 21);
+		rdbtn67.setActionCommand(rdbtn67.getText());
+		ConcertSeanceHours.add(rdbtn67);
+
+		JRadioButton rdbtn112 = new JRadioButton("21:00");
+		rdbtn112.setBounds(238, 112, 103, 21);
+		rdbtn112.setActionCommand(rdbtn112.getText());
+		ConcertSeanceHours.add(rdbtn112);
+
+		JRadioButton rdbtn101 = new JRadioButton("20:00");
+		rdbtn101.setBounds(122, 112, 103, 21);
+		rdbtn101.setActionCommand(rdbtn101.getText());
+		ConcertSeanceHours.add(rdbtn101);
+
+		JRadioButton rdbtn910 = new JRadioButton("19:00");
+		rdbtn910.setBounds(6, 112, 103, 21);
+		rdbtn910.setActionCommand(rdbtn910.getText());
+		ConcertSeanceHours.add(rdbtn910);
+
+		JRadioButton rdbtn56 = new JRadioButton("15:00");
+		rdbtn56.setBounds(238, 41, 103, 21);
+		rdbtn56.setActionCommand(rdbtn56.getText());
+		ConcertSeanceHours.add(rdbtn56);
+
+		JRadioButton rdbtn45 = new JRadioButton("14:00");
+		rdbtn45.setBounds(122, 41, 103, 21);
+		rdbtn45.setActionCommand(rdbtn45.getText());
+		ConcertSeanceHours.add(rdbtn45);
+
+		JRadioButton rdbtn34 = new JRadioButton("13:00");
+		rdbtn34.setBounds(6, 41, 103, 21);
+		rdbtn34.setActionCommand(rdbtn34.getText());
+		ConcertSeanceHours.add(rdbtn34);
+	
+		
+		
+		JButton btn_AddConcert = new JButton("Konser Ekle");
+		btn_AddConcert.setBounds(141, 396, 138, 31);
+		paneAddConcert.add(btn_AddConcert);
+
+		JLabel lbl_ConcertPitcure = new JLabel("");
+		lbl_ConcertPitcure.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_ConcertPitcure.setBounds(288, 10, 125, 148);
+		paneAddConcert.add(lbl_ConcertPitcure);
+
+		JLabel lbl_TicketCount = new JLabel("Bilet Adeti:");
+		lbl_TicketCount.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_TicketCount.setBounds(10, 145, 102, 28);
+		paneAddConcert.add(lbl_TicketCount);
+
+		txt_TicketCount = new JTextField();
+		txt_TicketCount.setColumns(10);
+		txt_TicketCount.setBounds(111, 148, 70, 20);
+		paneAddConcert.add(txt_TicketCount);
+
+		JLabel lbl_TicketPrice = new JLabel("Bilet Fiyati:");
+		lbl_TicketPrice.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_TicketPrice.setBounds(10, 178, 102, 28);
+		paneAddConcert.add(lbl_TicketPrice);
+
+		txt_TicketPrice = new JTextField();
+		txt_TicketPrice.setColumns(10);
+		txt_TicketPrice.setBounds(111, 182, 70, 20);
+		paneAddConcert.add(txt_TicketPrice);
+		ButtonGroup bgg3 = new ButtonGroup();
+		bgg3.add(rdbtn01);
+		bgg3.add(rdbtn12);
+		bgg3.add(rdbtn23);
+		bgg3.add(rdbtn34);
+		bgg3.add(rdbtn45);
+		bgg3.add(rdbtn56);
+		bgg3.add(rdbtn67);
+		bgg3.add(rdbtn78);
+		bgg3.add(rdbtn89);
+		bgg3.add(rdbtn910);
+		bgg3.add(rdbtn101);
+		bgg3.add(rdbtn112);
+		
+		JLabel lbl_ArtistName_1_1 = new JLabel("TL");
+		lbl_ArtistName_1_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_ArtistName_1_1.setBounds(186, 177, 46, 28);
+		paneAddConcert.add(lbl_ArtistName_1_1);
+		btn_AddConcert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String seance = "";
+
+				if (rdbtn01.isSelected()) {
+					seance = rdbtn01.getText();
+				}
+				if (rdbtn12.isSelected()) {
+					seance = rdbtn12.getText();
+				}
+				if (rdbtn23.isSelected()) {
+					seance = rdbtn23.getText();
+				}
+				if (rdbtn34.isSelected()) {
+					seance = rdbtn34.getText();
+				}
+				if (rdbtn45.isSelected()) {
+					seance = rdbtn45.getText();
+				}
+				if (rdbtn56.isSelected()) {
+					seance = rdbtn56.getText();
+				}
+				if (rdbtn67.isSelected()) {
+					seance = rdbtn67.getText();
+				}
+				if (rdbtn78.isSelected()) {
+					seance = rdbtn78.getText();
+				}
+				if (rdbtn89.isSelected()) {
+					seance = rdbtn89.getText();
+				}
+				if (rdbtn910.isSelected()) {
+					seance = rdbtn910.getText();
+				}
+				if (rdbtn101.isSelected()) {
+					seance = rdbtn101.getText();
+				}
+				if (rdbtn112.isSelected()) {
+					seance = rdbtn112.getText();
+				}
+
+				if (txt_ConcertName.getText().length() == 0 || txt_ConcertType.getText().length() == 0 || txt_TicketCount.getText().length()==0
+						|| txt_TicketPrice.getText().length()==0
+						|| combo_ConcertPlace.getSelectedIndex() == -1 || dateChooser.getDate() == null
+						|| seance.length() == 0) {
+					Metod_Helper.showMsg("fill");
+					if (seance == "") {
+						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
+					}
+				} else {
+
+					String cboxConcertPlace = String.valueOf(combo_ConcertPlace.getSelectedItem());
+
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					String dateConcert = dateFormat.format(dateChooser3.getDate());
+
+					String selConcertSaat = "" + bgg3.getSelection().getActionCommand();
+
+					try {
+						boolean control = subadmin.addConcert(txt_ConcertName.getText(), cboxConcertPlace,
+								txt_ConcertType.getText(), dateConcert, selConcertSaat,Integer.parseInt(txt_TicketCount.getText()),txt_TicketPrice.getText());
+						if (control) {
+							Metod_Helper.showMsg("succes");
+							txt_ConcertName.setText(null);
+							txt_ConcertType.setText(null);
+							txt_TicketCount.setText(null);
+							txt_TicketPrice.setText(null);
+							cboxConcertPlace = null;
+							dateConcert = null;
+							selConcertSaat = null;
+							updateConcertList();
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+
+				}
+
+			}
+		});
+
+		paneAddConcert.setVisible(false);
 		btn_AddTheater.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -900,273 +1208,7 @@ public class SubAdmin extends JFrame {
 		});
 		paneAddTheater.setVisible(false);
 
-		//////////////////////////////////// PaneTheater////////////////////////////////////////////////////////////////////
-		///////////////////////////// PaneConcert
-
-		JPanel paneAddConcert = new JPanel();
-		paneAddConcert.setBackground(new Color(143, 188, 143));
-		paneAddConcert.setBounds(545, 41, 423, 438);
-		contentPane.add(paneAddConcert);
-		paneAddConcert.setLayout(null);
-
-		JLabel lbl_ConcertName = new JLabel("Konser Ad\u0131:");
-		lbl_ConcertName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lbl_ConcertName.setBounds(10, 10, 102, 28);
-		paneAddConcert.add(lbl_ConcertName);
-
-		JLabel lbl_ArtistName = new JLabel("Sanat\u00E7\u0131 Ad\u0131:");
-		lbl_ArtistName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lbl_ArtistName.setBounds(10, 45, 102, 28);
-		paneAddConcert.add(lbl_ArtistName);
-
-		txt_ConcertName = new JTextField();
-		txt_ConcertName.setBounds(111, 17, 138, 20);
-		paneAddConcert.add(txt_ConcertName);
-		txt_ConcertName.setColumns(10);
-
-		txt_ConcertType = new JTextField();
-		txt_ConcertType.setColumns(10);
-		txt_ConcertType.setBounds(111, 48, 138, 23);
-		paneAddConcert.add(txt_ConcertType);
-
-		JLabel lbl_ArtistSurName = new JLabel("Konser Yeri:");
-		lbl_ArtistSurName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lbl_ArtistSurName.setBounds(10, 83, 108, 28);
-		paneAddConcert.add(lbl_ArtistSurName);
-
-		JComboBox combo_ConcertPlace = new JComboBox();
-		combo_ConcertPlace.setBounds(111, 83, 138, 21);
-		paneAddConcert.add(combo_ConcertPlace);
-		combo_ConcertPlace.addItem(null);
-		combo_ConcertPlace.addItem("Babylon");
-		combo_ConcertPlace.addItem("Dorock XL");
-		combo_ConcertPlace.addItem("Zorlu Center");
-		combo_ConcertPlace.addItem("Wolkswagen Arena");
-		combo_ConcertPlace.addItem("Jolly Joker");
-		combo_ConcertPlace.addItem("Bronx Pi Sahne");
-		combo_ConcertPlace.addItem("Shaft");
-
-		JLabel lbl_ConcertDate = new JLabel("Tarih:");
-		lbl_ConcertDate.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lbl_ConcertDate.setBounds(10, 115, 102, 28);
-		paneAddConcert.add(lbl_ConcertDate);
-
-		JDateChooser dateChooser3 = new JDateChooser();
-		dateChooser3.setBounds(111, 119, 138, 20);
-		paneAddConcert.add(dateChooser3);
-
-		JLabel lbl_Poster3 = new JLabel("");
-		paneAddConcert.add(lbl_Poster3);
-
-		JButton btn_ImageSelect3 = new JButton("Afis Sec");
-		btn_ImageSelect3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-//------------------------------------------------------------------------------------------foto ekleme alaný bozma :)
-				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					connection = dbhelper.getConnection();
-					pStatement = connection.prepareStatement("insert into cinema(pic) values(?)");
-
-					JFileChooser jfc3 = new JFileChooser();
-					jfc3.showOpenDialog(null);
-					File file3 = jfc3.getSelectedFile();
-
-					FileInputStream fis3 = new FileInputStream(file3);
-					pStatement.setBinaryStream(1, fis3, fis3.available());
-
-					pStatement.executeUpdate();
-
-					Metod_Helper.showMsg("succes");
-
-				} catch (Exception e3) {
-					// TODO: handle exception
-					System.out.println(e3);
-				}
-
-//-----------------------------------------------------------------------------------------------------------------								
-
-			}
-		});
-
-		btn_ImageSelect3.setBounds(304, 182, 102, 31);
-		paneAddConcert.add(btn_ImageSelect3);
-
-		JLabel lbl_ConcertSeance = new JLabel("Saat:");
-		lbl_ConcertSeance.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_ConcertSeance.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lbl_ConcertSeance.setBounds(10, 219, 46, 28);
-		paneAddConcert.add(lbl_ConcertSeance);
-
-		JPanel ConcertSeanceHours = new JPanel();
-		ConcertSeanceHours.setBounds(59, 223, 347, 139);
-		paneAddConcert.add(ConcertSeanceHours);
-		ConcertSeanceHours.setLayout(null);
-		ConcertSeanceHours.setBackground(Color.WHITE);
-
-		ButtonGroup bgg3 = new ButtonGroup();
-
-		JRadioButton rdbtn01 = new JRadioButton("10:00 ");
-		rdbtn01.setBounds(6, 6, 103, 21);
-		rdbtn01.setActionCommand(rdbtn01.getText());
-		ConcertSeanceHours.add(rdbtn01);
-
-		JRadioButton rdbtn12 = new JRadioButton("11:00");
-		rdbtn12.setBounds(122, 6, 103, 21);
-		rdbtn12.setActionCommand(rdbtn12.getText());
-		ConcertSeanceHours.add(rdbtn12);
-
-		JRadioButton rdbtn23 = new JRadioButton("12:00");
-		rdbtn23.setBounds(238, 6, 103, 21);
-		rdbtn23.setActionCommand(rdbtn23.getText());
-		ConcertSeanceHours.add(rdbtn23);
-
-		JRadioButton rdbtn89 = new JRadioButton("18:00");
-		rdbtn89.setBounds(238, 76, 103, 21);
-		rdbtn89.setActionCommand(rdbtn89.getText());
-		ConcertSeanceHours.add(rdbtn89);
-
-		JRadioButton rdbtn78 = new JRadioButton("17:00");
-		rdbtn78.setBounds(122, 76, 103, 21);
-		rdbtn78.setActionCommand(rdbtn78.getText());
-		ConcertSeanceHours.add(rdbtn78);
-
-		JRadioButton rdbtn67 = new JRadioButton("16:00");
-		rdbtn67.setBounds(6, 76, 103, 21);
-		rdbtn67.setActionCommand(rdbtn67.getText());
-		ConcertSeanceHours.add(rdbtn67);
-
-		JRadioButton rdbtn112 = new JRadioButton("21:00");
-		rdbtn112.setBounds(238, 112, 103, 21);
-		rdbtn112.setActionCommand(rdbtn112.getText());
-		ConcertSeanceHours.add(rdbtn112);
-
-		JRadioButton rdbtn101 = new JRadioButton("20:00");
-		rdbtn101.setBounds(122, 112, 103, 21);
-		rdbtn101.setActionCommand(rdbtn101.getText());
-		ConcertSeanceHours.add(rdbtn101);
-
-		JRadioButton rdbtn910 = new JRadioButton("19:00");
-		rdbtn910.setBounds(6, 112, 103, 21);
-		rdbtn910.setActionCommand(rdbtn910.getText());
-		ConcertSeanceHours.add(rdbtn910);
-
-		JRadioButton rdbtn56 = new JRadioButton("15:00");
-		rdbtn56.setBounds(238, 41, 103, 21);
-		rdbtn56.setActionCommand(rdbtn56.getText());
-		ConcertSeanceHours.add(rdbtn56);
-
-		JRadioButton rdbtn45 = new JRadioButton("14:00");
-		rdbtn45.setBounds(122, 41, 103, 21);
-		rdbtn45.setActionCommand(rdbtn45.getText());
-		ConcertSeanceHours.add(rdbtn45);
-
-		JRadioButton rdbtn34 = new JRadioButton("13:00");
-		rdbtn34.setBounds(6, 41, 103, 21);
-		rdbtn34.setActionCommand(rdbtn34.getText());
-		ConcertSeanceHours.add(rdbtn34);
-
-		bgg3.add(rdbtn01);
-		bgg3.add(rdbtn12);
-		bgg3.add(rdbtn23);
-		bgg3.add(rdbtn34);
-		bgg3.add(rdbtn45);
-		bgg3.add(rdbtn56);
-		bgg3.add(rdbtn67);
-		bgg3.add(rdbtn78);
-		bgg3.add(rdbtn89);
-		bgg3.add(rdbtn910);
-		bgg3.add(rdbtn101);
-		bgg3.add(rdbtn112);
-
-		JButton btn_AddConcert = new JButton("Konser Ekle");
-		btn_AddConcert.setBounds(141, 396, 138, 31);
-		paneAddConcert.add(btn_AddConcert);
 		
-		JLabel lbl_ConcertPitcure = new JLabel("");
-		lbl_MoviePitcure.setFont(new Font("Arial", Font.PLAIN, 15));
-		lbl_MoviePitcure.setBounds(288, 10, 125, 148);
-		paneAddConcert.add(lbl_MoviePitcure);
-		btn_AddConcert.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				String seance = "";
-
-				if (rdbtn01.isSelected()) {
-					seance = rdbtn01.getText();
-				}
-				if (rdbtn12.isSelected()) {
-					seance = rdbtn12.getText();
-				}
-				if (rdbtn23.isSelected()) {
-					seance = rdbtn23.getText();
-				}
-				if (rdbtn34.isSelected()) {
-					seance = rdbtn34.getText();
-				}
-				if (rdbtn45.isSelected()) {
-					seance = rdbtn45.getText();
-				}
-				if (rdbtn56.isSelected()) {
-					seance = rdbtn56.getText();
-				}
-				if (rdbtn67.isSelected()) {
-					seance = rdbtn67.getText();
-				}
-				if (rdbtn78.isSelected()) {
-					seance = rdbtn78.getText();
-				}
-				if (rdbtn89.isSelected()) {
-					seance = rdbtn89.getText();
-				}
-				if (rdbtn910.isSelected()) {
-					seance = rdbtn910.getText();
-				}
-				if (rdbtn101.isSelected()) {
-					seance = rdbtn101.getText();
-				}
-				if (rdbtn112.isSelected()) {
-					seance = rdbtn112.getText();
-				}
-
-				if (txt_ConcertName.getText().length() == 0 || txt_ConcertType.getText().length() == 0
-						|| combo_ConcertPlace.getSelectedIndex() == -1 || dateChooser.getDate() == null
-						|| seance.length() == 0) {
-					Metod_Helper.showMsg("fill");
-					if (seance == "") {
-						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
-					}
-				} else {
-
-					String cboxConcertPlace = String.valueOf(combo_ConcertPlace.getSelectedItem());
-
-					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-					String dateConcert = dateFormat.format(dateChooser3.getDate());
-
-					String selConcertSaat = "" + bgg3.getSelection().getActionCommand();
-
-					try {
-						boolean control = subadmin.addConcert(txt_ConcertName.getText(), cboxConcertPlace,
-								txt_ConcertType.getText(), dateConcert, selConcertSaat);
-						if (control) {
-							Metod_Helper.showMsg("succes");
-							txt_ConcertName.setText(null);
-							txt_ConcertType.setText(null);
-							cboxConcertPlace = null;
-							dateConcert = null;
-							selConcertSaat = null;
-							updateConcertList();
-						}
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-
-				}
-
-			}
-		});
-
-		paneAddConcert.setVisible(false);
-
 		//////////////////////////////////// PaneConcert////////////////////////////////////////////////////////////////////
 
 		tabbedPane.addChangeListener((ChangeListener) new ChangeListener() {
@@ -1232,6 +1274,8 @@ public class SubAdmin extends JFrame {
 			concertData[3] = subadmin.concertList().get(i).getConcertArtist();
 			concertData[4] = subadmin.concertList().get(i).getConcertDate();
 			concertData[5] = subadmin.concertList().get(i).getConcertTime();
+			concertData[6] = subadmin.concertList().get(i).getTicketCount();
+			concertData[7] = subadmin.concertList().get(i).getTicketPrice();
 			concertModel.addRow(concertData);
 		}
 	}
