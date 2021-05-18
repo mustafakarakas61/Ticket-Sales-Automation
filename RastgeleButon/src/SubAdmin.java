@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
+import javax.swing.text.DateFormatter;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -44,6 +45,9 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.EventObject;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
@@ -60,7 +64,6 @@ public class SubAdmin extends JFrame {
 	private static JTable table_Theater;
 	private static JTable table_Concert;
 	private JTextField txt_TheaterName;
-	private JTextField txt_TheaterType;
 	private JTextField txt_ConcertName;
 	private JTextField txt_ConcertType;
 	private JButton btn_ImageSelect;
@@ -68,9 +71,6 @@ public class SubAdmin extends JFrame {
 
 	private static user sub = new user();
 	private static SAdmin subadmin = new SAdmin();
-	private JTextField text_image;
-	private JTextField text_image2;
-	private JTextField text_image3;
 	DbHelper dbhelper = new DbHelper();
 	Connection connection = null;
 	PreparedStatement pStatement;
@@ -379,6 +379,7 @@ public class SubAdmin extends JFrame {
 		JComboBox<String> combo_MovieType = new JComboBox<String>();
 		combo_MovieType.setBounds(111, 78, 138, 21);
 		paneAddCinema.add(combo_MovieType);
+		combo_MovieType.addItem(null);
 		combo_MovieType.addItem("Aksiyon");
 		combo_MovieType.addItem("Bilim/Kurgu");
 		combo_MovieType.addItem("Drama");
@@ -398,6 +399,7 @@ public class SubAdmin extends JFrame {
 		JComboBox<String> comboBox_Salon = new JComboBox<String>();
 		comboBox_Salon.setBounds(111, 116, 138, 21);
 		paneAddCinema.add(comboBox_Salon);
+		comboBox_Salon.addItem(null);
 		comboBox_Salon.addItem("A-1");
 		comboBox_Salon.addItem("A-2");
 		comboBox_Salon.addItem("A-3");
@@ -449,16 +451,6 @@ public class SubAdmin extends JFrame {
 		btn_ImageSelect.setBounds(304, 182, 102, 31);
 		paneAddCinema.add(btn_ImageSelect);
 
-		JLabel lbl_Image = new JLabel("Resim:");
-		lbl_Image.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_Image.setBounds(10, 181, 50, 28);
-		paneAddCinema.add(lbl_Image);
-
-		text_image = new JTextField();
-		text_image.setBounds(111, 181, 138, 19);
-		paneAddCinema.add(text_image);
-		text_image.setColumns(10);
-
 		JLabel lbl_CinemaSeance = new JLabel("Seans:");
 		lbl_CinemaSeance.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_CinemaSeance.setBounds(10, 219, 46, 28);
@@ -474,50 +466,62 @@ public class SubAdmin extends JFrame {
 
 		JRadioButton rdbtn0_0_0 = new JRadioButton("10:00 ");
 		rdbtn0_0_0.setBounds(6, 6, 103, 21);
+		rdbtn0_0_0.setActionCommand(rdbtn0_0_0.getText());
 		SeanceHours3.add(rdbtn0_0_0);
 
 		JRadioButton rdbtn1_1_1 = new JRadioButton("11:00");
 		rdbtn1_1_1.setBounds(122, 6, 103, 21);
+		rdbtn1_1_1.setActionCommand(rdbtn1_1_1.getText());
 		SeanceHours3.add(rdbtn1_1_1);
 
 		JRadioButton rdbtn2_2_2 = new JRadioButton("12:00");
 		rdbtn2_2_2.setBounds(238, 6, 103, 21);
+		rdbtn2_2_2.setActionCommand(rdbtn2_2_2.getText());
 		SeanceHours3.add(rdbtn2_2_2);
 
 		JRadioButton rdbtn8_8_8 = new JRadioButton("18:00");
 		rdbtn8_8_8.setBounds(238, 76, 103, 21);
+		rdbtn8_8_8.setActionCommand(rdbtn8_8_8.getText());
 		SeanceHours3.add(rdbtn8_8_8);
 
 		JRadioButton rdbtn7_7_7 = new JRadioButton("17:00");
 		rdbtn7_7_7.setBounds(122, 76, 103, 21);
+		rdbtn7_7_7.setActionCommand(rdbtn7_7_7.getText());
 		SeanceHours3.add(rdbtn7_7_7);
 
 		JRadioButton rdbtn6_6_6 = new JRadioButton("16:00");
 		rdbtn6_6_6.setBounds(6, 76, 103, 21);
+		rdbtn6_6_6.setActionCommand(rdbtn6_6_6.getText());
 		SeanceHours3.add(rdbtn6_6_6);
 
 		JRadioButton rdbtn11_1_1 = new JRadioButton("21:00");
 		rdbtn11_1_1.setBounds(238, 112, 103, 21);
+		rdbtn11_1_1.setActionCommand(rdbtn11_1_1.getText());
 		SeanceHours3.add(rdbtn11_1_1);
 
 		JRadioButton rdbtn10_0_0 = new JRadioButton("20:00");
 		rdbtn10_0_0.setBounds(122, 112, 103, 21);
+		rdbtn10_0_0.setActionCommand(rdbtn10_0_0.getText());
 		SeanceHours3.add(rdbtn10_0_0);
 
 		JRadioButton rdbtn9_9_9 = new JRadioButton("19:00");
 		rdbtn9_9_9.setBounds(6, 112, 103, 21);
+		rdbtn9_9_9.setActionCommand(rdbtn9_9_9.getText());
 		SeanceHours3.add(rdbtn9_9_9);
 
 		JRadioButton rdbtn5_5_5 = new JRadioButton("15:00");
 		rdbtn5_5_5.setBounds(238, 41, 103, 21);
+		rdbtn5_5_5.setActionCommand(rdbtn5_5_5.getText());
 		SeanceHours3.add(rdbtn5_5_5);
 
 		JRadioButton rdbtn4_4_4 = new JRadioButton("14:00");
 		rdbtn4_4_4.setBounds(122, 41, 103, 21);
+		rdbtn4_4_4.setActionCommand(rdbtn4_4_4.getText());
 		SeanceHours3.add(rdbtn4_4_4);
 
 		JRadioButton rdbtn3_3_3 = new JRadioButton("13:00");
 		rdbtn3_3_3.setBounds(6, 41, 103, 21);
+		rdbtn3_3_3.setActionCommand(rdbtn3_3_3.getText());
 		SeanceHours3.add(rdbtn3_3_3);
 
 		bgg.add(rdbtn0_0_0);
@@ -536,9 +540,16 @@ public class SubAdmin extends JFrame {
 		JButton btn_AddCinema = new JButton("Film Ekle");
 		btn_AddCinema.setBounds(141, 396, 138, 31);
 		paneAddCinema.add(btn_AddCinema);
+		
+		JLabel lbl_MoviePitcure = new JLabel("");
+		lbl_MoviePitcure.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_MoviePitcure.setBounds(288, 17, 125, 148);
+		paneAddCinema.add(lbl_MoviePitcure);
 		btn_AddCinema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				String seance = "";
+
 				if (rdbtn0_0_0.isSelected()) {
 					seance = rdbtn0_0_0.getText();
 				}
@@ -576,20 +587,44 @@ public class SubAdmin extends JFrame {
 					seance = rdbtn11_1_1.getText();
 				}
 
-				if (txt_MovieDirector.getText().length() == 0 || txt_MovieName.getText().length() == 0
+				if (txt_MovieName.getText().length() == 0 || txt_MovieDirector.getText().length() == 0
+						|| combo_MovieType.getSelectedIndex() == -1 || comboBox_Salon.getSelectedIndex() == -1
 						|| dateChooser.getDate() == null || seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
 					if (seance == "") {
 						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
 					}
 				} else {
-					// db baðlanacak
+					String cboxMovieType = String.valueOf(combo_MovieType.getSelectedItem());
+					String cboxSalon = String.valueOf(comboBox_Salon.getSelectedItem());
+
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					String date = dateFormat.format(dateChooser.getDate());
+
+					String selSeans = "" + bgg.getSelection().getActionCommand();
+					try {
+						boolean control = subadmin.addCinema(txt_MovieName.getText(), cboxMovieType,
+								txt_MovieDirector.getText(), date, cboxSalon, selSeans);
+						if (control) {
+							Metod_Helper.showMsg("succes");
+							txt_MovieName.setText(null);
+							cboxMovieType = "";
+							txt_MovieDirector.setText(null);
+							date = null;
+							cboxSalon = null;
+							selSeans = null;
+							updateCinemaList();
+
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
 
 			}
 		});
 
-///////////////////////////////////////////////////////////////PaneCinema//////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////// PaneCinema//////////////////////////////////////////////////////////////////////////
 
 		//////////////////////////////////////////////// PaneTheater
 
@@ -599,15 +634,26 @@ public class SubAdmin extends JFrame {
 		contentPane.add(paneAddTheater);
 		paneAddTheater.setLayout(null);
 
-		JLabel lbl_TheaterName = new JLabel("Oyun Adi:");
+		JLabel lbl_TheaterName = new JLabel("Oyun Adı:");
 		lbl_TheaterName.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_TheaterName.setBounds(10, 10, 102, 28);
 		paneAddTheater.add(lbl_TheaterName);
 
-		JLabel lbl_TheaterType = new JLabel("Oyun T\u00FCr\u00FC");
+		JLabel lbl_TheaterType = new JLabel("Oyun Türü:");
 		lbl_TheaterType.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_TheaterType.setBounds(10, 45, 102, 28);
 		paneAddTheater.add(lbl_TheaterType);
+
+		JComboBox comboBox_TheaterType = new JComboBox();
+		comboBox_TheaterType.setBounds(111, 49, 138, 22);
+		paneAddTheater.add(comboBox_TheaterType);
+		comboBox_TheaterType.addItem(null);
+		comboBox_TheaterType.addItem("Bale");
+		comboBox_TheaterType.addItem("Gölge Oyunu");
+		comboBox_TheaterType.addItem("Komedi");
+		comboBox_TheaterType.addItem("Müzikal");
+		comboBox_TheaterType.addItem("Opera");
+		comboBox_TheaterType.addItem("Trajedi");
 
 		JLabel lbl_TheaterSalon = new JLabel("Salon:");
 		lbl_TheaterSalon.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -619,11 +665,6 @@ public class SubAdmin extends JFrame {
 		paneAddTheater.add(txt_TheaterName);
 		txt_TheaterName.setColumns(10);
 
-		txt_TheaterType = new JTextField();
-		txt_TheaterType.setColumns(10);
-		txt_TheaterType.setBounds(111, 48, 138, 23);
-		paneAddTheater.add(txt_TheaterType);
-
 		JLabel lbl_TheaterDate = new JLabel("Tarih:");
 		lbl_TheaterDate.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbl_TheaterDate.setBounds(10, 115, 102, 28);
@@ -632,6 +673,7 @@ public class SubAdmin extends JFrame {
 		JComboBox<String> comboBox_Salon2 = new JComboBox<String>();
 		comboBox_Salon2.setBounds(111, 84, 138, 21);
 		paneAddTheater.add(comboBox_Salon2);
+		comboBox_Salon2.addItem(null);
 		comboBox_Salon2.addItem("A-1");
 		comboBox_Salon2.addItem("A-2");
 		comboBox_Salon2.addItem("A-3");
@@ -683,16 +725,6 @@ public class SubAdmin extends JFrame {
 		btn_ImageSelect2.setBounds(304, 182, 102, 31);
 		paneAddTheater.add(btn_ImageSelect2);
 
-		JLabel lbl_Image2 = new JLabel("Resim:");
-		lbl_Image2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_Image2.setBounds(10, 153, 50, 19);
-		paneAddTheater.add(lbl_Image2);
-
-		text_image2 = new JTextField();
-		text_image2.setBounds(111, 153, 138, 19);
-		paneAddTheater.add(text_image2);
-		text_image2.setColumns(10);
-
 		JLabel lbl_TheaterSeance = new JLabel("Saat:");
 		lbl_TheaterSeance.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_TheaterSeance.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -709,50 +741,62 @@ public class SubAdmin extends JFrame {
 
 		JRadioButton rdbtn02 = new JRadioButton("10:00 ");
 		rdbtn02.setBounds(6, 6, 103, 21);
+		rdbtn02.setActionCommand(rdbtn02.getText());
 		TheaterSeanceHours.add(rdbtn02);
 
 		JRadioButton rdbtn13 = new JRadioButton("11:00");
 		rdbtn13.setBounds(122, 6, 103, 21);
+		rdbtn13.setActionCommand(rdbtn13.getText());
 		TheaterSeanceHours.add(rdbtn13);
 
 		JRadioButton rdbtn24 = new JRadioButton("12:00");
 		rdbtn24.setBounds(238, 6, 103, 21);
+		rdbtn24.setActionCommand(rdbtn24.getText());
 		TheaterSeanceHours.add(rdbtn24);
 
 		JRadioButton rdbtn810 = new JRadioButton("18:00");
 		rdbtn810.setBounds(238, 76, 103, 21);
+		rdbtn810.setActionCommand(rdbtn810.getText());
 		TheaterSeanceHours.add(rdbtn810);
 
 		JRadioButton rdbtn79 = new JRadioButton("17:00");
 		rdbtn79.setBounds(122, 76, 103, 21);
+		rdbtn79.setActionCommand(rdbtn79.getText());
 		TheaterSeanceHours.add(rdbtn79);
 
 		JRadioButton rdbtn68 = new JRadioButton("16:00");
 		rdbtn68.setBounds(6, 76, 103, 21);
+		rdbtn68.setActionCommand(rdbtn68.getText());
 		TheaterSeanceHours.add(rdbtn68);
 
 		JRadioButton rdbtn111 = new JRadioButton("21:00");
 		rdbtn111.setBounds(238, 112, 103, 21);
+		rdbtn111.setActionCommand(rdbtn111.getText());
 		TheaterSeanceHours.add(rdbtn111);
 
 		JRadioButton rdbtn102 = new JRadioButton("20:00");
 		rdbtn102.setBounds(122, 112, 103, 21);
+		rdbtn102.setActionCommand(rdbtn102.getText());
 		TheaterSeanceHours.add(rdbtn102);
 
 		JRadioButton rdbtn911 = new JRadioButton("19:00");
 		rdbtn911.setBounds(6, 112, 103, 21);
+		rdbtn911.setActionCommand(rdbtn911.getText());
 		TheaterSeanceHours.add(rdbtn911);
 
 		JRadioButton rdbtn57 = new JRadioButton("15:00");
 		rdbtn57.setBounds(238, 41, 103, 21);
+		rdbtn57.setActionCommand(rdbtn57.getText());
 		TheaterSeanceHours.add(rdbtn57);
 
 		JRadioButton rdbtn46 = new JRadioButton("14:00");
 		rdbtn46.setBounds(122, 41, 103, 21);
+		rdbtn46.setActionCommand(rdbtn46.getText());
 		TheaterSeanceHours.add(rdbtn46);
 
 		JRadioButton rdbtn35 = new JRadioButton("13:00");
 		rdbtn35.setBounds(6, 41, 103, 21);
+		rdbtn35.setActionCommand(rdbtn35.getText());
 		TheaterSeanceHours.add(rdbtn35);
 
 		bgg2.add(rdbtn02);
@@ -771,9 +815,16 @@ public class SubAdmin extends JFrame {
 		JButton btn_AddTheater = new JButton("Oyun Ekle");
 		btn_AddTheater.setBounds(141, 396, 138, 31);
 		paneAddTheater.add(btn_AddTheater);
+		
+		JLabel lbl_TheatrePitcure = new JLabel("");
+		lbl_MoviePitcure.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_MoviePitcure.setBounds(288, 10, 125, 148);
+		paneAddTheater.add(lbl_MoviePitcure);
 		btn_AddTheater.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				String seance = "";
+
 				if (rdbtn02.isSelected()) {
 					seance = rdbtn02.getText();
 				}
@@ -811,14 +862,38 @@ public class SubAdmin extends JFrame {
 					seance = rdbtn111.getText();
 				}
 
-				if (txt_TheaterName.getText().length() == 0 || txt_TheaterType.getText().length() == 0
-						|| dateChooser.getDate() == null || seance.length() == 0) {
+				if (txt_TheaterName.getText().length() == 0 || comboBox_TheaterType.getSelectedIndex() == -1
+						|| comboBox_Salon2.getSelectedIndex() == -1 || dateChooser.getDate() == null
+						|| seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
 					if (seance == "") {
 						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
 					}
 				} else {
-					// db baðlanacak
+
+					String cboxTheaterType = String.valueOf(comboBox_TheaterType.getSelectedItem());
+					String cboxTheaterSalon = String.valueOf(comboBox_Salon2.getSelectedItem());
+
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					String dateTheater = dateFormat.format(dateChooser2.getDate());
+
+					String selSaat = "" + bgg2.getSelection().getActionCommand();
+
+					try {
+						boolean control = subadmin.addTheater(txt_TheaterName.getText(), cboxTheaterType, dateTheater,
+								cboxTheaterSalon, selSaat);
+						if (control) {
+							Metod_Helper.showMsg("succes");
+							txt_TheaterName = null;
+							cboxTheaterType = null;
+							cboxTheaterSalon = null;
+							dateTheater = null;
+							selSaat = null;
+							updateTheaterList();
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
 
 			}
@@ -853,6 +928,23 @@ public class SubAdmin extends JFrame {
 		txt_ConcertType.setColumns(10);
 		txt_ConcertType.setBounds(111, 48, 138, 23);
 		paneAddConcert.add(txt_ConcertType);
+
+		JLabel lbl_ArtistSurName = new JLabel("Konser Yeri:");
+		lbl_ArtistSurName.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_ArtistSurName.setBounds(10, 83, 108, 28);
+		paneAddConcert.add(lbl_ArtistSurName);
+
+		JComboBox combo_ConcertPlace = new JComboBox();
+		combo_ConcertPlace.setBounds(111, 83, 138, 21);
+		paneAddConcert.add(combo_ConcertPlace);
+		combo_ConcertPlace.addItem(null);
+		combo_ConcertPlace.addItem("Babylon");
+		combo_ConcertPlace.addItem("Dorock XL");
+		combo_ConcertPlace.addItem("Zorlu Center");
+		combo_ConcertPlace.addItem("Wolkswagen Arena");
+		combo_ConcertPlace.addItem("Jolly Joker");
+		combo_ConcertPlace.addItem("Bronx Pi Sahne");
+		combo_ConcertPlace.addItem("Shaft");
 
 		JLabel lbl_ConcertDate = new JLabel("Tarih:");
 		lbl_ConcertDate.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -899,16 +991,6 @@ public class SubAdmin extends JFrame {
 		btn_ImageSelect3.setBounds(304, 182, 102, 31);
 		paneAddConcert.add(btn_ImageSelect3);
 
-		JLabel lbl_Image3 = new JLabel("Resim:");
-		lbl_Image3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbl_Image3.setBounds(10, 153, 50, 23);
-		paneAddConcert.add(lbl_Image3);
-
-		text_image3 = new JTextField();
-		text_image3.setBounds(111, 153, 138, 19);
-		paneAddConcert.add(text_image3);
-		text_image3.setColumns(10);
-
 		JLabel lbl_ConcertSeance = new JLabel("Saat:");
 		lbl_ConcertSeance.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_ConcertSeance.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -925,50 +1007,62 @@ public class SubAdmin extends JFrame {
 
 		JRadioButton rdbtn01 = new JRadioButton("10:00 ");
 		rdbtn01.setBounds(6, 6, 103, 21);
+		rdbtn01.setActionCommand(rdbtn01.getText());
 		ConcertSeanceHours.add(rdbtn01);
 
 		JRadioButton rdbtn12 = new JRadioButton("11:00");
 		rdbtn12.setBounds(122, 6, 103, 21);
+		rdbtn12.setActionCommand(rdbtn12.getText());
 		ConcertSeanceHours.add(rdbtn12);
 
 		JRadioButton rdbtn23 = new JRadioButton("12:00");
 		rdbtn23.setBounds(238, 6, 103, 21);
+		rdbtn23.setActionCommand(rdbtn23.getText());
 		ConcertSeanceHours.add(rdbtn23);
 
 		JRadioButton rdbtn89 = new JRadioButton("18:00");
 		rdbtn89.setBounds(238, 76, 103, 21);
+		rdbtn89.setActionCommand(rdbtn89.getText());
 		ConcertSeanceHours.add(rdbtn89);
 
 		JRadioButton rdbtn78 = new JRadioButton("17:00");
 		rdbtn78.setBounds(122, 76, 103, 21);
+		rdbtn78.setActionCommand(rdbtn78.getText());
 		ConcertSeanceHours.add(rdbtn78);
 
 		JRadioButton rdbtn67 = new JRadioButton("16:00");
 		rdbtn67.setBounds(6, 76, 103, 21);
+		rdbtn67.setActionCommand(rdbtn67.getText());
 		ConcertSeanceHours.add(rdbtn67);
 
 		JRadioButton rdbtn112 = new JRadioButton("21:00");
 		rdbtn112.setBounds(238, 112, 103, 21);
+		rdbtn112.setActionCommand(rdbtn112.getText());
 		ConcertSeanceHours.add(rdbtn112);
 
 		JRadioButton rdbtn101 = new JRadioButton("20:00");
 		rdbtn101.setBounds(122, 112, 103, 21);
+		rdbtn101.setActionCommand(rdbtn101.getText());
 		ConcertSeanceHours.add(rdbtn101);
 
 		JRadioButton rdbtn910 = new JRadioButton("19:00");
 		rdbtn910.setBounds(6, 112, 103, 21);
+		rdbtn910.setActionCommand(rdbtn910.getText());
 		ConcertSeanceHours.add(rdbtn910);
 
 		JRadioButton rdbtn56 = new JRadioButton("15:00");
 		rdbtn56.setBounds(238, 41, 103, 21);
+		rdbtn56.setActionCommand(rdbtn56.getText());
 		ConcertSeanceHours.add(rdbtn56);
 
 		JRadioButton rdbtn45 = new JRadioButton("14:00");
 		rdbtn45.setBounds(122, 41, 103, 21);
+		rdbtn45.setActionCommand(rdbtn45.getText());
 		ConcertSeanceHours.add(rdbtn45);
 
 		JRadioButton rdbtn34 = new JRadioButton("13:00");
 		rdbtn34.setBounds(6, 41, 103, 21);
+		rdbtn34.setActionCommand(rdbtn34.getText());
 		ConcertSeanceHours.add(rdbtn34);
 
 		bgg3.add(rdbtn01);
@@ -983,29 +1077,20 @@ public class SubAdmin extends JFrame {
 		bgg3.add(rdbtn910);
 		bgg3.add(rdbtn101);
 		bgg3.add(rdbtn112);
+
 		JButton btn_AddConcert = new JButton("Konser Ekle");
 		btn_AddConcert.setBounds(141, 396, 138, 31);
 		paneAddConcert.add(btn_AddConcert);
-
-		JLabel lbl_ArtistSurName = new JLabel("Konser Yeri:");
-		lbl_ArtistSurName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lbl_ArtistSurName.setBounds(10, 83, 108, 28);
-		paneAddConcert.add(lbl_ArtistSurName);
-
-		JComboBox combo_ConcertPlace = new JComboBox();
-		combo_ConcertPlace.setBounds(111, 83, 138, 21);
-		paneAddConcert.add(combo_ConcertPlace);
-		combo_ConcertPlace.addItem("Babylon");
-		combo_ConcertPlace.addItem("Dorock XL");
-		combo_ConcertPlace.addItem("Zorlu Center");
-		combo_ConcertPlace.addItem("Wolkswagen Arena");
-		combo_ConcertPlace.addItem("Jolly Joker");
-		combo_ConcertPlace.addItem("Bronx Pi Sahne");
-		combo_ConcertPlace.addItem("Shaft");
-
+		
+		JLabel lbl_ConcertPitcure = new JLabel("");
+		lbl_MoviePitcure.setFont(new Font("Arial", Font.PLAIN, 15));
+		lbl_MoviePitcure.setBounds(288, 10, 125, 148);
+		paneAddConcert.add(lbl_MoviePitcure);
 		btn_AddConcert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				String seance = "";
+
 				if (rdbtn01.isSelected()) {
 					seance = rdbtn01.getText();
 				}
@@ -1043,14 +1128,38 @@ public class SubAdmin extends JFrame {
 					seance = rdbtn112.getText();
 				}
 
-				if (txt_ConcertType.getText().length() == 0 || txt_ConcertName.getText().length() == 0
-						|| dateChooser.getDate() == null || seance.length() == 0) {
+				if (txt_ConcertName.getText().length() == 0 || txt_ConcertType.getText().length() == 0
+						|| combo_ConcertPlace.getSelectedIndex() == -1 || dateChooser.getDate() == null
+						|| seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
 					if (seance == "") {
 						Metod_Helper.showMsg("Lütfen Seans seçiniz!");
 					}
 				} else {
-					// db baðlanacak
+
+					String cboxConcertPlace = String.valueOf(combo_ConcertPlace.getSelectedItem());
+
+					SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					String dateConcert = dateFormat.format(dateChooser3.getDate());
+
+					String selConcertSaat = "" + bgg3.getSelection().getActionCommand();
+
+					try {
+						boolean control = subadmin.addConcert(txt_ConcertName.getText(), cboxConcertPlace,
+								txt_ConcertType.getText(), dateConcert, selConcertSaat);
+						if (control) {
+							Metod_Helper.showMsg("succes");
+							txt_ConcertName.setText(null);
+							txt_ConcertType.setText(null);
+							cboxConcertPlace = null;
+							dateConcert = null;
+							selConcertSaat = null;
+							updateConcertList();
+						}
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+
 				}
 
 			}
