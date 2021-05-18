@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Helper.DbHelper;
 import Helper.Metod_Helper;
 
 import javax.swing.JLabel;
@@ -24,6 +25,8 @@ import java.awt.Toolkit;
 import java.awt.Panel;
 import javax.swing.UIManager;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -32,7 +35,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
@@ -88,6 +95,7 @@ public class MainScreen extends JFrame {
 	private static user member = new Member();
 	private static SAdmin subadmin = new SAdmin();
 	private JTextField fld_CinemaDate;
+	DbHelper dbhelper = new DbHelper();			
 
 	/**
 	 * Launch the application.
@@ -1821,6 +1829,33 @@ public class MainScreen extends JFrame {
 						fld_Seance.setText(selCinemaSeance);
 						lbl_Poster.setText("Poster");// Poster, Film Kay�t i�leminde poster ekledikten sonra
 														// ayarlan�lacak
+						
+//-----------------------------------------------------------------------------------------------------------------
+						  try{
+				                Connection con = dbhelper.getConnection(); 
+				                Statement st = con.createStatement();
+				                ResultSet rs = st.executeQuery("select * from cinema where filmID ="+(selRow+1));
+				                if(rs.next()){
+				                    byte[] img = rs.getBytes("pic");
+
+
+
+				                    //Resize The ImageIcon
+				                    ImageIcon image = new ImageIcon(img);
+				                    Image im = image.getImage();
+				                    Image myImg = im.getScaledInstance(lbl_Poster.getWidth(), lbl_Poster.getHeight(),Image.SCALE_SMOOTH);
+				                    ImageIcon newImage = new ImageIcon(myImg);
+				                    lbl_Poster.setIcon(newImage);
+				                }
+				                
+				                else{
+				                    JOptionPane.showMessageDialog(null, "No Data");
+				                }
+				            }catch(Exception ex){
+				                ex.printStackTrace();
+				            }
+				        
+//-----------------------------------------------------------------------------------------------------------------						
 
 					} else {
 						JOptionPane.showMessageDialog(null, "Lutfen bir film seciniz.", "Mesaj",
