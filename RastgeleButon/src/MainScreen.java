@@ -1658,6 +1658,8 @@ public class MainScreen extends JFrame {
 
 				ticket.setStudentCount(txt_StudentCount.getText());
 
+			if(txt_TicketCount.getText().length()>0)
+			{
 				double totalPrice = Double.parseDouble(txt_GhostTicketPrice.getText())
 						* Double.parseDouble(txt_TicketCount.getText())
 						- (Double.parseDouble(txt_GhostTicketPrice.getText()) * (15 / 100)
@@ -1666,7 +1668,7 @@ public class MainScreen extends JFrame {
 				String totalPriceString = totalPrice + "";
 
 				ticket.setPrice(totalPriceString);
-
+			}
 				if (comboBox_Method3.getSelectedIndex() == 1) {
 					BuyTicketConcert.setlblCard("Ucret, BANKA/KREDI KARTI ile Odenmistir. Borcunuz yoktur.");
 					BuyTicketConcert.setPrice("Odendi");
@@ -1778,7 +1780,19 @@ public class MainScreen extends JFrame {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
 						}
-
+						else if(txt_TicketCount.getText().length()==0)
+						{
+							Metod_Helper.showMsg("Lutfen alacaginiz bilet sayisini giriniz.");
+						}
+						else if(txt_TicketCount.getText()==null||Integer.parseInt(txt_TicketCount.getText())==0 )
+						{
+							Metod_Helper.showMsg("Lutfen alacaginiz bilet sayisini giriniz.");
+						}
+						else if(Integer.parseInt(txt_TicketCount.getText())>Integer.parseInt(table_Concert.getModel().getValueAt(table_Concert.getSelectedRow(), 5).toString()))
+						{
+							Metod_Helper.showMsg("Lutfen gecerli bir bilet sayisi giriniz.");
+						}
+						
 						else if (Integer.parseInt(txt_TicketCount.getText()) < Integer
 								.parseInt(txt_StudentCount.getText())) {
 							Metod_Helper.showMsg("Ogrenci sayisi, bilet sayisindan fazla!");
@@ -1816,7 +1830,10 @@ public class MainScreen extends JFrame {
 							.parseInt(txt_StudentCount.getText())) {
 						Metod_Helper.showMsg("Ogrenci sayisi, bilet sayisindan fazla!");
 					}
-
+					else if(Integer.parseInt(txt_TicketCount.getText())>Integer.parseInt(table_Concert.getModel().getValueAt(table_Concert.getSelectedRow(), 5).toString()))
+					{
+						Metod_Helper.showMsg("Lutfen gecerli bir bilet sayisi giriniz.");
+					}
 					else {
 						ticket = new BuyTicketConcert();
 
@@ -2030,12 +2047,6 @@ public class MainScreen extends JFrame {
 					BuyTicketConcert.setStudentCount(txt_StudentCount.getText());
 
 					BuyTicketConcert.setTicketCount(txt_TicketCount.getText());
-					/*int totalPrice = Integer.parseInt(txt_GhostTicketPrice.getText())
-							* Integer.parseInt(txt_TicketCount.getText())
-							- (Integer.parseInt(txt_GhostTicketPrice.getText()) * (15 / 100)
-									* Integer.parseInt(txt_StudentCount.getText()));
-					String totalPriceString = totalPrice + "";
-					BuyTicketConcert.setPrice((totalPriceString));*/
 
 				}
 
