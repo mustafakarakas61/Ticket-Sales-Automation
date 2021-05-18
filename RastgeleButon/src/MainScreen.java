@@ -42,16 +42,13 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
-import javax.swing.border.SoftBevelBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.border.EtchedBorder;
-import com.toedter.calendar.JDateChooser;
+
 import javax.swing.DefaultComboBoxModel;
 
 public class MainScreen extends JFrame {
@@ -1664,7 +1661,21 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket3.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
+				BuyTicketConcert ticket = new BuyTicketConcert();
+				ticket.setTicketCount(txt_TicketCount.getText());
+				ticket.setTicketPrice(txt_GhostTicketPrice.getText());
+				
+				ticket.setStudentCount(txt_StudentCount.getText());
+				
+			
+//                double totalPrice = Double.parseDouble(txt_GhostTicketPrice.getText())
+//                        * Double.parseDouble(txt_TicketCount.getText())
+//                        - (Double.parseDouble(txt_GhostTicketPrice.getText()) * (15 / 100)
+//                                * Double.parseDouble(txt_StudentCount.getText()));
+//                String totalPriceString =totalPrice + "";
+                
+//                ticket.setPrice(totalPriceString);
+                
 				if (comboBox_Method3.getSelectedIndex() == 1) {
 					BuyTicketConcert.setlblCard("Ucret, BANKA/KREDI KARTI ile Odenmistir. Borcunuz yoktur.");
 					BuyTicketConcert.setPrice("Odendi");
@@ -1771,7 +1782,7 @@ public class MainScreen extends JFrame {
 
 					else {
 
-						BuyTicketConcert ticket = new BuyTicketConcert();
+						 ticket = new BuyTicketConcert();
 						if (fld_CartNumber3.getText().length() != 16 || fld_cvc3.getText().length() != 3) {
 							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
 									JOptionPane.ERROR_MESSAGE);
@@ -1816,8 +1827,8 @@ public class MainScreen extends JFrame {
 					}
 
 					else {
-						BuyTicketConcert ticket = new BuyTicketConcert();
-
+						 ticket = new BuyTicketConcert();
+						
 						if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
 								JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 							Metod_Helper.showMsg("succes");
