@@ -91,7 +91,7 @@ public class MyTickets extends JFrame {
 		try {
 			for (int i = 0; i < shelper.userSeatfilmTickets().size(); i++) {
 				 
-				MyTicketsData[0] =shelper.getFilm(i);
+				MyTicketsData[0] =shelper.getFilm(shelper.userSeatfilmTickets().get(i).getFilmID());
 				MyTicketsData[1] = shelper.userSeatfilmTickets().get(i).getSeatName();
 				MyTicketsModel.addRow(MyTicketsData);
 			}
