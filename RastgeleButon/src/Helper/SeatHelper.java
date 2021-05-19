@@ -278,14 +278,19 @@ public int getFilmID(String filmName ) {
 	
 	
 	public boolean delMemberSeat(int ID, String userSelectSeatName) throws SQLException {
-		boolean key;
-		String query = "DELETE FROM booking.seat WHERE userID = ? and name ?";
-		statement = connection.createStatement();
-		pStatement = connection.prepareStatement(query);
-		pStatement.setInt(1, ID);
-		pStatement.setString(2, userSelectSeatName);
-		pStatement.executeUpdate();
-		key = true;
+		String query = "DELETE FROM seat WHERE userID = ? and name= ?";
+		boolean key=false;
+		try {
+
+			statement = connection.createStatement();
+			pStatement = connection.prepareStatement(query);
+			pStatement.setInt(1, ID);
+			pStatement.setString(2, userSelectSeatName);
+			pStatement.executeUpdate();
+			key = true;
+		}catch(Exception e){
+			
+		}
 
 		if (key) {
 			return true;

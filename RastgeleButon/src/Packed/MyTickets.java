@@ -31,8 +31,8 @@ public class MyTickets extends JFrame {
 //comboBox_UserSeats.addItem(sh.getMemberSeat(mmbr.getID())+"");
 	private JPanel contentPane;
 	public static JLabel lbl_SeatsMember;
-	private DefaultTableModel MyTicketsModel;
-	private Object[] MyTicketsData = null;
+	private static DefaultTableModel MyTicketsModel;
+	private static Object[] MyTicketsData = null;
 	DbHelper dbHelper = new DbHelper();
 
 	private static SeatHelper shelper = new SeatHelper();
@@ -126,6 +126,7 @@ public class MyTickets extends JFrame {
 					control = shelper.delMemberSeat(mbrID, seatName);
 					if (control) {
 						Metod_Helper.showMsg(seatName + " biletiniz iptal edildi.");
+						updateTicketList();
 					} else {
 
 					}
@@ -141,4 +142,21 @@ public class MyTickets extends JFrame {
 		contentPane.add(btn_cancel);
 
 	}
+	public static void updateTicketList() throws SQLException{
+		DefaultTableModel clearList= (DefaultTableModel) table_MyTickets.getModel();
+		clearList.setRowCount(0);
+		for (int i = 0; i < shelper.userSeatfilmTickets().size(); i++) {
+
+			MyTicketsData[0] = shelper.getFilm(shelper.userSeatfilmTickets().get(i).getFilmID());
+			MyTicketsData[1] = shelper.userSeatfilmTickets().get(i).getSeatName();
+			MyTicketsModel.addRow(MyTicketsData);
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
 }
