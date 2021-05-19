@@ -52,8 +52,6 @@ public class MyTickets extends JFrame {
 	 * Create the frame.
 	 */
 	public MyTickets() {
-		SeatHelper sh = new SeatHelper();
-		Member  mmbr = new Member();
 		
 		MyTicketsModel = new DefaultTableModel();
 		Object[] colMyTicktes = new Object[2];
@@ -64,24 +62,12 @@ public class MyTickets extends JFrame {
 		MyTicketsData = new Object[2]; 
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 453, 297);
+		setBounds(100, 100, 384, 297);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(240, 230, 140));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JButton btn_cancel = new JButton("Iptal et");
-		btn_cancel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		btn_cancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-			}
-		});
-		btn_cancel.setBounds(279, 198, 148, 49);
-		contentPane.add(btn_cancel);
 		
 		
 	    lbl_SeatsMember = new JLabel("");
@@ -91,21 +77,21 @@ public class MyTickets extends JFrame {
 		contentPane.add(lbl_SeatsMember);
 		
 		JScrollPane scrollPane_MyTickets = new JScrollPane();
-		scrollPane_MyTickets.setBounds(1, 0, 105, 257);
+		scrollPane_MyTickets.setBounds(1, 0, 157, 257);
 		contentPane.add(scrollPane_MyTickets);
 		
 		table_MyTickets = new JTable(MyTicketsModel);
 		scrollPane_MyTickets.setViewportView(table_MyTickets);
-		table_MyTickets.getColumn("Film Adi").setCellEditor(new TableEditor(new JCheckBox()));
-		table_MyTickets.getColumn("Koltuk No").setCellEditor(new TableEditor(new JCheckBox()));
 		
+
 		table_MyTickets.getColumnModel().getColumn(0).setPreferredWidth(55);
 		table_MyTickets.getColumnModel().getColumn(0).setResizable(false);
 		table_MyTickets.getColumnModel().getColumn(1).setResizable(false);
 		
 		try {
 			for (int i = 0; i < shelper.userSeatfilmTickets().size(); i++) {
-				MyTicketsData[0] = shelper.userSeatfilmTickets().get(i).getFilmID();
+				 
+				MyTicketsData[0] =shelper.getFilm(i);
 				MyTicketsData[1] = shelper.userSeatfilmTickets().get(i).getSeatName();
 				MyTicketsModel.addRow(MyTicketsData);
 			}
@@ -113,6 +99,21 @@ public class MyTickets extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		
+		JButton btn_cancel = new JButton("Iptal et");
+		btn_cancel.setFont(new Font("Tahoma", Font.BOLD, 17));
+		btn_cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			//	shelper.delMemberSeat(user, getName())
+				
+			}
+		});
+		btn_cancel.setBounds(178, 198, 148, 49);
+		contentPane.add(btn_cancel);
+		table_MyTickets.getColumn("Film Adi").setCellEditor(new TableEditor(new JCheckBox()));
+		table_MyTickets.getColumn("Koltuk No").setCellEditor(new TableEditor(new JCheckBox()));
 		
 		
 	}

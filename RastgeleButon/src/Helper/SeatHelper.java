@@ -36,7 +36,6 @@ public class SeatHelper extends JButton {
 	ResultSet result ;
 	
 	public SeatHelper() {
-		this.SeatName= SeatName;
 		
 	}
 	
@@ -56,6 +55,8 @@ public class SeatHelper extends JButton {
 		this.SeatName = SeatName;
 		this.userID=userID;
 	}
+
+	
 	
 	
 	
@@ -164,6 +165,31 @@ public class SeatHelper extends JButton {
 		
 		return key;
 	}*/
+	
+	public String getFilm(int id ) {
+		
+		String  name =null;
+		
+        try {
+
+    		connection = dbhelper.getConnection();
+
+    		statement = connection.createStatement();
+			result = statement.executeQuery("Select * from cinema where filmID= "+id);
+			
+			while (result.next()) {
+			
+				name = result.getString("filmName");
+			
+			}
+			
+		} catch (SQLException e) {
+			dbhelper.showErrorMessage(e);
+		}
+
+    	return name;
+		
+	} 
 	
 	
 	
