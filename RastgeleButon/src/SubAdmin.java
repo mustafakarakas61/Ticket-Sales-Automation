@@ -111,9 +111,9 @@ public class SubAdmin extends JFrame {
 		cinemaModel = new DefaultTableModel();
 		Object[] colCinema = new Object[7];
 		colCinema[0] = "Film ID";
-		colCinema[1] = "Film AdÄ±";
-		colCinema[2] = "Film TÃ¼rÃ¼";
-		colCinema[3] = "YÃ¶netmen";
+		colCinema[1] = "Film Adi";
+		colCinema[2] = "Film Tarihi";
+		colCinema[3] = "Yonetmen";
 		colCinema[4] = "Tarih";
 		colCinema[5] = "Salon";
 		colCinema[6] = "Seans";
@@ -124,9 +124,9 @@ public class SubAdmin extends JFrame {
 		concertModel = new DefaultTableModel();
 		Object[] colConcert = new Object[8];
 		colConcert[0] = "Konser ID";
-		colConcert[1] = "Konser AdÄ±";
+		colConcert[1] = "Konser Adi";
 		colConcert[2] = "Konser Yeri";
-		colConcert[3] = "SanatÃ§Ä±";
+		colConcert[3] = "Sanatci";
 		colConcert[4] = "Tarih";
 		colConcert[5] = "Saat";
 		colConcert[6] = "Bilet Adeti";
@@ -138,8 +138,8 @@ public class SubAdmin extends JFrame {
 		theaterModel = new DefaultTableModel();
 		Object[] colTheater = new Object[6];
 		colTheater[0] = "Oyun ID";
-		colTheater[1] = "Oyun AdÄ±";
-		colTheater[2] = "Oyun TÃ¼rÃ¼";
+		colTheater[1] = "Oyun Adi";
+		colTheater[2] = "Oyun Tarihi";
 		colTheater[3] = "Tarih";
 		colTheater[4] = "Salon";
 		colTheater[5] = "Saat";
@@ -164,21 +164,21 @@ public class SubAdmin extends JFrame {
 
 		table_Cinema = new JTable(cinemaModel);
 		table_Cinema.getColumn("Film ID").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Film AdÄ±").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Film TÃ¼rÃ¼").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("YÃ¶netmen").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film Adi").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film Tarihi").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Yonetmen").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Seans").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Cinema.setViewportView(table_Cinema);
 
-		JButton btn_ShowRemoval = new JButton("GÃ¶steri Ã‡Ä±kar");
+		JButton btn_ShowRemoval = new JButton("Gosteri cikar");
 		btn_ShowRemoval.setBounds(243, 365, 142, 34);
 		w_paneCinema.add(btn_ShowRemoval);
 		btn_ShowRemoval.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (table_Cinema.getSelectionModel().isSelectionEmpty()) {
-					Metod_Helper.showMsg("LÃ¼tfen silmek istediÄŸiniz gÃ¶steriyi seÃ§iniz!");
+					Metod_Helper.showMsg("Lutfen silmek istediginiz gosteriyi seciniz!");
 				} else {
 					if (Metod_Helper.confirm("sure")) {
 						int selectedRow = Integer
@@ -229,18 +229,18 @@ public class SubAdmin extends JFrame {
 
 		table_Theater = new JTable(theaterModel);
 		table_Theater.getColumn("Oyun ID").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Oyun AdÄ±").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Theater.getColumn("Oyun TÃ¼rÃ¼").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Oyun Adi").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Oyun Tarihi").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Theater.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Theater.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Theater.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Theater.setViewportView(table_Theater);
 
-		JButton btn_ShowRemoval_1 = new JButton("GÃ¶steri Ã‡Ä±kar");
+		JButton btn_ShowRemoval_1 = new JButton("Gosteriyi cikar");
 		btn_ShowRemoval_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (table_Theater.getSelectionModel().isSelectionEmpty()) {
-					Metod_Helper.showMsg("LÃ¼tfen silmek istediÄŸiniz gÃ¶steriyi seÃ§iniz!");
+					Metod_Helper.showMsg("Lutfen silmek istediginiz gosteriyi seciniz!");
 				} else {
 					if (Metod_Helper.confirm("sure")) {
 						int selectedRow = Integer
@@ -290,20 +290,20 @@ public class SubAdmin extends JFrame {
 
 		table_Concert = new JTable(concertModel);
 		table_Concert.getColumn("Konser ID").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Concert.getColumn("Konser AdÄ±").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Konser Adi").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Konser Yeri").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Concert.getColumn("SanatÃ§Ä±").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Sanatci").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Bilet Adeti").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Concert.getColumn("Bilet Fiyati").setCellEditor(new TableEditor(new JCheckBox()));
 		scroll_Concert.setViewportView(table_Concert);
 
-		JButton btn_ShowRemoval_1_1 = new JButton("GÃ¶steri Ã‡Ä±kar");
+		JButton btn_ShowRemoval_1_1 = new JButton("Gosteri cikar");
 		btn_ShowRemoval_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (table_Concert.getSelectionModel().isSelectionEmpty()) {
-					Metod_Helper.showMsg("LÃ¼tfen silmek istediÄŸiniz gÃ¶steriyi seÃ§iniz!");
+					Metod_Helper.showMsg("Lutfen silmek istediginiz gosteriyi seciniz!");
 				} else {
 					if (Metod_Helper.confirm("sure")) {
 						int selectedRow = Integer
@@ -350,7 +350,7 @@ public class SubAdmin extends JFrame {
 
 	
 
-/////////////////////////////PANECÃ�NEMA///////////////////////////////////////////////////////////////////////////
+/////////////////////////////PANECINEMA///////////////////////////////////////////////////////////////////////////
 
 		JPanel paneAddCinema = new JPanel();
 		paneAddCinema.setBackground(new Color(224, 255, 255));
@@ -363,12 +363,12 @@ public class SubAdmin extends JFrame {
 		lbl_MovieName.setBounds(10, 10, 102, 28);
 		paneAddCinema.add(lbl_MovieName);
 
-		JLabel lbl_FilmDirector = new JLabel("YÃ¶netmen:");
+		JLabel lbl_FilmDirector = new JLabel("Yonetmen:");
 		lbl_FilmDirector.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_FilmDirector.setBounds(10, 45, 102, 28);
 		paneAddCinema.add(lbl_FilmDirector);
 
-		JLabel lbl_MovieType = new JLabel("Film TÃ¼rÃ¼:");
+		JLabel lbl_MovieType = new JLabel("Film Tarihi:");
 		lbl_MovieType.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_MovieType.setBounds(10, 72, 102, 28);
 		paneAddCinema.add(lbl_MovieType);
@@ -608,7 +608,7 @@ public class SubAdmin extends JFrame {
 						|| dateChooser.getDate() == null || seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
 					if (seance == "") {
-						Metod_Helper.showMsg("LÃ¼tfen Seans seÃ§iniz!");
+						Metod_Helper.showMsg("Lutfen Seans seciniz!");
 					}
 				} else {
 					
@@ -651,12 +651,12 @@ public class SubAdmin extends JFrame {
 		contentPane.add(paneAddTheater);
 		paneAddTheater.setLayout(null);
 
-		JLabel lbl_TheaterName = new JLabel("Oyun AdÄ±:");
+		JLabel lbl_TheaterName = new JLabel("Oyun Adi:");
 		lbl_TheaterName.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_TheaterName.setBounds(10, 10, 102, 28);
 		paneAddTheater.add(lbl_TheaterName);
 
-		JLabel lbl_TheaterType = new JLabel("Oyun TÃ¼rÃ¼:");
+		JLabel lbl_TheaterType = new JLabel("Oyun Tarihi:");
 		lbl_TheaterType.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_TheaterType.setBounds(10, 45, 102, 28);
 		paneAddTheater.add(lbl_TheaterType);
@@ -666,9 +666,9 @@ public class SubAdmin extends JFrame {
 		paneAddTheater.add(comboBox_TheaterType);
 		comboBox_TheaterType.addItem(null);
 		comboBox_TheaterType.addItem("Bale");
-		comboBox_TheaterType.addItem("GÃ¶lge Oyunu");
+		comboBox_TheaterType.addItem("Golge Oyunu");
 		comboBox_TheaterType.addItem("Komedi");
-		comboBox_TheaterType.addItem("MÃ¼zikal");
+		comboBox_TheaterType.addItem("Muzikal");
 		comboBox_TheaterType.addItem("Opera");
 		comboBox_TheaterType.addItem("Trajedi");
 
@@ -850,12 +850,12 @@ public class SubAdmin extends JFrame {
 		contentPane.add(paneAddConcert);
 		paneAddConcert.setLayout(null);
 
-		JLabel lbl_ConcertName = new JLabel("Konser Ad\u0131:");
+		JLabel lbl_ConcertName = new JLabel("Konser Adi:");
 		lbl_ConcertName.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_ConcertName.setBounds(10, 10, 102, 28);
 		paneAddConcert.add(lbl_ConcertName);
 
-		JLabel lbl_ArtistName = new JLabel("Sanat\u00E7\u0131 Ad\u0131:");
+		JLabel lbl_ArtistName = new JLabel("Sanatci Adi:");
 		lbl_ArtistName.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbl_ArtistName.setBounds(10, 45, 102, 28);
 		paneAddConcert.add(lbl_ArtistName);
@@ -1101,7 +1101,7 @@ public class SubAdmin extends JFrame {
 						|| seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
 					if (seance == "") {
-						Metod_Helper.showMsg("LÃ¼tfen Seans seÃ§iniz!");
+						Metod_Helper.showMsg("Lutfen Seans seciniz!");
 					}
 				} else {
 
@@ -1183,7 +1183,7 @@ public class SubAdmin extends JFrame {
 						|| seance.length() == 0) {
 					Metod_Helper.showMsg("fill");
 					if (seance == "") {
-						Metod_Helper.showMsg("LÃ¼tfen Seans seÃ§iniz!");
+						Metod_Helper.showMsg("Lutfen Seans seciniz!");
 					}
 				} else {
 
