@@ -166,10 +166,20 @@ public class Login extends JFrame {
 						ResultSet result= statement.executeQuery("select * from booking.register");
 						
 						
-						while (result.next()) {
-							
+						while (result.next()) {							
+								
+								if (fld_Username_Login.getText().equals(result.getString("TC_No")) && 
+										!fld_Password_Login.getText().equals(result.getString("Pass")))
+								{
+									Metod_Helper.showMsg("Þifre yanlýþ kontrol ediniz.");
+									key=false;
+								}
+								
+									
 							if (fld_Username_Login.getText().equals(result.getString("TC_No")) && 
 									fld_Password_Login.getText().equals(result.getString("Pass"))) {
+								
+							
 							
 								
 								if (result.getString("type").equals("user")) {
