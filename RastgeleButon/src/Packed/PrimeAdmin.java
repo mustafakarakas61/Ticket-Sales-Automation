@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -89,15 +90,16 @@ public class PrimeAdmin extends JFrame {
 		customerData = new Object[4]; // sqlden veri çekmek için
 
 		adminModel = new DefaultTableModel();
-		Object[] colAdmin = new Object[4];
+		Object[] colAdmin = new Object[5];
 
-		colAdmin[0] = "Yönetici ID";
+		colAdmin[0] = "ID";
 		colAdmin[1] = "Ad";
 		colAdmin[2] = "Soyad";
 		colAdmin[3] = "Þifre";
+		colAdmin[4] = "Yönetici ID";
 
 		adminModel.setColumnIdentifiers(colAdmin);
-		adminData = new Object[4];
+		adminData = new Object[5];
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1100, 600);
@@ -161,11 +163,6 @@ public class PrimeAdmin extends JFrame {
 
 		table_Member = new JTable(customerModel);
 		table_Member.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		/*
-		 * table_Member.getColumnModel().getColumn(0).setResizable(false);
-		 * table_Member.getColumnModel().getColumn(1).setResizable(false);
-		 * table_Member.getColumnModel().getColumn(2).setResizable(false);
-		 */
 		table_Member.setBackground(SystemColor.text);
 		scrollPane_Customer.setViewportView(table_Member);
 
@@ -260,13 +257,15 @@ public class PrimeAdmin extends JFrame {
 		table_Admin.getColumnModel().getColumn(1).setResizable(false);
 		table_Admin.getColumnModel().getColumn(2).setResizable(false);
 		table_Admin.getColumnModel().getColumn(3).setResizable(false);
+		table_Admin.getColumnModel().getColumn(4).setResizable(false);
 		scrollPane_Admin.setViewportView(table_Admin);
 
-		for (int i = 0; i < admin.adminList().size(); i++) {
-			adminData[0] = admin.adminList().get(i).getId();
-			adminData[1] = admin.adminList().get(i).getName();
-			adminData[2] = admin.adminList().get(i).getSurname();
-			adminData[3] = admin.adminList().get(i).getPass();
+		for (int i = 0; i < admin.subadminList().size(); i++) {
+			adminData[0] = admin.subadminList().get(i).getId();
+			adminData[1] = admin.subadminList().get(i).getName();
+			adminData[2] = admin.subadminList().get(i).getSurname();
+			adminData[3] = admin.subadminList().get(i).getPass();
+			adminData[4] = admin.subadminList().get(i).getUsername();
 			adminModel.addRow(adminData);
 		}
 
@@ -374,11 +373,12 @@ public class PrimeAdmin extends JFrame {
 	public static void updateSubAdminList() throws SQLException {
 		DefaultTableModel clearList = (DefaultTableModel) table_Admin.getModel();
 		clearList.setRowCount(0);
-		for (int i = 0; i < user.adminList().size(); i++) {
-			adminData[0] = user.adminList().get(i).getId();
-			adminData[1] = user.adminList().get(i).getName();
-			adminData[2] = user.adminList().get(i).getSurname();
-			adminData[3] = user.adminList().get(i).getPass();
+		for (int i = 0; i < user.subadminList().size(); i++) {
+			adminData[0] = user.subadminList().get(i).getId();
+			adminData[1] = user.subadminList().get(i).getName();
+			adminData[2] = user.subadminList().get(i).getSurname();
+			adminData[3] = user.subadminList().get(i).getPass();
+			adminData[4] = user.subadminList().get(i).getUsername();
 			adminModel.addRow(adminData);
 		}
 	}

@@ -15,8 +15,16 @@ import javax.swing.JButton;
 
 public class SeatHelper extends JButton {
 	
-	private int row,col,filmID,userID;
+	private int row,col,filmID,userID,tiyatroID;
 	
+	public int getTiyatroID() {
+		return tiyatroID;
+	}
+
+	public void setTiyatroID(int tiyatroID) {
+		this.tiyatroID = tiyatroID;
+	}
+
 	public int getUserID() {
 		return userID;
 	}
@@ -55,9 +63,13 @@ public class SeatHelper extends JButton {
 		this.SeatName = SeatName;
 		this.userID=userID;
 	}
-
 	
-	
+public SeatHelper (String SeatName,int tiyatroID, int userID) {
+		
+		this.tiyatroID = tiyatroID;
+		this.SeatName = SeatName;
+		this.userID=userID;
+	}
 	
 	
 	public boolean seatAdd(String seatName ,String stype, int filmID, int userID) {
@@ -192,6 +204,58 @@ public int getFilmID(String filmName ) {
 		
 	} 
 	
+
+public String getTheater(int id ) {
+	
+	String  name =null;
+	
+    try {
+
+		connection = dbhelper.getConnection();
+
+		statement = connection.createStatement();
+		result = statement.executeQuery("Select * from tiyatro where tiyatroID= "+id);
+		
+		while (result.next()) {
+		
+			name = result.getString("tiyatroName");
+		
+		}
+		
+	} catch (SQLException e) {
+		dbhelper.showErrorMessage(e);
+	}
+
+	return name;
+	
+} 
+
+
+
+public int getTheaterID(String theaterName ) {
+	
+	int id=0;
+	
+    try {
+
+		connection = dbhelper.getConnection();
+
+		statement = connection.createStatement();
+		result = statement.executeQuery("Select * from tiyatro where tiyatroName= "+theaterName);
+		
+		while (result.next()) {
+		
+			id = result.getInt("tiyatroID");
+		
+		}
+		
+	} catch (SQLException e) {
+		dbhelper.showErrorMessage(e);
+	}
+
+	return id;
+	
+} 
 	
 	
 	
@@ -299,6 +363,30 @@ public int getFilmID(String filmName ) {
 		}
 	}
 	
+	public boolean delMemberSeatTheater(int ID, String userSelectSeatTheaterName) throws SQLException {
+		String query = "DELETE FROM seattheater WHERE userID = ? and name= ?";
+		boolean key=false;
+		try {
+
+			statement = connection.createStatement();
+			pStatement = connection.prepareStatement(query);
+			pStatement.setInt(1, ID);
+			pStatement.setString(2, userSelectSeatTheaterName);
+			pStatement.executeUpdate();
+			key = true;
+		}catch(Exception e){
+			
+		}
+
+		if (key) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
 	public ArrayList<SeatHelper> userSeatfilmTickets() throws SQLException {
 		ArrayList<SeatHelper> userSeatfilmList = new ArrayList<>();
 		try {
@@ -317,7 +405,23 @@ public int getFilmID(String filmName ) {
 		return userSeatfilmList;
 	}
 	
-	
+	public ArrayList<SeatHelper> userSeatTheaterTickets() throws SQLException {
+		ArrayList<SeatHelper> userSeatTheaterList = new ArrayList<>();
+		try {
+		
+			connection = dbhelper.getConnection();
+			statement = connection.createStatement();
+			ResultSet result = statement.executeQuery("SELECT * FROM seattheater WHERE userID="+MainScreen.memberID);
+			SeatHelper theaterTickets;
+			while (result.next()) {
+				theaterTickets = new SeatHelper(result.getInt("theaterID"),result.getString("name"),result.getInt("userID"));
+				userSeatTheaterList.add(theaterTickets);
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return userSeatTheaterList;
+	}
 	
 	
 	

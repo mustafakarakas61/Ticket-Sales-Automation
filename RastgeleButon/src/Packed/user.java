@@ -1,4 +1,5 @@
 package Packed;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Helper.DbHelper;
+
 public class user {
 
 	private int ID;
@@ -21,18 +23,19 @@ public class user {
 	Connection connection = null;
 	ResultSet result = null;
 	PreparedStatement pStatement = null;
-	
+
 	DbHelper dbHelper = new DbHelper();
 
 	public user() {
 
 	}
 
-	public user(int id, String name, String surname, String pass) {
+	public user(int id, String name, String surname, String pass, String username) {
 		this.ID = id;
 		this.Name = name;
 		this.Surname = surname;
 		this.Pass = pass;
+		this.UserName = username;
 	}
 
 	public user(int id, String name, String surname, String pass, String username, String type) {
@@ -54,16 +57,16 @@ public class user {
 		this.Email = email;
 	}
 
-	public ArrayList<user> adminList() throws SQLException {
+	public ArrayList<user> subadminList() throws SQLException {
 		ArrayList<user> yoneticiList = new ArrayList<user>();
 		try {
 			connection = dbHelper.getConnection();
 			statement = connection.createStatement();
-			ResultSet result = statement.executeQuery("SELECT * FROM booking.admin");
+			ResultSet result = statement.executeQuery("SELECT * FROM booking.admin WHERE type = 'sub' ");
 			user admin;
 			while (result.next()) {
 				admin = new user(result.getInt("ID"), result.getString("Name"), result.getString("Surname"),
-						result.getString("Pass"));
+						result.getString("Pass"), result.getString("UserName"));
 				yoneticiList.add(admin);
 			}
 		} catch (SQLException e) {
@@ -141,9 +144,6 @@ public class user {
 			return false;
 		}
 	}
-	
-	
-	
 
 	public int getId() {
 		return ID;

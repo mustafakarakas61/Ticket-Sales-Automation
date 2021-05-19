@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -86,7 +87,7 @@ public class MainScreen extends JFrame {
 	private JTextField fld_Time;
 	private JTextField fld_cvc2;
 	SeatHelper sh = new SeatHelper();
-	Member  mmbr = new Member();
+	Member mmbr = new Member();
 	private JTextField fld_ConcertType;
 	public static int memberID;
 	private static user member = new Member();
@@ -115,13 +116,13 @@ public class MainScreen extends JFrame {
 	}
 
 	public MainScreen(user member) throws SQLException {
+
 		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
 		System.out.println(member.getId());
 		System.out.println(member.getName());
-		memberID=member.getId();
-		
-		
+		memberID = member.getId();
+
 //////////////////////////////////////////////////////////////////////////////////Sinema
 		cinemaModel = new DefaultTableModel();
 		Object[] colCinema = new Object[6]; // tablo sütunlarına isim vermek için
@@ -641,8 +642,6 @@ public class MainScreen extends JFrame {
 		btn_MyTickets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MyTickets mT = new MyTickets();
-				
-				
 
 				mT.setVisible(true);
 			}
@@ -859,6 +858,7 @@ public class MainScreen extends JFrame {
 		fld_CinemaDate.setBounds(140, 119, 75, 20);
 		PaneCinema.add(fld_CinemaDate);
 		BuyTicket.setUser(member.getName() + " " + member.getSurname() + " ");
+		BuyTicketTheater.setUser(member.getName() + " " + member.getSurname() + " ");
 		///////////////////////////////////////////////// PANESİNEMA/////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -870,505 +870,503 @@ public class MainScreen extends JFrame {
 		PaneTheater.setBounds(623, 60, 450, 479);
 		contentPane.add(PaneTheater);
 		PaneTheater.setLayout(null);
+		
+				JLabel lbl_Poster2 = new JLabel("");
+				lbl_Poster2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+				lbl_Poster2.setBounds(312, 20, 120, 170);
+				PaneTheater.add(lbl_Poster2);
+				
+						JLabel lbl_TheaterName = new JLabel("Oyun Adi:");
+						lbl_TheaterName.setBackground(new Color(255, 255, 255));
+						lbl_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 15));
+						lbl_TheaterName.setBounds(10, 50, 100, 20);
+						PaneTheater.add(lbl_TheaterName);
+						
+								JLabel lbl_TheaterType = new JLabel("Oyun Turu:");
+								lbl_TheaterType.setBackground(new Color(255, 255, 255));
+								lbl_TheaterType.setFont(new Font("SansSerif", Font.PLAIN, 15));
+								lbl_TheaterType.setBounds(10, 73, 100, 20);
+								PaneTheater.add(lbl_TheaterType);
+								
+										JLabel lbl_Datee2 = new JLabel("Tarih:");
+										lbl_Datee2.setBackground(new Color(255, 255, 255));
+										lbl_Datee2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+										lbl_Datee2.setBounds(10, 96, 100, 20);
+										PaneTheater.add(lbl_Datee2);
+										
+												JLabel lbl_Salon2 = new JLabel("Salon:");
+												lbl_Salon2.setBackground(new Color(255, 255, 255));
+												lbl_Salon2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+												lbl_Salon2.setBounds(10, 119, 100, 20);
+												PaneTheater.add(lbl_Salon2);
+												
+														JLabel lbl_Seance2 = new JLabel("Saat:");
+														lbl_Seance2.setBackground(new Color(255, 255, 255));
+														lbl_Seance2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+														lbl_Seance2.setBounds(10, 142, 100, 20);
+														PaneTheater.add(lbl_Seance2);
+														
+																JTextField txt_theaterYear = new JTextField();
+																txt_theaterYear.setBackground(new Color(255, 255, 255));
+																txt_theaterYear.setEditable(false);
+																txt_theaterYear.setBounds(140, 96, 75, 20);
+																PaneTheater.add(txt_theaterYear);
+																PaneTheater.setVisible(false);
+																
+																		JButton btn_SelectSeat2 = new JButton("Koltuk Sec");
+																		btn_SelectSeat2.setEnabled(false);
+																		btn_SelectSeat2.setFocusable(false);
+																		btn_SelectSeat2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+																		btn_SelectSeat2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																		btn_SelectSeat2.setBackground(new Color(255, 153, 102));
+																		btn_SelectSeat2.addActionListener(new ActionListener() {
+																			public void actionPerformed(ActionEvent e) {
+																				SeatSelectionTheater ks = new SeatSelectionTheater();
+																				ks.setVisible(true);
+																			}
+																		});
+																		btn_SelectSeat2.setBounds(10, 165, 100, 22);
+																		PaneTheater.add(btn_SelectSeat2);
+																		
+																				JLabel lbl_PaymentInformation2 = new JLabel("Odeme Bilgileri");
+																				lbl_PaymentInformation2.setFont(new Font("SansSerif", Font.BOLD, 16));
+																				lbl_PaymentInformation2.setBounds(10, 205, 130, 20);
+																				PaneTheater.add(lbl_PaymentInformation2);
+																				
+																						JLabel lbl_TheaterInfo = new JLabel("Tiyatro Bilgileri");
+																						lbl_TheaterInfo.setBackground(new Color(255, 255, 255));
+																						lbl_TheaterInfo.setFont(new Font("SansSerif", Font.BOLD, 16));
+																						lbl_TheaterInfo.setBounds(10, 20, 150, 20);
+																						PaneTheater.add(lbl_TheaterInfo);
+																						
+																								JLabel lbl_UserName2 = new JLabel("Ad:");
+																								lbl_UserName2.setBackground(new Color(255, 255, 255));
+																								lbl_UserName2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																								lbl_UserName2.setBounds(10, 235, 100, 20);
+																								PaneTheater.add(lbl_UserName2);
+																								
+																										JLabel lbl_UserSurname2 = new JLabel("Soyad:");
+																										lbl_UserSurname2.setBackground(new Color(255, 255, 255));
+																										lbl_UserSurname2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																										lbl_UserSurname2.setBounds(10, 258, 100, 20);
+																										PaneTheater.add(lbl_UserSurname2);
+																										
+																												JLabel lbl_UserMail2 = new JLabel("E-Mail:");
+																												lbl_UserMail2.setBackground(new Color(255, 255, 255));
+																												lbl_UserMail2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																												lbl_UserMail2.setBounds(10, 281, 100, 20);
+																												PaneTheater.add(lbl_UserMail2);
+																												
+																														JTextField fld_TheaterName = new JTextField();
+																														fld_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																														fld_TheaterName.setBackground(new Color(255, 255, 255));
+																														fld_TheaterName.setEditable(false);
+																														fld_TheaterName.setBounds(140, 50, 150, 20);
+																														PaneTheater.add(fld_TheaterName);
+																														fld_TheaterName.setColumns(10);
+																														
+																																JTextField fld_ThetaerType = new JTextField();
+																																fld_ThetaerType.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																fld_ThetaerType.setBackground(new Color(255, 255, 255));
+																																fld_ThetaerType.setEditable(false);
+																																fld_ThetaerType.setColumns(10);
+																																fld_ThetaerType.setBounds(140, 73, 150, 20);
+																																PaneTheater.add(fld_ThetaerType);
+																																
+																																		JTextField fld_Salon22 = new JTextField();
+																																		fld_Salon22.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																		fld_Salon22.setBackground(new Color(255, 255, 255));
+																																		fld_Salon22.setEditable(false);
+																																		fld_Salon22.setColumns(10);
+																																		fld_Salon22.setBounds(140, 119, 75, 20);
+																																		PaneTheater.add(fld_Salon22);
+																																		
+																																				JTextField fld_Seance2 = new JTextField();
+																																				fld_Seance2.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																				fld_Seance2.setBackground(new Color(255, 255, 255));
+																																				fld_Seance2.setEditable(false);
+																																				fld_Seance2.setColumns(10);
+																																				fld_Seance2.setBounds(140, 142, 75, 20);
+																																				PaneTheater.add(fld_Seance2);
+																																				
+																																						JLabel lbl_PaymentMethod2 = new JLabel("Odeme Yontemi:");
+																																						lbl_PaymentMethod2.setBackground(new Color(255, 255, 255));
+																																						lbl_PaymentMethod2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																						lbl_PaymentMethod2.setBounds(10, 304, 120, 20);
+																																						PaneTheater.add(lbl_PaymentMethod2);
+																																						
+																																								JComboBox comboBox_Method2 = new JComboBox();
+																																								comboBox_Method2.setBackground(new Color(255, 255, 255));
+																																								comboBox_Method2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																								comboBox_Method2.setBounds(140, 304, 150, 25);
+																																								comboBox_Method2.addItem("Nakit");
+																																								comboBox_Method2.addItem("Banka/Kredi Karti");
+																																								PaneTheater.add(comboBox_Method2);
+																																								
+																																										JPanel w_pane_Kart2 = new JPanel();
+																																										w_pane_Kart2.setBackground(SystemColor.inactiveCaption);
+																																										w_pane_Kart2.setBounds(10, 340, 430, 80);
+																																										PaneTheater.add(w_pane_Kart2);
+																																										w_pane_Kart2.setLayout(null);
+																																										w_pane_Kart2.setVisible(false);
+																																										comboBox_Method2.addItemListener(new ItemChangeListener() {
+																																											public void itemStateChanged(ItemEvent arg0) {
 
-		JLabel lbl_Poster2 = new JLabel("");
-		lbl_Poster2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Poster2.setBounds(312, 20, 120, 170);
-		PaneTheater.add(lbl_Poster2);
+																																												if (comboBox_Method2.getSelectedIndex() == 0) {
+																																													w_pane_Kart2.setVisible(false);
 
-		JLabel lbl_TheaterName = new JLabel("Oyun Adi:");
-		lbl_TheaterName.setBackground(new Color(255, 255, 255));
-		lbl_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_TheaterName.setBounds(10, 50, 100, 20);
-		PaneTheater.add(lbl_TheaterName);
+																																												} else {
+																																													w_pane_Kart2.setVisible(true);
 
-		JLabel lbl_TheaterType = new JLabel("Oyun Turu:");
-		lbl_TheaterType.setBackground(new Color(255, 255, 255));
-		lbl_TheaterType.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_TheaterType.setBounds(10, 73, 100, 20);
-		PaneTheater.add(lbl_TheaterType);
+																																												}
+																																											}
+																																										});
+																																										
+																																												JTextField fld_Name_theater = new JTextField();
+																																												fld_Name_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																												fld_Name_theater.setText(member.getName());
+																																												fld_Name_theater.setEditable(false);
+																																												fld_Name_theater.setColumns(10);
+																																												fld_Name_theater.setBackground(new Color(255, 255, 255));
+																																												fld_Name_theater.setBounds(140, 235, 150, 20);
+																																												PaneTheater.add(fld_Name_theater);
+																																												
+																																														JTextField fld_Surname_theater = new JTextField();
+																																														fld_Surname_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																														fld_Surname_theater.setText(member.getSurname());
+																																														fld_Surname_theater.setEditable(false);
+																																														fld_Surname_theater.setColumns(10);
+																																														fld_Surname_theater.setBackground(new Color(255, 255, 255));
+																																														fld_Surname_theater.setBounds(140, 258, 150, 20);
+																																														PaneTheater.add(fld_Surname_theater);
+																																														
+																																																JTextField fld_Mail_theater = new JTextField();
+																																																fld_Mail_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																																fld_Mail_theater.setText(member.getEmail());
+																																																fld_Mail_theater.setEditable(false);
+																																																fld_Mail_theater.setColumns(10);
+																																																fld_Mail_theater.setBackground(new Color(255, 255, 255));
+																																																fld_Mail_theater.setBounds(140, 281, 150, 20);
+																																																PaneTheater.add(fld_Mail_theater);
+																																																
+																																																		JLabel lbl_CartName2 = new JLabel("Kart Uzerindeki isim:");
+																																																		lbl_CartName2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																																		lbl_CartName2.setBounds(10, 8, 140, 20);
+																																																		w_pane_Kart2.add(lbl_CartName2);
+																																																		
+																																																				JLabel lbl_CartNumber2 = new JLabel("Kart Numarasi:");
+																																																				lbl_CartNumber2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																																				lbl_CartNumber2.setBounds(10, 30, 140, 20);
+																																																				w_pane_Kart2.add(lbl_CartNumber2);
+																																																				
+																																																						JLabel lbl_LastUsageDate2 = new JLabel("Son Kullanim Tarihi:");
+																																																						lbl_LastUsageDate2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																																						lbl_LastUsageDate2.setBounds(10, 52, 140, 20);
+																																																						w_pane_Kart2.add(lbl_LastUsageDate2);
+																																																						
+																																																								JComboBox comboBox_Month2 = new JComboBox();
+																																																								comboBox_Month2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																																								comboBox_Month2.setBounds(160, 52, 60, 22);
+																																																								comboBox_Month2.setModel(new DefaultComboBoxModel(
+																																																										new String[] { "Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+																																																								w_pane_Kart2.add(comboBox_Month2);
+																																																								
+																																																										JComboBox comboBox_Year2 = new JComboBox();
+																																																										comboBox_Year2.setModel(new DefaultComboBoxModel(new String[] { "Yil", "2021", "2022", "2023", "2024", "2025",
+																																																												"2026", "2027", "2028", "2029", "2030", "2031" }));
+																																																										comboBox_Year2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																																										comboBox_Year2.setBounds(235, 52, 72, 22);
+																																																										
+																																																												w_pane_Kart2.add(comboBox_Year2);
+																																																												
+																																																														JLabel lbl_Cvc2 = new JLabel("CVC:");
+																																																														lbl_Cvc2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																																														lbl_Cvc2.setBounds(325, 52, 40, 20);
+																																																														w_pane_Kart2.add(lbl_Cvc2);
+																																																														
+																																																																fld_cvc2 = new JTextField();
+																																																																fld_cvc2.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																																																fld_cvc2.setHorizontalAlignment(SwingConstants.CENTER);
+																																																																fld_cvc2.setBounds(374, 52, 46, 20);
+																																																																fld_cvc2.addKeyListener(new KeyAdapter() {
 
-		JLabel lbl_Datee2 = new JLabel("Tarih:");
-		lbl_Datee2.setBackground(new Color(255, 255, 255));
-		lbl_Datee2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Datee2.setBounds(10, 96, 100, 20);
-		PaneTheater.add(lbl_Datee2);
+																																																																	public void keyPressed(KeyEvent ke) {
+																																																																		if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-		JLabel lbl_Salon2 = new JLabel("Salon:");
-		lbl_Salon2.setBackground(new Color(255, 255, 255));
-		lbl_Salon2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Salon2.setBounds(10, 119, 100, 20);
-		PaneTheater.add(lbl_Salon2);
+																																																																			if (fld_cvc2.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+																																																																				fld_cvc2.setEditable(true);
+																																																																			} else {
+																																																																				fld_cvc2.setEditable(false);
+																																																																			}
 
-		JLabel lbl_Seance2 = new JLabel("Saat:");
-		lbl_Seance2.setBackground(new Color(255, 255, 255));
-		lbl_Seance2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Seance2.setBounds(10, 142, 100, 20);
-		PaneTheater.add(lbl_Seance2);
+																																																																		} else {
+																																																																			fld_cvc2.setEditable(false);
 
-		JTextField txt_theaterYear = new JTextField();
-		txt_theaterYear.setBackground(new Color(255, 255, 255));
-		txt_theaterYear.setEditable(false);
-		txt_theaterYear.setBounds(140, 96, 75, 20);
-		PaneTheater.add(txt_theaterYear);
-		PaneTheater.setVisible(false);
+																																																																		}
+																																																																	}
+																																																																});
+																																																																w_pane_Kart2.add(fld_cvc2);
+																																																																fld_cvc2.setColumns(10);
+																																																																
+																																																																		JTextField fld_CartName22 = new JTextField();
+																																																																		fld_CartName22.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																																																		fld_CartName22.setColumns(10);
+																																																																		fld_CartName22.setBackground(Color.WHITE);
+																																																																		fld_CartName22.setBounds(160, 8, 260, 20);
+																																																																		fld_CartName22.addKeyListener(new KeyAdapter() {
 
-		JButton btn_SelectSeat2 = new JButton("Koltuk Sec");
-		btn_SelectSeat2.setEnabled(false);
-		btn_SelectSeat2.setFocusable(false);
-		btn_SelectSeat2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_SelectSeat2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		btn_SelectSeat2.setBackground(new Color(255, 153, 102));
-		btn_SelectSeat2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SeatSelectionTheater ks = new SeatSelectionTheater();
-				ks.setVisible(true);
-			}
-		});
-		btn_SelectSeat2.setBounds(10, 165, 100, 22);
-		PaneTheater.add(btn_SelectSeat2);
+																																																																			public void keyPressed(KeyEvent ke) {
+																																																																				if (ke.getKeyChar() == ' ' || (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
+																																																																						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
+																																																																						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-		JLabel lbl_PaymentInformation2 = new JLabel("Odeme Bilgileri");
-		lbl_PaymentInformation2.setFont(new Font("SansSerif", Font.BOLD, 16));
-		lbl_PaymentInformation2.setBounds(10, 205, 130, 20);
-		PaneTheater.add(lbl_PaymentInformation2);
+																																																																					if (fld_CartName22.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+																																																																						fld_CartName22.setEditable(true);
+																																																																					} else {
+																																																																						fld_CartName22.setEditable(false);
+																																																																					}
 
-		JLabel lbl_TheaterInfo = new JLabel("Tiyatro Bilgileri");
-		lbl_TheaterInfo.setBackground(new Color(255, 255, 255));
-		lbl_TheaterInfo.setFont(new Font("SansSerif", Font.BOLD, 16));
-		lbl_TheaterInfo.setBounds(10, 20, 150, 20);
-		PaneTheater.add(lbl_TheaterInfo);
+																																																																				} else {
+																																																																					fld_CartName22.setEditable(false);
 
-		JLabel lbl_UserName2 = new JLabel("Ad:");
-		lbl_UserName2.setBackground(new Color(255, 255, 255));
-		lbl_UserName2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_UserName2.setBounds(10, 235, 100, 20);
-		PaneTheater.add(lbl_UserName2);
+																																																																				}
+																																																																			}
+																																																																		});
+																																																																		w_pane_Kart2.add(fld_CartName22);
+																																																																		
+																																																																				JTextField fld_CartNumber22 = new JTextField();
+																																																																				fld_CartNumber22.setFont(new Font("SansSerif", Font.PLAIN, 14));
+																																																																				fld_CartNumber22.setColumns(10);
+																																																																				fld_CartNumber22.setBackground(Color.WHITE);
+																																																																				fld_CartNumber22.setBounds(160, 30, 260, 20);
+																																																																				fld_CartNumber22.addKeyListener(new KeyAdapter() {
 
-		JLabel lbl_UserSurname2 = new JLabel("Soyad:");
-		lbl_UserSurname2.setBackground(new Color(255, 255, 255));
-		lbl_UserSurname2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_UserSurname2.setBounds(10, 258, 100, 20);
-		PaneTheater.add(lbl_UserSurname2);
+																																																																					public void keyPressed(KeyEvent ke) {
+																																																																						if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 
-		JLabel lbl_UserMail2 = new JLabel("E-Mail:");
-		lbl_UserMail2.setBackground(new Color(255, 255, 255));
-		lbl_UserMail2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_UserMail2.setBounds(10, 281, 100, 20);
-		PaneTheater.add(lbl_UserMail2);
+																																																																							if (fld_CartNumber22.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+																																																																								fld_CartNumber22.setEditable(true);
+																																																																							} else {
+																																																																								fld_CartNumber22.setEditable(false);
+																																																																							}
 
-		JTextField fld_TheaterName = new JTextField();
-		fld_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_TheaterName.setBackground(new Color(255, 255, 255));
-		fld_TheaterName.setEditable(false);
-		fld_TheaterName.setBounds(140, 50, 150, 20);
-		PaneTheater.add(fld_TheaterName);
-		fld_TheaterName.setColumns(10);
+																																																																						} else {
+																																																																							fld_CartNumber22.setEditable(false);
 
-		JTextField fld_ThetaerType = new JTextField();
-		fld_ThetaerType.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_ThetaerType.setBackground(new Color(255, 255, 255));
-		fld_ThetaerType.setEditable(false);
-		fld_ThetaerType.setColumns(10);
-		fld_ThetaerType.setBounds(140, 73, 150, 20);
-		PaneTheater.add(fld_ThetaerType);
+																																																																						}
+																																																																					}
+																																																																				});
+																																																																				w_pane_Kart2.add(fld_CartNumber22);
+																																																																				
+																																																																						JButton btn_MyTickets2 = new JButton("Biletlerim");
+																																																																						btn_MyTickets2.addActionListener(new ActionListener() {
+																																																																							public void actionPerformed(ActionEvent e) {
+																																																																								MyTicketsTheater mTT = new MyTicketsTheater();
 
-		JTextField fld_Salon22 = new JTextField();
-		fld_Salon22.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_Salon22.setBackground(new Color(255, 255, 255));
-		fld_Salon22.setEditable(false);
-		fld_Salon22.setColumns(10);
-		fld_Salon22.setBounds(140, 119, 75, 20);
-		PaneTheater.add(fld_Salon22);
+																																																																								mTT.setVisible(true);
+																																																																								
+																																																																							}
+																																																																						});
+																																																																						btn_MyTickets2.setFocusable(false);
+																																																																						btn_MyTickets2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+																																																																						btn_MyTickets2.setBounds(127, 435, 100, 30);
+																																																																						PaneTheater.add(btn_MyTickets2);
+																																																																						btn_MyTickets2.setForeground(new Color(0, 0, 0));
+																																																																						btn_MyTickets2.setBackground(new Color(255, 255, 153));
+																																																																						btn_MyTickets2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+																																																																						JButton btn_BuyTicket2 = new JButton("Bilet Al");
+																																																																						btn_BuyTicket2.addActionListener(new ActionListener() {
 
-		JTextField fld_Seance2 = new JTextField();
-		fld_Seance2.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_Seance2.setBackground(new Color(255, 255, 255));
-		fld_Seance2.setEditable(false);
-		fld_Seance2.setColumns(10);
-		fld_Seance2.setBounds(140, 142, 75, 20);
-		PaneTheater.add(fld_Seance2);
-
-		JLabel lbl_PaymentMethod2 = new JLabel("Odeme Yontemi:");
-		lbl_PaymentMethod2.setBackground(new Color(255, 255, 255));
-		lbl_PaymentMethod2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_PaymentMethod2.setBounds(10, 304, 120, 20);
-		PaneTheater.add(lbl_PaymentMethod2);
-
-		JComboBox comboBox_Method2 = new JComboBox();
-		comboBox_Method2.setBackground(new Color(255, 255, 255));
-		comboBox_Method2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		comboBox_Method2.setBounds(140, 304, 150, 25);
-		comboBox_Method2.addItem("Nakit");
-		comboBox_Method2.addItem("Banka/Kredi Karti");
-		PaneTheater.add(comboBox_Method2);
-
-		JPanel w_pane_Kart2 = new JPanel();
-		w_pane_Kart2.setBackground(SystemColor.inactiveCaption);
-		w_pane_Kart2.setBounds(10, 340, 430, 80);
-		PaneTheater.add(w_pane_Kart2);
-		w_pane_Kart2.setLayout(null);
-		w_pane_Kart2.setVisible(false);
-		comboBox_Method2.addItemListener(new ItemChangeListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-
-				if (comboBox_Method2.getSelectedIndex() == 0) {
-					w_pane_Kart2.setVisible(false);
-
-				} else {
-					w_pane_Kart2.setVisible(true);
-
-				}
-			}
-		});
-
-		JTextField fld_Name_theater = new JTextField();
-		fld_Name_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_Name_theater.setText(member.getName());
-		fld_Name_theater.setEditable(false);
-		fld_Name_theater.setColumns(10);
-		fld_Name_theater.setBackground(new Color(255, 255, 255));
-		fld_Name_theater.setBounds(140, 235, 150, 20);
-		PaneTheater.add(fld_Name_theater);
-
-		JTextField fld_Surname_theater = new JTextField();
-		fld_Surname_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_Surname_theater.setText(member.getSurname());
-		fld_Surname_theater.setEditable(false);
-		fld_Surname_theater.setColumns(10);
-		fld_Surname_theater.setBackground(new Color(255, 255, 255));
-		fld_Surname_theater.setBounds(140, 258, 150, 20);
-		PaneTheater.add(fld_Surname_theater);
-
-		JTextField fld_Mail_theater = new JTextField();
-		fld_Mail_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_Mail_theater.setText(member.getEmail());
-		fld_Mail_theater.setEditable(false);
-		fld_Mail_theater.setColumns(10);
-		fld_Mail_theater.setBackground(new Color(255, 255, 255));
-		fld_Mail_theater.setBounds(140, 281, 150, 20);
-		PaneTheater.add(fld_Mail_theater);
-
-		JLabel lbl_CartName2 = new JLabel("Kart Uzerindeki isim:");
-		lbl_CartName2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_CartName2.setBounds(10, 8, 140, 20);
-		w_pane_Kart2.add(lbl_CartName2);
-
-		JLabel lbl_CartNumber2 = new JLabel("Kart Numarasi:");
-		lbl_CartNumber2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_CartNumber2.setBounds(10, 30, 140, 20);
-		w_pane_Kart2.add(lbl_CartNumber2);
-
-		JLabel lbl_LastUsageDate2 = new JLabel("Son Kullanim Tarihi:");
-		lbl_LastUsageDate2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_LastUsageDate2.setBounds(10, 52, 140, 20);
-		w_pane_Kart2.add(lbl_LastUsageDate2);
-
-		JComboBox comboBox_Month2 = new JComboBox();
-		comboBox_Month2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		comboBox_Month2.setBounds(160, 52, 60, 22);
-		comboBox_Month2.setModel(new DefaultComboBoxModel(
-				new String[] { "Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
-		w_pane_Kart2.add(comboBox_Month2);
-
-		JComboBox comboBox_Year2 = new JComboBox();
-		comboBox_Year2.setModel(new DefaultComboBoxModel(new String[] { "Yil", "2021", "2022", "2023", "2024", "2025",
-				"2026", "2027", "2028", "2029", "2030", "2031" }));
-		comboBox_Year2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		comboBox_Year2.setBounds(235, 52, 72, 22);
-
-		w_pane_Kart2.add(comboBox_Year2);
-
-		JLabel lbl_Cvc2 = new JLabel("CVC:");
-		lbl_Cvc2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Cvc2.setBounds(325, 52, 40, 20);
-		w_pane_Kart2.add(lbl_Cvc2);
-
-		fld_cvc2 = new JTextField();
-		fld_cvc2.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_cvc2.setHorizontalAlignment(SwingConstants.CENTER);
-		fld_cvc2.setBounds(374, 52, 46, 20);
-		fld_cvc2.addKeyListener(new KeyAdapter() {
-
-			public void keyPressed(KeyEvent ke) {
-				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-
-					if (fld_cvc2.getText().length() <= 2 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						fld_cvc2.setEditable(true);
-					} else {
-						fld_cvc2.setEditable(false);
-					}
-
-				} else {
-					fld_cvc2.setEditable(false);
-
-				}
-			}
-		});
-		w_pane_Kart2.add(fld_cvc2);
-		fld_cvc2.setColumns(10);
-
-		JTextField fld_CartName22 = new JTextField();
-		fld_CartName22.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_CartName22.setColumns(10);
-		fld_CartName22.setBackground(Color.WHITE);
-		fld_CartName22.setBounds(160, 8, 260, 20);
-		fld_CartName22.addKeyListener(new KeyAdapter() {
-
-			public void keyPressed(KeyEvent ke) {
-				if (ke.getKeyChar() == ' ' || (ke.getKeyChar() >= 'a' && ke.getKeyChar() <= 'z')
-						|| (ke.getKeyChar() >= 'A' && ke.getKeyChar() <= 'Z')
-						|| ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-
-					if (fld_CartName22.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						fld_CartName22.setEditable(true);
-					} else {
-						fld_CartName22.setEditable(false);
-					}
-
-				} else {
-					fld_CartName22.setEditable(false);
-
-				}
-			}
-		});
-		w_pane_Kart2.add(fld_CartName22);
-
-		JTextField fld_CartNumber22 = new JTextField();
-		fld_CartNumber22.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		fld_CartNumber22.setColumns(10);
-		fld_CartNumber22.setBackground(Color.WHITE);
-		fld_CartNumber22.setBounds(160, 30, 260, 20);
-		fld_CartNumber22.addKeyListener(new KeyAdapter() {
-
-			public void keyPressed(KeyEvent ke) {
-				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-
-					if (fld_CartNumber22.getText().length() <= 15 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-						fld_CartNumber22.setEditable(true);
-					} else {
-						fld_CartNumber22.setEditable(false);
-					}
-
-				} else {
-					fld_CartNumber22.setEditable(false);
-
-				}
-			}
-		});
-		w_pane_Kart2.add(fld_CartNumber22);
-
-		JButton btn_MyTickets2 = new JButton("Biletlerim");
-		btn_MyTickets2.setFocusable(false);
-		btn_MyTickets2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_MyTickets2.setBounds(60, 435, 100, 30);
-		PaneTheater.add(btn_MyTickets2);
-		btn_MyTickets2.setForeground(new Color(0, 0, 0));
-		btn_MyTickets2.setBackground(new Color(255, 255, 153));
-		btn_MyTickets2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		JButton btn_BuyTicket2 = new JButton("Bilet Al");
-		btn_BuyTicket2.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
+																																																																							public void actionPerformed(ActionEvent e) {
 
 //////////////////////////---------------------------------------
 
-				try {
+																																																																								try {
 //secilen koltugu dolu olarak ekleme
-					int theaterID = subadmin.theaterList().get(MainScreen.table_Theater.getSelectedRow())
-							.getTiyatroID();
+																																																																									int theaterID = subadmin.theaterList().get(MainScreen.table_Theater.getSelectedRow())
+																																																																											.getTiyatroID();
 
-					Arrays.sort(SeatSelectionTheater.seats);
-					for (String s : SeatSelectionTheater.seats) {
-						shelper.seatAddTheater(s, "d", theaterID, member.getId());
-					}
-				} catch (Exception e2) {
+																																																																									Arrays.sort(SeatSelectionTheater.seats);
+																																																																									for (String s : SeatSelectionTheater.seats) {
+																																																																										shelper.seatAddTheater(s, "d", theaterID, member.getId());
+																																																																									}
+																																																																								} catch (Exception e2) {
 
-				}
+																																																																								}
 
 //////////////////////////////////////////////////-----------------------
 
-				if (comboBox_Method2.getSelectedIndex() == 1) {
-					BuyTicketTheater.setlblCard("Ucret, BANKA/KREDI KARTI ile odenmistir. Borcunuz yoktur.");
-					BuyTicketTheater.setPrice("Odendi");
+																																																																								if (comboBox_Method2.getSelectedIndex() == 1) {
+																																																																									BuyTicketTheater.setlblCard("Ucret, BANKA/KREDI KARTI ile odenmistir. Borcunuz yoktur.");
+																																																																									BuyTicketTheater.setPrice("Odendi");
 
-					if (fld_TheaterName.getText().length() == 0 || fld_ThetaerType.getText().length() == 0
-							|| fld_Salon22.getText().length() == 0 || fld_Seance2.getText().length() == 0
-							|| fld_Name_theater.getText().length() == 0 || fld_Surname_theater.getText().length() == 0
-							|| fld_Mail_theater.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "Gerekli birkac bilgi eksik.", "Mesaj",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
+																																																																									if (fld_TheaterName.getText().length() == 0 || fld_ThetaerType.getText().length() == 0
+																																																																											|| fld_Salon22.getText().length() == 0 || fld_Seance2.getText().length() == 0
+																																																																											|| fld_Name_theater.getText().length() == 0 || fld_Surname_theater.getText().length() == 0
+																																																																											|| fld_Mail_theater.getText().length() == 0) {
+																																																																										JOptionPane.showMessageDialog(null, "Gerekli birkac bilgi eksik.", "Mesaj",
+																																																																												JOptionPane.INFORMATION_MESSAGE);
+																																																																									}
 
-					if (fld_CartName22.getText().length() == 0 || fld_CartNumber22.getText().length() == 0
-							|| fld_cvc2.getText().length() == 0 || comboBox_Month2.getSelectedIndex() == 0
-							|| comboBox_Year2.getSelectedIndex() == 0) {
-						if (fld_CartName22.getText().length() == 0) {
-							fld_CartName22.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
+																																																																									if (fld_CartName22.getText().length() == 0 || fld_CartNumber22.getText().length() == 0
+																																																																											|| fld_cvc2.getText().length() == 0 || comboBox_Month2.getSelectedIndex() == 0
+																																																																											|| comboBox_Year2.getSelectedIndex() == 0) {
+																																																																										if (fld_CartName22.getText().length() == 0) {
+																																																																											fld_CartName22.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
 
-								@Override
-								public void insertUpdate(DocumentEvent e) {
-									// TODO Auto-generated method stub
-									if (fld_CartName22.getText().length() > 0) {
-										fld_CartName22.setBackground(Color.white);
-									} else {
-										fld_CartName22.setBackground(Color.ORANGE);
-									}
-								}
+																																																																												@Override
+																																																																												public void insertUpdate(DocumentEvent e) {
+																																																																													// TODO Auto-generated method stub
+																																																																													if (fld_CartName22.getText().length() > 0) {
+																																																																														fld_CartName22.setBackground(Color.white);
+																																																																													} else {
+																																																																														fld_CartName22.setBackground(Color.ORANGE);
+																																																																													}
+																																																																												}
 
-								@Override
-								public void removeUpdate(DocumentEvent e) {
-									// TODO Auto-generated method stub
-									fld_CartName22.setBackground(Color.white);
-								}
+																																																																												@Override
+																																																																												public void removeUpdate(DocumentEvent e) {
+																																																																													// TODO Auto-generated method stub
+																																																																													fld_CartName22.setBackground(Color.white);
+																																																																												}
 
-								@Override
-								public void changedUpdate(DocumentEvent e) {
-									// TODO Auto-generated method stub
+																																																																												@Override
+																																																																												public void changedUpdate(DocumentEvent e) {
+																																																																													// TODO Auto-generated method stub
 
-								}
+																																																																												}
 
-							});
-						}
-						if (fld_CartNumber22.getText().length() == 0) {
-							fld_CartNumber22.getDocument()
-									.addDocumentListener((DocumentListener) new DocumentListener() {
+																																																																											});
+																																																																										}
+																																																																										if (fld_CartNumber22.getText().length() == 0) {
+																																																																											fld_CartNumber22.getDocument()
+																																																																													.addDocumentListener((DocumentListener) new DocumentListener() {
 
-										@Override
-										public void insertUpdate(DocumentEvent e) {
-											// TODO Auto-generated method stub
-											if (fld_CartNumber22.getText().length() == 16) {
-												fld_CartNumber22.setBackground(Color.white);
-											} else {
-												fld_CartNumber22.setBackground(Color.ORANGE);
-											}
-										}
+																																																																														@Override
+																																																																														public void insertUpdate(DocumentEvent e) {
+																																																																															// TODO Auto-generated method stub
+																																																																															if (fld_CartNumber22.getText().length() == 16) {
+																																																																																fld_CartNumber22.setBackground(Color.white);
+																																																																															} else {
+																																																																																fld_CartNumber22.setBackground(Color.ORANGE);
+																																																																															}
+																																																																														}
 
-										@Override
-										public void removeUpdate(DocumentEvent e) {
-											// TODO Auto-generated method stub
-											fld_CartNumber22.setBackground(Color.white);
-										}
+																																																																														@Override
+																																																																														public void removeUpdate(DocumentEvent e) {
+																																																																															// TODO Auto-generated method stub
+																																																																															fld_CartNumber22.setBackground(Color.white);
+																																																																														}
 
-										@Override
-										public void changedUpdate(DocumentEvent e) {
-											// TODO Auto-generated method stub
+																																																																														@Override
+																																																																														public void changedUpdate(DocumentEvent e) {
+																																																																															// TODO Auto-generated method stub
 
-										}
+																																																																														}
 
-									});
-						}
-						if (fld_cvc2.getText().length() == 0) {
-							fld_cvc2.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
+																																																																													});
+																																																																										}
+																																																																										if (fld_cvc2.getText().length() == 0) {
+																																																																											fld_cvc2.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
 
-								@Override
-								public void insertUpdate(DocumentEvent e) {
-									// TODO Auto-generated method stub
-									if (fld_cvc2.getText().length() == 3) {
-										fld_cvc2.setBackground(Color.white);
-									} else {
-										fld_cvc2.setBackground(Color.ORANGE);
-									}
-								}
+																																																																												@Override
+																																																																												public void insertUpdate(DocumentEvent e) {
+																																																																													// TODO Auto-generated method stub
+																																																																													if (fld_cvc2.getText().length() == 3) {
+																																																																														fld_cvc2.setBackground(Color.white);
+																																																																													} else {
+																																																																														fld_cvc2.setBackground(Color.ORANGE);
+																																																																													}
+																																																																												}
 
-								@Override
-								public void removeUpdate(DocumentEvent e) {
-									// TODO Auto-generated method stub
-									fld_cvc2.setBackground(Color.white);
-								}
+																																																																												@Override
+																																																																												public void removeUpdate(DocumentEvent e) {
+																																																																													// TODO Auto-generated method stub
+																																																																													fld_cvc2.setBackground(Color.white);
+																																																																												}
 
-								@Override
-								public void changedUpdate(DocumentEvent e) {
-									// TODO Auto-generated method stub
+																																																																												@Override
+																																																																												public void changedUpdate(DocumentEvent e) {
+																																																																													// TODO Auto-generated method stub
 
-								}
+																																																																												}
 
-							});
-						}
+																																																																											});
+																																																																										}
 
-						JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
-								JOptionPane.ERROR_MESSAGE);
-					}
+																																																																										JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
+																																																																												JOptionPane.ERROR_MESSAGE);
+																																																																									}
 
-					else {
+																																																																									else {
 
-						BuyTicketTheater ticketTheater = new BuyTicketTheater();
+																																																																										BuyTicketTheater ticketTheater = new BuyTicketTheater();
 
-						if (ticketTheater.comboBox_seatTheater.getItemCount() == 0) {
-							JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
-									JOptionPane.INFORMATION_MESSAGE);
+																																																																										if (ticketTheater.comboBox_seatTheater.getItemCount() == 0) {
+																																																																											JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
+																																																																													JOptionPane.INFORMATION_MESSAGE);
 
-						} else if (fld_CartNumber22.getText().length() != 16 || fld_cvc2.getText().length() != 3) {
-							JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
-									JOptionPane.ERROR_MESSAGE);
-						}
+																																																																										} else if (fld_CartNumber22.getText().length() != 16 || fld_cvc2.getText().length() != 3) {
+																																																																											JOptionPane.showMessageDialog(null, "Kart bilgilerinde hatali giris.", "Mesaj",
+																																																																													JOptionPane.ERROR_MESSAGE);
+																																																																										}
 
-						else {
-							if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
-									JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+																																																																										else {
+																																																																											if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
+																																																																													JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-								Metod_Helper.showMsg("Odemeniz Aliniyor. Lutfen Bekleyiniz...");
-								try {
-									TimeUnit.SECONDS.sleep(3);
-								} catch (InterruptedException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-								Metod_Helper.showMsg("Odemeniz Basariyla Gerceklesti");
-								ticketTheater.setVisible(true);
-							}
+																																																																												Metod_Helper.showMsg("Odemeniz Aliniyor. Lutfen Bekleyiniz...");
+																																																																												try {
+																																																																													TimeUnit.SECONDS.sleep(3);
+																																																																												} catch (InterruptedException e1) {
+																																																																													// TODO Auto-generated catch block
+																																																																													e1.printStackTrace();
+																																																																												}
+																																																																												Metod_Helper.showMsg("Odemeniz Basariyla Gerceklesti");
+																																																																												ticketTheater.setVisible(true);
+																																																																											}
 
-						}
-					}
+																																																																										}
+																																																																									}
 
-				} else {
+																																																																								} else {
 
-					BuyTicketTheater.setlblCard(BuyTicketTheater.getPrice() + " odemeniz vardir. Iyi gunler Dileriz.");
-					if (fld_TheaterName.getText().length() == 0 || fld_ThetaerType.getText().length() == 0
-							|| txt_theaterYear.getText().length() == 0 || fld_Salon22.getText().length() == 0
-							|| fld_Seance2.getText().length() == 0 || fld_Name_theater.getText().length() == 0
-							|| fld_Surname_theater.getText().length() == 0
-							|| fld_Mail_theater.getText().length() == 0) {
-						JOptionPane.showMessageDialog(null, "Gerekli birkac bilgi eksik.", "Mesaj",
-								JOptionPane.INFORMATION_MESSAGE);
-					} else {
-						BuyTicketTheater ticketTheater = new BuyTicketTheater();
-						if (ticketTheater.comboBox_seatTheater.getItemCount() == 0) {
-							JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
-									JOptionPane.INFORMATION_MESSAGE);
+																																																																									BuyTicketTheater.setlblCard(BuyTicketTheater.getPrice() + " odemeniz vardir. Iyi gunler Dileriz.");
+																																																																									if (fld_TheaterName.getText().length() == 0 || fld_ThetaerType.getText().length() == 0
+																																																																											|| txt_theaterYear.getText().length() == 0 || fld_Salon22.getText().length() == 0
+																																																																											|| fld_Seance2.getText().length() == 0 || fld_Name_theater.getText().length() == 0
+																																																																											|| fld_Surname_theater.getText().length() == 0
+																																																																											|| fld_Mail_theater.getText().length() == 0) {
+																																																																										JOptionPane.showMessageDialog(null, "Gerekli birkac bilgi eksik.", "Mesaj",
+																																																																												JOptionPane.INFORMATION_MESSAGE);
+																																																																									} else {
+																																																																										BuyTicketTheater ticketTheater = new BuyTicketTheater();
+																																																																										if (ticketTheater.comboBox_seatTheater.getItemCount() == 0) {
+																																																																											JOptionPane.showMessageDialog(null, "Lutfen Koltuk Seciniz.", "Mesaj",
+																																																																													JOptionPane.INFORMATION_MESSAGE);
 
-						} else {
-							if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
-									JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-								Metod_Helper.showMsg("succes");
-								ticketTheater.setVisible(true);
-							} else {
-								// no option
-							}
+																																																																										} else {
+																																																																											if (JOptionPane.showConfirmDialog(null, "Satin Almayi Onayliyor musunuz?", "Dikkat!",
+																																																																													JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+																																																																												Metod_Helper.showMsg("succes");
+																																																																												ticketTheater.setVisible(true);
+																																																																											} else {
+																																																																												// no option
+																																																																											}
 
-						}
-					}
-				}
+																																																																										}
+																																																																									}
+																																																																								}
 
-			}
-		});
-		btn_BuyTicket2.setFocusable(false);
-		btn_BuyTicket2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_BuyTicket2.setForeground(new Color(0, 0, 0));
-		btn_BuyTicket2.setBackground(new Color(153, 255, 153));
-		btn_BuyTicket2.setBounds(175, 435, 100, 30);
-		PaneTheater.add(btn_BuyTicket2);
-		btn_BuyTicket2.setFont(new Font("SansSerif", Font.BOLD, 15));
-
-		JButton btn_CancelTicket2 = new JButton("Bilet Iptal");
-		btn_CancelTicket2.setFocusable(false);
-		btn_CancelTicket2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_CancelTicket2.setBounds(290, 435, 100, 30);
-		PaneTheater.add(btn_CancelTicket2);
-		btn_CancelTicket2.setForeground(new Color(0, 0, 0));
-		btn_CancelTicket2.setBackground(new Color(255, 153, 153));
-		btn_CancelTicket2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		BuyTicketTheater.setUser(member.getName() + " " + member.getSurname() + " ");
+																																																																							}
+																																																																						});
+																																																																						btn_BuyTicket2.setFocusable(false);
+																																																																						btn_BuyTicket2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+																																																																						btn_BuyTicket2.setForeground(new Color(0, 0, 0));
+																																																																						btn_BuyTicket2.setBackground(new Color(153, 255, 153));
+																																																																						btn_BuyTicket2.setBounds(242, 435, 100, 30);
+																																																																						PaneTheater.add(btn_BuyTicket2);
+																																																																						btn_BuyTicket2.setFont(new Font("SansSerif", Font.BOLD, 15));
 		///////////////////////////////////////////////////// PANETİYATRO////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2026,18 +2024,7 @@ public class MainScreen extends JFrame {
 		btn_Select.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_Select.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+
 				if (tabbedPane.getSelectedIndex() == 0) {
 					int selRow = table_Cinema.getSelectedRow();
 					if (selRow >= 0) {

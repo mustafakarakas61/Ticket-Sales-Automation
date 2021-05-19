@@ -1,4 +1,5 @@
 package Packed;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,10 +28,10 @@ public class SAdmin {
 
 	private int concertID;
 	private String concertName;
-	private String concertPlace;
-	private String concertArtist;
 	private String concertDate;
 	private String concertTime;
+	private String concertPlace;
+	private String concertArtist;
 	private int ticketCount;
 	private String ticketPrice;
 
@@ -64,8 +65,8 @@ public class SAdmin {
 		this.tiyatroSaat = tiyatroSaat;
 	}
 
-	public SAdmin(String concertName, int concertID, String concertPlace, String concertArtist, String concertDate,int ticketCount, String ticketPrice,
-			String concertTime) {
+	public SAdmin(String concertName, int concertID, String concertPlace, String concertArtist, String concertDate,
+			int ticketCount, String ticketPrice, String concertTime) {
 
 		this.concertName = concertName;
 		this.concertID = concertID;
@@ -73,8 +74,8 @@ public class SAdmin {
 		this.concertArtist = concertArtist;
 		this.concertDate = concertDate;
 		this.concertTime = concertTime;
-		this.ticketCount=ticketCount;
-		this.ticketPrice=ticketPrice;
+		this.ticketCount = ticketCount;
+		this.ticketPrice = ticketPrice;
 	}
 
 	public ArrayList<SAdmin> cinemaList() throws SQLException {
@@ -125,9 +126,9 @@ public class SAdmin {
 			while (result.next()) {
 				konser = new SAdmin(result.getString("concertName"), result.getInt("concertID"),
 						result.getString("concertPlace"), result.getString("concertArtist"),
-						result.getString("concertDate"),result.getInt("ticketCount"),
-						result.getString("ticketPrice"), result.getString("concertTime"));
-						
+						result.getString("concertDate"), result.getInt("ticketCount"), result.getString("ticketPrice"),
+						result.getString("concertTime"));
+
 				konserList.add(konser);
 			}
 		} catch (SQLException e1) {
@@ -152,6 +153,29 @@ public class SAdmin {
 			key = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+
+		return key;
+	}
+
+	public boolean updateCinema(int filmID, String filmName, String filmType, String filmDirector, String filmDate,
+			String filmSalon, String filmSeans) {
+		boolean key = false;
+		String query = "UPDATE booking.cinema SET filmName = ?, filmType = ?, filmDirector = ?, filmDate = ?, filmSalon = ?, filmSeans = ? WHERE filmID = ?";
+		try {
+			connection = dbHelper.getConnection();
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1, filmName);
+			pStatement.setString(2, filmType);
+			pStatement.setString(3, filmDirector);
+			pStatement.setString(4, filmDate);
+			pStatement.setString(5, filmSalon);
+			pStatement.setString(6, filmSeans);
+			pStatement.setInt(7, filmID);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
 
 		return key;
@@ -192,6 +216,28 @@ public class SAdmin {
 		return key;
 	}
 
+	public boolean updateTheater(int tiyatroID, String tiyatroName, String tiyatroType, String tiyatroDate,
+			String tiyatroSalon, String tiyatroSaat) {
+		boolean key = false;
+		String query = "UPDATE booking.tiyatro SET tiyatroName = ?, tiyatroType = ?, tiyatroDate = ?, tiyatroSalon = ?, tiyatroSaat = ? WHERE tiyatroID = ?";
+		try {
+			connection = dbHelper.getConnection();
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1, tiyatroName);
+			pStatement.setString(2, tiyatroType);
+			pStatement.setString(3, tiyatroDate);
+			pStatement.setString(4, tiyatroSalon);
+			pStatement.setString(5, tiyatroSaat);
+			pStatement.setInt(6, tiyatroID);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		return key;
+	}
+
 	public boolean delTheater(int tiyatroID) throws SQLException {
 		boolean key;
 		String query = "DELETE FROM booking.tiyatro WHERE tiyatroID = ?";
@@ -224,6 +270,30 @@ public class SAdmin {
 			key = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+
+		return key;
+	}
+
+	public boolean updateConcert(int concertID, String concertName, String concertDate, String concertTime,
+			String concertPlace, String concertArtist, int ticketCount, String ticketPrice) {
+		boolean key = false;
+		String query = "UPDATE booking.concert SET concertName = ?, concertDate = ?, concertTime = ?, concertPlace = ?, concertArtist = ?, ticketCount = ?, ticketPrice = ? WHERE concertID = ?";
+		try {
+			connection = dbHelper.getConnection();
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1, concertName);
+			pStatement.setString(2, concertDate);
+			pStatement.setString(3, concertTime);
+			pStatement.setString(4, concertPlace);
+			pStatement.setString(5, concertArtist);
+			pStatement.setInt(6, ticketCount);
+			pStatement.setString(7, ticketPrice);
+			pStatement.setInt(8, concertID);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
 
 		return key;
@@ -395,8 +465,7 @@ public class SAdmin {
 	public void setConcertTime(String concertTime) {
 		this.concertTime = concertTime;
 	}
-	
-	
+
 	public int getTicketCount() {
 		return ticketCount;
 	}
@@ -404,6 +473,7 @@ public class SAdmin {
 	public void setTicketCount(int ticketCount) {
 		this.ticketCount = ticketCount;
 	}
+
 	public String getTicketPrice() {
 		return ticketPrice;
 	}
