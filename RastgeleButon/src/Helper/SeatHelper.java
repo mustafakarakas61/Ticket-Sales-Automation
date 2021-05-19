@@ -138,33 +138,7 @@ public class SeatHelper extends JButton {
 	            return false;
 	}
 	
-	
-	/*public boolean seatGet(String seatName, String stype, int filmID) {
-	
-		int k =0;
-		try {
-			connection = dbhelper.getConnection();
 
-			statement = connection.createStatement();
-			   result = statement.executeQuery("Select * from seat where type ='d' and name = '" + seatName + "' and filmID = '"+filmID+"'");
-
-
-	            while (result.next()) {
-	               
-	                Metod_Helper.showMsg("Bu Koltuk Dolu!");
-	                ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatOff.png"));
-					
-					//s.setIcon(imageIcon);
-	                break;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-		
-		return key;
-	}*/
 	
 	public String getFilm(int id ) {
 		
@@ -190,6 +164,34 @@ public class SeatHelper extends JButton {
     	return name;
 		
 	} 
+	
+	
+	
+public int getFilmID(String filmName ) {
+		
+		int id=0;
+		
+        try {
+
+    		connection = dbhelper.getConnection();
+
+    		statement = connection.createStatement();
+			result = statement.executeQuery("Select * from cinema where filmName= "+filmName);
+			
+			while (result.next()) {
+			
+				id = result.getInt("filmID");
+			
+			}
+			
+		} catch (SQLException e) {
+			dbhelper.showErrorMessage(e);
+		}
+
+    	return id;
+		
+	} 
+	
 	
 	
 	
