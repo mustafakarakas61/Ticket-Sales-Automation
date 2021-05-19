@@ -63,7 +63,7 @@ public class MainScreen extends JFrame {
 	private Object[] theaterData = null;
 	private Object[] concertData = null;
 	public static JTable table_Cinema;
-	public JTable table_Theater;
+	public static JTable table_Theater;
 	public JTable table_Concert;
 	private JTextField fld_concertName;
 	private JTextField fld_Artist3;
@@ -258,7 +258,7 @@ public class MainScreen extends JFrame {
 		scrollPane_Theater.setBounds(0, 0, 521, 448);
 		w_paneTheater.add(scrollPane_Theater);
 
-///////////////////////////////////////////////////////////////////////////////////Tiyatro Sütun Özellikleri
+///////////////////////////////////////////////////////////////////////////////////Tiyatro 
 		table_Theater = new JTable(theaterModel);
 		table_Theater.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Theater.setFont(new Font("SansSerif", Font.PLAIN, 13));
@@ -384,7 +384,7 @@ public class MainScreen extends JFrame {
 		btn_SelectSeat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SeatSelection ks = new SeatSelection();
-			
+
 				ks.setVisible(true);
 			}
 		});
@@ -643,38 +643,22 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-//////////////////////////---------------------------------------
-				
-				
-				
-		try {//////////////////////////////////////////////Bu sadece 1 koltuk, bunu forlu yapacaz coklu
-			//secilen koltugu dolu olarak ekleme
-			int filmID = subadmin.cinemaList().get(MainScreen.table_Cinema.getSelectedRow()).getFilmID();
-			
-			
-			Arrays.sort(SeatSelection.seats);
-			for (String s : SeatSelection.seats) {
-				shelper.seatAdd(s, "d", filmID);
-			} }catch (Exception e2) {
 
-				
-				
-			}
-			
-			
-		//////////////////////////////////////////////////-----------------------
-				
-				
-				
-				
-				
-				
-				
-				
-				
+//////////////////////////---------------------------------------
+
+				try {
+					// secilen koltugu dolu olarak ekleme
+					int filmID = subadmin.cinemaList().get(MainScreen.table_Cinema.getSelectedRow()).getFilmID();
+					Arrays.sort(SeatSelection.seats);
+					for (String s : SeatSelection.seats) {
+						shelper.seatAdd(s, "d", filmID, member.getId());
+					}
+				} catch (Exception e2) {
+
+				}
+
+				////////////////////////////////////////////////// -----------------------
+
 				if (comboBox_Method.getSelectedIndex() == 1) {
 					BuyTicket.setlblCard("Ucret, BANKA/KREDI KARTI ile odenmistir. Borcunuz yoktur.");
 					BuyTicket.setPrice("Odendi");
@@ -868,7 +852,7 @@ public class MainScreen extends JFrame {
 		fld_CinemaDate.setBackground(Color.WHITE);
 		fld_CinemaDate.setBounds(140, 119, 75, 20);
 		PaneCinema.add(fld_CinemaDate);
-		BuyTicket.setUser(member.getName()+" " +member.getSurname()+ " ");
+		BuyTicket.setUser(member.getName() + " " + member.getSurname() + " ");
 		///////////////////////////////////////////////// PANESİNEMA/////////////////////////////////////////////////////////////////////
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1180,6 +1164,24 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket2.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+
+//////////////////////////---------------------------------------
+
+				try {
+//secilen koltugu dolu olarak ekleme
+					int theaterID = subadmin.theaterList().get(MainScreen.table_Theater.getSelectedRow())
+							.getTiyatroID();
+
+					Arrays.sort(SeatSelectionTheater.seats);
+					for (String s : SeatSelectionTheater.seats) {
+						shelper.seatAddTheater(s, "d", theaterID, member.getId());
+					}
+				} catch (Exception e2) {
+
+				}
+
+//////////////////////////////////////////////////-----------------------
+
 				if (comboBox_Method2.getSelectedIndex() == 1) {
 					BuyTicketTheater.setlblCard("Ucret, BANKA/KREDI KARTI ile odenmistir. Borcunuz yoktur.");
 					BuyTicketTheater.setPrice("Odendi");
@@ -1360,7 +1362,7 @@ public class MainScreen extends JFrame {
 		btn_CancelTicket2.setForeground(new Color(0, 0, 0));
 		btn_CancelTicket2.setBackground(new Color(255, 153, 153));
 		btn_CancelTicket2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		BuyTicketTheater.setUser(member.getName()+" " +member.getSurname()+ " ");
+		BuyTicketTheater.setUser(member.getName() + " " + member.getSurname() + " ");
 		///////////////////////////////////////////////////// PANETİYATRO////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1713,7 +1715,6 @@ public class MainScreen extends JFrame {
 		// txt_TicketCount
 		// txt_GhostTicketPrice
 
-		
 		txt_StudentCount.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
@@ -1756,15 +1757,13 @@ public class MainScreen extends JFrame {
 				}
 			}
 		});
-		
-		
-		
+
 		txt_StudentCount.getDocument().addDocumentListener((DocumentListener) new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				
+
 				txt_Total.setText(Math.round(Double.parseDouble(txt_GhostTicketPrice.getText())
 						* Double.parseDouble(txt_TicketCount.getText())
 						- ((0.4) * Double.parseDouble(txt_StudentCount.getText())
@@ -2007,7 +2006,7 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket3.setBounds(175, 435, 100, 30);
 		PaneConcert.add(btn_BuyTicket3);
 		btn_BuyTicket3.setFont(new Font("SansSerif", Font.BOLD, 15));
-		BuyTicketConcert.setUser(member.getName()+" " +member.getSurname()+ " ");
+		BuyTicketConcert.setUser(member.getName() + " " + member.getSurname() + " ");
 		///////////////////////////////////////////////////// PANEKONSER////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

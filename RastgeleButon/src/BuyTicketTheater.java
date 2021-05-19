@@ -37,6 +37,7 @@ public class BuyTicketTheater extends JFrame {
 	JTextField txt_StudentCount;
 	public static JLabel lbl_Card;
 	public static JLabel lbl_InfoStudent;
+	public static String[] seats;
 	private static String theater, seance, seat, price, salon, theater_type, theaterDate, seatCount, studentCount,lblCard,lblInfoStudent,user;
 	public static JComboBox comboBox_seatTheater;
 	private JTextField txt_TheaterDate;
@@ -258,7 +259,7 @@ public class BuyTicketTheater extends JFrame {
 				}
 			}
 
-			String[] seats = new String[count];
+			seats = new String[count];
 			int k = 0;
 
 			if (seat.length() <= 3) {
