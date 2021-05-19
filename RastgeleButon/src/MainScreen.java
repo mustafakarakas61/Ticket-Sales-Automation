@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Helper.DbHelper;
 import Helper.Metod_Helper;
+import Helper.SeatHelper;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,6 +41,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeEvent;
@@ -60,9 +62,9 @@ public class MainScreen extends JFrame {
 	private Object[] cinemaData = null; // sqlden veri çekmek için
 	private Object[] theaterData = null;
 	private Object[] concertData = null;
-	private JTable table_Cinema;
-	private JTable table_Theater;
-	private JTable table_Concert;
+	public static JTable table_Cinema;
+	public JTable table_Theater;
+	public JTable table_Concert;
 	private JTextField fld_concertName;
 	private JTextField fld_Artist3;
 	private JTextField fld_Seance3;
@@ -91,6 +93,7 @@ public class MainScreen extends JFrame {
 	private JTextField txt_TicketCount;
 	private JTextField txt_StudentCount;
 	private JTextField txt_GhostTicketPrice;
+	SeatHelper shelper = new SeatHelper();
 	private JTextField txt_Total;
 
 	/**
@@ -381,6 +384,7 @@ public class MainScreen extends JFrame {
 		btn_SelectSeat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SeatSelection ks = new SeatSelection();
+			
 				ks.setVisible(true);
 			}
 		});
@@ -639,6 +643,38 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+//////////////////////////---------------------------------------
+				
+				
+				
+		try {//////////////////////////////////////////////Bu sadece 1 koltuk, bunu forlu yapacaz coklu
+			//secilen koltugu dolu olarak ekleme
+			int filmID = subadmin.cinemaList().get(MainScreen.table_Cinema.getSelectedRow()).getFilmID();
+			
+			
+			Arrays.sort(SeatSelection.seats);
+			for (String s : SeatSelection.seats) {
+				shelper.seatAdd(s, "d", filmID);
+			} }catch (Exception e2) {
+
+				
+				
+			}
+			
+			
+		//////////////////////////////////////////////////-----------------------
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				if (comboBox_Method.getSelectedIndex() == 1) {
 					BuyTicket.setlblCard("Ucret, BANKA/KREDI KARTI ile odenmistir. Borcunuz yoktur.");
 					BuyTicket.setPrice("Odendi");

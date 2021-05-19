@@ -29,7 +29,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -41,15 +47,18 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 	private JPanel contentPane;
 	SeatHelper[][] seat = new SeatHelper[10][15];
+	public static String[] seats;
 	public JTextField txt_TotalSeats;
 	private JTextField txt_TotalStudent;
 	private JTextField txt_Total;
+	private static SAdmin subadmin = new SAdmin();
 	private JTextField txt_SelectedSeatsNumbers;
 	String seatName = null;
-	SeatHelper shelper= new SeatHelper(); 
+	SeatHelper shelper = new SeatHelper();
 	DbHelper dbhelper = new DbHelper();
-			
-			
+	Connection connection = null;
+	Statement statement;
+	PreparedStatement pStatement;
 
 	/**
 	 * Launch the application.
@@ -71,6 +80,8 @@ public class SeatSelection extends JFrame implements MouseListener {
 	 * Create the frame.
 	 */
 	public SeatSelection() {
+		Metod_Helper.showMsg("Koltuk verileri guncelleniyor... Lutfen bekleyiniz.");
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1100, 628);
 		contentPane = new JPanel();
@@ -138,17 +149,116 @@ public class SeatSelection extends JFrame implements MouseListener {
 						w_paneSeat.add(lbl_SalonText);
 					}
 				} else {
+					// **************************************-------------------Koltuklar burda
 					SeatHelper s = new SeatHelper(row, col);
 					s.setSize(50, 45);
 					s.setText("");
+					w_paneSeat.add(s);
+					// *----------------Koltugun bos oldugunda yanan renk burasi
+					
+					
+					//-------------------------------------kirmizi yanma
+					try {
+						
+						//row coldan eriþ
+						String roww="";
+						if(row==0)
+						{
+							roww="A";
+						}
+						else if(row==1)
+						{
+							roww="B";
+						}
+						else if(row==2)
+						{
+							roww="C";
+						}
+						else if(row==3)
+						{
+							roww="D";
+						}
+						else if(row==4)
+						{
+							roww="E";
+						}
+						else if(row==5)
+						{
+							roww="F";
+						}
+						else if(row==6)
+						{
+							roww="G";
+						}
+						else if(row==7)
+						{
+							roww="H";
+						}
+						else if(row==8)
+						{
+							roww="I";
+						}
+						else if(row==9)
+						{
+							roww="J";
+						}
+						String typess="d";
+						String rows = roww;
+						String seatNames="";
+						int filmID = subadmin.cinemaList().get(MainScreen.table_Cinema.getSelectedRow()).getFilmID();
+						if(col>7) {
+						String	cols = (col)+"";
+							
+							 seatNames=rows+cols;
+					
+						
+						}
+						else if(col<7)
+						{
+							String	cols = (col+1)+"";
+						
+							 seatNames=rows+cols;
+							
+							
+						}
+						boolean control = shelper.seatGet(seatNames, typess, filmID);
+						 
+						
+						
+					/*	if (control) {
+							Metod_Helper.showMsg("succes");
+						} else {
+							//Metod_Helper.showMsg("Bu koltuk dolu !");
+						}*/
+						
+					
+					
+					
+					if(control)
+					{
+						ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatOff.png"));
+						
+						s.setBackground(Color.white);
+						s.setIcon(imageIcon);
+						
+						s.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
+						
+					}
+					else {
 					ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatOn.png"));
+					
 					s.setBackground(Color.white);
 					s.setIcon(imageIcon);
+					
 					s.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
-					w_paneSeat.add(s);
-					s.addMouseListener(this);
+					s.addMouseListener(this);}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
-			}
+			} // *********************-------------------------------------------------------------------------------isimlendirme
+				// asagida
 		}
 
 		JPanel w_paneTopNumber = new JPanel();
@@ -408,49 +518,95 @@ public class SeatSelection extends JFrame implements MouseListener {
 		txt_SelectedSeatsNumbers.setBackground(Color.WHITE);
 		txt_SelectedSeatsNumbers.setBounds(792, 537, 65, 20);
 		contentPane.add(txt_SelectedSeatsNumbers);
-		
-				JButton btn_Confirm = new JButton("Onayla");
-				btn_Confirm.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						System.out.println(seatName);
-						
-						try {
-							
-							boolean control = shelper.seatAdd(seatName, "d");
-							if (control) {
-								Metod_Helper.showMsg("succes");
-							}else
-								
-								Metod_Helper.showMsg("Bu koltuk dolu !");
-							
-						} catch (Exception e2) {
-							System.out.println(e2);
+
+		JButton btn_Confirm = new JButton("Onayla");
+		btn_Confirm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+		/*		seatNamesSelect=new JTextField();
+			//	seatNamesSelect.setFont(new Font("Arial", Font.BOLD, 15));
+				seatNamesSelect.setEditable(false);
+				seatNamesSelect.setColumns(10);
+				seatNamesSelect.setVisible(false);
+				seatNamesSelect.setBackground(Color.WHITE);
+				seatNamesSelect.setBounds(792, 537, 65, 20);
+				contentPane.add(seatNamesSelect);
+				seatNamesSelect.setText(seatName);
+				
+			System.out.println(seatNamesSelect.getText());*/
+				
+				int count = 0;
+
+				if (txt_SelectedSeatsNumbers.getText() != null) {
+					for (int i = 0; i < txt_SelectedSeatsNumbers.getText().length(); i++) {
+						if (txt_SelectedSeatsNumbers.getText().charAt(i) == '*') {
+
+							count++;
 						}
-						BuyTicket.setSeat(txt_SelectedSeatsNumbers.getText());
-						BuyTicket.setPrice(txt_Total.getText());
-						BuyTicket.setSeatCount(txt_TotalSeats.getText());
-						BuyTicket.setStudentCount(txt_TotalStudent.getText());
-						
-						if(txt_TotalStudent.getText().length()==0)
-						{
-							BuyTicket.setStudentCount("0");
-							
-						}
-						dispose();
 					}
-				});
-				btn_Confirm.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
-				btn_Confirm.setBounds(492, 525, 100, 44);
-				contentPane.add(btn_Confirm);
+					seats = new String[count];
+					int k = 0;
+
+					if (txt_SelectedSeatsNumbers.getText().length() <= 3) {
+						for (int i = 0; i < txt_SelectedSeatsNumbers.getText().length(); i++) {
+
+							if (txt_SelectedSeatsNumbers.getText().charAt(i) == '*') {
+								seats[k] = txt_SelectedSeatsNumbers.getText().charAt(i + 1) + "" + txt_SelectedSeatsNumbers.getText().charAt(i + 2);
+								k++;
+							}
+
+						}
+					} else if (txt_SelectedSeatsNumbers.getText().length() > 3) {
+						for (int i = 0; i < txt_SelectedSeatsNumbers.getText().length(); i++) {
+
+							try {
+								if (txt_SelectedSeatsNumbers.getText().charAt(i) == '*') {
+									if (txt_SelectedSeatsNumbers.getText().charAt(i + 3) == '*') {
+										seats[k] = txt_SelectedSeatsNumbers.getText().charAt(i + 1) + "" + txt_SelectedSeatsNumbers.getText().charAt(i + 2);
+									} else {
+										seats[k] = txt_SelectedSeatsNumbers.getText().charAt(i + 1) + "" + txt_SelectedSeatsNumbers.getText().charAt(i + 2) + "" + txt_SelectedSeatsNumbers.getText().charAt(i + 3);
+									}
+									k++;
+								}
+							} catch (Exception e2) {
+								if (txt_SelectedSeatsNumbers.getText().charAt(i) == '*') {
+
+									seats[k] = txt_SelectedSeatsNumbers.getText().charAt(i + 1) + "" + txt_SelectedSeatsNumbers.getText().charAt(i + 2);
+
+									k++;
+								}
+							}
+						}
+					}
+
+				}
+				
+				
+
+				BuyTicket.setSeat(txt_SelectedSeatsNumbers.getText());
+				BuyTicket.setPrice(txt_Total.getText());
+				BuyTicket.setSeatCount(txt_TotalSeats.getText());
+				BuyTicket.setStudentCount(txt_TotalStudent.getText());
+
+				if (txt_TotalStudent.getText().length() == 0) {
+					BuyTicket.setStudentCount("0");
+
+				}
+				dispose();
+			}
+		});
+		btn_Confirm.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
+		btn_Confirm.setBounds(492, 525, 100, 44);
+		contentPane.add(btn_Confirm);
 
 	}
 
-	@Override
+	@Override // ---------------------------------------------------Selected
 	public void mouseClicked(MouseEvent e) {
 		SeatHelper s = (SeatHelper) e.getComponent();
-		
 
 		if (e.getButton() == 1) {
+			// ---------------*************************Secme islemi yaptigiiiiiiiiiiiiiiiii
 			if (!(s.isSeatSelect())) {
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatSelect.png"));
 				if (s.getRow() == 0 && s.getCol() < 7) {
@@ -533,7 +689,8 @@ public class SeatSelection extends JFrame implements MouseListener {
 					seatName = ("J" + (s.getCol()));
 
 				}
-
+				// --------------------*****************seatName sectigi koltuklarin ismi
+				// geliyor buraya kadar
 				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText() + "*" + seatName);
 
 				String sentence = txt_SelectedSeatsNumbers.getText();
@@ -551,7 +708,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 				s.setSeatSelect(true);
 
-			} else {
+			} else {// ----------------------------sutun isimlerinin devami secmeyi iptal ettiginde ayni islem
 				if (s.getRow() == 0 && s.getCol() < 7) {
 					seatName = ("A" + (s.getCol() + 1));
 
@@ -632,7 +789,10 @@ public class SeatSelection extends JFrame implements MouseListener {
 					seatName = ("J" + (s.getCol()));
 
 				}
-
+				// ---------------------------------***************************isimlendirme
+				// seatName ismi cekiyor 2. yeri
+				// sectiginde yesil renge yandigi yer
+				
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatOn.png"));
 				s.setIcon(imageIcon);
 
