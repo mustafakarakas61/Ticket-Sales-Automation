@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Helper.DbHelper;
-
 public class user {
 
 	private int ID;
@@ -141,6 +140,9 @@ public class user {
 			return false;
 		}
 	}
+	
+	
+	
 
 	public int getId() {
 		return ID;

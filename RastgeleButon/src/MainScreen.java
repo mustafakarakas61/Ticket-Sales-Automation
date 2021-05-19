@@ -84,7 +84,8 @@ public class MainScreen extends JFrame {
 	private JTextField fld_Salon2;
 	private JTextField fld_Time;
 	private JTextField fld_cvc2;
-
+	SeatHelper sh = new SeatHelper();
+	Member  mmbr = new Member();
 	private JTextField fld_ConcertType;
 
 	private static user member = new Member();
@@ -831,6 +832,19 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		JButton btn_CancelTicket = new JButton("Bilet Iptal");
+		btn_CancelTicket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CancelTicket CT = new CancelTicket();
+				CT.setVisible(true);
+				
+				
+				
+				
+				
+				
+				
+			}
+		});
 		btn_CancelTicket.setFocusable(false);
 		btn_CancelTicket.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_CancelTicket.setBounds(290, 435, 100, 30);
