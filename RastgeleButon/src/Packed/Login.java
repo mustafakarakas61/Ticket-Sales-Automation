@@ -82,7 +82,7 @@ public class Login extends JFrame {
 		lbl_UserTC.setBounds(10, 22, 108, 14);
 		w_paneCustomer.add(lbl_UserTC);
 		
-		JLabel lbl_Password_Login = new JLabel("\u015Eifre:");
+		JLabel lbl_Password_Login = new JLabel("Sifre:");
 		lbl_Password_Login.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		lbl_Password_Login.setBounds(10, 60, 41, 14);
 		w_paneCustomer.add(lbl_Password_Login);
@@ -149,7 +149,7 @@ public class Login extends JFrame {
 		w_paneCustomer.add(btn_Register);
 		
 		JButton btn_Login = new JButton("Giriþ Yap");
-		//----------------------------------------------Login
+		//--------------------------------------------------------Login
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -194,11 +194,20 @@ public class Login extends JFrame {
 											, result.getString("Email")
 											, result.getString("type")
 											);
+									
+								
+								if ((fld_Username_Login.getText().length() ==11 && fld_Password_Login.getText().length() >=6)) {
+									
+									
 									MainScreen ms= new MainScreen(member);
 									ms.setVisible(true);
 									dispose();
-									key = false;
-						
+									
+								}else {
+									Metod_Helper.showMsg("TC No 11 hane parola minimum 6 hane olmalidir");
+								}
+									
+								key = false;
 								}
 								
 							
@@ -394,10 +403,19 @@ public class Login extends JFrame {
 												,result.getString("UserName")
 												, result.getString("type")
 												);
-									SubAdmin sa = new SubAdmin(sub);
-									sa.setVisible(true);
-									dispose();
-									key = false;
+									
+									if ((fld_Username_Admin.getText().length() >5 || fld_Password_Admin.getText().length() >5)) {
+										
+										
+										
+										SubAdmin sa = new SubAdmin(sub);
+										sa.setVisible(true);
+										dispose();
+										key = false;
+									}else {
+										Metod_Helper.showMsg("Kullanici adi ve parolasi 5 haneden büyük olmalidir");
+									}
+									
 							
 							
 							

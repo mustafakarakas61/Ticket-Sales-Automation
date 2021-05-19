@@ -41,7 +41,7 @@ public class Member extends user {
 
             while (result.next()) {
                 duplicate = true;
-                Metod_Helper.showMsg("Kullanýcý zaten mevcut (TC)");
+                Metod_Helper.showMsg("Kullanýcý zaten mevcut");
 
                 break;
 

@@ -127,20 +127,20 @@ public class Register extends JFrame {
 							txt_mail.getText(), txt_Surname.getText());
 
 					if (control && (txt_Name.getText().length() != 0 || txt_Surname.getText().length() != 0
-							|| txt_TCNo.getText().length() != 0 || txt_mail.getText().length() != 0
-							|| passfld_p1.getText().length() != 0 || passfld_p2.getText().length() != 0)) {
+							|| txt_TCNo.getText().length() == 11 || txt_mail.getText().length() != 0
+							|| passfld_p1.getText().length() >= 6 || passfld_p2.getText().length() >= 6)) {
 						Metod_Helper.showMsg("succes");
 						Login login = new Login();
 						login.setVisible(true);
 						dispose();
 
 					}
-					if (!control && (txt_Name.getText().length() != 0 || txt_Surname.getText().length() != 0
-							|| txt_TCNo.getText().length() != 0 || txt_mail.getText().length() != 0
-							|| passfld_p1.getText().length() != 0 || passfld_p2.getText().length() != 0)) {
-						Metod_Helper.showMsg(
-								txt_TCNo.getText() + "Girilen T.C. kimlik Numarasý daha önce sisteme kayýtlý.");
-					}
+//					if (!control && (txt_Name.getText().length() != 0 || txt_Surname.getText().length() != 0
+//							|| txt_TCNo.getText().length() == 11 || txt_mail.getText().length() != 0
+//							|| passfld_p1.getText().length() >=
+//								txt_TCNo.getText() + "Girilen T.C. k 6 || passfld_p2.getText().length() >= 6)) {
+//						Metod_Helper.showMsg(imlik Numarasý daha önce sisteme kayýtlý.");
+//					}
 
 				}
 
