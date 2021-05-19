@@ -1,18 +1,33 @@
 package Helper;
 
 import java.awt.Color;
+import java.lang.reflect.Member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.ArrayList;
+import Packed.*;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+
 public class SeatHelper extends JButton {
-	private int row,col;
+	
+	private int row,col,filmID,userID;
+	
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+
 	private boolean SeatOn,SeatOff,SeatSelect;
+	private String SeatName;
+	
 	
 	DbHelper dbhelper = new DbHelper();
 	Connection connection = null;
@@ -20,7 +35,10 @@ public class SeatHelper extends JButton {
 	Statement statement ;  
 	ResultSet result ;
 	
-	public SeatHelper() {}
+	public SeatHelper() {
+		this.SeatName= SeatName;
+		
+	}
 	
 	public SeatHelper(int row, int col)
 	{
@@ -30,6 +48,16 @@ public class SeatHelper extends JButton {
 		this.SeatOff = false;
 		this.SeatSelect = false;
 	}
+	
+	
+	public SeatHelper (int filmID, String SeatName,int userID) {
+		
+		this.filmID = filmID;
+		this.SeatName = SeatName;
+		this.userID=userID;
+	}
+	
+	
 	
 	public boolean seatAdd(String seatName ,String stype, int filmID, int userID) {
 
@@ -71,6 +99,7 @@ public class SeatHelper extends JButton {
 	        } else
 	            return false;
 	}
+	
 	
 	public boolean seatGet(String seatName ,String stype, int filmID) {
 
@@ -220,6 +249,59 @@ public class SeatHelper extends JButton {
 	
 	
 	
+	public boolean delMemberSeat(int ID, String userSelectSeatName) throws SQLException {
+		boolean key;
+		String query = "DELETE FROM booking.seat WHERE userID = ? and name ?";
+		statement = connection.createStatement();
+		pStatement = connection.prepareStatement(query);
+		pStatement.setInt(1, ID);
+		pStatement.setString(2, userSelectSeatName);
+		pStatement.executeUpdate();
+		key = true;
+
+		if (key) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public ArrayList<SeatHelper> userSeatfilmTickets() throws SQLException {
+		ArrayList<SeatHelper> userSeatfilmList = new ArrayList<>();
+		try {
+		
+			connection = dbhelper.getConnection();
+			statement = connection.createStatement();
+			ResultSet result = statement.executeQuery("SELECT * FROM seat WHERE userID="+MainScreen.memberID);
+			SeatHelper sinemaTickets;
+			while (result.next()) {
+				sinemaTickets = new SeatHelper(result.getInt("filmID"),result.getString("name"),result.getInt("userID"));
+				userSeatfilmList.add(sinemaTickets);
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return userSeatfilmList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public int getFilmID() {
+		return filmID;
+	}
+
+	public void setFilmID(int filmID) {
+		this.filmID = filmID;
+	}
+
 	public int getRow() {
 		return row;
 	}
@@ -249,5 +331,12 @@ public class SeatHelper extends JButton {
 	}
 	public void setSeatSelect(boolean seatSelect) {
 		SeatSelect = seatSelect;
+	}
+	public String getSeatName() {
+		return SeatName;
+	}
+
+	public void setSeatName(String seatName) {
+		SeatName = seatName;
 	}
 }

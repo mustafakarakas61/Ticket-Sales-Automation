@@ -1,3 +1,4 @@
+package Packed;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -87,7 +88,7 @@ public class MainScreen extends JFrame {
 	SeatHelper sh = new SeatHelper();
 	Member  mmbr = new Member();
 	private JTextField fld_ConcertType;
-
+	public static int memberID;
 	private static user member = new Member();
 	private static SAdmin subadmin = new SAdmin();
 	private JTextField fld_CinemaDate;
@@ -116,7 +117,11 @@ public class MainScreen extends JFrame {
 	public MainScreen(user member) throws SQLException {
 		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
-
+		System.out.println(member.getId());
+		System.out.println(member.getName());
+		memberID=member.getId();
+		
+		
 //////////////////////////////////////////////////////////////////////////////////Sinema
 		cinemaModel = new DefaultTableModel();
 		Object[] colCinema = new Object[6]; // tablo sütunlarına isim vermek için
@@ -633,9 +638,18 @@ public class MainScreen extends JFrame {
 		w_pane_Kart.add(fld_CartNumber);
 
 		JButton btn_MyTickets = new JButton("Biletlerim");
+		btn_MyTickets.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyTickets mT = new MyTickets();
+				
+				
+
+				mT.setVisible(true);
+			}
+		});
 		btn_MyTickets.setFocusable(false);
 		btn_MyTickets.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_MyTickets.setBounds(60, 435, 100, 30);
+		btn_MyTickets.setBounds(127, 435, 100, 30);
 		PaneCinema.add(btn_MyTickets);
 		btn_MyTickets.setForeground(new Color(0, 0, 0));
 		btn_MyTickets.setBackground(new Color(255, 255, 153));
@@ -827,31 +841,9 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_BuyTicket.setForeground(new Color(0, 0, 0));
 		btn_BuyTicket.setBackground(new Color(153, 255, 153));
-		btn_BuyTicket.setBounds(175, 435, 100, 30);
+		btn_BuyTicket.setBounds(242, 435, 100, 30);
 		PaneCinema.add(btn_BuyTicket);
 		btn_BuyTicket.setFont(new Font("SansSerif", Font.BOLD, 15));
-
-		JButton btn_CancelTicket = new JButton("Bilet Iptal");
-		btn_CancelTicket.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CancelTicket CT = new CancelTicket();
-				CT.setVisible(true);
-				
-				
-				
-				
-				
-				
-				
-			}
-		});
-		btn_CancelTicket.setFocusable(false);
-		btn_CancelTicket.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_CancelTicket.setBounds(290, 435, 100, 30);
-		PaneCinema.add(btn_CancelTicket);
-		btn_CancelTicket.setForeground(new Color(0, 0, 0));
-		btn_CancelTicket.setBackground(new Color(255, 153, 153));
-		btn_CancelTicket.setFont(new Font("SansSerif", Font.PLAIN, 15));
 
 		JLabel lbl_CinemaDate = new JLabel("Tarih:");
 		lbl_CinemaDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
@@ -2034,6 +2026,18 @@ public class MainScreen extends JFrame {
 		btn_Select.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_Select.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				if (tabbedPane.getSelectedIndex() == 0) {
 					int selRow = table_Cinema.getSelectedRow();
 					if (selRow >= 0) {

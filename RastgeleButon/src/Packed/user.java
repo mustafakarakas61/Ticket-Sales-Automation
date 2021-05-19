@@ -1,3 +1,4 @@
+package Packed;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ public class user {
 	Connection connection = null;
 	ResultSet result = null;
 	PreparedStatement pStatement = null;
-
+	
 	DbHelper dbHelper = new DbHelper();
 
 	public user() {
