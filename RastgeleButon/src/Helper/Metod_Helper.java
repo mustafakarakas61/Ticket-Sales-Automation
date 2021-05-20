@@ -25,7 +25,7 @@ public class Metod_Helper {
 			msg = "Islem basariyla tamamlandi.";
 			break;
 		case "error":
-			msg = "Tuhaf Seyler oluyor";
+			msg = "Hata Var Kontrol Ediniz";
 
 		default:
 			msg = str;

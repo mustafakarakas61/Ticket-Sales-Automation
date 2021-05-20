@@ -115,6 +115,7 @@ public class user {
 	public boolean delSubAdmin(int ID) throws SQLException {
 		boolean key;
 		String query = "DELETE FROM booking.admin WHERE ID = ?";
+		connection = dbHelper.getConnection();
 		statement = connection.createStatement();
 		pStatement = connection.prepareStatement(query);
 		pStatement.setInt(1, ID);
@@ -131,6 +132,7 @@ public class user {
 	public boolean delMember(int ID) throws SQLException {
 		boolean key;
 		String query = "DELETE FROM booking.register WHERE ID = ?";
+		connection = dbHelper.getConnection();
 		statement = connection.createStatement();
 		pStatement = connection.prepareStatement(query);
 		pStatement.setInt(1, ID);
