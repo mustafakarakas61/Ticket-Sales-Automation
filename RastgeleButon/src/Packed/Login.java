@@ -398,11 +398,12 @@ public class Login extends JFrame {
 										SubAdmin sa = new SubAdmin(sub);
 										sa.setVisible(true);
 										dispose();
-										key = false;
+										
 									} else {
 										Metod_Helper.showMsg("Kullanici adi ve parolasi 5 haneden buyuk olmalidir");
 									}
 
+									key = false;
 								}
 							}
 						}
