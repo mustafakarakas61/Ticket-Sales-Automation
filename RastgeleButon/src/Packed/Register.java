@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import Helper.DbHelper;
 import Helper.Metod_Helper;
 
 import javax.swing.JLabel;
@@ -39,7 +38,6 @@ public class Register extends JFrame {
 	private JPasswordField passfld_p2;
 	private JTextField txt_mail;
 	private JTextField txt_TCNo;
-	private DbHelper dbhelper = new DbHelper();
 	private Member member = new Member();
 
 	/**
@@ -63,7 +61,7 @@ public class Register extends JFrame {
 	 */
 	public Register() {
 		setResizable(false);
-		setTitle("Kay\u0131t Ol");
+		setTitle("Kayit Ol");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -82,12 +80,12 @@ public class Register extends JFrame {
 		lbl_Surname.setBounds(32, 73, 160, 24);
 		contentPane.add(lbl_Surname);
 
-		JLabel lbl_Password1 = new JLabel("\u015Eifreniz:");
+		JLabel lbl_Password1 = new JLabel("Sifreniz:");
 		lbl_Password1.setFont(new Font("Yu Gothic", Font.BOLD, 14));
 		lbl_Password1.setBounds(32, 121, 160, 24);
 		contentPane.add(lbl_Password1);
 
-		JLabel lbl_Password2 = new JLabel("\u015Eifrenizi Tekrar giriniz:");
+		JLabel lbl_Password2 = new JLabel("Sifrenizi Tekrar giriniz:");
 		lbl_Password2.setFont(new Font("Yu Gothic", Font.BOLD, 14));
 		lbl_Password2.setBounds(32, 144, 160, 24);
 		contentPane.add(lbl_Password2);
@@ -114,15 +112,22 @@ public class Register extends JFrame {
 
 				}
 				if (!(passfld_p1.getText().equals(passfld_p2.getText()))) {
-					JOptionPane.showMessageDialog(null, "Tekrar girdiðiniz þifre ile þifreniz uyuþmuyor.", "Mesaj",
+					JOptionPane.showMessageDialog(null, "Tekrar girdiginiz sifre ile sifreniz uyusmuyor.", "Mesaj",
 							JOptionPane.ERROR_MESSAGE);
 					passfld_p2.setText("");
 				} else if (!chckbx_Confirm.isSelected()) {
 					JOptionPane.showMessageDialog(null,
-							"Kullanýcý sözleþmesini ve davranýþ kurallarýný kabul etmelisiniz.", "Mesaj",
+							"Kullanici, sozlesmesini ve davranis kurallarini kabul etmelisiniz.", "Mesaj",
 							JOptionPane.INFORMATION_MESSAGE);
-					passfld_p2.setText("");
-				} else { // kayýt ol kýsmý -------------------------------------
+				}
+				else if(txt_TCNo.getText().length() != 11){
+					Metod_Helper.showMsg("T.C. Kimlik Numarasi 11 haneli olmalidir.");
+				}
+				else if( passfld_p1.getText().length() < 6 || passfld_p2.getText().length() < 6) {
+					Metod_Helper.showMsg("Sifreniz en az 6 haneli olmalidir.");
+				}
+				
+				else {
 					boolean control = member.register(txt_TCNo.getText(), passfld_p1.getText(), txt_Name.getText(),
 							txt_mail.getText(), txt_Surname.getText());
 
@@ -135,12 +140,6 @@ public class Register extends JFrame {
 						dispose();
 
 					}
-//					if (!control && (txt_Name.getText().length() != 0 || txt_Surname.getText().length() != 0
-//							|| txt_TCNo.getText().length() == 11 || txt_mail.getText().length() != 0
-//							|| passfld_p1.getText().length() >=
-//								txt_TCNo.getText() + "Girilen T.C. k 6 || passfld_p2.getText().length() >= 6)) {
-//						Metod_Helper.showMsg(imlik Numarasý daha önce sisteme kayýtlý.");
-//					}
 
 				}
 
@@ -151,7 +150,7 @@ public class Register extends JFrame {
 		btn_Register.setBounds(175, 221, 89, 39);
 		contentPane.add(btn_Register);
 
-		JButton btn_GoBack = new JButton("Geri Dön");
+		JButton btn_GoBack = new JButton("Geri Don");
 		btn_GoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login lg = new Login();
@@ -364,7 +363,6 @@ public class Register extends JFrame {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 
 				if (!(passfld_p1.getText().equals(passfld_p2.getText()))) {
 					passfld_p1.setBackground(Color.red);
@@ -380,7 +378,6 @@ public class Register extends JFrame {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 				if (passfld_p1.getText().length() == 0 || passfld_p2.getText().length() == 0) {
 					passfld_p1.setBackground(Color.white);
 					passfld_p2.setBackground(Color.white);
@@ -395,7 +392,6 @@ public class Register extends JFrame {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -404,7 +400,6 @@ public class Register extends JFrame {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 
 				if (passfld_p2.getText().length() > 0 && !(passfld_p1.getText().equals(passfld_p2.getText()))) {
 					passfld_p1.setBackground(Color.red);
@@ -420,7 +415,6 @@ public class Register extends JFrame {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 				if (passfld_p1.getText().length() == 0 || passfld_p2.getText().length() == 0) {
 					passfld_p1.setBackground(Color.white);
 					passfld_p2.setBackground(Color.white);
@@ -432,7 +426,6 @@ public class Register extends JFrame {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
