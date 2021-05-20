@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -31,7 +32,6 @@ import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-
 public class ForgottenPassword extends JFrame {
 
 	private JPanel contentPane;
@@ -40,7 +40,7 @@ public class ForgottenPassword extends JFrame {
 	private JTextField fld_Confirm;
 	Connection connection = null;
 	DbHelper dbHelper = new DbHelper();
-	Statement statement ;
+	Statement statement;
 
 	/**
 	 * Launch the application. comitted
@@ -111,7 +111,8 @@ public class ForgottenPassword extends JFrame {
 		fld_Confirm.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
-				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE ||ke.getKeyChar()=='-'||ke.getKeyChar()=='+') {
+				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+						|| ke.getKeyChar() == '-' || ke.getKeyChar() == '+') {
 
 					if (fld_Confirm.getText().length() < 3 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 						fld_Confirm.setEditable(true);
@@ -127,7 +128,7 @@ public class ForgottenPassword extends JFrame {
 		});
 		contentPane.add(fld_Confirm);
 
-		JButton btnNewButton = new JButton("Gönder");
+		JButton btnNewButton = new JButton("Gonder");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -136,91 +137,73 @@ public class ForgottenPassword extends JFrame {
 						Login l = new Login();
 
 						///////////////////////////////////////////////////////
-						
-						
-						
+
 						boolean key = true;
 						try {
-							
+
 							connection = dbHelper.getConnection();
-							
-							statement=connection.createStatement();
-							
-							ResultSet result= statement.executeQuery("select * from booking.register");
-							
-							
+
+							statement = connection.createStatement();
+
+							ResultSet result = statement.executeQuery("select * from booking.register");
+
 							while (result.next()) {
-								
+
 								if (fld_Mail.getText().equals(result.getString("Email"))) {
-								
-									
+
 									if (result.getString("type").equals("user")) {
 
-								
-										
 										try {
 											TimeUnit.SECONDS.sleep(2);
 										} catch (InterruptedException e1) {
 											// TODO Auto-generated catch block
 											e1.printStackTrace();
 										}
-										JOptionPane.showMessageDialog(null, "Þifrenizi sýfýrlamanýz için mail gönderilmiþtir.", "Mesaj",
+										JOptionPane.showMessageDialog(null,
+												"Sifrenizi sifirlamaniz icin mail gonderilmistir.", "Mesaj",
 												JOptionPane.INFORMATION_MESSAGE);
-										
-										////////////////////////////////////////Mail
-										
-		
-										
+
+										//////////////////////////////////////// Mail
+
 										//////////////////////////////////
-										
-										
-									l.setVisible(true);
-									
+
+										l.setVisible(true);
+
 										dispose();
 										key = false;
-										
+
 									}
-									
-								
+
 								}
-								
+
 							}
-							 
+
 						} catch (SQLException e1) {
 							dbHelper.showErrorMessage(e1);
-						}
-						finally {
+						} finally {
 							try {
 								connection.close();
 								statement.close();
 							} catch (SQLException e1) {
-								
+
 								dbHelper.showErrorMessage(e1);
 							}
 						}
-						
-						if (key) 
-							Metod_Helper.showMsg("Böyle bir Mail sistemde kayýtlý deðil.");
-						
-						
-						
-						
-						
-						
-	
-						
-				
+
+						if (key)
+							Metod_Helper.showMsg("Boyle bir Mail sistemde kayitli degil.");
+
 					} else {
-						JOptionPane.showMessageDialog(null, "Yanlýþ cevap. Lütfen tekrar deneyiniz.", "Mesaj",
+						JOptionPane.showMessageDialog(null, "Yanlis cevap. Lutfen tekrar deneyiniz.", "Mesaj",
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				if (fld_Mail.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "Þifrenizi sýfýrlamak için mailinizi giriniz.", "Mesaj",
+					JOptionPane.showMessageDialog(null, "Sifrenizi sifirlamak icin mailinizi giriniz.", "Mesaj",
 							JOptionPane.WARNING_MESSAGE);
 				}
 				if (fld_Confirm.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "Doðrulama alanýný boþ býrakmayýnýz.", "Mesaj",
+					JOptionPane.showMessageDialog(null, "Dogrulama alanini bos birakmayiniz.", "Mesaj",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
