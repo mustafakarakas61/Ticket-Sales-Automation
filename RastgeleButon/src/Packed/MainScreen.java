@@ -1380,7 +1380,7 @@ public class MainScreen extends JFrame {
 
 		JLabel lbl_Poster3 = new JLabel("");
 		lbl_Poster3.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Poster3.setBounds(312, 20, 120, 170);
+		lbl_Poster3.setBounds(312, 20, 120, 159);
 		PaneConcert.add(lbl_Poster3);
 
 		JLabel lbl_ConcertName = new JLabel("Konser Adi:");
@@ -2181,16 +2181,16 @@ public class MainScreen extends JFrame {
 							Connection con = dbhelper.getConnection();
 							Statement st = con.createStatement();
 							ResultSet rs = st.executeQuery("select * from booking.concert where concertID ="
-									+ (subadmin.concertList().get(selRow2).getFilmID()));
+									+ (subadmin.concertList().get(selRow2).getConcertID()));
 							if (rs.next()) {
 								byte[] img = rs.getBytes("pic");
 
 								ImageIcon image = new ImageIcon(img);
 								Image im = image.getImage();
-								Image myImg = im.getScaledInstance(lbl_Poster2.getWidth(), lbl_Poster2.getHeight(),
+								Image myImg = im.getScaledInstance(lbl_Poster3.getWidth(), lbl_Poster3.getHeight(),
 										Image.SCALE_SMOOTH);
 								ImageIcon newImage = new ImageIcon(myImg);
-								lbl_Poster2.setIcon(newImage);
+								lbl_Poster3.setIcon(newImage);
 							}
 
 							else {

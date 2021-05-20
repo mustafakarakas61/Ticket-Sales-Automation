@@ -838,12 +838,12 @@ public class SubAdmin extends JFrame {
 				// ------------------------------------------------------------------------------------------foto
 				// ekleme alanÃÂ½ bozma :)
 				try {
-
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					int selRow = table_Theater.getSelectedRow();
-					int id = (subadmin.theaterList().get(selRow).getFilmID());
+					int id2 = (subadmin.theaterList().get(selRow).getTiyatroID());
+
 					connection = dbhelper.getConnection();
-					pStatement = connection.prepareStatement("insert into tiyatro(pic) values(?)");
+					pStatement = connection.prepareStatement("update tiyatro set pic=? where tiyatroID =?");
 
 					JFileChooser jfc2 = new JFileChooser();
 					jfc2.showOpenDialog(null);
@@ -851,7 +851,7 @@ public class SubAdmin extends JFrame {
 
 					FileInputStream fis2 = new FileInputStream(file2);
 					pStatement.setBinaryStream(1, fis2, fis2.available());
-					pStatement.setInt(2, id);
+					pStatement.setInt(2, id2);
 
 					pStatement.executeUpdate();
 
@@ -1140,13 +1140,12 @@ public class SubAdmin extends JFrame {
 		btn_ImageSelect3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					connection = dbhelper.getConnection();
-					pStatement = connection.prepareStatement("insert into concert(pic) values(?)");
-
 					int selRow = table_Concert.getSelectedRow();
-					int id = (subadmin.concertList().get(selRow).getFilmID());
+					int id3 = (subadmin.concertList().get(selRow).getConcertID());
+
+					connection = dbhelper.getConnection();
+					pStatement = connection.prepareStatement("update concert set pic=? where concertID =?");
 
 					JFileChooser jfc3 = new JFileChooser();
 					jfc3.showOpenDialog(null);
@@ -1154,18 +1153,16 @@ public class SubAdmin extends JFrame {
 
 					FileInputStream fis3 = new FileInputStream(file3);
 					pStatement.setBinaryStream(1, fis3, fis3.available());
-					pStatement.setInt(2, id);
+					pStatement.setInt(2, id3);
+
 					pStatement.executeUpdate();
 
 					Metod_Helper.showMsg("succes");
 
-				} catch (Exception e3) {
-					// TODO: handle exception
-					System.out.println(e3);
+				} catch (Exception e2) {
+					System.out.println(e2);
 				}
-
-			}
-		});
+		}});
 
 		btn_ImageSelect3.setBounds(313, 169, 100, 30);
 		paneAddConcert.add(btn_ImageSelect3);

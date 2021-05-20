@@ -176,7 +176,7 @@ public class Register extends JFrame {
 		txt_Name.setBounds(189, 50, 225, 20);
 		txt_Name.addKeyListener(new KeyAdapter() {
 
-		public void keyPressed(KeyEvent ke) {
+			public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() == ' '
 						|| (ke.getKeyChar() == 'ý' || ke.getKeyChar() == 'ð' || ke.getKeyChar() == 'ü'
 								|| ke.getKeyChar() == 'þ' || ke.getKeyChar() == 'ö' || ke.getKeyChar() == 'ç'
@@ -222,16 +222,16 @@ public class Register extends JFrame {
 						|| ke.getKeyCode() == KeyEvent.VK_SHIFT || ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK
 						|| ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
 
-					if (txt_Name.getText().length() <= 30 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+					if (txt_Surname.getText().length() <= 30 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
 							|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
 							|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
-						txt_Name.setEditable(true);
+						txt_Surname.setEditable(true);
 					} else {
-						txt_Name.setEditable(false);
+						txt_Surname.setEditable(false);
 					}
 
 				} else {
-					txt_Name.setEditable(false);
+					txt_Surname.setEditable(false);
 
 				}
 			}
