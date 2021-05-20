@@ -17,6 +17,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
@@ -26,6 +28,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Toolkit;
+import javax.swing.border.BevelBorder;
 
 public class MyTickets extends JFrame {
 	private JPanel contentPane;
@@ -57,6 +61,8 @@ public class MyTickets extends JFrame {
 	 * Create the frame.
 	 */
 	public MyTickets() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MyTickets.class.getResource("/Images/ticket.png")));
+		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
 
 		MyTicketsModel = new DefaultTableModel();
@@ -68,24 +74,27 @@ public class MyTickets extends JFrame {
 		MyTicketsData = new Object[2];
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 384, 297);
+		setBounds(100, 100, 240, 370);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(253, 245, 230));
+		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		lbl_SeatsMember = new JLabel("");
 		lbl_SeatsMember.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_SeatsMember.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
-		lbl_SeatsMember.setBounds(10, 11, 414, 44);
+		lbl_SeatsMember.setBounds(10, 11, 204, 44);
 		contentPane.add(lbl_SeatsMember);
 
 		JScrollPane scrollPane_MyTickets = new JScrollPane();
-		scrollPane_MyTickets.setBounds(1, 0, 196, 268);
+		scrollPane_MyTickets.setBounds(10, 10, 204, 265);
 		contentPane.add(scrollPane_MyTickets);
 
 		table_MyTickets = new JTable(MyTicketsModel);
+		table_MyTickets.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		table_MyTickets.setBackground(new Color(245, 255, 250));
 		scrollPane_MyTickets.setViewportView(table_MyTickets);
 
@@ -107,7 +116,10 @@ public class MyTickets extends JFrame {
 		table_MyTickets.getColumn("Film Adi").setCellEditor(new TableEditor(new JCheckBox()));
 		table_MyTickets.getColumn("Koltuk No").setCellEditor(new TableEditor(new JCheckBox()));
 		JButton btn_cancel = new JButton("Iptal et");
-		btn_cancel.setFont(new Font("Tahoma", Font.BOLD, 17));
+		btn_cancel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_cancel.setBackground(new Color(255, 153, 153));
+		btn_cancel.setFocusable(false);
+		btn_cancel.setFont(new Font("SansSerif", Font.PLAIN, 15));
 
 		btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,7 +146,7 @@ public class MyTickets extends JFrame {
 
 			}
 		});
-		btn_cancel.setBounds(207, 194, 148, 49);
+		btn_cancel.setBounds(10, 280, 204, 40);
 		contentPane.add(btn_cancel);
 
 	}

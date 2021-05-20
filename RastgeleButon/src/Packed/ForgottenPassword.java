@@ -17,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -31,6 +33,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.border.BevelBorder;
 
 public class ForgottenPassword extends JFrame {
 
@@ -43,7 +47,7 @@ public class ForgottenPassword extends JFrame {
 	Statement statement;
 
 	/**
-	 * Launch the application. comitted
+	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -62,23 +66,28 @@ public class ForgottenPassword extends JFrame {
 	 * Create the frame.
 	 */
 	public ForgottenPassword() {
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ForgottenPassword.class.getResource("/Images/ticket.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 242, 194);
+		setBounds(100, 100, 320, 220);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		JLabel lbl_email = new JLabel("E-Mail Adresinizi Giriniz");
 		lbl_email.setForeground(new Color(51, 51, 51));
-		lbl_email.setFont(new Font("Sitka Small", Font.PLAIN, 11));
+		lbl_email.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_email.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_email.setBounds(10, 35, 206, 18);
+		lbl_email.setBounds(10, 30, 284, 20);
 		contentPane.add(lbl_email);
 
 		fld_Mail = new JTextField();
-		fld_Mail.setBounds(10, 52, 206, 20);
+		fld_Mail.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		fld_Mail.setBounds(10, 60, 284, 20);
 		contentPane.add(fld_Mail);
 		fld_Mail.setColumns(10);
 
@@ -92,21 +101,21 @@ public class ForgottenPassword extends JFrame {
 		rg(value, number1, number2);
 
 		fld_Rand = new JTextField();
-		fld_Rand.setFont(new Font("Sitka Heading", Font.PLAIN, 15));
+		fld_Rand.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Rand.setEditable(false);
 		if (value == 0) {
 			fld_Rand.setText(" " + number1 + "+" + number2 + "=?");
 		} else if (value == 1) {
 			fld_Rand.setText(" " + number1 + "-" + number2 + "=?");
 		}
-		fld_Rand.setBounds(56, 78, 49, 25);
+		fld_Rand.setBounds(95, 90, 50, 25);
 		contentPane.add(fld_Rand);
 		fld_Rand.setColumns(10);
 
 		fld_Confirm = new JTextField();
-		fld_Confirm.setFont(new Font("Sitka Heading", Font.PLAIN, 20));
+		fld_Confirm.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Confirm.setColumns(10);
-		fld_Confirm.setBounds(121, 78, 49, 25);
+		fld_Confirm.setBounds(169, 90, 50, 25);
 		fld_Confirm.setText("");
 		fld_Confirm.addKeyListener(new KeyAdapter() {
 
@@ -129,6 +138,9 @@ public class ForgottenPassword extends JFrame {
 		contentPane.add(fld_Confirm);
 
 		JButton btnNewButton = new JButton("Gonder");
+		btnNewButton.setFocusable(false);
+		btnNewButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btnNewButton.setBackground(new Color(153, 204, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -209,8 +221,8 @@ public class ForgottenPassword extends JFrame {
 			}
 
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(67, 110, 89, 39);
+		btnNewButton.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		btnNewButton.setBounds(95, 130, 124, 30);
 		contentPane.add(btnNewButton);
 
 	}

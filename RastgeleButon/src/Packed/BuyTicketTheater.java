@@ -18,6 +18,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
@@ -26,6 +28,7 @@ import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.UIManager;
+import java.awt.Toolkit;
 
 public class BuyTicketTheater extends JFrame {
 
@@ -40,8 +43,18 @@ public class BuyTicketTheater extends JFrame {
 	public static JLabel lbl_Card;
 	public static JLabel lbl_InfoStudent;
 	public static String[] seats;
-	private static String theater, seance, seat, price, salon, theater_type, theaterDate, seatCount, studentCount,
-			lblCard, lblInfoStudent, user;
+	private static String theater;
+	private static String seance;
+	private static String seat;
+	private static String price;
+	private static String salon;
+	private static String theater_type;
+	private static String theaterDate;
+	private static String seatCount;
+	private static String studentCount;
+	private static String lblCard;
+	private static String lblInfoStudent;
+	private static String user;
 	public static JComboBox comboBox_seatTheater;
 	private JTextField txt_TheaterDate;
 
@@ -161,6 +174,8 @@ public class BuyTicketTheater extends JFrame {
 	 * Create the frame.
 	 */
 	public BuyTicketTheater() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BuyTicketTheater.class.getResource("/Images/ticket.png")));
+		setTitle("Bilet Satis Sistemi");
 
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 458);
@@ -168,36 +183,42 @@ public class BuyTicketTheater extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(240, 248, 255));
+		panel.setBackground(new Color(204, 204, 255));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
 		JLabel lbl_TheaterName = new JLabel("Oyun Ismi :");
-		lbl_TheaterName.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_TheaterName.setBounds(34, 7, 82, 29);
+		lbl_TheaterName.setBounds(50, 30, 100, 25);
 		panel.add(lbl_TheaterName);
 
 		fld_TheaterName = new JTextField();
+		fld_TheaterName.setForeground(new Color(0, 0, 0));
+		fld_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_TheaterName.setBackground(new Color(255, 255, 255));
 		fld_TheaterName.setText(theater);
 		fld_TheaterName.setEditable(false);
 		fld_TheaterName.setColumns(10);
-		fld_TheaterName.setBounds(147, 10, 188, 23);
+		fld_TheaterName.setBounds(170, 30, 233, 25);
 		panel.add(fld_TheaterName);
 
 		JLabel lbl_Seans = new JLabel("Saat :");
-		lbl_Seans.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Seans.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Seans.setBounds(54, 115, 82, 29);
+		lbl_Seans.setBounds(50, 150, 100, 25);
 		panel.add(lbl_Seans);
 
 		fld_seance = new JTextField();
+		fld_seance.setForeground(new Color(0, 0, 0));
+		fld_seance.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_seance.setBackground(new Color(255, 255, 255));
 		fld_seance.setText(seance);
 		fld_seance.setEditable(false);
 		fld_seance.setColumns(10);
-		fld_seance.setBounds(147, 118, 188, 23);
+		fld_seance.setBounds(170, 150, 233, 25);
 		panel.add(fld_seance);
 
 		JLabel lbl_seat = new JLabel();
@@ -218,33 +239,39 @@ public class BuyTicketTheater extends JFrame {
 		panel.add(lbl_seat);
 
 		JLabel lblcret = new JLabel("Ucret :");
-		lblcret.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcret.setFont(new Font("SansSerif", Font.BOLD, 20));
-		lblcret.setBounds(49, 280, 82, 29);
+		lblcret.setBounds(84, 290, 82, 25);
 		panel.add(lblcret);
 
 		fld_price = new JTextField();
-		fld_price.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		fld_price.setForeground(new Color(0, 0, 0));
+		fld_price.setBackground(new Color(255, 255, 255));
+		fld_price.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		fld_price.setText(price);
 		fld_price.setEditable(false);
 		fld_price.setColumns(10);
-		fld_price.setBounds(147, 276, 72, 35);
+		fld_price.setBounds(170, 290, 72, 25);
 		panel.add(fld_price);
 
 		JLabel lblSalon = new JLabel("Salon :");
-		lblSalon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalon.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lblSalon.setBounds(49, 89, 82, 29);
+		lblSalon.setBounds(50, 120, 100, 25);
 		panel.add(lblSalon);
 
 		fld_Salon = new JTextField();
+		fld_Salon.setForeground(new Color(0, 0, 0));
+		fld_Salon.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_Salon.setBackground(new Color(255, 255, 255));
 		fld_Salon.setText(salon);
 		fld_Salon.setEditable(false);
 		fld_Salon.setColumns(10);
-		fld_Salon.setBounds(147, 91, 188, 23);
+		fld_Salon.setBounds(170, 120, 233, 25);
 		panel.add(fld_Salon);
 		comboBox_seatTheater = new JComboBox();
-		comboBox_seatTheater.setBounds(147, 148, 57, 23);
+		comboBox_seatTheater.setForeground(new Color(0, 0, 0));
+		comboBox_seatTheater.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_seatTheater.setBackground(new Color(255, 255, 255));
+		comboBox_seatTheater.setBounds(170, 180, 100, 25);
 		int count = 0;
 
 		if (seat != null) {
@@ -300,31 +327,34 @@ public class BuyTicketTheater extends JFrame {
 		panel.add(comboBox_seatTheater);
 
 		JLabel lbl_theatertype = new JLabel("Oyun Turu :");
-		lbl_theatertype.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_theatertype.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_theatertype.setBounds(32, 35, 82, 29);
+		lbl_theatertype.setBounds(50, 60, 100, 25);
 		panel.add(lbl_theatertype);
 
 		fld_theater_type = new JTextField();
+		fld_theater_type.setForeground(new Color(0, 0, 0));
+		fld_theater_type.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		fld_theater_type.setBackground(new Color(255, 255, 255));
 		fld_theater_type.setText(theater_type);
 		fld_theater_type.setEditable(false);
 		fld_theater_type.setColumns(10);
-		fld_theater_type.setBounds(147, 37, 188, 23);
+		fld_theater_type.setBounds(170, 60, 233, 25);
 		panel.add(fld_theater_type);
 
 		JLabel lbl_seatCount = new JLabel("Koltuk Sayisi :");
-		lbl_seatCount.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_seatCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_seatCount.setBounds(15, 194, 118, 29);
+		lbl_seatCount.setBounds(50, 210, 110, 25);
 		panel.add(lbl_seatCount);
 
 		txt_seatCount = new JTextField();
+		txt_seatCount.setForeground(new Color(0, 0, 0));
+		txt_seatCount.setBackground(new Color(255, 255, 255));
 		txt_seatCount.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_seatCount.setFont(new Font("SansSerif", Font.BOLD, 14));
+		txt_seatCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		txt_seatCount.setText(seatCount);
 		txt_seatCount.setEditable(false);
 		txt_seatCount.setColumns(10);
-		txt_seatCount.setBounds(147, 198, 37, 23);
+		txt_seatCount.setBounds(170, 210, 50, 25);
 		panel.add(txt_seatCount);
 
 		lbl_Card = new JLabel();
@@ -335,20 +365,19 @@ public class BuyTicketTheater extends JFrame {
 		panel.add(lbl_Card);
 
 		JLabel lbl_Student = new JLabel("Ogrenci Sayisi :");
-		lbl_Student.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Student.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Student.setBounds(3, 223, 130, 29);
+		lbl_Student.setBounds(50, 240, 110, 25);
 		panel.add(lbl_Student);
 
 		txt_StudentCount = new JTextField();
 		txt_StudentCount.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_StudentCount.setForeground(Color.BLUE);
-		txt_StudentCount.setBackground(UIManager.getColor("Button.background"));
+		txt_StudentCount.setForeground(new Color(0, 0, 0));
+		txt_StudentCount.setBackground(new Color(255, 255, 255));
 		txt_StudentCount.setText(studentCount);
-		txt_StudentCount.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 16));
+		txt_StudentCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		txt_StudentCount.setEditable(false);
 		txt_StudentCount.setColumns(10);
-		txt_StudentCount.setBounds(147, 227, 37, 23);
+		txt_StudentCount.setBounds(170, 240, 50, 25);
 		panel.add(txt_StudentCount);
 
 		try {
@@ -371,26 +400,30 @@ public class BuyTicketTheater extends JFrame {
 		panel.add(lbl_InfoStudent);
 
 		JLabel lbl_theaterDate = new JLabel("Tarih :");
-		lbl_theaterDate.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_theaterDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_theaterDate.setBounds(55, 60, 72, 29);
+		lbl_theaterDate.setBounds(50, 90, 100, 25);
 		panel.add(lbl_theaterDate);
 
 		txt_TheaterDate = new JTextField();
+		txt_TheaterDate.setForeground(new Color(0, 0, 0));
+		txt_TheaterDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		txt_TheaterDate.setBackground(new Color(255, 255, 255));
 		txt_TheaterDate.setText(theaterDate);
 		txt_TheaterDate.setEditable(false);
 		txt_TheaterDate.setColumns(10);
-		txt_TheaterDate.setBounds(147, 64, 188, 23);
+		txt_TheaterDate.setBounds(170, 90, 233, 25);
 		panel.add(txt_TheaterDate);
 
 		JButton btn_print = new JButton("Fisi Yazdir");
-		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btn_print.setFocusable(false);
+		btn_print.setBackground(new Color(153, 255, 102));
+		btn_print.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					FileWriter myWriter = new FileWriter("Bilet.txt");
 					myWriter.write(
-							"AlÄ±nan Tiyatro Oyunu :" + fld_TheaterName.getText() + "\nFiyati : " + fld_price.getText()
+							"Alýnan Tiyatro Oyunu :" + fld_TheaterName.getText() + "\nFiyati : " + fld_price.getText()
 									+ "\nSalon: " + fld_Salon.getText() + "\nKoltuklar : " + txt_seatCount.getText()
 									+ "\nTarih : " + txt_TheaterDate.getText() + "\nSeans : " + fld_seance.getText()
 									+ "\n" + lbl_Card.getText() + "\nBu bilet " + user + "adina kesilmistir");
@@ -400,7 +433,7 @@ public class BuyTicketTheater extends JFrame {
 				}
 			}
 		});
-		btn_print.setBounds(132, 355, 157, 35);
+		btn_print.setBounds(137, 355, 150, 35);
 		panel.add(btn_print);
 
 	}

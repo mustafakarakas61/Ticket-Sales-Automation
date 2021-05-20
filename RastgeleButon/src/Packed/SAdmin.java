@@ -299,7 +299,8 @@ public class SAdmin {
 		return key;
 	}
 
-	public boolean updateConcertTicketCount(String concertName, String concertPlace,String concertDate,String concertTime,String concertArtist, int ticketCount) {
+	public boolean updateConcertTicketCount(String concertName, String concertPlace, String concertDate,
+			String concertTime, String concertArtist, int ticketCount) {
 		boolean key = false;
 		String query = "UPDATE booking.concert SET ticketCount = ? WHERE concertName = ? AND concertPlace= ?  AND concertDate= ?  AND concertTime= ?  AND concertArtist= ?";
 		try {

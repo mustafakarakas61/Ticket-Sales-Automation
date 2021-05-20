@@ -110,6 +110,7 @@ public class MainScreen extends JFrame {
 	}
 
 	public MainScreen(user member) throws SQLException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/Images/ticket.png")));
 
 		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
@@ -169,7 +170,7 @@ public class MainScreen extends JFrame {
 
 		JButton btn_Exit = new JButton("Cikis Yap");
 		btn_Exit.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_Exit.setBackground(new Color(204, 204, 255));
+		btn_Exit.setBackground(new Color(153, 204, 255));
 		btn_Exit.setFocusable(false);
 		btn_Exit.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_Exit.addActionListener(new ActionListener() {
@@ -189,6 +190,7 @@ public class MainScreen extends JFrame {
 		contentPane.add(lbl_Name);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		tabbedPane.setFocusable(false);
 		tabbedPane.setBackground(new Color(255, 255, 255));
 
@@ -340,31 +342,31 @@ public class MainScreen extends JFrame {
 		JLabel lbl_MovieName = new JLabel("Film Adi:");
 		lbl_MovieName.setBackground(new Color(255, 255, 255));
 		lbl_MovieName.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_MovieName.setBounds(10, 50, 100, 20);
+		lbl_MovieName.setBounds(10, 45, 100, 20);
 		PaneCinema.add(lbl_MovieName);
 
 		JLabel lbl_MovieType = new JLabel("Film Turu:");
 		lbl_MovieType.setBackground(new Color(255, 255, 255));
 		lbl_MovieType.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_MovieType.setBounds(10, 73, 100, 20);
+		lbl_MovieType.setBounds(10, 68, 100, 20);
 		PaneCinema.add(lbl_MovieType);
 
 		JLabel lbl_Admin = new JLabel("Yonetmen:");
 		lbl_Admin.setBackground(new Color(255, 255, 255));
 		lbl_Admin.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Admin.setBounds(10, 96, 100, 20);
+		lbl_Admin.setBounds(10, 91, 100, 20);
 		PaneCinema.add(lbl_Admin);
 
 		JLabel lbl_Salon = new JLabel("Salon:");
 		lbl_Salon.setBackground(new Color(255, 255, 255));
 		lbl_Salon.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Salon.setBounds(10, 142, 100, 20);
+		lbl_Salon.setBounds(10, 137, 100, 20);
 		PaneCinema.add(lbl_Salon);
 
 		JLabel lbl_Seance = new JLabel("Seans:");
 		lbl_Seance.setBackground(new Color(255, 255, 255));
 		lbl_Seance.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Seance.setBounds(10, 163, 100, 20);
+		lbl_Seance.setBounds(10, 160, 100, 20);
 		PaneCinema.add(lbl_Seance);
 
 		JButton btn_SelectSeat = new JButton("Koltuk Sec");
@@ -380,7 +382,7 @@ public class MainScreen extends JFrame {
 				ks.setVisible(true);
 			}
 		});
-		btn_SelectSeat.setBounds(10, 185, 100, 22);
+		btn_SelectSeat.setBounds(10, 180, 100, 22);
 		PaneCinema.add(btn_SelectSeat);
 
 		JLabel lbl_PaymentInformation = new JLabel("Odeme Bilgileri");
@@ -391,7 +393,7 @@ public class MainScreen extends JFrame {
 		JLabel lblMovieInfo = new JLabel("Film Bilgileri");
 		lblMovieInfo.setBackground(new Color(255, 255, 255));
 		lblMovieInfo.setFont(new Font("SansSerif", Font.BOLD, 16));
-		lblMovieInfo.setBounds(10, 20, 150, 20);
+		lblMovieInfo.setBounds(10, 15, 150, 20);
 		PaneCinema.add(lblMovieInfo);
 
 		JLabel lbl_MovieName_1 = new JLabel("Ad:");
@@ -413,43 +415,43 @@ public class MainScreen extends JFrame {
 		PaneCinema.add(lbl_Admin_1);
 
 		fld_MovieName = new JTextField();
-		fld_MovieName.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_MovieName.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_MovieName.setBackground(new Color(255, 255, 255));
 		fld_MovieName.setEditable(false);
-		fld_MovieName.setBounds(140, 50, 150, 20);
+		fld_MovieName.setBounds(140, 45, 150, 20);
 		PaneCinema.add(fld_MovieName);
 		fld_MovieName.setColumns(10);
 
 		fld_MovieType = new JTextField();
-		fld_MovieType.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_MovieType.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_MovieType.setBackground(new Color(255, 255, 255));
 		fld_MovieType.setEditable(false);
 		fld_MovieType.setColumns(10);
-		fld_MovieType.setBounds(140, 73, 150, 20);
+		fld_MovieType.setBounds(140, 68, 150, 20);
 		PaneCinema.add(fld_MovieType);
 
 		JTextField fld_Director = new JTextField();
-		fld_Director.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Director.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Director.setBackground(new Color(255, 255, 255));
 		fld_Director.setEditable(false);
 		fld_Director.setColumns(10);
-		fld_Director.setBounds(140, 96, 150, 20);
+		fld_Director.setBounds(140, 91, 150, 20);
 		PaneCinema.add(fld_Director);
 
 		JTextField fld_Salon = new JTextField();
-		fld_Salon.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Salon.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Salon.setBackground(new Color(255, 255, 255));
 		fld_Salon.setEditable(false);
 		fld_Salon.setColumns(10);
-		fld_Salon.setBounds(140, 142, 75, 20);
+		fld_Salon.setBounds(140, 137, 100, 20);
 		PaneCinema.add(fld_Salon);
 
 		JTextField fld_Seance = new JTextField();
-		fld_Seance.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Seance.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Seance.setBackground(new Color(255, 255, 255));
 		fld_Seance.setEditable(false);
 		fld_Seance.setColumns(10);
-		fld_Seance.setBounds(140, 165, 75, 20);
+		fld_Seance.setBounds(140, 160, 100, 20);
 		PaneCinema.add(fld_Seance);
 
 		JLabel lbl_PaymentMethod = new JLabel("Odeme Yontemi:");
@@ -460,7 +462,7 @@ public class MainScreen extends JFrame {
 
 		JComboBox comboBox_Method = new JComboBox();
 		comboBox_Method.setBackground(new Color(255, 255, 255));
-		comboBox_Method.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Method.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Method.setBounds(140, 304, 150, 25);
 		comboBox_Method.addItem("Nakit");
 		comboBox_Method.addItem("Banka/Kredi Karti");
@@ -486,7 +488,7 @@ public class MainScreen extends JFrame {
 		});
 
 		JTextField fld_Name_cinema = new JTextField();
-		fld_Name_cinema.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Name_cinema.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Name_cinema.setText(member.getName());
 		fld_Name_cinema.setEditable(false);
 		fld_Name_cinema.setColumns(10);
@@ -495,7 +497,7 @@ public class MainScreen extends JFrame {
 		PaneCinema.add(fld_Name_cinema);
 
 		JTextField fld_Surname_cinema = new JTextField();
-		fld_Surname_cinema.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Surname_cinema.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Surname_cinema.setText(member.getSurname());
 		fld_Surname_cinema.setEditable(false);
 		fld_Surname_cinema.setColumns(10);
@@ -504,7 +506,7 @@ public class MainScreen extends JFrame {
 		PaneCinema.add(fld_Surname_cinema);
 
 		JTextField fld_Mail_cinema = new JTextField();
-		fld_Mail_cinema.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Mail_cinema.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Mail_cinema.setText(member.getEmail());
 		fld_Mail_cinema.setEditable(false);
 		fld_Mail_cinema.setColumns(10);
@@ -530,14 +532,14 @@ public class MainScreen extends JFrame {
 		JComboBox comboBox_Month = new JComboBox();
 		comboBox_Month.setModel(new DefaultComboBoxModel(
 				new String[] { "Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
-		comboBox_Month.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Month.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Month.setBounds(160, 52, 60, 22);
 		comboBox_Month.addItem("Ay");
 		w_pane_Kart.add(comboBox_Month);
 
 		JComboBox comboBox_Year = new JComboBox();
 
-		comboBox_Year.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Year.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Year.setBounds(235, 52, 72, 22);
 		comboBox_Year.setModel(new DefaultComboBoxModel(new String[] { "Yil", "2021", "2022", "2023", "2024", "2025",
 				"2026", "2027", "2028", "2029", "2030", "2031" }));
@@ -550,7 +552,7 @@ public class MainScreen extends JFrame {
 		w_pane_Kart.add(lbl_Cvc);
 
 		JTextField fld_cvc = new JTextField();
-		fld_cvc.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_cvc.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_cvc.setHorizontalAlignment(SwingConstants.CENTER);
 		fld_cvc.setBounds(374, 52, 46, 20);
 		fld_cvc.addKeyListener(new KeyAdapter() {
@@ -574,7 +576,7 @@ public class MainScreen extends JFrame {
 		fld_cvc.setColumns(10);
 
 		JTextField fld_CartName = new JTextField();
-		fld_CartName.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CartName.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_CartName.setColumns(10);
 		fld_CartName.setBackground(Color.WHITE);
 		fld_CartName.setBounds(160, 8, 260, 20);
@@ -600,7 +602,7 @@ public class MainScreen extends JFrame {
 		w_pane_Kart.add(fld_CartName);
 
 		JTextField fld_CartNumber = new JTextField();
-		fld_CartNumber.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CartNumber.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_CartNumber.setColumns(10);
 		fld_CartNumber.setBackground(Color.WHITE);
 		fld_CartNumber.setBounds(160, 30, 260, 20);
@@ -633,7 +635,7 @@ public class MainScreen extends JFrame {
 		});
 		btn_MyTickets.setFocusable(false);
 		btn_MyTickets.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_MyTickets.setBounds(127, 435, 100, 30);
+		btn_MyTickets.setBounds(110, 435, 100, 30);
 		PaneCinema.add(btn_MyTickets);
 		btn_MyTickets.setForeground(new Color(0, 0, 0));
 		btn_MyTickets.setBackground(new Color(255, 255, 153));
@@ -833,22 +835,22 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_BuyTicket.setForeground(new Color(0, 0, 0));
 		btn_BuyTicket.setBackground(new Color(153, 255, 153));
-		btn_BuyTicket.setBounds(242, 435, 100, 30);
+		btn_BuyTicket.setBounds(240, 435, 100, 30);
 		PaneCinema.add(btn_BuyTicket);
 		btn_BuyTicket.setFont(new Font("SansSerif", Font.BOLD, 15));
 
 		JLabel lbl_CinemaDate = new JLabel("Tarih:");
 		lbl_CinemaDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_CinemaDate.setBackground(Color.WHITE);
-		lbl_CinemaDate.setBounds(10, 119, 100, 20);
+		lbl_CinemaDate.setBounds(10, 114, 100, 20);
 		PaneCinema.add(lbl_CinemaDate);
 
 		fld_CinemaDate = new JTextField();
-		fld_CinemaDate.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CinemaDate.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_CinemaDate.setEditable(false);
 		fld_CinemaDate.setColumns(10);
 		fld_CinemaDate.setBackground(Color.WHITE);
-		fld_CinemaDate.setBounds(140, 119, 75, 20);
+		fld_CinemaDate.setBounds(140, 114, 100, 20);
 		PaneCinema.add(fld_CinemaDate);
 		BuyTicket.setUser(member.getName() + " " + member.getSurname() + " ");
 		BuyTicketTheater.setUser(member.getName() + " " + member.getSurname() + " ");
@@ -868,37 +870,38 @@ public class MainScreen extends JFrame {
 		JLabel lbl_TheaterName = new JLabel("Oyun Adi:");
 		lbl_TheaterName.setBackground(new Color(255, 255, 255));
 		lbl_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_TheaterName.setBounds(10, 50, 100, 20);
+		lbl_TheaterName.setBounds(10, 45, 100, 20);
 		PaneTheater.add(lbl_TheaterName);
 
 		JLabel lbl_TheaterType = new JLabel("Oyun Turu:");
 		lbl_TheaterType.setBackground(new Color(255, 255, 255));
 		lbl_TheaterType.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_TheaterType.setBounds(10, 73, 100, 20);
+		lbl_TheaterType.setBounds(10, 68, 100, 20);
 		PaneTheater.add(lbl_TheaterType);
 
 		JLabel lbl_Datee2 = new JLabel("Tarih:");
 		lbl_Datee2.setBackground(new Color(255, 255, 255));
 		lbl_Datee2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Datee2.setBounds(10, 96, 100, 20);
+		lbl_Datee2.setBounds(10, 91, 100, 20);
 		PaneTheater.add(lbl_Datee2);
 
 		JLabel lbl_Salon2 = new JLabel("Salon:");
 		lbl_Salon2.setBackground(new Color(255, 255, 255));
 		lbl_Salon2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Salon2.setBounds(10, 119, 100, 20);
+		lbl_Salon2.setBounds(10, 114, 100, 20);
 		PaneTheater.add(lbl_Salon2);
 
 		JLabel lbl_Seance2 = new JLabel("Saat:");
 		lbl_Seance2.setBackground(new Color(255, 255, 255));
 		lbl_Seance2.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Seance2.setBounds(10, 142, 100, 20);
+		lbl_Seance2.setBounds(10, 137, 100, 20);
 		PaneTheater.add(lbl_Seance2);
 
 		JTextField txt_theaterYear = new JTextField();
+		txt_theaterYear.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		txt_theaterYear.setBackground(new Color(255, 255, 255));
 		txt_theaterYear.setEditable(false);
-		txt_theaterYear.setBounds(140, 96, 75, 20);
+		txt_theaterYear.setBounds(140, 91, 100, 20);
 		PaneTheater.add(txt_theaterYear);
 		PaneTheater.setVisible(false);
 
@@ -914,7 +917,7 @@ public class MainScreen extends JFrame {
 				ks.setVisible(true);
 			}
 		});
-		btn_SelectSeat2.setBounds(10, 165, 100, 22);
+		btn_SelectSeat2.setBounds(10, 160, 100, 22);
 		PaneTheater.add(btn_SelectSeat2);
 
 		JLabel lbl_PaymentInformation2 = new JLabel("Odeme Bilgileri");
@@ -925,7 +928,7 @@ public class MainScreen extends JFrame {
 		JLabel lbl_TheaterInfo = new JLabel("Tiyatro Bilgileri");
 		lbl_TheaterInfo.setBackground(new Color(255, 255, 255));
 		lbl_TheaterInfo.setFont(new Font("SansSerif", Font.BOLD, 16));
-		lbl_TheaterInfo.setBounds(10, 20, 150, 20);
+		lbl_TheaterInfo.setBounds(10, 15, 150, 20);
 		PaneTheater.add(lbl_TheaterInfo);
 
 		JLabel lbl_UserName2 = new JLabel("Ad:");
@@ -947,35 +950,35 @@ public class MainScreen extends JFrame {
 		PaneTheater.add(lbl_UserMail2);
 
 		JTextField fld_TheaterName = new JTextField();
-		fld_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_TheaterName.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_TheaterName.setBackground(new Color(255, 255, 255));
 		fld_TheaterName.setEditable(false);
-		fld_TheaterName.setBounds(140, 50, 150, 20);
+		fld_TheaterName.setBounds(140, 45, 150, 20);
 		PaneTheater.add(fld_TheaterName);
 		fld_TheaterName.setColumns(10);
 
 		JTextField fld_ThetaerType = new JTextField();
-		fld_ThetaerType.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_ThetaerType.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_ThetaerType.setBackground(new Color(255, 255, 255));
 		fld_ThetaerType.setEditable(false);
 		fld_ThetaerType.setColumns(10);
-		fld_ThetaerType.setBounds(140, 73, 150, 20);
+		fld_ThetaerType.setBounds(140, 68, 150, 20);
 		PaneTheater.add(fld_ThetaerType);
 
 		JTextField fld_Salon22 = new JTextField();
-		fld_Salon22.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Salon22.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Salon22.setBackground(new Color(255, 255, 255));
 		fld_Salon22.setEditable(false);
 		fld_Salon22.setColumns(10);
-		fld_Salon22.setBounds(140, 119, 75, 20);
+		fld_Salon22.setBounds(140, 114, 100, 20);
 		PaneTheater.add(fld_Salon22);
 
 		JTextField fld_Seance2 = new JTextField();
-		fld_Seance2.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Seance2.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Seance2.setBackground(new Color(255, 255, 255));
 		fld_Seance2.setEditable(false);
 		fld_Seance2.setColumns(10);
-		fld_Seance2.setBounds(140, 142, 75, 20);
+		fld_Seance2.setBounds(140, 137, 100, 20);
 		PaneTheater.add(fld_Seance2);
 
 		JLabel lbl_PaymentMethod2 = new JLabel("Odeme Yontemi:");
@@ -986,7 +989,7 @@ public class MainScreen extends JFrame {
 
 		JComboBox comboBox_Method2 = new JComboBox();
 		comboBox_Method2.setBackground(new Color(255, 255, 255));
-		comboBox_Method2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Method2.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Method2.setBounds(140, 304, 150, 25);
 		comboBox_Method2.addItem("Nakit");
 		comboBox_Method2.addItem("Banka/Kredi Karti");
@@ -1012,7 +1015,7 @@ public class MainScreen extends JFrame {
 		});
 
 		JTextField fld_Name_theater = new JTextField();
-		fld_Name_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Name_theater.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Name_theater.setText(member.getName());
 		fld_Name_theater.setEditable(false);
 		fld_Name_theater.setColumns(10);
@@ -1021,7 +1024,7 @@ public class MainScreen extends JFrame {
 		PaneTheater.add(fld_Name_theater);
 
 		JTextField fld_Surname_theater = new JTextField();
-		fld_Surname_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Surname_theater.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Surname_theater.setText(member.getSurname());
 		fld_Surname_theater.setEditable(false);
 		fld_Surname_theater.setColumns(10);
@@ -1030,7 +1033,7 @@ public class MainScreen extends JFrame {
 		PaneTheater.add(fld_Surname_theater);
 
 		JTextField fld_Mail_theater = new JTextField();
-		fld_Mail_theater.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Mail_theater.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Mail_theater.setText(member.getEmail());
 		fld_Mail_theater.setEditable(false);
 		fld_Mail_theater.setColumns(10);
@@ -1054,7 +1057,7 @@ public class MainScreen extends JFrame {
 		w_pane_Kart2.add(lbl_LastUsageDate2);
 
 		JComboBox comboBox_Month2 = new JComboBox();
-		comboBox_Month2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Month2.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Month2.setBounds(160, 52, 60, 22);
 		comboBox_Month2.setModel(new DefaultComboBoxModel(
 				new String[] { "Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
@@ -1063,7 +1066,7 @@ public class MainScreen extends JFrame {
 		JComboBox comboBox_Year2 = new JComboBox();
 		comboBox_Year2.setModel(new DefaultComboBoxModel(new String[] { "Yil", "2021", "2022", "2023", "2024", "2025",
 				"2026", "2027", "2028", "2029", "2030", "2031" }));
-		comboBox_Year2.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Year2.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Year2.setBounds(235, 52, 72, 22);
 
 		w_pane_Kart2.add(comboBox_Year2);
@@ -1074,7 +1077,7 @@ public class MainScreen extends JFrame {
 		w_pane_Kart2.add(lbl_Cvc2);
 
 		fld_cvc2 = new JTextField();
-		fld_cvc2.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_cvc2.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_cvc2.setHorizontalAlignment(SwingConstants.CENTER);
 		fld_cvc2.setBounds(374, 52, 46, 20);
 		fld_cvc2.addKeyListener(new KeyAdapter() {
@@ -1098,7 +1101,7 @@ public class MainScreen extends JFrame {
 		fld_cvc2.setColumns(10);
 
 		JTextField fld_CartName22 = new JTextField();
-		fld_CartName22.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CartName22.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_CartName22.setColumns(10);
 		fld_CartName22.setBackground(Color.WHITE);
 		fld_CartName22.setBounds(160, 8, 260, 20);
@@ -1124,7 +1127,7 @@ public class MainScreen extends JFrame {
 		w_pane_Kart2.add(fld_CartName22);
 
 		JTextField fld_CartNumber22 = new JTextField();
-		fld_CartNumber22.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CartNumber22.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_CartNumber22.setColumns(10);
 		fld_CartNumber22.setBackground(Color.WHITE);
 		fld_CartNumber22.setBounds(160, 30, 260, 20);
@@ -1158,7 +1161,7 @@ public class MainScreen extends JFrame {
 		});
 		btn_MyTickets2.setFocusable(false);
 		btn_MyTickets2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		btn_MyTickets2.setBounds(127, 435, 100, 30);
+		btn_MyTickets2.setBounds(110, 435, 100, 30);
 		PaneTheater.add(btn_MyTickets2);
 		btn_MyTickets2.setForeground(new Color(0, 0, 0));
 		btn_MyTickets2.setBackground(new Color(255, 255, 153));
@@ -1364,7 +1367,7 @@ public class MainScreen extends JFrame {
 		btn_BuyTicket2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_BuyTicket2.setForeground(new Color(0, 0, 0));
 		btn_BuyTicket2.setBackground(new Color(153, 255, 153));
-		btn_BuyTicket2.setBounds(242, 435, 100, 30);
+		btn_BuyTicket2.setBounds(240, 435, 100, 30);
 		PaneTheater.add(btn_BuyTicket2);
 		btn_BuyTicket2.setFont(new Font("SansSerif", Font.BOLD, 15));
 
@@ -1383,31 +1386,31 @@ public class MainScreen extends JFrame {
 		JLabel lbl_ConcertName = new JLabel("Konser Adi:");
 		lbl_ConcertName.setBackground(new Color(255, 255, 255));
 		lbl_ConcertName.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_ConcertName.setBounds(10, 50, 100, 20);
+		lbl_ConcertName.setBounds(10, 45, 100, 20);
 		PaneConcert.add(lbl_ConcertName);
 
 		JLabel lbl_ConcertType = new JLabel("Konser Yeri:");
 		lbl_ConcertType.setBackground(new Color(255, 255, 255));
 		lbl_ConcertType.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_ConcertType.setBounds(10, 73, 100, 20);
+		lbl_ConcertType.setBounds(10, 68, 100, 20);
 		PaneConcert.add(lbl_ConcertType);
 
 		JLabel lbl_Date3 = new JLabel("Tarih:");
 		lbl_Date3.setBackground(new Color(255, 255, 255));
 		lbl_Date3.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Date3.setBounds(10, 119, 100, 20);
+		lbl_Date3.setBounds(10, 114, 100, 20);
 		PaneConcert.add(lbl_Date3);
 
 		JLabel lbl_Salon3 = new JLabel("Sanatci:");
 		lbl_Salon3.setBackground(new Color(255, 255, 255));
 		lbl_Salon3.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Salon3.setBounds(10, 96, 100, 20);
+		lbl_Salon3.setBounds(10, 91, 100, 20);
 		PaneConcert.add(lbl_Salon3);
 
 		JLabel lbl_Seance3 = new JLabel("Saat:");
 		lbl_Seance3.setBackground(new Color(255, 255, 255));
 		lbl_Seance3.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Seance3.setBounds(10, 142, 100, 20);
+		lbl_Seance3.setBounds(10, 137, 100, 20);
 		PaneConcert.add(lbl_Seance3);
 
 		JLabel lbl_PaymentInformation3 = new JLabel("Odeme Bilgileri");
@@ -1418,7 +1421,7 @@ public class MainScreen extends JFrame {
 		JLabel lbl_ConcertInfo = new JLabel("Konser Bilgileri");
 		lbl_ConcertInfo.setBackground(new Color(255, 255, 255));
 		lbl_ConcertInfo.setFont(new Font("SansSerif", Font.BOLD, 16));
-		lbl_ConcertInfo.setBounds(10, 20, 150, 20);
+		lbl_ConcertInfo.setBounds(10, 15, 150, 20);
 		PaneConcert.add(lbl_ConcertInfo);
 
 		JLabel lbl_UserName3 = new JLabel("Ad:");
@@ -1440,27 +1443,27 @@ public class MainScreen extends JFrame {
 		PaneConcert.add(lbl_UserMail3);
 
 		fld_concertName = new JTextField();
-		fld_concertName.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_concertName.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_concertName.setBackground(new Color(255, 255, 255));
 		fld_concertName.setEditable(false);
-		fld_concertName.setBounds(140, 50, 150, 20);
+		fld_concertName.setBounds(140, 45, 150, 20);
 		PaneConcert.add(fld_concertName);
 		fld_concertName.setColumns(10);
 
 		fld_Artist3 = new JTextField();
-		fld_Artist3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Artist3.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Artist3.setBackground(new Color(255, 255, 255));
 		fld_Artist3.setEditable(false);
 		fld_Artist3.setColumns(10);
-		fld_Artist3.setBounds(140, 96, 150, 20);
+		fld_Artist3.setBounds(140, 91, 150, 20);
 		PaneConcert.add(fld_Artist3);
 
 		fld_Seance3 = new JTextField();
-		fld_Seance3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Seance3.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Seance3.setBackground(new Color(255, 255, 255));
 		fld_Seance3.setEditable(false);
 		fld_Seance3.setColumns(10);
-		fld_Seance3.setBounds(140, 142, 75, 20);
+		fld_Seance3.setBounds(140, 137, 100, 20);
 		PaneConcert.add(fld_Seance3);
 
 		JLabel lbl_PaymentMethod3 = new JLabel("Odeme Yontemi:");
@@ -1471,7 +1474,7 @@ public class MainScreen extends JFrame {
 
 		JComboBox comboBox_Method3 = new JComboBox();
 		comboBox_Method3.setBackground(new Color(255, 255, 255));
-		comboBox_Method3.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Method3.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Method3.setBounds(140, 304, 150, 25);
 		comboBox_Method3.addItem("Nakit");
 		comboBox_Method3.addItem("Banka/Kredi Karti");
@@ -1497,7 +1500,7 @@ public class MainScreen extends JFrame {
 		});
 
 		fld_Name_concert = new JTextField();
-		fld_Name_concert.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Name_concert.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Name_concert.setText(member.getName());
 		fld_Name_concert.setEditable(false);
 		fld_Name_concert.setColumns(10);
@@ -1506,7 +1509,7 @@ public class MainScreen extends JFrame {
 		PaneConcert.add(fld_Name_concert);
 
 		fld_Surname_concert = new JTextField();
-		fld_Surname_concert.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Surname_concert.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Surname_concert.setText(member.getSurname());
 		fld_Surname_concert.setEditable(false);
 		fld_Surname_concert.setColumns(10);
@@ -1515,7 +1518,7 @@ public class MainScreen extends JFrame {
 		PaneConcert.add(fld_Surname_concert);
 
 		fld_Mail_concert = new JTextField();
-		fld_Mail_concert.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_Mail_concert.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Mail_concert.setText(member.getEmail());
 		fld_Mail_concert.setEditable(false);
 		fld_Mail_concert.setColumns(10);
@@ -1539,7 +1542,7 @@ public class MainScreen extends JFrame {
 		w_pane_Kart3.add(lbl_LastUsageDate3);
 
 		JComboBox comboBox_Month3 = new JComboBox();
-		comboBox_Month3.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Month3.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Month3.setBounds(160, 52, 60, 22);
 		comboBox_Month3.setModel(new DefaultComboBoxModel(
 				new String[] { "Ay", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
@@ -1548,7 +1551,7 @@ public class MainScreen extends JFrame {
 		JComboBox comboBox_Year3 = new JComboBox();
 		comboBox_Year3.setModel(new DefaultComboBoxModel(new String[] { "Yil", "2021", "2022", "2023", "2024", "2025",
 				"2026", "2027", "2028", "2029", "2030", "2031" }));
-		comboBox_Year3.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_Year3.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Year3.setBounds(235, 52, 72, 22);
 
 		w_pane_Kart3.add(comboBox_Year3);
@@ -1559,7 +1562,7 @@ public class MainScreen extends JFrame {
 		w_pane_Kart3.add(lbl_Cvc3);
 
 		fld_cvc3 = new JTextField();
-		fld_cvc3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_cvc3.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_cvc3.setHorizontalAlignment(SwingConstants.CENTER);
 		fld_cvc3.setBounds(374, 52, 46, 20);
 		fld_cvc3.addKeyListener(new KeyAdapter() {
@@ -1583,7 +1586,7 @@ public class MainScreen extends JFrame {
 		fld_cvc3.setColumns(10);
 
 		fld_CartName3 = new JTextField();
-		fld_CartName3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CartName3.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_CartName3.setColumns(10);
 		fld_CartName3.setBackground(Color.WHITE);
 		fld_CartName3.setBounds(160, 8, 260, 20);
@@ -1609,7 +1612,7 @@ public class MainScreen extends JFrame {
 		w_pane_Kart3.add(fld_CartName3);
 
 		fld_CartNumber3 = new JTextField();
-		fld_CartNumber3.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		fld_CartNumber3.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_CartNumber3.setColumns(10);
 		fld_CartNumber3.setBackground(Color.WHITE);
 		fld_CartNumber3.setBounds(160, 30, 260, 20);
@@ -1633,49 +1636,51 @@ public class MainScreen extends JFrame {
 		w_pane_Kart3.add(fld_CartNumber3);
 
 		JTextField txt_ConcertYear = new JTextField();
+		txt_ConcertYear.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		txt_ConcertYear.setBackground(new Color(255, 255, 255));
 		txt_ConcertYear.setEditable(false);
-		txt_ConcertYear.setBounds(140, 119, 75, 20);
+		txt_ConcertYear.setBounds(140, 114, 100, 20);
 		PaneConcert.add(txt_ConcertYear);
 
 		JTextField txt_ConcertPlace = new JTextField();
+		txt_ConcertPlace.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		txt_ConcertPlace.setBackground(new Color(255, 255, 255));
 		txt_ConcertPlace.setEditable(false);
-		txt_ConcertPlace.setBounds(140, 73, 150, 20);
+		txt_ConcertPlace.setBounds(140, 68, 150, 20);
 		PaneConcert.add(txt_ConcertPlace);
 		PaneConcert.setVisible(false);
 
 		JLabel lbl_TicketCount = new JLabel("Bilet adeti girin:");
-		lbl_TicketCount.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 15));
+		lbl_TicketCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_TicketCount.setBackground(Color.WHITE);
-		lbl_TicketCount.setBounds(10, 193, 130, 20);
+		lbl_TicketCount.setBounds(10, 185, 130, 20);
 		PaneConcert.add(lbl_TicketCount);
 
 		txt_TicketCount = new JTextField();
-		txt_TicketCount.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txt_TicketCount.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		txt_TicketCount.setColumns(10);
-		txt_TicketCount.setBackground(Color.WHITE);
-		txt_TicketCount.setBounds(140, 193, 34, 20);
+		txt_TicketCount.setBackground(new Color(255, 255, 255));
+		txt_TicketCount.setBounds(140, 185, 50, 20);
 		PaneConcert.add(txt_TicketCount);
 
 		JLabel lbl_StudentCount = new JLabel("Ogrenci sayisi:");
-		lbl_StudentCount.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 15));
+		lbl_StudentCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_StudentCount.setBackground(Color.WHITE);
-		lbl_StudentCount.setBounds(185, 193, 130, 20);
+		lbl_StudentCount.setBounds(200, 185, 130, 20);
 		PaneConcert.add(lbl_StudentCount);
 
 		txt_StudentCount = new JTextField("0");
-		txt_StudentCount.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txt_StudentCount.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		txt_StudentCount.setColumns(10);
-		txt_StudentCount.setBackground(Color.WHITE);
-		txt_StudentCount.setBounds(312, 193, 34, 20);
+		txt_StudentCount.setBackground(new Color(255, 255, 255));
+		txt_StudentCount.setBounds(315, 185, 50, 20);
 		txt_StudentCount.setEditable(false);
 		PaneConcert.add(txt_StudentCount);
 
 		txt_GhostTicketPrice = new JTextField();
 		txt_GhostTicketPrice.setVisible(false);
 		txt_GhostTicketPrice.setEditable(false);
-		txt_GhostTicketPrice.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txt_GhostTicketPrice.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		txt_GhostTicketPrice.setColumns(10);
 		txt_GhostTicketPrice.setBackground(Color.WHITE);
 		txt_GhostTicketPrice.setBounds(392, 195, 34, 20);
@@ -1683,17 +1688,17 @@ public class MainScreen extends JFrame {
 
 		JLabel lbl_Total = new JLabel("Ucret");
 		lbl_Total.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_Total.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 21));
+		lbl_Total.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lbl_Total.setBackground(Color.WHITE);
 		lbl_Total.setBounds(300, 233, 130, 25);
 		PaneConcert.add(lbl_Total);
 
 		txt_Total = new JTextField();
-		txt_Total.setForeground(Color.LIGHT_GRAY);
-		txt_Total.setFont(new Font("Yu Gothic UI Semibold", Font.ITALIC, 25));
+		txt_Total.setForeground(new Color(0, 0, 0));
+		txt_Total.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		txt_Total.setHorizontalAlignment(SwingConstants.CENTER);
 		txt_Total.setEditable(false);
-		txt_Total.setBackground(Color.BLACK);
+		txt_Total.setBackground(new Color(255, 255, 255));
 		txt_Total.setBounds(300, 258, 140, 71);
 		// txt_StudentCount
 		// txt_TicketCount
@@ -1702,28 +1707,27 @@ public class MainScreen extends JFrame {
 		txt_StudentCount.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
-				
-				
-				if(Integer.parseInt(txt_TicketCount.getText())>0) {
-				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
-						|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
-						|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
 
-					if (txt_StudentCount.getText().length() < 4 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+				if (Integer.parseInt(txt_TicketCount.getText()) > 0) {
+					if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
 							|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
 							|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
-						txt_StudentCount.setEditable(true);
+
+						if (txt_StudentCount.getText().length() < 4 || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+								|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
+								|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
+							txt_StudentCount.setEditable(true);
+						} else {
+							txt_StudentCount.setEditable(false);
+						}
+
 					} else {
 						txt_StudentCount.setEditable(false);
+
 					}
 
-				} else {
-					txt_StudentCount.setEditable(false);
+				}
 
-				}
-				
-				}
-				
 			}
 		});
 		txt_TicketCount.addKeyListener(new KeyAdapter() {
@@ -1779,7 +1783,7 @@ public class MainScreen extends JFrame {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				txt_StudentCount.setEditable(true);
-				
+
 				// TODO Auto-generated method stub
 
 				txt_Total.setText(Math.round(Double.parseDouble(txt_GhostTicketPrice.getText())
@@ -2063,7 +2067,7 @@ public class MainScreen extends JFrame {
 		btn_Select.setFocusable(false);
 		btn_Select.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Select.setForeground(new Color(0, 0, 0));
-		btn_Select.setBackground(new Color(204, 204, 255));
+		btn_Select.setBackground(new Color(153, 204, 255));
 		btn_Select.setBounds(550, 270, 60, 30);
 		contentPane.add(btn_Select);
 		btn_Select.setFont(new Font("SansSerif", Font.PLAIN, 15));
@@ -2083,8 +2087,8 @@ public class MainScreen extends JFrame {
 						try {
 							Connection con = dbhelper.getConnection();
 							Statement st = con.createStatement();
-							ResultSet rs = st
-									.executeQuery("select * from cinema where filmID =" + (subadmin.getFilmID() + 1));
+							ResultSet rs = st.executeQuery("select * from cinema where filmID ="
+									+ (subadmin.cinemaList().get(selRow).getFilmID()));
 							if (rs.next()) {
 								byte[] img = rs.getBytes("pic");
 
@@ -2133,8 +2137,8 @@ public class MainScreen extends JFrame {
 						try {
 							Connection con = dbhelper.getConnection();
 							Statement st = con.createStatement();
-							ResultSet rs = st.executeQuery(
-									"select * from tiyatro where tiyatroID =" + (subadmin.getTiyatroID() + 1));
+							ResultSet rs = st.executeQuery("select * from booking.tiyatro where tiyatroID ="
+									+ (subadmin.theaterList().get(selRow1).getTiyatroID()));
 							if (rs.next()) {
 								byte[] img = rs.getBytes("pic");
 
@@ -2176,8 +2180,8 @@ public class MainScreen extends JFrame {
 						try {
 							Connection con = dbhelper.getConnection();
 							Statement st = con.createStatement();
-							ResultSet rs = st.executeQuery(
-									"select * from concert where concertID =" + (subadmin.getConcertID() + 1));
+							ResultSet rs = st.executeQuery("select * from booking.concert where concertID ="
+									+ (subadmin.concertList().get(selRow2).getFilmID()));
 							if (rs.next()) {
 								byte[] img = rs.getBytes("pic");
 

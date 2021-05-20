@@ -24,6 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -42,8 +44,11 @@ import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.border.BevelBorder;
 
 public class SeatSelection extends JFrame implements MouseListener {
 
@@ -82,6 +87,9 @@ public class SeatSelection extends JFrame implements MouseListener {
 	 * Create the frame.
 	 */
 	public SeatSelection() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SeatSelection.class.getResource("/Images/ticket.png")));
+		setTitle("Bilet Satis Sistemi");
+		setResizable(false);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1100, 628);
@@ -90,6 +98,8 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		JPanel w_paneScreen = new JPanel();
 		w_paneScreen.setBackground(new Color(220, 20, 60));
@@ -99,8 +109,8 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 		JLabel lbl_Screen = new JLabel("PERDE");
 		lbl_Screen.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_Screen.setFont(new Font("Segoe Script", Font.BOLD | Font.ITALIC, 42));
-		lbl_Screen.setBounds(0, 0, 1064, 92);
+		lbl_Screen.setFont(new Font("Script MT Bold", Font.ITALIC, 45));
+		lbl_Screen.setBounds(0, 0, 1064, 72);
 		w_paneScreen.add(lbl_Screen);
 
 		JPanel w_paneSeat = new JPanel();
@@ -224,7 +234,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 		JLabel lbl_TopNumber = new JLabel(
 				"           1                    2                     3                   4                     5                    6                    7                                            8                    9                   10                  11                   12                   13                14");
-		lbl_TopNumber.setFont(new Font("Arial", Font.BOLD, 11));
+		lbl_TopNumber.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_TopNumber.setBackground(new Color(0, 0, 255));
 		lbl_TopNumber.setBounds(21, 3, 1043, 14);
 		w_paneTopNumber.add(lbl_TopNumber);
@@ -236,62 +246,62 @@ public class SeatSelection extends JFrame implements MouseListener {
 		w_paneLeftChars.setLayout(null);
 
 		JLabel lbl_A = new JLabel("A");
-		lbl_A.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_A.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_A.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_A.setBounds(0, 19, 21, 14);
 		w_paneLeftChars.add(lbl_A);
 
 		JLabel lbl_B = new JLabel("B");
 		lbl_B.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_B.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_B.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_B.setBounds(0, 59, 21, 14);
 		w_paneLeftChars.add(lbl_B);
 
 		JLabel lbl_C = new JLabel("C");
 		lbl_C.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_C.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_C.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_C.setBounds(0, 99, 21, 14);
 		w_paneLeftChars.add(lbl_C);
 
 		JLabel lbl_D = new JLabel("D");
 		lbl_D.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_D.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_D.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_D.setBounds(0, 139, 21, 14);
 		w_paneLeftChars.add(lbl_D);
 
 		JLabel lbl_E = new JLabel("E");
 		lbl_E.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_E.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_E.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_E.setBounds(0, 176, 21, 14);
 		w_paneLeftChars.add(lbl_E);
 
 		JLabel lbl_F = new JLabel("F");
 		lbl_F.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_F.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_F.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_F.setBounds(0, 217, 21, 14);
 		w_paneLeftChars.add(lbl_F);
 
 		JLabel lbl_G = new JLabel("G");
 		lbl_G.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_G.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_G.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_G.setBounds(0, 257, 21, 14);
 		w_paneLeftChars.add(lbl_G);
 
 		JLabel lbl_H = new JLabel("H");
 		lbl_H.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_H.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_H.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_H.setBounds(0, 298, 21, 14);
 		w_paneLeftChars.add(lbl_H);
 
 		JLabel lbl_I = new JLabel("I");
 		lbl_I.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_I.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_I.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_I.setBounds(0, 335, 21, 14);
 		w_paneLeftChars.add(lbl_I);
 
 		JLabel lbl_J = new JLabel("J");
 		lbl_J.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_J.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_J.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_J.setBounds(0, 374, 21, 14);
 		w_paneLeftChars.add(lbl_J);
 
@@ -303,61 +313,61 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 		JLabel lbl_A_1 = new JLabel("A");
 		lbl_A_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_A_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_A_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_A_1.setBounds(0, 19, 21, 14);
 		w_paneLeftChars_1.add(lbl_A_1);
 
 		JLabel lbl_B_1 = new JLabel("B");
 		lbl_B_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_B_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_B_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_B_1.setBounds(0, 59, 21, 14);
 		w_paneLeftChars_1.add(lbl_B_1);
 
 		JLabel lbl_C_1 = new JLabel("C");
 		lbl_C_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_C_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_C_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_C_1.setBounds(0, 99, 21, 14);
 		w_paneLeftChars_1.add(lbl_C_1);
 
 		JLabel lbl_D_1 = new JLabel("D");
 		lbl_D_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_D_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_D_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_D_1.setBounds(0, 139, 21, 14);
 		w_paneLeftChars_1.add(lbl_D_1);
 
 		JLabel lbl_E_1 = new JLabel("E");
 		lbl_E_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_E_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_E_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_E_1.setBounds(0, 176, 21, 14);
 		w_paneLeftChars_1.add(lbl_E_1);
 
 		JLabel lbl_F_1 = new JLabel("F");
 		lbl_F_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_F_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_F_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_F_1.setBounds(0, 217, 21, 14);
 		w_paneLeftChars_1.add(lbl_F_1);
 
 		JLabel lbl_G_1 = new JLabel("G");
 		lbl_G_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_G_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_G_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_G_1.setBounds(0, 257, 21, 14);
 		w_paneLeftChars_1.add(lbl_G_1);
 
 		JLabel lbl_H_1 = new JLabel("H");
 		lbl_H_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_H_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_H_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_H_1.setBounds(0, 298, 21, 14);
 		w_paneLeftChars_1.add(lbl_H_1);
 
 		JLabel lbl_I_1 = new JLabel("I");
 		lbl_I_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_I_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_I_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_I_1.setBounds(0, 335, 21, 14);
 		w_paneLeftChars_1.add(lbl_I_1);
 
 		JLabel lbl_J_1 = new JLabel("J");
 		lbl_J_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_J_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_J_1.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_J_1.setBounds(0, 374, 21, 14);
 		w_paneLeftChars_1.add(lbl_J_1);
 
@@ -372,7 +382,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.add(lbl_TakenSeatIcon);
 
 		JLabel lbl_TakenSeatLabel = new JLabel("Dolu Koltuk");
-		lbl_TakenSeatLabel.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_TakenSeatLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_TakenSeatLabel.setBounds(35, 515, 94, 14);
 		contentPane.add(lbl_TakenSeatLabel);
 
@@ -387,7 +397,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.add(lbl_EmptySeatIcon);
 
 		JLabel lbl_EmptySeatLabel = new JLabel("Bos Koltuk");
-		lbl_EmptySeatLabel.setFont(new Font("Arial", Font.BOLD, 12));
+		lbl_EmptySeatLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_EmptySeatLabel.setBounds(35, 540, 94, 14);
 		contentPane.add(lbl_EmptySeatLabel);
 
@@ -402,54 +412,54 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.add(lbl_SelectedSeatIcon);
 
 		JLabel lbl_SelectedSeatLabel = new JLabel("Secili Koltuk");
-		lbl_SelectedSeatLabel.setFont(new Font("Arial", Font.BOLD, 13));
+		lbl_SelectedSeatLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lbl_SelectedSeatLabel.setBounds(35, 565, 94, 14);
 		contentPane.add(lbl_SelectedSeatLabel);
 
 		JLabel lbl_SelectedTotalSeat = new JLabel("Secilen Koltuk Sayisi");
-		lbl_SelectedTotalSeat.setFont(new Font("Arial", Font.ITALIC, 13));
-		lbl_SelectedTotalSeat.setBounds(620, 513, 170, 20);
+		lbl_SelectedTotalSeat.setFont(new Font("SansSerif", Font.ITALIC, 13));
+		lbl_SelectedTotalSeat.setBounds(628, 513, 170, 20);
 		contentPane.add(lbl_SelectedTotalSeat);
 
 		JLabel lbl_SelectedSeatsNumbers = new JLabel("Secilen Koltuk Numaralari :");
-		lbl_SelectedSeatsNumbers.setFont(new Font("Arial", Font.ITALIC, 13));
-		lbl_SelectedSeatsNumbers.setBounds(620, 536, 170, 23);
+		lbl_SelectedSeatsNumbers.setFont(new Font("SansSerif", Font.ITALIC, 13));
+		lbl_SelectedSeatsNumbers.setBounds(628, 536, 170, 23);
 		contentPane.add(lbl_SelectedSeatsNumbers);
 
 		txt_TotalSeats = new JTextField();
 		txt_TotalSeats.setEditable(false);
-		txt_TotalSeats.setFont(new Font("Arial", Font.BOLD, 15));
+		txt_TotalSeats.setFont(new Font("SansSerif", Font.BOLD, 15));
 		txt_TotalSeats.setBackground(new Color(255, 255, 255));
-		txt_TotalSeats.setBounds(792, 513, 65, 20);
+		txt_TotalSeats.setBounds(800, 513, 65, 20);
 		txt_TotalSeats.setText("0");
 		contentPane.add(txt_TotalSeats);
 		txt_TotalSeats.setColumns(10);
 
 		JLabel lbl_TicketPrice = new JLabel("Bilet Fiyati : 20TL");
-		lbl_TicketPrice.setFont(new Font("Arial", Font.BOLD, 14));
+		lbl_TicketPrice.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lbl_TicketPrice.setBounds(161, 522, 170, 20);
 		contentPane.add(lbl_TicketPrice);
 
 		JLabel lbl_StudentTicketPrice = new JLabel("Ogrenci Bilet Fiyati : 13TL");
-		lbl_StudentTicketPrice.setFont(new Font("Arial", Font.BOLD, 14));
+		lbl_StudentTicketPrice.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lbl_StudentTicketPrice.setBounds(161, 550, 186, 23);
 		contentPane.add(lbl_StudentTicketPrice);
 
 		JLabel lbl_TotalStudentLabel = new JLabel("Ogrenci Sayisi :");
-		lbl_TotalStudentLabel.setFont(new Font("Arial", Font.ITALIC, 13));
-		lbl_TotalStudentLabel.setBounds(620, 559, 170, 23);
+		lbl_TotalStudentLabel.setFont(new Font("SansSerif", Font.ITALIC, 13));
+		lbl_TotalStudentLabel.setBounds(628, 559, 170, 23);
 		contentPane.add(lbl_TotalStudentLabel);
 
 		txt_TotalStudent = new JTextField("0");
-		txt_TotalStudent.setFont(new Font("Arial", Font.BOLD, 15));
+		txt_TotalStudent.setFont(new Font("SansSerif", Font.BOLD, 15));
 		txt_TotalStudent.setColumns(10);
 		txt_TotalStudent.setBackground(Color.WHITE);
-		txt_TotalStudent.setBounds(792, 561, 65, 20);
+		txt_TotalStudent.setBounds(800, 561, 65, 20);
 
 		contentPane.add(txt_TotalStudent);
 
 		JLabel lblNewLabel = new JLabel("Tutar:");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		lblNewLabel.setBounds(884, 530, 55, 39);
 		contentPane.add(lblNewLabel);
 
@@ -457,24 +467,27 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 		txt_Total.setBackground(new Color(255, 255, 255));
 		txt_Total.setEditable(false);
-		txt_Total.setForeground(new Color(0, 128, 0));
-		txt_Total.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 26));
+		txt_Total.setForeground(new Color(0, 204, 0));
+		txt_Total.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 25));
 		txt_Total.setHorizontalAlignment(SwingConstants.CENTER);
 
-		txt_Total.setBounds(949, 517, 125, 61);
+		txt_Total.setBounds(954, 530, 100, 40);
 
 		contentPane.add(txt_Total);
 		txt_Total.setColumns(10);
 
 		txt_SelectedSeatsNumbers = new JTextField();
-		txt_SelectedSeatsNumbers.setFont(new Font("Arial", Font.BOLD, 15));
+		txt_SelectedSeatsNumbers.setFont(new Font("SansSerif", Font.BOLD, 15));
 		txt_SelectedSeatsNumbers.setEditable(false);
 		txt_SelectedSeatsNumbers.setColumns(10);
 		txt_SelectedSeatsNumbers.setBackground(Color.WHITE);
-		txt_SelectedSeatsNumbers.setBounds(792, 537, 65, 20);
+		txt_SelectedSeatsNumbers.setBounds(800, 537, 65, 20);
 		contentPane.add(txt_SelectedSeatsNumbers);
 
 		JButton btn_Confirm = new JButton("Onayla");
+		btn_Confirm.setFocusable(false);
+		btn_Confirm.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_Confirm.setBackground(new Color(153, 255, 102));
 		btn_Confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -541,8 +554,8 @@ public class SeatSelection extends JFrame implements MouseListener {
 				dispose();
 			}
 		});
-		btn_Confirm.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 15));
-		btn_Confirm.setBounds(492, 525, 100, 44);
+		btn_Confirm.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btn_Confirm.setBounds(467, 525, 150, 40);
 		contentPane.add(btn_Confirm);
 
 	}

@@ -11,6 +11,8 @@ import Helper.Metod_Helper;
 
 import javax.swing.JTabbedPane;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -27,6 +29,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import javax.swing.border.BevelBorder;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -59,37 +63,43 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/Images/ticket.png")));
 		setResizable(false);
-		setTitle("Login Ekrani");
+		setTitle("Bilet Satis Sistemi");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 520, 400);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 204));
+		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 82, 414, 168);
+		tabbedPane.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		tabbedPane.setFocusable(false);
+		tabbedPane.setBounds(10, 82, 484, 268);
 		contentPane.add(tabbedPane);
 
 		JPanel w_paneCustomer = new JPanel();
 		w_paneCustomer.setBackground(Color.WHITE);
-		tabbedPane.addTab("Giris", null, w_paneCustomer, null);
+		tabbedPane.addTab("Kullanici Girisi", null, w_paneCustomer, null);
 		w_paneCustomer.setLayout(null);
 
 		JLabel lbl_UserTC = new JLabel("T.C. Kimlik No:");
-		lbl_UserTC.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		lbl_UserTC.setBounds(10, 22, 108, 14);
+		lbl_UserTC.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_UserTC.setBounds(84, 20, 100, 20);
 		w_paneCustomer.add(lbl_UserTC);
 
 		JLabel lbl_Password_Login = new JLabel("Sifre:");
-		lbl_Password_Login.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		lbl_Password_Login.setBounds(10, 60, 41, 14);
+		lbl_Password_Login.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Password_Login.setBounds(84, 50, 100, 20);
 		w_paneCustomer.add(lbl_Password_Login);
 
 		fld_Username_Login = new JTextField();
-		fld_Username_Login.setBounds(116, 20, 122, 20);
+		fld_Username_Login.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		fld_Username_Login.setBounds(194, 20, 275, 20);
 		w_paneCustomer.add(fld_Username_Login);
 		fld_Username_Login.setColumns(10);
 		fld_Username_Login.addKeyListener(new KeyAdapter() {
@@ -116,7 +126,8 @@ public class Login extends JFrame {
 		});
 
 		fld_Password_Login = new JPasswordField();
-		fld_Password_Login.setBounds(116, 58, 122, 20);
+		fld_Password_Login.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		fld_Password_Login.setBounds(194, 50, 275, 20);
 
 		fld_Password_Login.addKeyListener(new KeyAdapter() {
 
@@ -147,6 +158,8 @@ public class Login extends JFrame {
 		w_paneCustomer.add(fld_Password_Login);
 
 		JButton btn_Register = new JButton("Kayit Ol");
+		btn_Register.setFocusable(false);
+		btn_Register.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Register register = new Register();
@@ -154,12 +167,14 @@ public class Login extends JFrame {
 				dispose();
 			}
 		});
-		btn_Register.setBackground(Color.ORANGE);
-		btn_Register.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		btn_Register.setBounds(10, 90, 101, 39);
+		btn_Register.setBackground(new Color(153, 255, 102));
+		btn_Register.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		btn_Register.setBounds(70, 165, 150, 40);
 		w_paneCustomer.add(btn_Register);
 
 		JButton btn_Login = new JButton("Giris Yap");
+		btn_Login.setFocusable(false);
+		btn_Login.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		// --------------------------------------------------------Login
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -233,13 +248,15 @@ public class Login extends JFrame {
 
 			}
 		});
-		btn_Login.setBackground(Color.GREEN);
-		btn_Login.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		btn_Login.setBounds(137, 89, 101, 39);
+		btn_Login.setBackground(new Color(255, 255, 51));
+		btn_Login.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		btn_Login.setBounds(70, 105, 150, 40);
 		w_paneCustomer.add(btn_Login);
 
-		JButton btn_Login_Guest = new JButton("Ziyaretci ?");
-		btn_Login_Guest.setBackground(Color.PINK);
+		JButton btn_Login_Guest = new JButton("Ziyaretci Girisi");
+		btn_Login_Guest.setFocusable(false);
+		btn_Login_Guest.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_Login_Guest.setBackground(new Color(153, 255, 255));
 		btn_Login_Guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GuestScreen uak;
@@ -253,11 +270,13 @@ public class Login extends JFrame {
 				dispose();
 			}
 		});
-		btn_Login_Guest.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		btn_Login_Guest.setBounds(265, 22, 120, 52);
+		btn_Login_Guest.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		btn_Login_Guest.setBounds(259, 105, 150, 40);
 		w_paneCustomer.add(btn_Login_Guest);
 
 		JButton btnNewButton = new JButton("Sifremi Unuttum");
+		btnNewButton.setFocusable(false);
+		btnNewButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -266,11 +285,16 @@ public class Login extends JFrame {
 
 			}
 		});
-		btnNewButton.setForeground(new Color(204, 204, 255));
-		btnNewButton.setBackground(Color.RED);
-		btnNewButton.setFont(new Font("Yu Gothic UI", Font.BOLD, 11));
-		btnNewButton.setBounds(265, 90, 120, 39);
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setBackground(new Color(255, 102, 102));
+		btnNewButton.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		btnNewButton.setBounds(259, 165, 150, 40);
 		w_paneCustomer.add(btnNewButton);
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/Images/user.png")));
+		lblNewLabel.setBounds(10, 10, 64, 64);
+		w_paneCustomer.add(lblNewLabel);
 
 		JPanel w_paneAdmin = new JPanel();
 		w_paneAdmin.setBackground(Color.WHITE);
@@ -278,22 +302,24 @@ public class Login extends JFrame {
 		w_paneAdmin.setLayout(null);
 
 		JLabel lbl_Admin_ID = new JLabel("Yonetici ID:");
-		lbl_Admin_ID.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		lbl_Admin_ID.setBounds(10, 22, 96, 14);
+		lbl_Admin_ID.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Admin_ID.setBounds(84, 20, 100, 20);
 		w_paneAdmin.add(lbl_Admin_ID);
 
 		fld_Username_Admin = new JTextField();
+		fld_Username_Admin.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		fld_Username_Admin.setColumns(10);
-		fld_Username_Admin.setBounds(116, 20, 122, 20);
+		fld_Username_Admin.setBounds(194, 20, 275, 20);
 		w_paneAdmin.add(fld_Username_Admin);
 
 		JLabel lbl_Password_Admin = new JLabel("Sifre:");
-		lbl_Password_Admin.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		lbl_Password_Admin.setBounds(10, 60, 41, 14);
+		lbl_Password_Admin.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		lbl_Password_Admin.setBounds(84, 50, 100, 20);
 		w_paneAdmin.add(lbl_Password_Admin);
 
 		fld_Password_Admin = new JPasswordField();
-		fld_Password_Admin.setBounds(116, 58, 122, 20);
+		fld_Password_Admin.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		fld_Password_Admin.setBounds(194, 50, 275, 20);
 
 		fld_Password_Admin.addKeyListener(new KeyAdapter() {
 
@@ -325,7 +351,9 @@ public class Login extends JFrame {
 		// ---------------------------------------------------------------------Admin
 		// login-------------------------
 		JButton btn_Login_1 = new JButton("Giris Yap");
-		btn_Login_1.setBackground(new Color(255, 235, 205));
+		btn_Login_1.setFocusable(false);
+		btn_Login_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_Login_1.setBackground(new Color(255, 255, 51));
 		btn_Login_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -398,32 +426,38 @@ public class Login extends JFrame {
 
 			}
 		});
-		btn_Login_1.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		btn_Login_1.setBounds(137, 89, 101, 39);
+		btn_Login_1.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		btn_Login_1.setBounds(164, 130, 150, 40);
 		w_paneAdmin.add(btn_Login_1);
 
 		JLabel lbl_ForgottenAdmin = new JLabel(
-				"Sifrenizi veya ID'nizi unuttuðunuzda lutfen ilgili yetkiliyeden yardim aliniz.");
-		lbl_ForgottenAdmin.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lbl_ForgottenAdmin.setBounds(10, 127, 389, 14);
+				"Giris bilgilerinizi hatirlayamiyorsaniz lutfen ilgili birimle iletisime geciniz");
+		lbl_ForgottenAdmin.setBackground(new Color(255, 255, 255));
+		lbl_ForgottenAdmin.setFont(new Font("SansSerif", Font.ITALIC, 11));
+		lbl_ForgottenAdmin.setBounds(10, 209, 459, 20);
 		w_paneAdmin.add(lbl_ForgottenAdmin);
 
-		ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/admin.png"));
+		ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/primex64.png"));
 		Image image = imageIcon.getImage();
 		Image newimg = image.getScaledInstance(160, 125, java.awt.Image.SCALE_SMOOTH);
 
 		JLabel lbl_adminIcon = new JLabel();
-		lbl_adminIcon.setBounds(248, 11, 161, 117);
-		lbl_adminIcon.setIcon(new ImageIcon(newimg));
+		lbl_adminIcon.setBounds(10, 10, 64, 64);
+		lbl_adminIcon.setIcon(new ImageIcon(Login.class.getResource("/Images/primex64.png")));
 		w_paneAdmin.add(lbl_adminIcon);
 
-		JLabel lblWelcome = new JLabel("Welcome to Ticket Sales System");
-		lblWelcome.setFont(new Font("Tempus Sans ITC", Font.BOLD | Font.ITALIC, 16));
-		lblWelcome.setBounds(100, 43, 242, 14);
+		JLabel lblWelcome = new JLabel("Bilet Satis Sistemine  Hosgeldiniz");
+		lblWelcome.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblWelcome.setBounds(107, 40, 300, 25);
 		contentPane.add(lblWelcome);
 
-		JLabel lblBGLogo = new JLabel(new ImageIcon(Login.class.getResource("/Images/sinemabg.png")));
-		lblBGLogo.setBounds(12, 31, 90, 60);
+		JLabel lblBGLogo = new JLabel(new ImageIcon(Login.class.getResource("/Images/ticket.png")));
+		lblBGLogo.setBounds(33, 11, 64, 64);
 		contentPane.add(lblBGLogo);
+
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/Images/ticket.png")));
+		lblNewLabel_1.setBounds(406, 11, 64, 64);
+		contentPane.add(lblNewLabel_1);
 	}
 }

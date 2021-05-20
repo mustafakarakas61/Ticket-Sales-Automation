@@ -65,6 +65,7 @@ public class UpdateGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public UpdateGUI() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(UpdateGUI.class.getResource("/Images/ticket.png")));
 		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

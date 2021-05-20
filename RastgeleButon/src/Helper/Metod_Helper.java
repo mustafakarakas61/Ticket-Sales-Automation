@@ -6,10 +6,10 @@ public class Metod_Helper {
 
 	public static void buttonTextChange() {
 
-		UIManager.put("OptionPane.cancelButtonText", "İptal");
+		UIManager.put("OptionPane.cancelButtonText", "Ãptal");
 		UIManager.put("OptionPane.okButtonText", "Tamam");
 		UIManager.put("OptionPane.yesButtonText", "Evet");
-		UIManager.put("OptionPane.noButtonText", "Hayır");
+		UIManager.put("OptionPane.noButtonText", "HayÃ½r");
 
 	}
 
@@ -19,13 +19,13 @@ public class Metod_Helper {
 		switch (str) {
 
 		case "fill":
-			msg = "Lütfen boş alanları doldurunuz";
+			msg = "LÃ¼tfen boÃ¾ alanlarÃ½ doldurunuz";
 			break;
 		case "succes":
-			msg = "İşlem başarıyla tamamlandı";
+			msg = "ÃÃ¾lem baÃ¾arÃ½yla tamamlandÃ½";
 			break;
 		case "error":
-			msg = "Tuhaf şeyler oluyor";
+			msg = "Tuhaf Ã¾eyler oluyor";
 
 		default:
 			msg = str;
@@ -42,7 +42,7 @@ public class Metod_Helper {
 		switch (str) {
 
 		case "sure":
-			msg = "	Bu işlemi gerçekleştirmek istiyormusun";
+			msg = "	Bu iÃ¾lemi gerÃ§ekleÃ¾tirmek istiyormusun";
 			break;
 
 		default:

@@ -90,6 +90,7 @@ public class GuestScreen extends JFrame {
 	 * @throws SQLException
 	 */
 	public GuestScreen(user member) throws SQLException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GuestScreen.class.getResource("/Images/ticket.png")));
 		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
 
@@ -134,7 +135,7 @@ public class GuestScreen extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 624, 630);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(240, 230, 140));
+		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(
 				new BevelBorder(BevelBorder.LOWERED, UIManager.getColor("InternalFrame.activeTitleBackground"),
 						UIManager.getColor("InternalFrame.activeTitleBackground"),
@@ -147,7 +148,7 @@ public class GuestScreen extends JFrame {
 
 		JLabel lbl_Name = new JLabel("Bilet satin almak icin lutfen giris yapiniz.");
 		lbl_Name.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 15));
-		lbl_Name.setBounds(10, 20, 400, 20);
+		lbl_Name.setBounds(10, 20, 587, 20);
 		contentPane.add(lbl_Name);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -291,8 +292,8 @@ public class GuestScreen extends JFrame {
 		btn_SelectCinema.setFocusable(false);
 		btn_SelectCinema.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_SelectCinema.setForeground(new Color(0, 0, 0));
-		btn_SelectCinema.setBackground(new Color(240, 255, 240));
-		btn_SelectCinema.setBounds(255, 547, 93, 30);
+		btn_SelectCinema.setBackground(new Color(153, 204, 255));
+		btn_SelectCinema.setBounds(262, 547, 93, 30);
 		contentPane.add(btn_SelectCinema);
 		btn_SelectCinema.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_SelectCinema.addActionListener(new ActionListener() {

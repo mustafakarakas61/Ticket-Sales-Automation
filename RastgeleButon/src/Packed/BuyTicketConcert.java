@@ -18,6 +18,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
@@ -26,6 +28,8 @@ import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.UIManager;
+import java.awt.Toolkit;
+import javax.swing.border.BevelBorder;
 
 public class BuyTicketConcert extends JFrame {
 
@@ -39,8 +43,18 @@ public class BuyTicketConcert extends JFrame {
 	JTextField txt_StudentCount;
 	public static JLabel lbl_Card;
 	public static JLabel lbl_InfoStudent;
-	private static String concert, hour, artist, price, concert_Date, concert_place, ticketPrice, ticketCount,
-			studentCount, lblCard, lblInfoStudent, user;
+	private static String concert;
+	private static String hour;
+	private static String artist;
+	private static String price;
+	private static String concert_Date;
+	private static String concert_place;
+	private static String ticketPrice;
+	private static String ticketCount;
+	private static String studentCount;
+	private static String lblCard;
+	private static String lblInfoStudent;
+	private static String user;
 	private JTextField txt_concertDate;
 	private JLabel lbl_TicketPrice;
 	private JTextField txt_TicketPrice;
@@ -161,49 +175,51 @@ public class BuyTicketConcert extends JFrame {
 	 * Create the frame.
 	 */
 	public BuyTicketConcert() {
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BuyTicketConcert.class.getResource("/Images/ticket.png")));
+		setTitle("Bilet Satis Sistemi");
 
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 458);
+		setBounds(100, 100, 450, 460);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(240, 248, 255));
+		panel.setBackground(new Color(204, 204, 255));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
 		JLabel lbl_ConcertName = new JLabel("Konser Ismi :");
-		lbl_ConcertName.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_ConcertName.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_ConcertName.setBounds(9, 7, 121, 29);
+		lbl_ConcertName.setBounds(50, 30, 90, 25);
 		panel.add(lbl_ConcertName);
 
 		fld_ConcertName = new JTextField();
 		fld_ConcertName.setText(concert);
 		fld_ConcertName.setEditable(false);
 		fld_ConcertName.setColumns(10);
-		fld_ConcertName.setBounds(147, 10, 188, 23);
+		fld_ConcertName.setBounds(160, 30, 243, 25);
 		panel.add(fld_ConcertName);
 
 		JLabel lbl_Seans = new JLabel("Saat :");
-		lbl_Seans.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Seans.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Seans.setBounds(54, 115, 82, 29);
+		lbl_Seans.setBounds(50, 150, 90, 25);
 		panel.add(lbl_Seans);
 
 		fld_hour = new JTextField();
 		fld_hour.setText(hour);
 		fld_hour.setEditable(false);
 		fld_hour.setColumns(10);
-		fld_hour.setBounds(147, 118, 188, 23);
+		fld_hour.setBounds(160, 150, 243, 25);
 		panel.add(fld_hour);
 
 		JLabel lblcret = new JLabel("Ucret :");
-		lblcret.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcret.setFont(new Font("SansSerif", Font.BOLD, 20));
-		lblcret.setBounds(49, 280, 82, 29);
+		lblcret.setBounds(60, 280, 80, 25);
 		panel.add(lblcret);
 
 		fld_price = new JTextField();
@@ -211,39 +227,36 @@ public class BuyTicketConcert extends JFrame {
 		fld_price.setText(price);
 		fld_price.setEditable(false);
 		fld_price.setColumns(10);
-		fld_price.setBounds(147, 276, 72, 35);
+		fld_price.setBounds(160, 280, 100, 25);
 		panel.add(fld_price);
 
 		JLabel lblArtist = new JLabel("Sanatci :");
-		lblArtist.setHorizontalAlignment(SwingConstants.CENTER);
 		lblArtist.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lblArtist.setBounds(42, 60, 82, 29);
+		lblArtist.setBounds(50, 90, 90, 25);
 		panel.add(lblArtist);
 
 		fld_Artist = new JTextField();
 		fld_Artist.setText(artist);
 		fld_Artist.setEditable(false);
 		fld_Artist.setColumns(10);
-		fld_Artist.setBounds(147, 64, 188, 23);
+		fld_Artist.setBounds(160, 90, 243, 25);
 		panel.add(fld_Artist);
 
 		JLabel lbl_concertPlace = new JLabel("Konser Yeri :");
-		lbl_concertPlace.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_concertPlace.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_concertPlace.setBounds(12, 35, 111, 29);
+		lbl_concertPlace.setBounds(50, 60, 90, 25);
 		panel.add(lbl_concertPlace);
 
 		fld_concert_Place = new JTextField();
 		fld_concert_Place.setText(concert_place);
 		fld_concert_Place.setEditable(false);
 		fld_concert_Place.setColumns(10);
-		fld_concert_Place.setBounds(147, 37, 188, 23);
+		fld_concert_Place.setBounds(160, 60, 243, 25);
 		panel.add(fld_concert_Place);
 
 		JLabel lbl_TicketCount = new JLabel("Bilet Adeti :");
-		lbl_TicketCount.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_TicketCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_TicketCount.setBounds(25, 194, 118, 29);
+		lbl_TicketCount.setBounds(50, 210, 90, 25);
 		panel.add(lbl_TicketCount);
 
 		txt_ticketCount = new JTextField();
@@ -252,7 +265,7 @@ public class BuyTicketConcert extends JFrame {
 		txt_ticketCount.setText(ticketCount);
 		txt_ticketCount.setEditable(false);
 		txt_ticketCount.setColumns(10);
-		txt_ticketCount.setBounds(147, 198, 37, 23);
+		txt_ticketCount.setBounds(160, 210, 50, 25);
 		panel.add(txt_ticketCount);
 
 		lbl_Card = new JLabel();
@@ -263,9 +276,8 @@ public class BuyTicketConcert extends JFrame {
 		panel.add(lbl_Card);
 
 		JLabel lbl_Student = new JLabel("Ogrenci Sayisi :");
-		lbl_Student.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Student.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Student.setBounds(3, 223, 130, 29);
+		lbl_Student.setBounds(50, 240, 110, 25);
 		panel.add(lbl_Student);
 
 		txt_StudentCount = new JTextField();
@@ -276,7 +288,7 @@ public class BuyTicketConcert extends JFrame {
 		txt_StudentCount.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 16));
 		txt_StudentCount.setEditable(false);
 		txt_StudentCount.setColumns(10);
-		txt_StudentCount.setBounds(147, 227, 37, 23);
+		txt_StudentCount.setBounds(160, 240, 50, 25);
 		panel.add(txt_StudentCount);
 
 		try {
@@ -299,22 +311,20 @@ public class BuyTicketConcert extends JFrame {
 		panel.add(lbl_InfoStudent);
 
 		JLabel lbl_concertDate = new JLabel("Tarih :");
-		lbl_concertDate.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_concertDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_concertDate.setBounds(55, 89, 72, 29);
+		lbl_concertDate.setBounds(50, 120, 90, 25);
 		panel.add(lbl_concertDate);
 
 		txt_concertDate = new JTextField();
 		txt_concertDate.setText(concert_Date);
 		txt_concertDate.setEditable(false);
 		txt_concertDate.setColumns(10);
-		txt_concertDate.setBounds(147, 91, 188, 23);
+		txt_concertDate.setBounds(160, 120, 243, 25);
 		panel.add(txt_concertDate);
 
 		lbl_TicketPrice = new JLabel("Bilet Fiyati :");
-		lbl_TicketPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_TicketPrice.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_TicketPrice.setBounds(24, 155, 118, 29);
+		lbl_TicketPrice.setBounds(50, 180, 90, 25);
 		panel.add(lbl_TicketPrice);
 
 		txt_TicketPrice = new JTextField();
@@ -323,29 +333,32 @@ public class BuyTicketConcert extends JFrame {
 		txt_TicketPrice.setFont(new Font("SansSerif", Font.BOLD, 14));
 		txt_TicketPrice.setEditable(false);
 		txt_TicketPrice.setColumns(10);
-		txt_TicketPrice.setBounds(147, 159, 37, 23);
+		txt_TicketPrice.setBounds(160, 180, 50, 25);
 		panel.add(txt_TicketPrice);
 
 		JButton btn_print = new JButton("Fisi Yazdir");
-		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btn_print.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_print.setFocusable(false);
+		btn_print.setBackground(new Color(153, 255, 102));
+		btn_print.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					FileWriter myWriter = new FileWriter("Bilet.txt");
-					myWriter.write("Alýnan Konser Ismi :" + fld_ConcertName.getText() + "\nBilet Fiyati : "
+					myWriter.write("AlÃ½nan Konser Ismi :" + fld_ConcertName.getText() + "\nBilet Fiyati : "
 							+ txt_TicketPrice.getText() + "\nBilet Adeti : " + txt_ticketCount.getText()
 							+ "\nToplam Ucret : " + fld_price.getText() + "\nSanatci: " + fld_Artist.getText()
 							+ "\nKonser Yeri : " + fld_concert_Place.getText() + "\nTarih : "
 							+ txt_concertDate.getText() + "\nSaat : " + fld_hour.getText() + "\n" + lbl_Card.getText()
-							+ "\nBu bilet " + user + "adina kesilmiþtir"
-							+ "\n------------------------Iyý Eglenceler------------------------");
+							+ "\nBu bilet " + user + "adina kesilmiÃ¾tir"
+							+ "\n------------------------IyÃ½ Eglenceler------------------------");
 					myWriter.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 			}
 		});
-		btn_print.setBounds(132, 355, 157, 35);
+		btn_print.setBounds(142, 355, 150, 35);
 		panel.add(btn_print);
 
 	}

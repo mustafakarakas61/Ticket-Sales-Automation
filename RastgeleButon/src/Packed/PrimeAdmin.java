@@ -74,20 +74,21 @@ public class PrimeAdmin extends JFrame {
 	 */
 
 	public PrimeAdmin(user admin) throws SQLException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PrimeAdmin.class.getResource("/Images/ticket.png")));
 
-		setTitle("Bilet Satýþ Sistemi");
+		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
 
 		customerModel = new DefaultTableModel();
-		Object[] colCustomer = new Object[4]; // tablo sütunlarýna isim vermek için
+		Object[] colCustomer = new Object[4]; // tablo sÃ¼tunlarÃ½na isim vermek iÃ§in
 
 		colCustomer[0] = "ID";
-		colCustomer[1] = "T.C. Kimlik Numarasý";
+		colCustomer[1] = "T.C. Kimlik NumarasÃ½";
 		colCustomer[2] = "Ad";
 		colCustomer[3] = "Soyad";
 
 		customerModel.setColumnIdentifiers(colCustomer);
-		customerData = new Object[4]; // sqlden veri çekmek için
+		customerData = new Object[4]; // sqlden veri Ã§ekmek iÃ§in
 
 		adminModel = new DefaultTableModel();
 		Object[] colAdmin = new Object[5];
@@ -95,8 +96,8 @@ public class PrimeAdmin extends JFrame {
 		colAdmin[0] = "ID";
 		colAdmin[1] = "Ad";
 		colAdmin[2] = "Soyad";
-		colAdmin[3] = "Þifre";
-		colAdmin[4] = "Yönetici ID";
+		colAdmin[3] = "Ãžifre";
+		colAdmin[4] = "YÃ¶netici ID";
 
 		adminModel.setColumnIdentifiers(colAdmin);
 		adminData = new Object[5];
@@ -111,7 +112,7 @@ public class PrimeAdmin extends JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-		JLabel lbl_WelcomePrimeAdmin = new JLabel("Hoþgeldiniz Sayýn " + admin.getName());
+		JLabel lbl_WelcomePrimeAdmin = new JLabel("Hosgeldiniz Sayin " + admin.getName());
 		lbl_WelcomePrimeAdmin.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_WelcomePrimeAdmin.setBounds(10, 20, 500, 20);
 		contentPane.add(lbl_WelcomePrimeAdmin);
@@ -125,12 +126,12 @@ public class PrimeAdmin extends JFrame {
 		JButton btnNewButton = new JButton("Sil");
 		btnNewButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btnNewButton.setFocusable(false);
-		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(255, 102, 102));
 		btnNewButton.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (table_Member.getSelectionModel().isSelectionEmpty()) {
-					Metod_Helper.showMsg("Lütfen silmek istediðiniz kullanýcýyý seçiniz!");
+					Metod_Helper.showMsg("LÃ¼tfen silmek istediÃ°iniz kullanÃ½cÃ½yÃ½ seÃ§iniz!");
 				} else {
 					if (Metod_Helper.confirm("sure")) {
 						int selectedRow = table_Member.getSelectedRow();
@@ -203,7 +204,7 @@ public class PrimeAdmin extends JFrame {
 				}
 			}
 		});
-		btn_addSubAdmin.setBackground(new Color(255, 255, 255));
+		btn_addSubAdmin.setBackground(new Color(153, 255, 102));
 		btn_addSubAdmin.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_addSubAdmin.setFocusable(false);
 		btn_addSubAdmin.setFont(new Font("SansSerif", Font.PLAIN, 15));
@@ -214,7 +215,7 @@ public class PrimeAdmin extends JFrame {
 		btn_delSubAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tf_yoneticiID.getText().length() == 0) {
-					Metod_Helper.showMsg("Lütfen silmek istediðiniz kaydýn ID bilgisini giriniz");
+					Metod_Helper.showMsg("LÃ¼tfen silmek istediÃ°iniz kaydÃ½n ID bilgisini giriniz");
 				} else {
 					if (Metod_Helper.confirm("sure")) {
 
@@ -234,7 +235,7 @@ public class PrimeAdmin extends JFrame {
 				}
 			}
 		});
-		btn_delSubAdmin.setBackground(new Color(255, 255, 255));
+		btn_delSubAdmin.setBackground(new Color(255, 102, 102));
 		btn_delSubAdmin.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_delSubAdmin.setFocusable(false);
 		btn_delSubAdmin.setFont(new Font("SansSerif", Font.PLAIN, 15));
@@ -279,12 +280,12 @@ public class PrimeAdmin extends JFrame {
 		label_1.setBounds(285, 345, 57, 22);
 		w_paneAdmin.add(label_1);
 
-		Label label_2 = new Label("Yönetici ID:");
+		Label label_2 = new Label("YÃ¶netici ID:");
 		label_2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		label_2.setBounds(45, 385, 80, 20);
 		w_paneAdmin.add(label_2);
 
-		Label label_1_1 = new Label("Þifre:");
+		Label label_1_1 = new Label("Sifre:");
 		label_1_1.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		label_1_1.setBounds(284, 385, 57, 22);
 		w_paneAdmin.add(label_1_1);
@@ -313,35 +314,35 @@ public class PrimeAdmin extends JFrame {
 		tf_Pass.setBounds(348, 385, 130, 20);
 		w_paneAdmin.add(tf_Pass);
 
-		JButton btn_updateSubAdmin = new JButton("Güncelle");
+		JButton btn_updateSubAdmin = new JButton("GÃ¼ncelle");
 		btn_updateSubAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (table_Admin.getSelectionModel().isSelectionEmpty()) {
-					Metod_Helper.showMsg("Lütfen güncellemek istediðiniz kaydý seçiniz!");
+					Metod_Helper.showMsg("LÃ¼tfen gÃ¼ncellemek istediÃ°iniz kaydÃ½ seÃ§iniz!");
 				} else {
 					UpdateGUI upGUI = new UpdateGUI();
 					upGUI.setVisible(true);
 				}
 			}
 		});
-		btn_updateSubAdmin.setBackground(new Color(255, 255, 255));
+		btn_updateSubAdmin.setBackground(new Color(255, 255, 102));
 		btn_updateSubAdmin.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_updateSubAdmin.setFocusable(false);
 		btn_updateSubAdmin.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_updateSubAdmin.setBounds(202, 425, 120, 30);
 		w_paneAdmin.add(btn_updateSubAdmin);
 
-		JLabel lbl_Member = new JLabel("Üye Yönetimi");
+		JLabel lbl_Member = new JLabel("Ãœye YÃ¶netimi");
 		lbl_Member.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lbl_Member.setBounds(10, 60, 150, 20);
 		contentPane.add(lbl_Member);
 
-		JLabel lbl_SubAdmin = new JLabel("Alt Yönetici Yönetimi");
+		JLabel lbl_SubAdmin = new JLabel("Alt YÃ¶netici YÃ¶netimi");
 		lbl_SubAdmin.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lbl_SubAdmin.setBounds(550, 60, 150, 20);
 		contentPane.add(lbl_SubAdmin);
 
-		JButton btn_Exit = new JButton("Çýkýþ Yap");
+		JButton btn_Exit = new JButton("Cikis Yap");
 		btn_Exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login lGUI = new Login();

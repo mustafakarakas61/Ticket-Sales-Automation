@@ -15,9 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
@@ -26,6 +30,7 @@ import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
 
 public class BuyTicket extends JFrame {
 
@@ -40,8 +45,17 @@ public class BuyTicket extends JFrame {
 	public static JLabel lbl_Card;
 	public static String[] seats;
 	public static JLabel lbl_InfoStudent;
-	private static String movie, seance, seat, price, salon, movie_type, seatCount, studentCount, lblCard,
-			lblInfoStudent, user;
+	private static String movie;
+	private static String seance;
+	private static String seat;
+	private static String price;
+	private static String salon;
+	private static String movie_type;
+	private static String seatCount;
+	private static String studentCount;
+	private static String lblCard;
+	private static String lblInfoStudent;
+	private static String user;
 	public static JComboBox comboBox_seat;
 
 	public static String getUser() {
@@ -152,43 +166,50 @@ public class BuyTicket extends JFrame {
 	 * Create the frame.
 	 */
 	public BuyTicket() {
+		setTitle("Bilet Satis Sistemi");
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BuyTicket.class.getResource("/Images/ticket.png")));
 
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 458);
+		setBounds(100, 100, 450, 460);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(240, 248, 255));
+		panel.setBackground(new Color(204, 204, 255));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Film : ");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lblNewLabel.setBounds(63, 25, 82, 29);
+		lblNewLabel.setBounds(50, 30, 110, 25);
 		panel.add(lblNewLabel);
 
 		fld_movie_name = new JTextField();
+		fld_movie_name.setBackground(new Color(255, 255, 255));
+		fld_movie_name.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		fld_movie_name.setText(movie);
 		fld_movie_name.setEditable(false);
 		fld_movie_name.setColumns(10);
-		fld_movie_name.setBounds(147, 28, 188, 23);
+		fld_movie_name.setBounds(181, 30, 222, 25);
 		panel.add(fld_movie_name);
 
 		JLabel lblSeans = new JLabel("Seans :");
-		lblSeans.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSeans.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lblSeans.setBounds(54, 115, 82, 29);
+		lblSeans.setBounds(50, 120, 110, 25);
 		panel.add(lblSeans);
 
 		fld_seance = new JTextField();
+		fld_seance.setBackground(new Color(255, 255, 255));
+		fld_seance.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		fld_seance.setText(seance);
 		fld_seance.setEditable(false);
 		fld_seance.setColumns(10);
-		fld_seance.setBounds(147, 118, 188, 23);
+		fld_seance.setBounds(181, 120, 222, 25);
 		panel.add(fld_seance);
 
 		JLabel lbl_seat = new JLabel();
@@ -211,32 +232,37 @@ public class BuyTicket extends JFrame {
 		JLabel lblcret = new JLabel("Ucret :");
 		lblcret.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcret.setFont(new Font("SansSerif", Font.BOLD, 20));
-		lblcret.setBounds(49, 280, 82, 29);
+		lblcret.setBounds(90, 280, 80, 25);
 		panel.add(lblcret);
 
 		fld_price = new JTextField();
-		fld_price.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		fld_price.setBackground(new Color(255, 255, 255));
+		fld_price.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		fld_price.setText(price);
 		fld_price.setEditable(false);
 		fld_price.setColumns(10);
-		fld_price.setBounds(147, 276, 72, 35);
+		fld_price.setBounds(181, 280, 100, 25);
 		panel.add(fld_price);
 
 		JLabel lblSalon = new JLabel("Salon :");
-		lblSalon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalon.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lblSalon.setBounds(54, 85, 82, 29);
+		lblSalon.setBounds(50, 90, 110, 25);
 		panel.add(lblSalon);
 
 		fld_Salon = new JTextField();
+		fld_Salon.setBackground(new Color(255, 255, 255));
+		fld_Salon.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		fld_Salon.setText(salon);
 		fld_Salon.setEditable(false);
 		fld_Salon.setColumns(10);
-		fld_Salon.setBounds(147, 88, 188, 23);
+		fld_Salon.setBounds(181, 90, 222, 25);
 		panel.add(fld_Salon);
 
-		JButton btn_print = new JButton("Fisi yazdir");
-		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JButton btn_print = new JButton("Fisi Yazdir");
+		btn_print.setFocusable(false);
+		btn_print.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		btn_print.setBackground(new Color(153, 255, 102));
+		btn_print.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -251,10 +277,13 @@ public class BuyTicket extends JFrame {
 				}
 			}
 		});
-		btn_print.setBounds(132, 355, 157, 35);
+		btn_print.setBounds(142, 355, 150, 35);
 		panel.add(btn_print);
 		comboBox_seat = new JComboBox();
-		comboBox_seat.setBounds(147, 148, 57, 23);
+		comboBox_seat.setFocusable(false);
+		comboBox_seat.setBackground(new Color(255, 255, 255));
+		comboBox_seat.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		comboBox_seat.setBounds(181, 153, 100, 25);
 		int count = 0;
 
 		if (seat != null) {
@@ -309,31 +338,32 @@ public class BuyTicket extends JFrame {
 		panel.add(comboBox_seat);
 
 		JLabel lbl_moviyetype = new JLabel("Film Turu :");
-		lbl_moviyetype.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_moviyetype.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_moviyetype.setBounds(44, 55, 82, 29);
+		lbl_moviyetype.setBounds(50, 60, 110, 25);
 		panel.add(lbl_moviyetype);
 
 		fld_movie_type = new JTextField();
+		fld_movie_type.setBackground(new Color(255, 255, 255));
+		fld_movie_type.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		fld_movie_type.setText(movie_type);
 		fld_movie_type.setEditable(false);
 		fld_movie_type.setColumns(10);
-		fld_movie_type.setBounds(147, 58, 188, 23);
+		fld_movie_type.setBounds(181, 60, 222, 25);
 		panel.add(fld_movie_type);
 
 		JLabel lbl_seatCount = new JLabel("Koltuk Sayisi :");
-		lbl_seatCount.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_seatCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_seatCount.setBounds(15, 194, 118, 29);
+		lbl_seatCount.setBounds(50, 200, 110, 25);
 		panel.add(lbl_seatCount);
 
 		txt_seatCount = new JTextField();
+		txt_seatCount.setBackground(new Color(255, 255, 255));
 		txt_seatCount.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_seatCount.setFont(new Font("SansSerif", Font.BOLD, 14));
+		txt_seatCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		txt_seatCount.setText(seatCount);
 		txt_seatCount.setEditable(false);
 		txt_seatCount.setColumns(10);
-		txt_seatCount.setBounds(147, 198, 37, 23);
+		txt_seatCount.setBounds(180, 200, 50, 25);
 		panel.add(txt_seatCount);
 
 		lbl_Card = new JLabel();
@@ -344,20 +374,19 @@ public class BuyTicket extends JFrame {
 		panel.add(lbl_Card);
 
 		JLabel lbl_Student = new JLabel("Ogrenci Sayisi :");
-		lbl_Student.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Student.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		lbl_Student.setBounds(3, 223, 130, 29);
+		lbl_Student.setBounds(50, 230, 110, 25);
 		panel.add(lbl_Student);
 
 		txt_StudentCount = new JTextField();
 		txt_StudentCount.setHorizontalAlignment(SwingConstants.CENTER);
 		txt_StudentCount.setForeground(Color.BLUE);
-		txt_StudentCount.setBackground(UIManager.getColor("Button.background"));
+		txt_StudentCount.setBackground(new Color(255, 255, 255));
 		txt_StudentCount.setText(studentCount);
-		txt_StudentCount.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 16));
+		txt_StudentCount.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		txt_StudentCount.setEditable(false);
 		txt_StudentCount.setColumns(10);
-		txt_StudentCount.setBounds(147, 227, 37, 23);
+		txt_StudentCount.setBounds(180, 230, 50, 25);
 		panel.add(txt_StudentCount);
 
 		try {
