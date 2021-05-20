@@ -2,11 +2,7 @@ package Helper;
 
 import javax.swing.*;
 
-//hata mesajlarýný bu helpere gönderip ordan yapýcaðýz
-
 public class Metod_Helper {
-
-	// butonlara türkçe kelime eklemek için
 
 	public static void buttonTextChange() {
 
@@ -29,7 +25,7 @@ public class Metod_Helper {
 			msg = "Ýþlem baþarýyla tamamlandý";
 			break;
 		case "error":
-			 msg = "Tuhaf þeyler oluyor";
+			msg = "Tuhaf þeyler oluyor";
 
 		default:
 			msg = str;
@@ -52,9 +48,6 @@ public class Metod_Helper {
 		default:
 			msg = str;
 		}
-
-		// JOptionpaneden evet yada hayýr a basýnca 0 veya 1 dönderen pane oluþturup
-		// onun deðerlerini int bir deðiþkene atýyacðýz burdan da koþula baðlýyacaðýz
 
 		int result = JOptionPane.showConfirmDialog(null, msg, "Dikkat!", JOptionPane.YES_NO_OPTION);
 
