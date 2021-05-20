@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -64,7 +65,7 @@ public class UpdateGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public UpdateGUI() {
-		setTitle("Bilet Satýþ Sistemi");
+		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 250);
@@ -98,7 +99,7 @@ public class UpdateGUI extends JFrame {
 		contentPane.add(tf_newSurname);
 		tf_newSurname.setColumns(10);
 
-		JLabel lbl_newPass = new JLabel("Yeni Þifre:");
+		JLabel lbl_newPass = new JLabel("Yeni Sifre:");
 		lbl_newPass.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_newPass.setBounds(10, 90, 120, 20);
 		contentPane.add(lbl_newPass);
@@ -134,7 +135,7 @@ public class UpdateGUI extends JFrame {
 			}
 		});
 
-		lbl_newPassAgain = new JLabel("Yeni Þifre Tekrar:");
+		lbl_newPassAgain = new JLabel("Yeni Sifre Tekrar:");
 		lbl_newPassAgain.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_newPassAgain.setBounds(10, 120, 120, 20);
 		contentPane.add(lbl_newPassAgain);
@@ -177,10 +178,10 @@ public class UpdateGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (tf_newName.getText().length() == 0 || tf_newSurname.getText().length() == 0
 						|| tf_newPass.getText().length() == 0) {
-					Metod_Helper.showMsg("Lütfen gerekli alanlarý doldurunuz!");
+					Metod_Helper.showMsg("Lutfen gerekli alanlari doldurunuz!");
 
 				} else if (!tf_newPass.getText().equals(tf_newPassAgain.getText())) {
-					Metod_Helper.showMsg("Þifrenizin doðru tekrar ettiðini kontrol ediniz!");
+					Metod_Helper.showMsg("Sifrenizin dogru tekrar ettigini kontrol ediniz!");
 				}
 
 				else {
