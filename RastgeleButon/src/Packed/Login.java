@@ -238,7 +238,7 @@ public class Login extends JFrame {
 		btn_Login.setBounds(137, 89, 101, 39);
 		w_paneCustomer.add(btn_Login);
 
-		JButton btn_Login_Guest = new JButton("Ziyaretçi ?");
+		JButton btn_Login_Guest = new JButton("Ziyaretci ?");
 		btn_Login_Guest.setBackground(Color.PINK);
 		btn_Login_Guest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -274,7 +274,7 @@ public class Login extends JFrame {
 
 		JPanel w_paneAdmin = new JPanel();
 		w_paneAdmin.setBackground(Color.WHITE);
-		tabbedPane.addTab("Yönetici Giriþi", null, w_paneAdmin, null);
+		tabbedPane.addTab("Yonetici Girisi", null, w_paneAdmin, null);
 		w_paneAdmin.setLayout(null);
 
 		JLabel lbl_Admin_ID = new JLabel("Yonetici ID:");
