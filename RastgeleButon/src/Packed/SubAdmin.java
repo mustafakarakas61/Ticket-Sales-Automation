@@ -829,8 +829,8 @@ public class SubAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					int selRow = table_Theater.getSelectedRow();
-					int id2 = (subadmin.theaterList().get(selRow).getTiyatroID());
+					int selRow2 = table_Theater.getSelectedRow();
+					int id2 = (subadmin.theaterList().get(selRow2).getTiyatroID());
 
 					connection = dbhelper.getConnection();
 					pStatement = connection.prepareStatement("update tiyatro set pic=? where tiyatroID =?");
@@ -1125,8 +1125,8 @@ public class SubAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
-					int selRow = table_Concert.getSelectedRow();
-					int id3 = (subadmin.concertList().get(selRow).getConcertID());
+					int selRow3 = table_Concert.getSelectedRow();
+					int id3 = (subadmin.concertList().get(selRow3).getConcertID());
 
 					connection = dbhelper.getConnection();
 					pStatement = connection.prepareStatement("update concert set pic=? where concertID =?");
