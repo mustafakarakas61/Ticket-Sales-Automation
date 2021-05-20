@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -39,10 +40,10 @@ public class BuyTicket extends JFrame {
 	public static JLabel lbl_Card;
 	public static String[] seats;
 	public static JLabel lbl_InfoStudent;
-	private static String movie, seance, seat, price, salon, movie_type, seatCount, studentCount,lblCard,lblInfoStudent,user;
+	private static String movie, seance, seat, price, salon, movie_type, seatCount, studentCount, lblCard,
+			lblInfoStudent, user;
 	public static JComboBox comboBox_seat;
-	
-	
+
 	public static String getUser() {
 		return user;
 	}
@@ -58,8 +59,7 @@ public class BuyTicket extends JFrame {
 	public static void setMovie(String movie) {
 		BuyTicket.movie = movie;
 	}
-	
-	
+
 	public static String getlblCard() {
 		return lblCard;
 	}
@@ -67,8 +67,7 @@ public class BuyTicket extends JFrame {
 	public static void setlblCard(String lblCard) {
 		BuyTicket.lblCard = lblCard;
 	}
-	
-	
+
 	public static String getlblInfoStudent() {
 		return lblInfoStudent;
 	}
@@ -76,8 +75,6 @@ public class BuyTicket extends JFrame {
 	public static void setInfoStudent(String lblInfoStudent) {
 		BuyTicket.lblInfoStudent = lblInfoStudent;
 	}
-	
-	
 
 	public static String getMovieType() {
 		return movie_type;
@@ -155,7 +152,7 @@ public class BuyTicket extends JFrame {
 	 * Create the frame.
 	 */
 	public BuyTicket() {
-		
+
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 458);
 		contentPane = new JPanel();
@@ -195,22 +192,20 @@ public class BuyTicket extends JFrame {
 		panel.add(fld_seance);
 
 		JLabel lbl_seat = new JLabel();
-	try {	if(Integer.parseInt(seatCount)>1)
-		{
-			lbl_seat.setText("Koltuklar : ");
-			lbl_seat.setBounds(49, 145, 82, 29);
+		try {
+			if (Integer.parseInt(seatCount) > 1) {
+				lbl_seat.setText("Koltuklar : ");
+				lbl_seat.setBounds(49, 145, 82, 29);
+			} else {
+				lbl_seat.setText("Koltuk : ");
+				lbl_seat.setBounds(57, 145, 82, 29);
+			}
+		} catch (Exception e) {
+
 		}
-		else {
-			lbl_seat.setText("Koltuk : ");
-			lbl_seat.setBounds(57, 145, 82, 29);
-		}
-	}
-	catch (Exception e) {
-		
-	}
 		lbl_seat.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_seat.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		
+
 		panel.add(lbl_seat);
 
 		JLabel lblcret = new JLabel("Ucret :");
@@ -244,22 +239,16 @@ public class BuyTicket extends JFrame {
 		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 try {  
-				      FileWriter myWriter = new FileWriter("Bilet.txt");
-				      myWriter.write("Alinan film :" +fld_movie_name.getText() 
-				      +"\nFiyati : "+fld_price.getText()
-				      +"\nSAlon: "+fld_Salon.getText()
-				      +"\nKoltuklar : "+txt_seatCount.getText()
-				      +"\nSeans : "+fld_seance.getText()
-				      +"\n"+lbl_Card.getText()
-				      +"\nBu bilet "+user+"adına kesilmiştir"
-				      );
-				      myWriter.close();
-				      System.out.println("Successfully wrote to the file.");
-				    } catch (IOException e1) {
-				      System.out.println("An error occurred.");
-				      e1.printStackTrace();
-				    }
+				try {
+					FileWriter myWriter = new FileWriter("Bilet.txt");
+					myWriter.write("Alinan film :" + fld_movie_name.getText() + "\nFiyati : " + fld_price.getText()
+							+ "\nSAlon: " + fld_Salon.getText() + "\nKoltuklar : " + txt_seatCount.getText()
+							+ "\nSeans : " + fld_seance.getText() + "\n" + lbl_Card.getText() + "\nBu bilet " + user
+							+ "adina kesilmistir.");
+					myWriter.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btn_print.setBounds(132, 355, 157, 35);
@@ -370,15 +359,18 @@ public class BuyTicket extends JFrame {
 		txt_StudentCount.setColumns(10);
 		txt_StudentCount.setBounds(147, 227, 37, 23);
 		panel.add(txt_StudentCount);
-		
-		try{if(Integer.parseInt(txt_StudentCount.getText())>0&&Integer.parseInt(txt_StudentCount.getText())<2)
-		{
-			BuyTicket.lblInfoStudent="Ogrenci, Ogrenci Kimligini yaninda bulundurmalidir.";
-		}else if(Integer.parseInt(txt_StudentCount.getText())>1)
-		{
-			BuyTicket.lblInfoStudent="Ogrenciler, Ogrenci Kimliklerini yanlarinda bulundurmalidir.";
-		}else{BuyTicket.lblInfoStudent="";}}catch(Exception e2) {}
-		
+
+		try {
+			if (Integer.parseInt(txt_StudentCount.getText()) > 0 && Integer.parseInt(txt_StudentCount.getText()) < 2) {
+				BuyTicket.lblInfoStudent = "Ogrenci, Ogrenci Kimligini yaninda bulundurmalidir.";
+			} else if (Integer.parseInt(txt_StudentCount.getText()) > 1) {
+				BuyTicket.lblInfoStudent = "Ogrenciler, Ogrenci Kimliklerini yanlarinda bulundurmalidir.";
+			} else {
+				BuyTicket.lblInfoStudent = "";
+			}
+		} catch (Exception e2) {
+		}
+
 		lbl_InfoStudent = new JLabel();
 		lbl_InfoStudent.setForeground(new Color(255, 0, 0));
 		lbl_InfoStudent.setText(lblInfoStudent);

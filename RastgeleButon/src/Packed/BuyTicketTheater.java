@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -39,11 +40,11 @@ public class BuyTicketTheater extends JFrame {
 	public static JLabel lbl_Card;
 	public static JLabel lbl_InfoStudent;
 	public static String[] seats;
-	private static String theater, seance, seat, price, salon, theater_type, theaterDate, seatCount, studentCount,lblCard,lblInfoStudent,user;
+	private static String theater, seance, seat, price, salon, theater_type, theaterDate, seatCount, studentCount,
+			lblCard, lblInfoStudent, user;
 	public static JComboBox comboBox_seatTheater;
 	private JTextField txt_TheaterDate;
-	
-	
+
 	public static String getUser() {
 		return user;
 	}
@@ -51,7 +52,7 @@ public class BuyTicketTheater extends JFrame {
 	public static void setUser(String user) {
 		BuyTicketTheater.user = user;
 	}
-	
+
 	public static String getTheaterDate() {
 		return theaterDate;
 	}
@@ -67,8 +68,7 @@ public class BuyTicketTheater extends JFrame {
 	public static void setTheater(String theater) {
 		BuyTicketTheater.theater = theater;
 	}
-	
-	
+
 	public static String getlblCard() {
 		return lblCard;
 	}
@@ -76,8 +76,7 @@ public class BuyTicketTheater extends JFrame {
 	public static void setlblCard(String lblCard) {
 		BuyTicketTheater.lblCard = lblCard;
 	}
-	
-	
+
 	public static String getlblInfoStudent() {
 		return lblInfoStudent;
 	}
@@ -85,8 +84,6 @@ public class BuyTicketTheater extends JFrame {
 	public static void setInfoStudent(String lblInfoStudent) {
 		BuyTicketTheater.lblInfoStudent = lblInfoStudent;
 	}
-	
-	
 
 	public static String getTheaterType() {
 		return theater_type;
@@ -164,7 +161,7 @@ public class BuyTicketTheater extends JFrame {
 	 * Create the frame.
 	 */
 	public BuyTicketTheater() {
-		
+
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 458);
 		contentPane = new JPanel();
@@ -204,22 +201,20 @@ public class BuyTicketTheater extends JFrame {
 		panel.add(fld_seance);
 
 		JLabel lbl_seat = new JLabel();
-	try {	if(Integer.parseInt(seatCount)>1)
-		{
-			lbl_seat.setText("Koltuklar : ");
-			lbl_seat.setBounds(49, 145, 82, 29);
+		try {
+			if (Integer.parseInt(seatCount) > 1) {
+				lbl_seat.setText("Koltuklar : ");
+				lbl_seat.setBounds(49, 145, 82, 29);
+			} else {
+				lbl_seat.setText("Koltuk : ");
+				lbl_seat.setBounds(57, 145, 82, 29);
+			}
+		} catch (Exception e) {
+
 		}
-		else {
-			lbl_seat.setText("Koltuk : ");
-			lbl_seat.setBounds(57, 145, 82, 29);
-		}
-	}
-	catch (Exception e) {
-		
-	}
 		lbl_seat.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_seat.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		
+
 		panel.add(lbl_seat);
 
 		JLabel lblcret = new JLabel("Ucret :");
@@ -355,15 +350,18 @@ public class BuyTicketTheater extends JFrame {
 		txt_StudentCount.setColumns(10);
 		txt_StudentCount.setBounds(147, 227, 37, 23);
 		panel.add(txt_StudentCount);
-		
-		try{if(Integer.parseInt(txt_StudentCount.getText())>0&&Integer.parseInt(txt_StudentCount.getText())<2)
-		{
-			BuyTicketTheater.lblInfoStudent="Ogrenci, \"Ogrenci Kimligi\"'ni yaninda bulundurmalidir.";
-		}else if(Integer.parseInt(txt_StudentCount.getText())>1)
-		{
-			BuyTicketTheater.lblInfoStudent="Ogrenciler, \"Ogrenci Kimlik\"'lerini yanlarinda bulundurmalidir.";
-		}else{BuyTicketTheater.lblInfoStudent="";}}catch(Exception e2) {}
-		
+
+		try {
+			if (Integer.parseInt(txt_StudentCount.getText()) > 0 && Integer.parseInt(txt_StudentCount.getText()) < 2) {
+				BuyTicketTheater.lblInfoStudent = "Ogrenci, \"Ogrenci Kimligi\"'ni yaninda bulundurmalidir.";
+			} else if (Integer.parseInt(txt_StudentCount.getText()) > 1) {
+				BuyTicketTheater.lblInfoStudent = "Ogrenciler, \"Ogrenci Kimlik\"'lerini yanlarinda bulundurmalidir.";
+			} else {
+				BuyTicketTheater.lblInfoStudent = "";
+			}
+		} catch (Exception e2) {
+		}
+
 		lbl_InfoStudent = new JLabel();
 		lbl_InfoStudent.setForeground(new Color(255, 0, 0));
 		lbl_InfoStudent.setText(lblInfoStudent);
@@ -371,45 +369,39 @@ public class BuyTicketTheater extends JFrame {
 		lbl_InfoStudent.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lbl_InfoStudent.setBounds(15, 251, 388, 20);
 		panel.add(lbl_InfoStudent);
-		
+
 		JLabel lbl_theaterDate = new JLabel("Tarih :");
 		lbl_theaterDate.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_theaterDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_theaterDate.setBounds(55, 60, 72, 29);
 		panel.add(lbl_theaterDate);
-		
+
 		txt_TheaterDate = new JTextField();
 		txt_TheaterDate.setText(theaterDate);
 		txt_TheaterDate.setEditable(false);
 		txt_TheaterDate.setColumns(10);
 		txt_TheaterDate.setBounds(147, 64, 188, 23);
 		panel.add(txt_TheaterDate);
-		
-				JButton btn_print = new JButton("Fisi Yazdir");
-				btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				btn_print.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						 try {  
-						      FileWriter myWriter = new FileWriter("Bilet.txt");
-						      myWriter.write("Alınan Tiyatro Oyunu :" +fld_TheaterName.getText() 
-						      +"\nFiyati : "+fld_price.getText()
-						      +"\nSalon: "+fld_Salon.getText()
-						      +"\nKoltuklar : "+txt_seatCount.getText()
-						      +"\nTarih : "+ txt_TheaterDate.getText()
-						      +"\nSeans : "+fld_seance.getText()
-						      +"\n"+lbl_Card.getText()
-						      +"\nBu bilet "+user+"adına kesilmiştir"
-						      );
-						      myWriter.close();
-						      System.out.println("Successfully wrote to the file.");
-						    } catch (IOException e1) {
-						      System.out.println("An error occurred.");
-						      e1.printStackTrace();
-						    }
-					}
-				});
-				btn_print.setBounds(132, 355, 157, 35);
-				panel.add(btn_print);
+
+		JButton btn_print = new JButton("Fisi Yazdir");
+		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btn_print.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					FileWriter myWriter = new FileWriter("Bilet.txt");
+					myWriter.write(
+							"Alınan Tiyatro Oyunu :" + fld_TheaterName.getText() + "\nFiyati : " + fld_price.getText()
+									+ "\nSalon: " + fld_Salon.getText() + "\nKoltuklar : " + txt_seatCount.getText()
+									+ "\nTarih : " + txt_TheaterDate.getText() + "\nSeans : " + fld_seance.getText()
+									+ "\n" + lbl_Card.getText() + "\nBu bilet " + user + "adina kesilmistir");
+					myWriter.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btn_print.setBounds(132, 355, 157, 35);
+		panel.add(btn_print);
 
 	}
 }

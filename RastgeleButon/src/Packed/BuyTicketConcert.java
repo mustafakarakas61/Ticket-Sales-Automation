@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -38,8 +39,8 @@ public class BuyTicketConcert extends JFrame {
 	JTextField txt_StudentCount;
 	public static JLabel lbl_Card;
 	public static JLabel lbl_InfoStudent;
-	private static String concert, hour, artist, price, concert_Date, concert_place, ticketPrice, ticketCount, studentCount, lblCard,
-			lblInfoStudent, user;
+	private static String concert, hour, artist, price, concert_Date, concert_place, ticketPrice, ticketCount,
+			studentCount, lblCard, lblInfoStudent, user;
 	private JTextField txt_concertDate;
 	private JLabel lbl_TicketPrice;
 	private JTextField txt_TicketPrice;
@@ -51,6 +52,7 @@ public class BuyTicketConcert extends JFrame {
 	public static void setUser(String user) {
 		BuyTicketConcert.user = user;
 	}
+
 	public static String getTicketPrice() {
 		return ticketPrice;
 	}
@@ -308,13 +310,13 @@ public class BuyTicketConcert extends JFrame {
 		txt_concertDate.setColumns(10);
 		txt_concertDate.setBounds(147, 91, 188, 23);
 		panel.add(txt_concertDate);
-		
+
 		lbl_TicketPrice = new JLabel("Bilet Fiyati :");
 		lbl_TicketPrice.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_TicketPrice.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_TicketPrice.setBounds(24, 155, 118, 29);
 		panel.add(lbl_TicketPrice);
-		
+
 		txt_TicketPrice = new JTextField();
 		txt_TicketPrice.setText(ticketPrice);
 		txt_TicketPrice.setHorizontalAlignment(SwingConstants.CENTER);
@@ -323,30 +325,28 @@ public class BuyTicketConcert extends JFrame {
 		txt_TicketPrice.setColumns(10);
 		txt_TicketPrice.setBounds(147, 159, 37, 23);
 		panel.add(txt_TicketPrice);
-		
-				JButton btn_print = new JButton("Fisi Yazdir");
-				btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				btn_print.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						try {
-							FileWriter myWriter = new FileWriter("Bilet.txt");
-							myWriter.write(
-									"Alýnan Konser Ismi :" + fld_ConcertName.getText() + "\nBilet Fiyati : " + txt_TicketPrice.getText()
-									 + "\nBilet Adeti : " + txt_ticketCount.getText() + "\nToplam Ucret : " + fld_price.getText()
-											+ "\nSanatci: " + fld_Artist.getText() + "\nKonser Yeri : " + fld_concert_Place.getText()
-											+ "\nTarih : " + txt_concertDate.getText() + "\nSaat : " + fld_hour.getText()
-											+ "\n" + lbl_Card.getText() + "\nBu bilet " + user + "adýna kesilmiþtir"
-											+"\n------------------------Iyý Eglenceler------------------------");
-							myWriter.close();
-							System.out.println("Successfully wrote to the file.");
-						} catch (IOException e1) {
-							System.out.println("An error occurred.");
-							e1.printStackTrace();
-						}
-					}
-				});
-				btn_print.setBounds(132, 355, 157, 35);
-				panel.add(btn_print);
+
+		JButton btn_print = new JButton("Fisi Yazdir");
+		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btn_print.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					FileWriter myWriter = new FileWriter("Bilet.txt");
+					myWriter.write("Alýnan Konser Ismi :" + fld_ConcertName.getText() + "\nBilet Fiyati : "
+							+ txt_TicketPrice.getText() + "\nBilet Adeti : " + txt_ticketCount.getText()
+							+ "\nToplam Ucret : " + fld_price.getText() + "\nSanatci: " + fld_Artist.getText()
+							+ "\nKonser Yeri : " + fld_concert_Place.getText() + "\nTarih : "
+							+ txt_concertDate.getText() + "\nSaat : " + fld_hour.getText() + "\n" + lbl_Card.getText()
+							+ "\nBu bilet " + user + "adina kesilmiþtir"
+							+ "\n------------------------Iyý Eglenceler------------------------");
+					myWriter.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btn_print.setBounds(132, 355, 157, 35);
+		panel.add(btn_print);
 
 	}
 }
