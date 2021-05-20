@@ -17,7 +17,6 @@ public class user {
 	private String Pass;
 	private String TC_No;
 	private String Email;
-	private String Type;
 	private String UserName;
 	Statement statement = null;
 	Connection connection = null;
