@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -50,17 +51,17 @@ import javax.swing.border.EtchedBorder;
 public class GuestScreen extends JFrame {
 
 	private JPanel contentPane;
-	private DefaultTableModel cinemaModel; // tablo sütunlarýný isimlendirmek için
+	private DefaultTableModel cinemaModel;
 	private DefaultTableModel theaterModel;
-	private DefaultTableModel concertModel;
-	private Object[] cinemaData = null; // sqlden veri çekmek için
+	private static DefaultTableModel concertModel;
+	private Object[] cinemaData = null;
 	private Object[] theaterData = null;
-	private Object[] concertData = null;
-	private JTable table_Cinema;
-	private JTable table_Theater;
-	private JTable table_Concert;
+	private static Object[] concertData = null;
+	private static JTable table_Cinema;
+	private static JTable table_Theater;
+	private static JTable table_Concert;
 	private static user member = new Member();
-	
+	private static SAdmin subadmin = new SAdmin();
 
 	/**
 	 * Launch the application.
@@ -89,46 +90,46 @@ public class GuestScreen extends JFrame {
 	 * @throws SQLException
 	 */
 	public GuestScreen(user member) throws SQLException {
-		setTitle("Bilet Satýþ Sistemi");
+		setTitle("Bilet Satis Sistemi");
 		setResizable(false);
 
-//////////////////////////////////////////////////////////////////////////////////Sinema
 		cinemaModel = new DefaultTableModel();
-		Object[] colCinema = new Object[6]; // tablo sütunlarýna isim vermek için
+		Object[] colCinema = new Object[6];
 
-		colCinema[0] = "Film Adý";
-		colCinema[1] = "Tür";
-		colCinema[2] = "Yönetmen";
+		colCinema[0] = "Film Adi";
+		colCinema[1] = "Film Turu";
+		colCinema[2] = "Yonetmen";
 		colCinema[3] = "Tarih";
 		colCinema[4] = "Salon";
 		colCinema[5] = "Seans";
 
 		cinemaModel.setColumnIdentifiers(colCinema);
-		cinemaData = new Object[6]; // sqlden veri çekmek için
+		cinemaData = new Object[6];
 
-//////////////////////////////////////////////////////////////////////////////////Tiyatro
 		theaterModel = new DefaultTableModel();
 		Object[] colTheater = new Object[5];
 
-		colTheater[0] = "Oyun Adý";
-		colTheater[1] = "Tür";
+		colTheater[0] = "Oyun Adi";
+		colTheater[1] = "Oyun Turu";
 		colTheater[2] = "Tarih";
 		colTheater[3] = "Salon";
 		colTheater[4] = "Saat";
 		theaterModel.setColumnIdentifiers(colTheater);
-		theaterData = new Object[5]; // sqlden veri çekmek için
+		theaterData = new Object[5];
 
-//////////////////////////////////////////////////////////////////////////////////Konser
 		concertModel = new DefaultTableModel();
-		Object[] colConcert = new Object[4];
+		Object[] colConcert = new Object[7];
 
-		colConcert[0] = "Konser Adý";
-		colConcert[1] = "Tür";
-		colConcert[2] = "Tarihi";
-		colConcert[3] = "Saat";
+		colConcert[0] = "Konser Adi";
+		colConcert[1] = "Konser Yeri";
+		colConcert[2] = "Sanatci";
+		colConcert[3] = "Tarih";
+		colConcert[4] = "Saat";
+		colConcert[5] = "Bilet Adeti";
+		colConcert[6] = "Bilet Fiyati";
 
 		concertModel.setColumnIdentifiers(colConcert);
-		concertData = new Object[5];
+		concertData = new Object[7];
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 624, 630);
@@ -144,7 +145,7 @@ public class GuestScreen extends JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-		JLabel lbl_Name = new JLabel("Bilet sat\u0131n almak i\u00E7in l\u00FCtfen giri\u015F yap\u0131n\u0131z.");
+		JLabel lbl_Name = new JLabel("Bilet satin almak icin lutfen giris yapiniz.");
 		lbl_Name.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 15));
 		lbl_Name.setBounds(10, 20, 400, 20);
 		contentPane.add(lbl_Name);
@@ -164,15 +165,13 @@ public class GuestScreen extends JFrame {
 		JScrollPane scrollPane_Cinema = new JScrollPane();
 		scrollPane_Cinema.setBounds(0, 0, 582, 448);
 		w_paneCinema.add(scrollPane_Cinema);
-///////////////////////////////////////////////////////////////////////////////////Sinema Sütun Özellikleri
 		table_Cinema = new JTable(cinemaModel);
-		table_Cinema.setBackground(new Color(255, 248, 220));
 		table_Cinema.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Cinema.setFont(new Font("SansSerif", Font.PLAIN, 13));
 
-		table_Cinema.getColumn("Film Adý").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Tür").setCellEditor(new TableEditor(new JCheckBox()));
-		table_Cinema.getColumn("Yönetmen").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film Adi").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Film Turu").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Cinema.getColumn("Yonetmen").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
 		table_Cinema.getColumn("Seans").setCellEditor(new TableEditor(new JCheckBox()));
@@ -181,7 +180,6 @@ public class GuestScreen extends JFrame {
 
 		table_Cinema.getColumnModel().getColumn(0).setPreferredWidth(55);
 		table_Cinema.getColumnModel().getColumn(0).setResizable(false);
-		// table_Cinema.getColumnModel().getColumn(0).
 
 		table_Cinema.getColumnModel().getColumn(1).setPreferredWidth(30);
 		table_Cinema.getColumnModel().getColumn(1).setResizable(false);
@@ -198,17 +196,15 @@ public class GuestScreen extends JFrame {
 		table_Cinema.getColumnModel().getColumn(5).setPreferredWidth(5);
 		table_Cinema.getColumnModel().getColumn(5).setResizable(false);
 
-		
-		/************************* Þimdilik Veri Ekliyorum ***************************/
-		/*
-		 * cinemaData[0] = "Recep Ývedik 7"; cinemaData[1] = "Komedi"; cinemaData[2] =
-		 * "Þahan Gökbakar"; cinemaData[3] = 1; cinemaData[4] = "13:40";
-		 * cinemaModel.addRow(cinemaData); cinemaData[0] = "Hýzlý ve Öfkeli 10";
-		 * cinemaData[1] = "Aksiyon"; cinemaData[2] = "Rob Cohen"; cinemaData[3] = 4;
-		 * cinemaData[4] = "16:30"; cinemaModel.addRow(cinemaData);
-		 */
-
-		/****************************************************/
+		for (int i = 0; i < subadmin.cinemaList().size(); i++) {
+			cinemaData[0] = subadmin.cinemaList().get(i).getFilmName();
+			cinemaData[1] = subadmin.cinemaList().get(i).getFilmType();
+			cinemaData[2] = subadmin.cinemaList().get(i).getFilmDirector();
+			cinemaData[3] = subadmin.cinemaList().get(i).getFilmDate();
+			cinemaData[4] = subadmin.cinemaList().get(i).getFilmSalon();
+			cinemaData[5] = subadmin.cinemaList().get(i).getFilmSeans();
+			cinemaModel.addRow(cinemaData);
+		}
 		JPanel w_paneTheater = new JPanel();
 		w_paneTheater.setBackground(new Color(255, 248, 220));
 		tabbedPane.addTab("Tiyatro", null, w_paneTheater, null);
@@ -218,28 +214,32 @@ public class GuestScreen extends JFrame {
 		scrollPane_Theater.setBounds(0, 0, 582, 448);
 		w_paneTheater.add(scrollPane_Theater);
 
-///////////////////////////////////////////////////////////////////////////////////Tiyatro Sütun Özellikleri
 		table_Theater = new JTable(theaterModel);
-		table_Theater.setBackground(new Color(255, 248, 220));
 		table_Theater.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Theater.setFont(new Font("SansSerif", Font.PLAIN, 13));
+
+		table_Theater.getColumn("Oyun Adi").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Oyun Turu").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Salon").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Theater.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
+
 		scrollPane_Theater.setViewportView(table_Theater);
 
-		/*
-		 * table_Theater.getColumnModel().getColumn(0).setPreferredWidth(60);
-		 * table_Theater.getColumnModel().getColumn(0).setResizable(false);
-		 * 
-		 * table_Theater.getColumnModel().getColumn(1).setPreferredWidth(30);
-		 * table_Theater.getColumnModel().getColumn(1).setResizable(false); //
-		 * table_Sinema.getColumnModel().getColumn(2).setPreferredWidth(90);
-		 * table_Theater.getColumnModel().getColumn(2).setResizable(false);
-		 * table_Theater.getColumnModel().getColumn(3).setPreferredWidth(10);
-		 * table_Theater.getColumnModel().getColumn(3).setResizable(false);
-		 * table_Theater.getColumnModel().getColumn(4).setPreferredWidth(10);
-		 * table_Theater.getColumnModel().getColumn(4).setResizable(false);
-		 */
+		table_Theater.getColumnModel().getColumn(0).setResizable(false);
+		table_Theater.getColumnModel().getColumn(1).setResizable(false);
+		table_Theater.getColumnModel().getColumn(2).setResizable(false);
+		table_Theater.getColumnModel().getColumn(3).setResizable(false);
+		table_Theater.getColumnModel().getColumn(4).setResizable(false);
 
-		
+		for (int i = 0; i < subadmin.theaterList().size(); i++) {
+			theaterData[0] = subadmin.theaterList().get(i).getTiyatroName();
+			theaterData[1] = subadmin.theaterList().get(i).getTiyatroType();
+			theaterData[2] = subadmin.theaterList().get(i).getTiyatroDate();
+			theaterData[3] = subadmin.theaterList().get(i).getTiyatroSalon();
+			theaterData[4] = subadmin.theaterList().get(i).getTiyatroSaat();
+			theaterModel.addRow(theaterData);
+		}
 
 		JPanel w_paneConcert = new JPanel();
 		w_paneConcert.setBackground(new Color(255, 248, 220));
@@ -252,25 +252,42 @@ public class GuestScreen extends JFrame {
 		w_paneConcert.add(scrollPane_Concert);
 
 		table_Concert = new JTable(concertModel);
-		table_Concert.setBackground(new Color(255, 248, 220));
 		table_Concert.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table_Concert.setFont(new Font("SansSerif", Font.PLAIN, 13));
+
+		table_Concert.getColumn("Konser Adi").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Konser Yeri").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Sanatci").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Tarih").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Saat").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Bilet Adeti").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Concert.getColumn("Bilet Fiyati").setCellEditor(new TableEditor(new JCheckBox()));
+
 		scrollPane_Concert.setViewportView(table_Concert);
-		table_Concert.getColumnModel().getColumn(0).setPreferredWidth(60);
+
 		table_Concert.getColumnModel().getColumn(0).setResizable(false);
-
-		table_Concert.getColumnModel().getColumn(1).setPreferredWidth(30);
+		table_Concert.getColumnModel().getColumn(0).setPreferredWidth(100);
 		table_Concert.getColumnModel().getColumn(1).setResizable(false);
-
-		table_Concert.getColumnModel().getColumn(2).setPreferredWidth(10);
 		table_Concert.getColumnModel().getColumn(2).setResizable(false);
-
-		table_Concert.getColumnModel().getColumn(3).setPreferredWidth(10);
+		table_Concert.getColumnModel().getColumn(2).setPreferredWidth(100);
 		table_Concert.getColumnModel().getColumn(3).setResizable(false);
+		table_Concert.getColumnModel().getColumn(4).setResizable(false);
+		table_Concert.getColumnModel().getColumn(4).setPreferredWidth(50);
+		table_Concert.getColumnModel().getColumn(5).setResizable(false);
+		table_Concert.getColumnModel().getColumn(6).setResizable(false);
+		table_Concert.getColumnModel().getColumn(6).setPreferredWidth(70);
+		for (int i = 0; i < subadmin.concertList().size(); i++) {
+			concertData[0] = subadmin.concertList().get(i).getConcertName();
+			concertData[1] = subadmin.concertList().get(i).getConcertPlace();
+			concertData[2] = subadmin.concertList().get(i).getConcertArtist();
+			concertData[3] = subadmin.concertList().get(i).getConcertDate();
+			concertData[4] = subadmin.concertList().get(i).getConcertTime();
+			concertData[5] = subadmin.concertList().get(i).getTicketCount();
+			concertData[6] = subadmin.concertList().get(i).getTicketPrice();
+			concertModel.addRow(concertData);
+		}
 
-	
-
-		JButton btn_SelectCinema = new JButton("Geri D\u00F6n");
+		JButton btn_SelectCinema = new JButton("Geri Don");
 		btn_SelectCinema.setFocusable(false);
 		btn_SelectCinema.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_SelectCinema.setForeground(new Color(0, 0, 0));
