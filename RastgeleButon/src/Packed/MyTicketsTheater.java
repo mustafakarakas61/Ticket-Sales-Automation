@@ -28,7 +28,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class MyTicketsTheater extends JFrame {
-//comboBox_UserSeats.addItem(sh.getMemberSeat(mmbr.getID())+"");
 	private JPanel contentPane;
 	public static JLabel lbl_SeatsMember;
 	private static DefaultTableModel MyTicketsTheaterModel;
@@ -71,7 +70,7 @@ public class MyTicketsTheater extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 384, 297);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 218, 185));
+		contentPane.setBackground(new Color(253, 245, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -102,7 +101,6 @@ public class MyTicketsTheater extends JFrame {
 				MyTicketsTheaterModel.addRow(MyTicketsTheaterData);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -113,7 +111,6 @@ public class MyTicketsTheater extends JFrame {
 
 		btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Kullanýcý ID ve koltuk ismini
 
 				String seatName;
 				int mbrID;
@@ -130,7 +127,6 @@ public class MyTicketsTheater extends JFrame {
 
 					}
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					dbHelper.showErrorMessage(e1);
 				}
 

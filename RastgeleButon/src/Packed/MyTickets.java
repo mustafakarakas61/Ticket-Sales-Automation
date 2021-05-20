@@ -28,7 +28,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class MyTickets extends JFrame {
-//comboBox_UserSeats.addItem(sh.getMemberSeat(mmbr.getID())+"");
 	private JPanel contentPane;
 	public static JLabel lbl_SeatsMember;
 	private static DefaultTableModel MyTicketsModel;
@@ -71,7 +70,7 @@ public class MyTickets extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 384, 297);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 218, 185));
+		contentPane.setBackground(new Color(253, 245, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -102,7 +101,6 @@ public class MyTickets extends JFrame {
 				MyTicketsModel.addRow(MyTicketsData);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -113,7 +111,6 @@ public class MyTickets extends JFrame {
 
 		btn_cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Kullanýcý ID ve koltuk ismini
 
 				String seatName;
 				int mbrID;
@@ -132,7 +129,6 @@ public class MyTickets extends JFrame {
 					}
 
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					dbHelper.showErrorMessage(e1);
 				}
 
@@ -142,8 +138,9 @@ public class MyTickets extends JFrame {
 		contentPane.add(btn_cancel);
 
 	}
-	public static void updateTicketList() throws SQLException{
-		DefaultTableModel clearList= (DefaultTableModel) table_MyTickets.getModel();
+
+	public static void updateTicketList() throws SQLException {
+		DefaultTableModel clearList = (DefaultTableModel) table_MyTickets.getModel();
 		clearList.setRowCount(0);
 		for (int i = 0; i < shelper.userSeatfilmTickets().size(); i++) {
 
@@ -151,12 +148,7 @@ public class MyTickets extends JFrame {
 			MyTicketsData[1] = shelper.userSeatfilmTickets().get(i).getSeatName();
 			MyTicketsModel.addRow(MyTicketsData);
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
 }
