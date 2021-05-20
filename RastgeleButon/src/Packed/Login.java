@@ -146,7 +146,7 @@ public class Login extends JFrame {
 
 		w_paneCustomer.add(fld_Password_Login);
 
-		JButton btn_Register = new JButton("Kayýt Ol");
+		JButton btn_Register = new JButton("Kayit Ol");
 		btn_Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Register register = new Register();
