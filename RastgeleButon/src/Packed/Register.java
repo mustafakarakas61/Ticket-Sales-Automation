@@ -176,7 +176,7 @@ public class Register extends JFrame {
 		txt_Name.setBounds(189, 50, 225, 20);
 		txt_Name.addKeyListener(new KeyAdapter() {
 
-			public void keyPressed(KeyEvent ke) {
+		public void keyPressed(KeyEvent ke) {
 				if (ke.getKeyChar() == ' '
 						|| (ke.getKeyChar() == 'ý' || ke.getKeyChar() == 'ð' || ke.getKeyChar() == 'ü'
 								|| ke.getKeyChar() == 'þ' || ke.getKeyChar() == 'ö' || ke.getKeyChar() == 'ç'
