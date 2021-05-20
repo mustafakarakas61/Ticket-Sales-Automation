@@ -1,4 +1,5 @@
 package Packed;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -25,48 +26,47 @@ public class Member extends user {
 		this.Surname = surname;
 	}
 
-	public boolean register(String tcno, String pass, String name ,String email, String surname) {
+	public boolean register(String tcno, String pass, String name, String email, String surname) {
 
-        int key = 0;
+		int key = 0;
 
-        boolean duplicate = false;
-        String query = "insert into register (TC_No,Pass,Name,Email,Surname) values (?,?,?,?,?)";
+		boolean duplicate = false;
+		String query = "insert into register (TC_No,Pass,Name,Email,Surname) values (?,?,?,?,?)";
 
-        try {
-            connection = dbhelper.getConnection();
+		try {
+			connection = dbhelper.getConnection();
 
-            statement = connection.createStatement();
-            result = statement.executeQuery("Select * from register where TC_No = ' " + tcno + " ' ");
+			statement = connection.createStatement();
+			result = statement.executeQuery("Select * from register where TC_No = ' " + tcno + " ' ");
 
+			while (result.next()) {
+				duplicate = true;
+				Metod_Helper.showMsg("Kullanici zaten mevcut");
 
-            while (result.next()) {
-                duplicate = true;
-                Metod_Helper.showMsg("Kullanýcý zaten mevcut");
+				break;
 
-                break;
+			}
+			if (!duplicate) {
 
-            }
-            if (!duplicate) {
+				pStatement = connection.prepareStatement(query);
+				pStatement.setString(1, tcno);
+				pStatement.setString(2, pass);
+				pStatement.setString(3, name);
+				pStatement.setString(4, email);
+				pStatement.setString(5, surname);
+				pStatement.executeUpdate();
+				key = 1;
+			}
 
-                pStatement = connection.prepareStatement(query);
-                pStatement.setString(1, tcno);
-                pStatement.setString(2, pass);
-                pStatement.setString(3, name);
-                pStatement.setString(4, email);
-                pStatement.setString(5, surname);
-                pStatement.executeUpdate();
-                key = 1;
-            }
+		} catch (SQLException e) {
+			dbhelper.showErrorMessage(e);
+		}
 
-        } catch (SQLException e) {
-            dbhelper.showErrorMessage(e);
-        }
-
-        if (key == 1) {
-            return true;
-        } else
-            return false;
-    }
+		if (key == 1) {
+			return true;
+		} else
+			return false;
+	}
 
 	public ArrayList<Member> memberList() throws SQLException {
 		ArrayList<Member> uyeList = new ArrayList<Member>();
