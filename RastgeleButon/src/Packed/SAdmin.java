@@ -299,6 +299,28 @@ public class SAdmin {
 		return key;
 	}
 
+	public boolean updateConcertTicketCount(String concertName, String concertPlace,String concertDate,String concertTime,String concertArtist, int ticketCount) {
+		boolean key = false;
+		String query = "UPDATE booking.concert SET ticketCount = ? WHERE concertName = ? AND concertPlace= ?  AND concertDate= ?  AND concertTime= ?  AND concertArtist= ?";
+		try {
+			connection = dbHelper.getConnection();
+			pStatement = connection.prepareStatement(query);
+
+			pStatement.setInt(1, ticketCount);
+			pStatement.setString(2, concertName);
+			pStatement.setString(3, concertPlace);
+			pStatement.setString(4, concertDate);
+			pStatement.setString(5, concertTime);
+			pStatement.setString(6, concertArtist);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		return key;
+	}
+
 	public boolean delConcert(int concertID) throws SQLException {
 		boolean key;
 		String query = "DELETE FROM booking.concert WHERE concertID = ?";
