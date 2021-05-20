@@ -121,7 +121,7 @@ public class SubAdmin extends JFrame {
 		Object[] colCinema = new Object[7];
 		colCinema[0] = "Film ID";
 		colCinema[1] = "Film Adi";
-		colCinema[2] = "Film Türü";
+		colCinema[2] = "Film Turu";
 		colCinema[3] = "Yonetmen";
 		colCinema[4] = "Tarih";
 		colCinema[5] = "Salon";
@@ -137,7 +137,7 @@ public class SubAdmin extends JFrame {
 		colConcert[2] = "Tarih";
 		colConcert[3] = "Saat";
 		colConcert[4] = "Yer";
-		colConcert[5] = "Sanatçý";
+		colConcert[5] = "Sanatci";
 		colConcert[6] = "Bilet Adeti";
 		colConcert[7] = "Bilet Fiyati";
 
@@ -148,7 +148,7 @@ public class SubAdmin extends JFrame {
 		Object[] colTheater = new Object[6];
 		colTheater[0] = "Oyun ID";
 		colTheater[1] = "Oyun Adi";
-		colTheater[2] = "Oyun Türü";
+		colTheater[2] = "Oyun Turu";
 		colTheater[3] = "Tarih";
 		colTheater[4] = "Salon";
 		colTheater[5] = "Saat";
@@ -193,7 +193,7 @@ public class SubAdmin extends JFrame {
 					if (control) {
 						Metod_Helper.showMsg("succes");
 					} else {
-						Metod_Helper.showMsg("Hatalý giriþ yaptýnýz");
+						Metod_Helper.showMsg("Hatali giris yaptiniz.");
 					}
 				}
 
@@ -280,7 +280,7 @@ public class SubAdmin extends JFrame {
 					if (control) {
 						Metod_Helper.showMsg("succes");
 					} else {
-						Metod_Helper.showMsg("Hatalý giriþ yaptýnýz");
+						Metod_Helper.showMsg("Hatali giris yaptiniz.");
 					}
 				}
 
@@ -366,7 +366,7 @@ public class SubAdmin extends JFrame {
 					if (control) {
 						Metod_Helper.showMsg("succes");
 					} else {
-						Metod_Helper.showMsg("Hatalý giriþ yaptýnýz");
+						Metod_Helper.showMsg("Hatali giris yaptiniz.");
 					}
 				}
 
@@ -522,7 +522,6 @@ public class SubAdmin extends JFrame {
 		btn_ImageSelect_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_ImageSelect_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//------------------------------------------------------------------------------------------foto ekleme alanÃÂ½ bozma :)
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					int selRow = table_Cinema.getSelectedRow();
@@ -547,8 +546,6 @@ public class SubAdmin extends JFrame {
 					// TODO: handle exception
 					System.out.println(e2);
 				}
-
-//-----------------------------------------------------------------------------------------------------------------	
 
 			}
 		});
@@ -757,10 +754,6 @@ public class SubAdmin extends JFrame {
 			}
 		});
 
-		/////////////////////////////////////////////////////////////// PaneCinema//////////////////////////////////////////////////////////////////////////
-
-		//////////////////////////////////////////////// PaneTheater
-
 		JPanel paneAddTheater = new JPanel();
 		paneAddTheater.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		paneAddTheater.setBackground(new Color(255, 204, 255));
@@ -805,7 +798,6 @@ public class SubAdmin extends JFrame {
 		lbl_TheaterDate.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_TheaterDate.setBounds(10, 95, 100, 20);
 		paneAddTheater.add(lbl_TheaterDate);
-		///////////////////////// Trrrrrrrrrrrrrrrr
 		JComboBox<String> comboBox_Salon2 = new JComboBox<String>();
 		comboBox_Salon2.setFont(new Font("SansSerif", Font.PLAIN, 13));
 		comboBox_Salon2.setBounds(120, 70, 169, 20);
@@ -835,8 +827,6 @@ public class SubAdmin extends JFrame {
 		btn_ImageSelect2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		btn_ImageSelect2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// ------------------------------------------------------------------------------------------foto
-				// ekleme alanÃÂ½ bozma :)
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
 					int selRow = table_Theater.getSelectedRow();
@@ -859,10 +849,7 @@ public class SubAdmin extends JFrame {
 
 				} catch (Exception e2) {
 					// TODO: handle exception
-					System.out.println(e2);
 				}
-
-				// -----------------------------------------------------------------------------------------------------------------
 
 			}
 		});
@@ -1073,9 +1060,6 @@ public class SubAdmin extends JFrame {
 		});
 		paneAddTheater.setVisible(false);
 
-		//////////////////////////////////// PaneTheater////////////////////////////////////////////////////////////////////
-		///////////////////////////// PaneConcert
-
 		JPanel paneAddConcert = new JPanel();
 		paneAddConcert.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		paneAddConcert.setBackground(new Color(204, 255, 153));
@@ -1162,7 +1146,8 @@ public class SubAdmin extends JFrame {
 				} catch (Exception e2) {
 					System.out.println(e2);
 				}
-		}});
+			}
+		});
 
 		btn_ImageSelect3.setBounds(313, 169, 100, 30);
 		paneAddConcert.add(btn_ImageSelect3);
@@ -1387,7 +1372,7 @@ public class SubAdmin extends JFrame {
 
 		paneAddConcert.setVisible(false);
 
-		JButton btn_Exit = new JButton("\u00C7\u0131k\u0131\u015F Yap");
+		JButton btn_Exit = new JButton("Cikis Yap");
 		btn_Exit.setFocusable(false);
 		btn_Exit.setBackground(new Color(153, 204, 255));
 		btn_Exit.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -1402,12 +1387,10 @@ public class SubAdmin extends JFrame {
 		btn_Exit.setBounds(984, 8, 90, 25);
 		contentPane.add(btn_Exit);
 
-		JLabel lbl_Welcome = new JLabel("Hosgeldiniz Sayin " + sub.getName());
+		JLabel lbl_Welcome = new JLabel("Hosgeldiniz Sayin " + sub.getName() + " " + sub.getSurname());
 		lbl_Welcome.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_Welcome.setBounds(10, 10, 500, 20);
 		contentPane.add(lbl_Welcome);
-
-		//////////////////////////////////// PaneConcert////////////////////////////////////////////////////////////////////
 
 		tabbedPane.addChangeListener((ChangeListener) new ChangeListener() {
 
