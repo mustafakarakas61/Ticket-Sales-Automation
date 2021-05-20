@@ -1669,6 +1669,7 @@ public class MainScreen extends JFrame {
 		txt_StudentCount.setColumns(10);
 		txt_StudentCount.setBackground(Color.WHITE);
 		txt_StudentCount.setBounds(312, 193, 34, 20);
+		txt_StudentCount.setEditable(false);
 		PaneConcert.add(txt_StudentCount);
 
 		txt_GhostTicketPrice = new JTextField();
@@ -1701,6 +1702,9 @@ public class MainScreen extends JFrame {
 		txt_StudentCount.addKeyListener(new KeyAdapter() {
 
 			public void keyPressed(KeyEvent ke) {
+				
+				
+				if(Integer.parseInt(txt_TicketCount.getText())>0) {
 				if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
 						|| ke.getKeyCode() == KeyEvent.VK_ENTER || ke.getKeyCode() == KeyEvent.VK_SHIFT
 						|| ke.getKeyCode() == KeyEvent.VK_CAPS_LOCK || ke.getKeyCode() == KeyEvent.VK_ESCAPE) {
@@ -1717,6 +1721,9 @@ public class MainScreen extends JFrame {
 					txt_StudentCount.setEditable(false);
 
 				}
+				
+				}
+				
 			}
 		});
 		txt_TicketCount.addKeyListener(new KeyAdapter() {
@@ -1771,6 +1778,8 @@ public class MainScreen extends JFrame {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
+				txt_StudentCount.setEditable(true);
+				
 				// TODO Auto-generated method stub
 
 				txt_Total.setText(Math.round(Double.parseDouble(txt_GhostTicketPrice.getText())
@@ -1783,13 +1792,12 @@ public class MainScreen extends JFrame {
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-
+				txt_StudentCount.setEditable(false);
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-
 			}
 
 		});

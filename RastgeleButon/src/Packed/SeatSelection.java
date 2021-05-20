@@ -1,4 +1,5 @@
 package Packed;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -91,7 +92,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 		contentPane.setLayout(null);
 
 		JPanel w_paneScreen = new JPanel();
-		w_paneScreen.setBackground(new Color(204, 0, 0));
+		w_paneScreen.setBackground(new Color(220, 20, 60));
 		w_paneScreen.setBounds(11, 9, 1064, 72);
 		contentPane.add(w_paneScreen);
 		w_paneScreen.setLayout(null);
@@ -149,17 +150,11 @@ public class SeatSelection extends JFrame implements MouseListener {
 						w_paneSeat.add(lbl_SalonText);
 					}
 				} else {
-					// **************************************-------------------Koltuklar burda
 					SeatHelper s = new SeatHelper(row, col);
 					s.setSize(50, 45);
 					s.setText("");
 					w_paneSeat.add(s);
-					// *----------------Koltugun bos oldugunda yanan renk burasi
-
-					// -------------------------------------kirmizi yanma
 					try {
-
-						// row coldan eriþ
 						String roww = "";
 						if (row == 0) {
 							roww = "A";
@@ -195,15 +190,8 @@ public class SeatSelection extends JFrame implements MouseListener {
 							String cols = (col + 1) + "";
 
 							seatNames = rows + cols;
-
 						}
 						boolean control = shelper.seatGet(seatNames, typess, filmID);
-
-						/*
-						 * if (control) { Metod_Helper.showMsg("succes"); } else {
-						 * //Metod_Helper.showMsg("Bu koltuk dolu !"); }
-						 */
-
 						if (control) {
 							ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatOff.png"));
 
@@ -222,16 +210,14 @@ public class SeatSelection extends JFrame implements MouseListener {
 							s.addMouseListener(this);
 						}
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-			} // *********************-------------------------------------------------------------------------------isimlendirme
-				// asagida
+			}
 		}
 
 		JPanel w_paneTopNumber = new JPanel();
-		w_paneTopNumber.setBackground(SystemColor.desktop);
+		w_paneTopNumber.setBackground(new Color(0, 0, 255));
 		w_paneTopNumber.setBounds(11, 81, 1064, 20);
 		contentPane.add(w_paneTopNumber);
 		w_paneTopNumber.setLayout(null);
@@ -239,12 +225,12 @@ public class SeatSelection extends JFrame implements MouseListener {
 		JLabel lbl_TopNumber = new JLabel(
 				"           1                    2                     3                   4                     5                    6                    7                                            8                    9                   10                  11                   12                   13                14");
 		lbl_TopNumber.setFont(new Font("Arial", Font.BOLD, 11));
-		lbl_TopNumber.setBackground(SystemColor.desktop);
+		lbl_TopNumber.setBackground(new Color(0, 0, 255));
 		lbl_TopNumber.setBounds(21, 3, 1043, 14);
 		w_paneTopNumber.add(lbl_TopNumber);
 
 		JPanel w_paneLeftChars = new JPanel();
-		w_paneLeftChars.setBackground(SystemColor.desktop);
+		w_paneLeftChars.setBackground(new Color(0, 0, 255));
 		w_paneLeftChars.setBounds(11, 96, 21, 410);
 		contentPane.add(w_paneLeftChars);
 		w_paneLeftChars.setLayout(null);
@@ -311,7 +297,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 		JPanel w_paneLeftChars_1 = new JPanel();
 		w_paneLeftChars_1.setLayout(null);
-		w_paneLeftChars_1.setBackground(SystemColor.desktop);
+		w_paneLeftChars_1.setBackground(new Color(0, 0, 255));
 		w_paneLeftChars_1.setBounds(1054, 96, 21, 410);
 		contentPane.add(w_paneLeftChars_1);
 
@@ -561,12 +547,11 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 	}
 
-	@Override // ---------------------------------------------------Selected
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		SeatHelper s = (SeatHelper) e.getComponent();
 
 		if (e.getButton() == 1) {
-			// ---------------*************************Secme islemi yaptigiiiiiiiiiiiiiiiii
 			if (!(s.isSeatSelect())) {
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatSelect.png"));
 				if (s.getRow() == 0 && s.getCol() < 7) {
@@ -649,8 +634,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 					seatName = ("J" + (s.getCol()));
 
 				}
-				// --------------------*****************seatName sectigi koltuklarin ismi
-				// geliyor buraya kadar
 				txt_SelectedSeatsNumbers.setText(txt_SelectedSeatsNumbers.getText() + "*" + seatName);
 
 				String sentence = txt_SelectedSeatsNumbers.getText();
@@ -668,8 +651,7 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 				s.setSeatSelect(true);
 
-			} else {// ----------------------------sutun isimlerinin devami secmeyi iptal ettiginde
-					// ayni islem
+			} else {
 				if (s.getRow() == 0 && s.getCol() < 7) {
 					seatName = ("A" + (s.getCol() + 1));
 
@@ -750,9 +732,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 					seatName = ("J" + (s.getCol()));
 
 				}
-				// ---------------------------------***************************isimlendirme
-				// seatName ismi cekiyor 2. yeri
-				// sectiginde yesil renge yandigi yer
 
 				ImageIcon imageIcon = new ImageIcon(SeatSelection.class.getResource("/Images/SeatOn.png"));
 				s.setIcon(imageIcon);
@@ -796,7 +775,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 				txt_TotalStudent.addKeyListener(new KeyAdapter() {
 
 					public void keyPressed(KeyEvent ke) {
@@ -831,7 +809,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 				if (Integer.parseInt(txt_TotalSeats.getText()) >= Integer.parseInt("0" + txt_TotalStudent.getText())) {
 					txt_Total.setText("" + Math.abs(((Integer.parseInt(txt_TotalSeats.getText())
 							- Integer.parseInt("0" + txt_TotalStudent.getText())) * 20
@@ -845,7 +822,6 @@ public class SeatSelection extends JFrame implements MouseListener {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
