@@ -304,10 +304,9 @@ public class BuyTicketConcert extends JFrame {
 
 		lbl_InfoStudent = new JLabel();
 		lbl_InfoStudent.setForeground(new Color(255, 0, 0));
-		lbl_InfoStudent.setText(lblInfoStudent);
 		lbl_InfoStudent.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_InfoStudent.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbl_InfoStudent.setBounds(15, 251, 388, 20);
+		lbl_InfoStudent.setBounds(15, 263, 388, 20);
 		panel.add(lbl_InfoStudent);
 
 		JLabel lbl_concertDate = new JLabel("Tarih :");
@@ -345,13 +344,13 @@ public class BuyTicketConcert extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					FileWriter myWriter = new FileWriter("Bilet.txt");
-					myWriter.write("Alýnan Konser Ismi :" + fld_ConcertName.getText() + "\nBilet Fiyati : "
+					myWriter.write("AlÃ½nan Konser Ismi :" + fld_ConcertName.getText() + "\nBilet Fiyati : "
 							+ txt_TicketPrice.getText() + "\nBilet Adeti : " + txt_ticketCount.getText()
 							+ "\nToplam Ucret : " + fld_price.getText() + "\nSanatci: " + fld_Artist.getText()
 							+ "\nKonser Yeri : " + fld_concert_Place.getText() + "\nTarih : "
 							+ txt_concertDate.getText() + "\nSaat : " + fld_hour.getText() + "\n" + lbl_Card.getText()
-							+ "\nBu bilet " + user + "adina kesilmiþtir"
-							+ "\n------------------------Iyý Eglenceler------------------------");
+							+ "\nBu bilet " + user + "adina kesilmistir"
+							+ "\n------------------------Iyi Eglenceler------------------------");
 					myWriter.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
