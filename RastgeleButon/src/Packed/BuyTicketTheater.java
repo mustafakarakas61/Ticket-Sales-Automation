@@ -225,10 +225,10 @@ public class BuyTicketTheater extends JFrame {
 		try {
 			if (Integer.parseInt(seatCount) > 1) {
 				lbl_seat.setText("Koltuklar : ");
-				lbl_seat.setBounds(49, 145, 82, 29);
+				lbl_seat.setBounds(49, 180, 82, 29);
 			} else {
 				lbl_seat.setText("Koltuk : ");
-				lbl_seat.setBounds(57, 145, 82, 29);
+				lbl_seat.setBounds(57, 180, 82, 29);
 			}
 		} catch (Exception e) {
 
@@ -396,7 +396,7 @@ public class BuyTicketTheater extends JFrame {
 		lbl_InfoStudent.setText(lblInfoStudent);
 		lbl_InfoStudent.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_InfoStudent.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lbl_InfoStudent.setBounds(15, 251, 388, 20);
+		lbl_InfoStudent.setBounds(15, 268, 388, 20);
 		panel.add(lbl_InfoStudent);
 
 		JLabel lbl_theaterDate = new JLabel("Tarih :");
@@ -423,7 +423,7 @@ public class BuyTicketTheater extends JFrame {
 				try {
 					FileWriter myWriter = new FileWriter("Bilet.txt");
 					myWriter.write(
-							"Alýnan Tiyatro Oyunu :" + fld_TheaterName.getText() + "\nFiyati : " + fld_price.getText()
+							"AlÄ±nan Tiyatro Oyunu :" + fld_TheaterName.getText() + "\nFiyati : " + fld_price.getText()
 									+ "\nSalon: " + fld_Salon.getText() + "\nKoltuklar : " + txt_seatCount.getText()
 									+ "\nTarih : " + txt_TheaterDate.getText() + "\nSeans : " + fld_seance.getText()
 									+ "\n" + lbl_Card.getText() + "\nBu bilet " + user + "adina kesilmistir");
