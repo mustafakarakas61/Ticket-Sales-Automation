@@ -9,11 +9,15 @@ import javax.swing.JPopupMenu;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -48,7 +52,7 @@ public class PrimeAdmin extends JFrame {
 	private Object[] customerData = null;
 	private static DefaultTableModel adminModel;
 	private static Object[] adminData = null;
-	private static user user = new user();
+	private static user kullanici = new user();
 	private static Member uye = new Member();
 
 	/**
@@ -58,7 +62,7 @@ public class PrimeAdmin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PrimeAdmin frame = new PrimeAdmin(user);
+					PrimeAdmin frame = new PrimeAdmin(kullanici);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -80,7 +84,7 @@ public class PrimeAdmin extends JFrame {
 		setResizable(false);
 
 		customerModel = new DefaultTableModel();
-		Object[] colCustomer = new Object[4]; 
+		Object[] colCustomer = new Object[4]; // tablo sutunlarýna isim vermek için
 
 		colCustomer[0] = "ID";
 		colCustomer[1] = "T.C. Kimlik Numarasi";
@@ -88,7 +92,7 @@ public class PrimeAdmin extends JFrame {
 		colCustomer[3] = "Soyad";
 
 		customerModel.setColumnIdentifiers(colCustomer);
-		customerData = new Object[4]; 
+		customerData = new Object[4]; // sqlden veri çekmek için
 
 		adminModel = new DefaultTableModel();
 		Object[] colAdmin = new Object[5];
@@ -112,7 +116,7 @@ public class PrimeAdmin extends JFrame {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-		JLabel lbl_WelcomePrimeAdmin = new JLabel("Hosgeldiniz Sayin " + admin.getName() + " " + admin.getSurname());
+		JLabel lbl_WelcomePrimeAdmin = new JLabel("Hosgeldiniz Sayin " + admin.getName());
 		lbl_WelcomePrimeAdmin.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		lbl_WelcomePrimeAdmin.setBounds(10, 20, 500, 20);
 		contentPane.add(lbl_WelcomePrimeAdmin);
@@ -134,9 +138,10 @@ public class PrimeAdmin extends JFrame {
 					Metod_Helper.showMsg("Lutfen silmek istediginiz kullaniciyi seciniz!");
 				} else {
 					if (Metod_Helper.confirm("sure")) {
-						int selectedRow = table_Member.getSelectedRow();
 						try {
-							boolean control = uye.delMember(selectedRow);
+							int selectedRow = Integer
+									.parseInt(table_Member.getValueAt(table_Member.getSelectedRow(), 0).toString());
+							boolean control = kullanici.delMember(selectedRow);
 							if (control) {
 								Metod_Helper.showMsg("succes");
 								updateMemberList();
@@ -166,6 +171,41 @@ public class PrimeAdmin extends JFrame {
 		table_Member.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		table_Member.setBackground(SystemColor.text);
 		scrollPane_Customer.setViewportView(table_Member);
+		table_Member.getModel().addTableModelListener(new TableModelListener() {
+
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				if (e.getType() == TableModelEvent.UPDATE) {
+					int selId = Integer.parseInt(table_Member.getValueAt(table_Member.getSelectedRow(), 0).toString());
+					String selTC = table_Member.getValueAt(table_Member.getSelectedRow(), 1).toString();
+					String selAd = table_Member.getValueAt(table_Member.getSelectedRow(), 2).toString();
+					String selSoyad = table_Member.getValueAt(table_Member.getSelectedRow(), 3).toString();
+					Metod_Helper.confirm("sure");
+					if (selTC.length() != 11) {
+						Metod_Helper.showMsg("TC Kimlik Numarasi 11 haneden kucuk olamaz!");
+						try {
+							updateMemberList();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
+					} else {
+						boolean control = uye.updateMember(selId, selTC, selAd, selSoyad);
+						if (control) {
+							Metod_Helper.showMsg("succes");
+							try {
+								updateMemberList();
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
+						} else {
+							Metod_Helper.showMsg("Hatali giris yaptiniz, tekrar deneyiniz");
+						}
+					}
+
+				}
+			}
+
+		});
 
 		for (int i = 0; i < uye.memberList().size(); i++) {
 			customerData[0] = uye.memberList().get(i).getID();
@@ -228,12 +268,14 @@ public class PrimeAdmin extends JFrame {
 								updateSubAdminList();
 							}
 						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
 				}
 			}
 		});
+
 		btn_delSubAdmin.setBackground(new Color(255, 102, 102));
 		btn_delSubAdmin.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btn_delSubAdmin.setFocusable(false);
@@ -269,6 +311,12 @@ public class PrimeAdmin extends JFrame {
 			adminModel.addRow(adminData);
 		}
 
+		table_Admin.getColumn("ID").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Admin.getColumn("Ad").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Admin.getColumn("Soyad").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Admin.getColumn("Sifre").setCellEditor(new TableEditor(new JCheckBox()));
+		table_Admin.getColumn("Yonetici ID").setCellEditor(new TableEditor(new JCheckBox()));
+
 		Label label = new Label("Ad:");
 		label.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		label.setBounds(45, 345, 80, 20);
@@ -279,7 +327,7 @@ public class PrimeAdmin extends JFrame {
 		label_1.setBounds(285, 345, 57, 22);
 		w_paneAdmin.add(label_1);
 
-		Label label_2 = new Label("Yonetici ID:");
+		Label label_2 = new Label("ID:");
 		label_2.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		label_2.setBounds(45, 385, 80, 20);
 		w_paneAdmin.add(label_2);
@@ -331,12 +379,12 @@ public class PrimeAdmin extends JFrame {
 		btn_updateSubAdmin.setBounds(202, 425, 120, 30);
 		w_paneAdmin.add(btn_updateSubAdmin);
 
-		JLabel lbl_Member = new JLabel("Uye Yonetimi");
+		JLabel lbl_Member = new JLabel("Uye Yönetimi");
 		lbl_Member.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lbl_Member.setBounds(10, 60, 150, 20);
 		contentPane.add(lbl_Member);
 
-		JLabel lbl_SubAdmin = new JLabel("Alt Yonetici Yonetimi");
+		JLabel lbl_SubAdmin = new JLabel("Alt Yönetici Yönetimi");
 		lbl_SubAdmin.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lbl_SubAdmin.setBounds(550, 60, 150, 20);
 		contentPane.add(lbl_SubAdmin);
@@ -373,12 +421,12 @@ public class PrimeAdmin extends JFrame {
 	public static void updateSubAdminList() throws SQLException {
 		DefaultTableModel clearList = (DefaultTableModel) table_Admin.getModel();
 		clearList.setRowCount(0);
-		for (int i = 0; i < user.subadminList().size(); i++) {
-			adminData[0] = user.subadminList().get(i).getId();
-			adminData[1] = user.subadminList().get(i).getName();
-			adminData[2] = user.subadminList().get(i).getSurname();
-			adminData[3] = user.subadminList().get(i).getPass();
-			adminData[4] = user.subadminList().get(i).getUsername();
+		for (int i = 0; i < kullanici.subadminList().size(); i++) {
+			adminData[0] = kullanici.subadminList().get(i).getId();
+			adminData[1] = kullanici.subadminList().get(i).getName();
+			adminData[2] = kullanici.subadminList().get(i).getSurname();
+			adminData[3] = kullanici.subadminList().get(i).getPass();
+			adminData[4] = kullanici.subadminList().get(i).getUsername();
 			adminModel.addRow(adminData);
 		}
 	}
