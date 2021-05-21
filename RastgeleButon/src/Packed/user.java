@@ -79,6 +79,7 @@ public class user {
 		boolean key = false;
 		try {
 			String query = "INSERT INTO booking.admin (Name, Surname, Pass, UserName) VALUES (?, ?, ?, ?)";
+			connection = dbHelper.getConnection();
 			pStatement = connection.prepareStatement(query);
 			pStatement.setString(1, Name);
 			pStatement.setString(2, Surname);
