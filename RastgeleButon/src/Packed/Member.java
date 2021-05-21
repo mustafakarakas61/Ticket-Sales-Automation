@@ -73,7 +73,7 @@ public class Member extends user {
 		try {
 			connection = dbhelper.getConnection();
 			statement = connection.createStatement();
-			result = statement.executeQuery("SELECT * FROM booking.register");
+			result = statement.executeQuery("SELECT * FROM register");
 			Member member;
 			while (result.next()) {
 				member = new Member(result.getInt("ID"), result.getString("TC_No"), result.getString("Name"),
@@ -85,6 +85,24 @@ public class Member extends user {
 			e.printStackTrace();
 		}
 		return uyeList;
+	}
+
+	public boolean updateMember(int ID, String TC_No, String Name, String Surname) {
+		boolean key = false;
+		String query = "UPDATE booking.register SET TC_No = ?, Name = ?, Surname = ? WHERE ID = ?";
+		try {
+			connection = dbHelper.getConnection();
+			pStatement = connection.prepareStatement(query);
+			pStatement.setString(1, TC_No);
+			pStatement.setString(2, Name);
+			pStatement.setString(3, Surname);
+			pStatement.setInt(4, ID);
+			pStatement.executeUpdate();
+			key = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return key;
 	}
 
 	public int getID() {
